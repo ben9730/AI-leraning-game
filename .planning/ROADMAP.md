@@ -83,7 +83,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Skill tree UI: derived node state hook, SkillTreeNode/ChapterHeader components, full skill-tree.tsx screen with scroll-to-current
 - [x] 04-02-PLAN.md — Onboarding flow: route-guard redirect, goal selection screen, deferred AccountPromptModal after lesson 2
-- [ ] 04-03-PLAN.md — Supabase auth + cloud sync: client singleton, useAuth hook, syncProgress functions, AuthScreen UI, wiring to account prompt
+- [x] 04-03-PLAN.md — Supabase auth + cloud sync: client singleton, useAuth hook, syncProgress functions, AuthScreen UI, wiring to account prompt
 
 ### Phase 5: Full Curriculum
 **Goal**: Author all 20 lessons across 4 chapters in English and Hebrew, implement the simulated AI chat exercise type, and graduate the scoring rubric from checklist to weighted keyword scoring.
