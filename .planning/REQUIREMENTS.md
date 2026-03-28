@@ -11,8 +11,8 @@
 
 ## State & i18n (STATE)
 - [ ] **STATE-01**: Zustand store with localStorage persistence adapter (same UserProgress shape as v1)
-- [ ] **STATE-02**: i18next with EN + HE translations (port existing common.json files)
-- [ ] **STATE-03**: RTL support via document.dir + CSS logical properties (instant language switch, no page reload)
+- [x] **STATE-02**: i18next with EN + HE translations (port existing common.json files)
+- [x] **STATE-03**: RTL support via document.dir + CSS logical properties (instant language switch, no page reload)
 
 ## Content Pipeline (CONT)
 - [ ] **CONT-01**: Content loader using Vite import.meta.glob for all 20 lesson JSON files
@@ -68,8 +68,8 @@
 | FOUND-03 | Phase 7 | Complete |
 | FOUND-04 | Phase 7 | Complete |
 | STATE-01 | Phase 8 | Pending |
-| STATE-02 | Phase 8 | Pending |
-| STATE-03 | Phase 8 | Pending |
+| STATE-02 | Phase 8 | Complete |
+| STATE-03 | Phase 8 | Complete |
 | CONT-01 | Phase 9 | Pending |
 | CONT-02 | Phase 9 | Pending |
 | EXER-01 | Phase 10 | Pending |

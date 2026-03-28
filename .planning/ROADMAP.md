@@ -75,7 +75,7 @@ Plans:
 - Decimal phases (7.1, 7.2): Urgent insertions (marked with INSERTED)
 
 - [ ] **Phase 7: Foundation + Shared Extraction** - Vite 6 + React 19 scaffold, monorepo with shared/ package, portable TS extraction, lint guardrails
-- [ ] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties
+- [x] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties (completed 2026-03-28)
 - [ ] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings
 - [ ] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI
 - [ ] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock
@@ -111,8 +111,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Zustand store with localStorage persistence, hydration gate in main.tsx
-- [ ] 08-02-PLAN.md — i18next setup with EN+HE from shared/, useLanguage hook with RTL, Tailwind logical properties
+- [x] 08-01-PLAN.md — Zustand store with localStorage persistence, hydration gate in main.tsx
+- [x] 08-02-PLAN.md — i18next setup with EN+HE from shared/, useLanguage hook with RTL, Tailwind logical properties
 
 ### Phase 9: Content Pipeline
 **Goal**: All 20 lesson JSON files load correctly through a Vite-native content loader and are organized into chapters for curriculum navigation
@@ -197,7 +197,7 @@ Plans:
 | 5. Full Curriculum | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
-| 8. State + i18n + RTL | v2.0 | 0/2 | Not started | - |
+| 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 0/0 | Not started | - |
 | 10. Exercise System | v2.0 | 0/0 | Not started | - |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
