@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-28T16:05:10.012Z"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-28T16:51:53.583Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 6
-  completed_phases: 4
-  total_plans: 15
-  completed_plans: 13
+  completed_phases: 5
+  total_plans: 18
+  completed_plans: 17
   percent: 0
 ---
 
@@ -21,11 +21,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 05 — Full Curriculum
+**Current focus:** Phase 06 — PWA Polish
 
 ## Current Position
 
-Phase: 05 (Full Curriculum) — EXECUTING
+Phase: 06 (PWA Polish) — EXECUTING
 Plan: 2 of 3
 Status: Ready to execute
 Last activity: 2026-03-28
@@ -61,6 +61,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-skill-tree-onboarding P02 | 18 | 2 tasks | 8 files |
 | Phase 04-skill-tree-onboarding P01 | 25 | 2 tasks | 9 files |
 | Phase 05-full-curriculum P01 | 3 | 2 tasks | 5 files |
+| Phase 06-pwa-polish P02 | 25 | 2 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,8 @@ Recent decisions affecting current work:
 - [Phase 04-skill-tree-onboarding]: skill-tree jest project uses node preset + testPathIgnorePatterns on react-native project
 - [Phase 05-full-curriculum]: evaluateSimulatedChat is an exact type-alias of evaluateFreeText algorithm — same normalize + scoring loop, only type parameter differs
 - [Phase 05-full-curriculum]: SimulatedChatCard uses borderTopEndRadius/borderTopStartRadius for chat bubble tails (RTL-safe)
+- [Phase 06-pwa-polish]: InstallBanner uses full react-native mock in jsdom jest project — RN ESM cannot be loaded by ts-jest without babel transform
+- [Phase 06-pwa-polish]: Placeholder PNG icons generated via Node.js zlib/deflate — no sharp dependency needed for v1
 
 ### Pending Todos
 
@@ -107,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T16:05:10.007Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-03-28T16:51:53.578Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None

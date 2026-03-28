@@ -81,10 +81,10 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Polish & PWA
 
 - [ ] **PWA-01**: Service worker for offline lesson access (Workbox)
-- [ ] **PWA-02**: App installable as PWA on mobile devices
+- [x] **PWA-02**: App installable as PWA on mobile devices
 - [ ] **PWA-03**: Responsive layout optimized for mobile viewports
 - [ ] **PWA-04**: Animation performance tested on low-end Android devices
-- [ ] **PWA-05**: iOS PWA constraints handled (50MB cache limit, no auto-install prompt)
+- [x] **PWA-05**: iOS PWA constraints handled (50MB cache limit, no auto-install prompt)
 
 ## v2 Requirements
 
@@ -193,10 +193,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONT-07 | Phase 5 | Pending |
 | CONT-08 | Phase 5 | Pending |
 | PWA-01 | Phase 6 | Pending |
-| PWA-02 | Phase 6 | Pending |
+| PWA-02 | Phase 6 | Complete |
 | PWA-03 | Phase 6 | Pending |
 | PWA-04 | Phase 6 | Pending |
-| PWA-05 | Phase 6 | Pending |
+| PWA-05 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 52 total

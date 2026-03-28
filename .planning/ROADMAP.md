@@ -115,8 +115,8 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Service worker + Workbox: CacheFirst app shell + lesson JSON, StaleWhileRevalidate images, SW registration hook
-- [ ] 06-02-PLAN.md — PWA installability + iOS constraints: web manifest, PWA icons, InstallBanner (iOS nudge + Android prompt), cache budget audit
+- [x] 06-01-PLAN.md — Service worker + Workbox: CacheFirst app shell + lesson JSON, StaleWhileRevalidate images, SW registration hook
+- [x] 06-02-PLAN.md — PWA installability + iOS constraints: web manifest, PWA icons, InstallBanner (iOS nudge + Android prompt), cache budget audit
 - [ ] 06-03-PLAN.md — Performance audit: animation profiling (transform/opacity only), responsive layout fixes, regression guard tests
 
 ## Progress
@@ -130,4 +130,4 @@ Plans:
 | 3. Gamification Engine | 3/3 | Complete   | 2026-03-28 |
 | 4. Skill Tree + Onboarding | 2/3 | In Progress|  |
 | 5. Full Curriculum | 1/3 | In Progress|  |
-| 6. PWA Polish | 0/3 | Not started | - |
+| 6. PWA Polish | 2/3 | In Progress|  |
