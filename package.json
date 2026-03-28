@@ -1,0 +1,12 @@
+{
+  "name": "promptplay-monorepo",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w web",
+    "test:shared": "npm test -w shared"
+  }
+}
