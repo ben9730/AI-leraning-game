@@ -142,67 +142,67 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | — | Pending |
-| FOUND-02 | — | Pending |
-| FOUND-03 | — | Pending |
-| FOUND-04 | — | Pending |
-| FOUND-05 | — | Pending |
-| FOUND-06 | — | Pending |
-| FOUND-07 | — | Pending |
-| LESS-01 | — | Pending |
-| LESS-02 | — | Pending |
-| LESS-03 | — | Pending |
-| LESS-04 | — | Pending |
-| LESS-05 | — | Pending |
-| LESS-06 | — | Pending |
-| EXER-01 | — | Pending |
-| EXER-02 | — | Pending |
-| EXER-03 | — | Pending |
-| EXER-04 | — | Pending |
-| EXER-05 | — | Pending |
-| EXER-06 | — | Pending |
-| EXER-07 | — | Pending |
-| EXER-08 | — | Pending |
-| EXER-09 | — | Pending |
-| EXER-10 | — | Pending |
-| GAME-01 | — | Pending |
-| GAME-02 | — | Pending |
-| GAME-03 | — | Pending |
-| GAME-04 | — | Pending |
-| GAME-05 | — | Pending |
-| GAME-06 | — | Pending |
-| GAME-07 | — | Pending |
-| GAME-08 | — | Pending |
-| GAME-09 | — | Pending |
-| TREE-01 | — | Pending |
-| TREE-02 | — | Pending |
-| TREE-03 | — | Pending |
-| TREE-04 | — | Pending |
-| TREE-05 | — | Pending |
-| ONBR-01 | — | Pending |
-| ONBR-02 | — | Pending |
-| ONBR-03 | — | Pending |
-| ONBR-04 | — | Pending |
-| ONBR-05 | — | Pending |
-| CONT-01 | — | Pending |
-| CONT-02 | — | Pending |
-| CONT-03 | — | Pending |
-| CONT-04 | — | Pending |
-| CONT-05 | — | Pending |
-| CONT-06 | — | Pending |
-| CONT-07 | — | Pending |
-| CONT-08 | — | Pending |
-| PWA-01 | — | Pending |
-| PWA-02 | — | Pending |
-| PWA-03 | — | Pending |
-| PWA-04 | — | Pending |
-| PWA-05 | — | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| FOUND-07 | Phase 1 | Pending |
+| LESS-01 | Phase 2 | Pending |
+| LESS-02 | Phase 2 | Pending |
+| LESS-03 | Phase 2 | Pending |
+| LESS-04 | Phase 2 | Pending |
+| LESS-05 | Phase 2 | Pending |
+| LESS-06 | Phase 2 | Pending |
+| EXER-01 | Phase 2 | Pending |
+| EXER-02 | Phase 2 | Pending |
+| EXER-03 | Phase 2 | Pending |
+| EXER-04 | Phase 2 | Pending |
+| EXER-05 | Phase 5 | Pending |
+| EXER-06 | Phase 2 | Pending |
+| EXER-07 | Phase 2 | Pending |
+| EXER-08 | Phase 2 | Pending |
+| EXER-09 | Phase 2 | Pending |
+| EXER-10 | Phase 2 | Pending |
+| GAME-01 | Phase 3 | Pending |
+| GAME-02 | Phase 3 | Pending |
+| GAME-03 | Phase 3 | Pending |
+| GAME-04 | Phase 3 | Pending |
+| GAME-05 | Phase 3 | Pending |
+| GAME-06 | Phase 3 | Pending |
+| GAME-07 | Phase 3 | Pending |
+| GAME-08 | Phase 3 | Pending |
+| GAME-09 | Phase 3 | Pending |
+| TREE-01 | Phase 4 | Pending |
+| TREE-02 | Phase 4 | Pending |
+| TREE-03 | Phase 4 | Pending |
+| TREE-04 | Phase 4 | Pending |
+| TREE-05 | Phase 4 | Pending |
+| ONBR-01 | Phase 4 | Pending |
+| ONBR-02 | Phase 4 | Pending |
+| ONBR-03 | Phase 4 | Pending |
+| ONBR-04 | Phase 4 | Pending |
+| ONBR-05 | Phase 4 | Pending |
+| CONT-01 | Phase 5 | Pending |
+| CONT-02 | Phase 5 | Pending |
+| CONT-03 | Phase 5 | Pending |
+| CONT-04 | Phase 5 | Pending |
+| CONT-05 | Phase 5 | Pending |
+| CONT-06 | Phase 5 | Pending |
+| CONT-07 | Phase 5 | Pending |
+| CONT-08 | Phase 5 | Pending |
+| PWA-01 | Phase 6 | Pending |
+| PWA-02 | Phase 6 | Pending |
+| PWA-03 | Phase 6 | Pending |
+| PWA-04 | Phase 6 | Pending |
+| PWA-05 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 52 total
-- Mapped to phases: 0
-- Unmapped: 52 ⚠️
+- Mapped to phases: 52
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-28*
-*Last updated: 2026-03-28 after initial definition*
+*Last updated: 2026-03-28 after roadmap creation — all 52 requirements mapped*
