@@ -1,0 +1,128 @@
+{
+  "id": "lesson-06-be-clear",
+  "order": 6,
+  "chapter": 2,
+  "prerequisites": ["lesson-05-intent"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Be Clear",
+      "he": "היו ברורים"
+    },
+    "body": {
+      "en": "Vague prompts get vague results. When you ask an AI tool a fuzzy question, it has to guess what you actually want — and it often guesses wrong. Clear prompts tell the AI exactly what you need: the topic, the task, and the details that matter. The difference between 'write something about dogs' and 'write a 3-sentence fun fact about golden retrievers for a kids' magazine' is the difference between a random result and exactly what you needed.",
+      "he": "פרומפטים מעורפלים מקבלים תוצאות מעורפלות. כאשר אתם שואלים כלי AI שאלה לא ברורה, הוא צריך לנחש מה אתם באמת רוצים — ולעיתים קרובות הוא מנחש לא נכון. פרומפטים ברורים אומרים ל-AI בדיוק מה אתם צריכים: הנושא, המשימה, והפרטים החשובים. ההבדל בין 'כתוב משהו על כלבים' לבין 'כתוב 3 משפטים על עובדה מהנה לגבי גולדן רטריבר למגזין ילדים' הוא ההבדל בין תוצאה אקראית לבין בדיוק מה שצריכים."
+    },
+    "tip": {
+      "en": "Before sending a prompt, ask yourself: if someone read only this sentence, would they know exactly what to produce? These skills work with any AI tool.",
+      "he": "לפני שליחת פרומפט, שאלו את עצמכם: אם מישהו קרא רק את המשפט הזה, האם הוא ידע בדיוק מה לייצר? מיומנויות אלה עובדות עם כל כלי AI."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-06-ex-01",
+      "type": "pick-better",
+      "order": 1,
+      "prompt": {
+        "en": "Which prompt will get a more useful result?",
+        "he": "איזה פרומפט יקבל תוצאה שימושית יותר?"
+      },
+      "optionA": {
+        "en": "Tell me about exercise.",
+        "he": "ספר לי על פעילות גופנית."
+      },
+      "optionB": {
+        "en": "List 5 beginner-friendly exercises I can do at home with no equipment, each with a brief description of the muscles worked.",
+        "he": "רשום 5 תרגילים ידידותיים למתחילים שאפשר לעשות בבית ללא ציוד, כל אחד עם תיאור קצר של השרירים שמתורגלים."
+      },
+      "betterOption": "B",
+      "explanation": {
+        "en": "Option B is clear about: what type of output (a list), how many items (5), who it's for (beginners), constraints (home, no equipment), and what details to include (muscles worked). Option A leaves every decision to the AI.",
+        "he": "אפשרות B ברורה לגבי: איזה סוג פלט (רשימה), כמה פריטים (5), למי זה מיועד (מתחילים), אילוצים (בבית, ללא ציוד), ואילו פרטים לכלול (שרירים מתורגלים). אפשרות A משאירה כל החלטה ל-AI."
+      }
+    },
+    {
+      "id": "lesson-06-ex-02",
+      "type": "free-text",
+      "order": 2,
+      "prompt": {
+        "en": "Rewrite this vague prompt to make it clear and specific:",
+        "he": "שכתבו את הפרומפט המעורפל הזה כדי שיהיה ברור וספציפי:"
+      },
+      "starterPrompt": {
+        "en": "Help me with my email.",
+        "he": "עזור לי עם האימייל שלי."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "clarity",
+            "label": { "en": "Clarity", "he": "בהירות" },
+            "weight": 0.4,
+            "keywords": ["email", "write", "draft", "send", "reply", "rewrite", "subject", "message", "אימייל", "כתוב", "טיוטה", "שלח", "השב", "שכתב", "נושא", "הודעה"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Specificity", "he": "ספציפיות" },
+            "weight": 0.35,
+            "keywords": ["to", "for", "about", "regarding", "professional", "formal", "friendly", "short", "long", "ל", "עבור", "בנוגע", "לגבי", "מקצועי", "רשמי", "ידידותי", "קצר", "ארוך"],
+            "required": false
+          },
+          {
+            "key": "intent",
+            "label": { "en": "Intent", "he": "כוונה" },
+            "weight": 0.25,
+            "keywords": ["so that", "because", "need", "want", "goal", "purpose", "schedule", "request", "apologize", "confirm", "כדי", "כי", "צריך", "רוצה", "מטרה", "לתזמן", "לבקש", "להתנצל", "לאשר"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Write a short, professional email to my manager requesting Friday afternoon off, explaining that I have a medical appointment. Keep it polite and under 5 sentences.",
+        "he": "כתוב אימייל קצר ומקצועי למנהל שלי המבקש חופש בצהרי יום שישי, עם הסבר שיש לי תור רפואי. שמור על טון מנומס ולא יותר מ-5 משפטים."
+      },
+      "positiveFeedback": {
+        "en": "Excellent! Your rewrite is specific — the AI knows exactly what kind of email to write, who it's for, and what it should accomplish.",
+        "he": "מצוין! השכתוב שלכם ספציפי — ה-AI יודע בדיוק איזה סוג אימייל לכתוב, למי הוא מיועד ומה הוא אמור להשיג."
+      },
+      "improvementFeedback": {
+        "en": "Good start! Try to add: who the email is to, what it's about, and what outcome you need. The more specific, the better the result.",
+        "he": "התחלה טובה! נסו להוסיף: למי האימייל מיועד, במה הוא עוסק ואיזו תוצאה אתם צריכים. ככל שתהיו יותר ספציפיים, התוצאה תהיה טובה יותר."
+      }
+    },
+    {
+      "id": "lesson-06-ex-03",
+      "type": "fill-blank",
+      "order": 3,
+      "prompt": {
+        "en": "Complete this prompt template to make it clear:",
+        "he": "השלימו את תבנית הפרומפט הזו כדי שתהיה ברורה:"
+      },
+      "template": {
+        "en": "Write a ___ for my blog about remote work, aimed at ___, in a ___ tone.",
+        "he": "כתוב ___ לבלוג שלי על עבודה מרחוק, המיועד ל___, בטון ___."
+      },
+      "acceptableAnswers": [
+        {
+          "en": "short introduction",
+          "he": "מבוא קצר"
+        },
+        {
+          "en": "5-tip list",
+          "he": "רשימת 5 טיפים"
+        },
+        {
+          "en": "summary",
+          "he": "סיכום"
+        }
+      ],
+      "explanation": {
+        "en": "The blanks ask for: the content type (e.g., 'short introduction', '5-tip list'), the audience (e.g., 'freelancers', 'new remote workers'), and the tone (e.g., 'friendly', 'professional'). Filling these in transforms a vague request into a clear, actionable prompt.",
+        "he": "הריקים מבקשים: סוג התוכן (למשל, 'מבוא קצר', 'רשימת 5 טיפים'), הקהל (למשל, 'פרילנסרים', 'עובדים מרחוק חדשים'), והטון (למשל, 'ידידותי', 'מקצועי'). מילוי אלה הופך בקשה מעורפלת לפרומפט ברור וניתן לביצוע."
+      }
+    }
+  ]
+}

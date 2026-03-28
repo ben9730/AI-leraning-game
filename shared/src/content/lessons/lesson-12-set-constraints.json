@@ -1,0 +1,114 @@
+{
+  "id": "lesson-12-set-constraints",
+  "order": 12,
+  "chapter": 3,
+  "prerequisites": ["lesson-11-give-ai-a-role"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Set Constraints",
+      "he": "קבעו אילוצים"
+    },
+    "body": {
+      "en": "Constraints narrow the AI's output — word limits, tone requirements, what NOT to include. Good constraints prevent responses that are too long, off-topic, or in the wrong style. Instead of hoping the AI guesses what you want, tell it exactly: 'in 3 bullet points', 'in a professional tone', 'without technical jargon', 'under 100 words'. The more specific your constraints, the more useful the output.",
+      "he": "אילוצים מצמצמים את הפלט של ה-AI — הגבלות מילים, דרישות טון, מה לא לכלול. אילוצים טובים מונעים תגובות ארוכות מדי, חורגות מהנושא, או בסגנון הלא נכון. במקום לקוות שה-AI ינחש מה אתם רוצים, אמרו לו בדיוק: 'ב-3 נקודות', 'בטון מקצועי', 'ללא מינוח טכני', 'עד 100 מילים'. ככל שהאילוצים שלכם ספציפיים יותר, כך הפלט שימושי יותר."
+    },
+    "tip": {
+      "en": "Constraints and context work together. Context tells the AI who you are; constraints tell it how to respond. Use both for the best results.",
+      "he": "אילוצים והקשר עובדים יחד. הקשר אומר ל-AI מי אתם; אילוצים אומרים לו כיצד להגיב. השתמשו בשניהם לקבלת תוצאות הטובות ביותר."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-12-ex-01",
+      "type": "free-text",
+      "order": 1,
+      "prompt": {
+        "en": "Write a prompt asking an AI to explain a topic of your choice. Include at least two constraints: one about length or format, and one about tone or style.",
+        "he": "כתבו פרומפט המבקש מ-AI להסביר נושא לבחירתכם. כללו לפחות שני אילוצים: אחד לגבי אורך או פורמט, ואחד לגבי טון או סגנון."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "length_constraint",
+            "label": { "en": "Length or format constraint", "he": "אילוץ אורך או פורמט" },
+            "weight": 0.4,
+            "keywords": ["words", "sentences", "bullet", "points", "paragraph", "brief", "short", "concise", "under", "maximum", "מילים", "משפטים", "נקודות", "פסקה", "קצר", "תמציתי", "עד", "מקסימום"],
+            "required": false
+          },
+          {
+            "key": "tone_constraint",
+            "label": { "en": "Tone or style constraint", "he": "אילוץ טון או סגנון" },
+            "weight": 0.35,
+            "keywords": ["simple", "professional", "formal", "informal", "friendly", "plain", "jargon", "beginner", "casual", "clear", "פשוט", "מקצועי", "רשמי", "לא רשמי", "ידידותי", "רגיל", "מינוח", "מתחיל", "קבוע", "ברור"],
+            "required": false
+          },
+          {
+            "key": "topic",
+            "label": { "en": "Clear topic specified", "he": "נושא ברור צוין" },
+            "weight": 0.25,
+            "keywords": ["explain", "describe", "tell me", "what is", "how does", "הסבר", "תאר", "ספר לי", "מהו", "כיצד"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Explain how the stock market works. Keep your explanation under 100 words and use simple, everyday language — no financial jargon. Write in a friendly, conversational tone suitable for someone who has never invested before.",
+        "he": "הסבר כיצד שוק המניות עובד. שמור על ההסבר שלך עד 100 מילים והשתמש בשפה פשוטה ויומיומית — ללא מינוח פיננסי. כתוב בטון ידידותי ושיחתי המתאים למי שמעולם לא השקיע."
+      },
+      "positiveFeedback": {
+        "en": "Well done! You used constraints to control both the length and the tone of the response. This kind of specific instruction saves you from getting a wall of text when you just wanted a quick answer.",
+        "he": "כל הכבוד! השתמשתם באילוצים כדי לשלוט גם באורך וגם בטון של התשובה. הוראה ספציפית כזו חוסכת לכם מלקבל קיר של טקסט כשרק רציתם תשובה מהירה."
+      },
+      "improvementFeedback": {
+        "en": "Try adding two types of constraints: one about length or format ('under 100 words', '3 bullet points', 'one paragraph') and one about tone or style ('simple language', 'professional tone', 'no technical jargon').",
+        "he": "נסו להוסיף שני סוגי אילוצים: אחד לגבי אורך או פורמט ('עד 100 מילים', '3 נקודות', 'פסקה אחת') ואחד לגבי טון או סגנון ('שפה פשוטה', 'טון מקצועי', 'ללא מינוח טכני')."
+      }
+    },
+    {
+      "id": "lesson-12-ex-02",
+      "type": "fill-blank",
+      "order": 2,
+      "prompt": {
+        "en": "Complete this constrained prompt by filling in the three blanks. Each blank should add a specific constraint or requirement:",
+        "he": "השלימו את הפרומפט המוגבל הזה על ידי מילוי שלושת הריקים. כל ריק צריך להוסיף אילוץ או דרישה ספציפיים:"
+      },
+      "template": {
+        "en": "Write a _[type of content]_ about _[topic]_ in _[constraint: length/style/format]_.",
+        "he": "כתוב _[סוג תוכן]_ על _[נושא]_ ב_[אילוץ: אורך/סגנון/פורמט]_."
+      },
+      "blanks": [
+        {
+          "id": "blank-1",
+          "placeholder": { "en": "type of content", "he": "סוג תוכן" },
+          "acceptableAnswers": {
+            "en": ["summary", "explanation", "list", "guide", "overview", "introduction", "short paragraph"],
+            "he": ["סיכום", "הסבר", "רשימה", "מדריך", "סקירה", "מבוא", "פסקה קצרה"]
+          }
+        },
+        {
+          "id": "blank-2",
+          "placeholder": { "en": "topic", "he": "נושא" },
+          "acceptableAnswers": {
+            "en": ["any specific topic", "climate change", "renewable energy", "healthy eating", "machine learning", "photography", "meditation"],
+            "he": ["כל נושא ספציפי", "שינויי אקלים", "אנרגיה מתחדשת", "אכילה בריאה", "למידת מכונה", "צילום", "מדיטציה"]
+          }
+        },
+        {
+          "id": "blank-3",
+          "placeholder": { "en": "constraint", "he": "אילוץ" },
+          "acceptableAnswers": {
+            "en": ["under 100 words", "3 bullet points", "one paragraph", "simple language", "a professional tone", "plain English", "50 words or less"],
+            "he": ["עד 100 מילים", "3 נקודות", "פסקה אחת", "שפה פשוטה", "טון מקצועי", "עברית פשוטה", "50 מילים או פחות"]
+          }
+        }
+      ],
+      "explanation": {
+        "en": "A good constrained prompt has: (1) a clear content type (what you want produced), (2) a specific topic (what it's about), and (3) at least one constraint (how long, what format, what tone). All three together prevent vague, off-target responses.",
+        "he": "פרומפט מוגבל טוב כולל: (1) סוג תוכן ברור (מה אתם רוצים שייוצר), (2) נושא ספציפי (על מה מדובר), ו-(3) לפחות אילוץ אחד (כמה ארוך, איזה פורמט, איזה טון). כל שלושה יחד מונעים תגובות מעורפלות וחורגות מהנושא."
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "lesson-07-give-context",
+  "order": 7,
+  "chapter": 2,
+  "prerequisites": ["lesson-06-be-clear"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Give Context",
+      "he": "תנו הקשר"
+    },
+    "body": {
+      "en": "Context tells the AI who you are, what you need, and why — so it can tailor the response to your actual situation. Without context, the AI guesses. With context, it knows. Think of it like briefing a new colleague: 'I'm a teacher preparing a lesson for 10-year-olds' gives very different results than just 'explain photosynthesis'. Context includes: your role, your audience, the purpose, and any relevant background.",
+      "he": "הקשר אומר ל-AI מי אתם, מה אתם צריכים ולמה — כדי שיוכל להתאים את התשובה למצב האמיתי שלכם. ללא הקשר, ה-AI מנחש. עם הקשר, הוא יודע. חשבו על זה כמו הנחיה לעמית חדש: 'אני מורה שמכין שיעור לילדים בני 10' נותן תוצאות שונות מאוד מ'הסבר פוטוסינתזה'. הקשר כולל: התפקיד שלכם, הקהל שלכם, המטרה, וכל רקע רלוונטי."
+    },
+    "tip": {
+      "en": "Add one sentence of context before your main request: 'I'm a [role] working on [project]. [Your actual request].' This works with any AI tool.",
+      "he": "הוסיפו משפט אחד של הקשר לפני הבקשה הראשית: 'אני [תפקיד] עובד על [פרויקט]. [הבקשה האמיתית שלכם].' זה עובד עם כל כלי AI."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-07-ex-01",
+      "type": "mcq",
+      "order": 1,
+      "prompt": {
+        "en": "What does 'context' mean in the world of prompting?",
+        "he": "מה המשמעות של 'הקשר' בעולם הפרומפטים?"
+      },
+      "options": [
+        {
+          "en": "The number of words in your prompt",
+          "he": "מספר המילים בפרומפט שלכם"
+        },
+        {
+          "en": "Background information about you, your audience, and your purpose that helps the AI tailor its response",
+          "he": "מידע רקע עליכם, על הקהל שלכם ועל המטרה שלכם שעוזר ל-AI להתאים את תשובתו"
+        },
+        {
+          "en": "The topic or subject you want the AI to cover",
+          "he": "הנושא שאתם רוצים שה-AI יכסה"
+        },
+        {
+          "en": "A summary of your previous conversations with the AI",
+          "he": "סיכום של השיחות הקודמות שלכם עם ה-AI"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Context in prompting means giving the AI background information — your role, your audience, your purpose. This is different from the topic (what you want to know) or the length of your prompt. Context shapes HOW the AI responds, not just WHAT it covers.",
+        "he": "הקשר בפרומפטים פירושו לתת ל-AI מידע רקע — התפקיד שלכם, הקהל שלכם, המטרה שלכם. זה שונה מהנושא (מה אתם רוצים לדעת) או מאורך הפרומפט. הקשר מעצב איך ה-AI מגיב, לא רק מה הוא מכסה."
+      }
+    },
+    {
+      "id": "lesson-07-ex-02",
+      "type": "simulated-chat",
+      "order": 2,
+      "prompt": {
+        "en": "Write a prompt asking an AI tool to help you write an email. Include context about who you are, who you're writing to, and why.",
+        "he": "כתבו פרומפט המבקש מכלי AI לעזור לכם לכתוב אימייל. כללו הקשר על מי אתם, למי אתם כותבים ולמה."
+      },
+      "systemContext": {
+        "en": "You are a helpful AI writing assistant. When someone asks you to write an email, look for context clues: who is writing, who is the recipient, and what is the purpose. Respond with a realistic sample email that matches whatever context the user provides.",
+        "he": "אתה עוזר AI לכתיבה. כאשר מישהו מבקש ממך לכתוב אימייל, חפש רמזי הקשר: מי כותב, מי הנמען ומה המטרה. הגב עם דוגמת אימייל ריאליסטית שמתאימה להקשר שהמשתמש מספק."
+      },
+      "preScriptedResponse": {
+        "en": "Here's a draft email based on what you shared:\n\nSubject: [Matches your stated purpose]\n\nDear [Recipient],\n\nI hope this message finds you well. [Opening that fits your context...]\n\n[Body paragraph tailored to your role and purpose...]\n\nThank you for your time.\n\nBest regards,\n[Your name]\n\nI tailored this based on the context you gave me — your role, the recipient, and your goal.",
+        "he": "הנה טיוטת האימייל בהתבסס על מה שסיפרתם:\n\nנושא: [תואם למטרה שציינתם]\n\nשלום [נמען],\n\nאני מקווה שהכל בסדר. [פתיחה שמתאימה להקשר שלכם...]\n\n[פסקת גוף המותאמת לתפקיד ולמטרה שלכם...]\n\nתודה על הזמן שלכם.\n\nבברכה,\n[שמכם]\n\nהתאמתי את זה על סמך ההקשר שנתתם לי — התפקיד שלכם, הנמען, והמטרה."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "context",
+            "label": { "en": "Context provided", "he": "הקשר ניתן" },
+            "weight": 0.4,
+            "keywords": ["I am", "I'm", "my role", "as a", "teacher", "manager", "student", "colleague", "boss", "client", "אני", "התפקיד שלי", "כ", "מורה", "מנהל", "סטודנט", "עמית", "בוס", "לקוח"],
+            "required": false
+          },
+          {
+            "key": "clarity",
+            "label": { "en": "Audience specified", "he": "קהל צוין" },
+            "weight": 0.35,
+            "keywords": ["to my", "to the", "for my", "recipient", "colleague", "manager", "team", "professor", "client", "למנהל", "לצוות", "לפרופסור", "ללקוח", "לעמית", "למי שמקבל"],
+            "required": false
+          },
+          {
+            "key": "intent",
+            "label": { "en": "Purpose stated", "he": "מטרה הוצהרה" },
+            "weight": 0.25,
+            "keywords": ["to request", "to inform", "to thank", "to follow up", "asking for", "schedule", "apologize", "confirm", "לבקש", "ליידע", "להודות", "לעקוב", "לתזמן", "להתנצל", "לאשר"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "I'm a junior marketing analyst at a software company. Write a professional email to my manager requesting to attend a 2-day digital marketing conference next month. Explain that it's relevant to our current campaign and the company would benefit from the insights I'd bring back.",
+        "he": "אני אנליסט שיווק בכיר בחברת תוכנה. כתוב אימייל מקצועי למנהל שלי המבקש להשתתף בכנס שיווק דיגיטלי של 2 ימים בחודש הבא. הסבר שזה רלוונטי לקמפיין הנוכחי שלנו והחברה תרוויח מהתובנות שאביא בחזרה."
+      },
+      "positiveFeedback": {
+        "en": "Well done! You gave the AI real context — who you are, who you're writing to, and what you need. That's exactly what produces a useful, tailored email.",
+        "he": "כל הכבוד! נתתם ל-AI הקשר אמיתי — מי אתם, למי אתם כותבים ומה אתם צריכים. זה בדיוק מה שמייצר אימייל שימושי ומותאם."
+      },
+      "improvementFeedback": {
+        "en": "Try adding context: mention who you are (your role), who you're writing to, and the purpose of the email. Context transforms a generic request into a tailored result.",
+        "he": "נסו להוסיף הקשר: ציינו מי אתם (התפקיד שלכם), למי אתם כותבים ומה מטרת האימייל. הקשר הופך בקשה גנרית לתוצאה מותאמת."
+      }
+    },
+    {
+      "id": "lesson-07-ex-03",
+      "type": "pick-better",
+      "order": 3,
+      "prompt": {
+        "en": "Which prompt gives better context for a useful response?",
+        "he": "איזה פרומפט נותן הקשר טוב יותר לתשובה שימושית?"
+      },
+      "optionA": {
+        "en": "Explain machine learning.",
+        "he": "הסבר למידת מכונה."
+      },
+      "optionB": {
+        "en": "I'm a high school teacher preparing a 10-minute lesson for 16-year-olds with no tech background. Explain machine learning using a simple everyday analogy — no jargon.",
+        "he": "אני מורה בתיכון שמכין שיעור של 10 דקות לתלמידים בני 16 ללא רקע טכנולוגי. הסבר למידת מכונה באמצעות אנלוגיה יומיומית פשוטה — ללא מונחים מקצועיים."
+      },
+      "betterOption": "B",
+      "explanation": {
+        "en": "Option B provides rich context: the speaker's role (teacher), the audience (16-year-olds, no tech background), the use case (a 10-minute lesson), and a specific constraint (no jargon, use analogy). Option A will likely produce a technical Wikipedia-style explanation — not useful for a classroom.",
+        "he": "אפשרות B מספקת הקשר עשיר: תפקיד הדובר (מורה), הקהל (בני 16, ללא רקע טכנולוגי), תרחיש השימוש (שיעור של 10 דקות), ואילוץ ספציפי (ללא מונחים, שימוש באנלוגיה). אפשרות A ככל הנראה תייצר הסבר טכני בסגנון ויקיפדיה — לא שימושי לכיתה."
+      }
+    }
+  ]
+}

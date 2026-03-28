@@ -1,0 +1,132 @@
+{
+  "id": "lesson-10-your-first-good-prompt",
+  "order": 10,
+  "chapter": 2,
+  "prerequisites": ["lesson-09-put-it-together"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Your First Good Prompt",
+      "he": "הפרומפט הטוב הראשון שלך"
+    },
+    "body": {
+      "en": "You've made it through the foundations. You now know the four ingredients of a great prompt: clarity (be specific), context (who you are and why), format (how you want it), and intent (what you'll do with it). A good prompt isn't about being long — it's about being complete. Even two clear sentences beat a rambling paragraph of vague requests. You're ready to start using AI tools confidently. The more you practice, the more natural it becomes.",
+      "he": "עברתם את היסודות. כעת אתם יודעים את ארבעת המרכיבים של פרומפט מעולה: בהירות (היו ספציפיים), הקשר (מי אתם ולמה), פורמט (איך אתם רוצים את זה), וכוונה (מה תעשו עם זה). פרומפט טוב לא עניינו להיות ארוך — עניינו להיות שלם. אפילו שני משפטים ברורים עדיפים על פסקה ארוכה של בקשות מעורפלות. אתם מוכנים להתחיל להשתמש בכלי AI בביטחון. ככל שתתרגלו יותר, כך זה הופך טבעי יותר."
+    },
+    "tip": {
+      "en": "Your four-ingredient checklist: Clarity + Context + Format + Intent. Any AI tool will produce dramatically better results when you provide all four.",
+      "he": "רשימת ארבעת המרכיבים שלכם: בהירות + הקשר + פורמט + כוונה. כל כלי AI יייצר תוצאות טובות הרבה יותר כאשר אתם מספקים את כל הארבעה."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-10-ex-01",
+      "type": "pick-better",
+      "order": 1,
+      "prompt": {
+        "en": "Both prompts ask for the same thing. Which one will get a better result?",
+        "he": "שני הפרומפטים מבקשים את אותו הדבר. איזה אחד יקבל תוצאה טובה יותר?"
+      },
+      "optionA": {
+        "en": "I'm preparing for a job interview at a tech startup next week as a junior product manager. Give me 5 likely interview questions and for each one, suggest a strong answer strategy in 2 sentences. Present it as a numbered list.",
+        "he": "אני מתכונן לראיון עבודה בסטארטאפ טכנולוגי בשבוע הבא כמנהל מוצר ג'וניור. תן לי 5 שאלות ראיון סבירות ולכל אחת הצע אסטרטגיית תשובה חזקה ב-2 משפטים. הצג זאת כרשימה ממוספרת."
+      },
+      "optionB": {
+        "en": "Help me prepare for an interview.",
+        "he": "עזור לי להתכונן לראיון."
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A has all four ingredients: clarity (5 questions + 2-sentence strategy), context (junior PM at tech startup, next week), format (numbered list), and intent (preparing for the interview). Option B gives the AI nothing to work with — the response will be generic and probably not useful for your specific situation.",
+        "he": "לאפשרות A יש את כל ארבעת המרכיבים: בהירות (5 שאלות + אסטרטגיית 2 משפטים), הקשר (מנהל מוצר ג'וניור בסטארטאפ, שבוע הבא), פורמט (רשימה ממוספרת), וכוונה (הכנה לראיון). אפשרות B לא נותנת ל-AI כלום לעבוד איתו — התשובה תהיה גנרית וכנראה לא שימושית למצב הספציפי שלכם."
+      }
+    },
+    {
+      "id": "lesson-10-ex-02",
+      "type": "free-text",
+      "order": 2,
+      "prompt": {
+        "en": "Write a complete prompt from scratch for a real-world task you might actually need. Use all four ingredients: clarity, context, format, and intent.",
+        "he": "כתבו פרומפט שלם מאפס למשימה מהעולם האמיתי שאולי באמת תצטרכו. השתמשו בכל ארבעת המרכיבים: בהירות, הקשר, פורמט וכוונה."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "clarity",
+            "label": { "en": "Clarity", "he": "בהירות" },
+            "weight": 0.25,
+            "keywords": ["write", "create", "list", "summarize", "explain", "draft", "generate", "make", "find", "כתוב", "צור", "רשום", "סכם", "הסבר", "נסח", "ייצר", "עשה", "מצא"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Context", "he": "הקשר" },
+            "weight": 0.25,
+            "keywords": ["I am", "I'm", "as a", "my", "for my", "I work", "I need", "I have", "אני", "כ", "שלי", "עבור", "אני עובד", "אני צריך", "יש לי"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Format specified", "he": "פורמט צוין" },
+            "weight": 0.25,
+            "keywords": ["bullet", "list", "table", "paragraph", "steps", "numbered", "format", "short", "long", "sentences", "נקודות", "רשימה", "טבלה", "פסקה", "שלבים", "ממוספר", "פורמט", "קצר", "ארוך", "משפטים"],
+            "required": false
+          },
+          {
+            "key": "intent",
+            "label": { "en": "Intent stated", "he": "כוונה הוצהרה" },
+            "weight": 0.25,
+            "keywords": ["so that", "so I can", "in order to", "to use", "for a", "to share", "to present", "to send", "כדי", "כדי שאוכל", "לשם", "לשימוש", "עבור", "לשתף", "להציג", "לשלוח"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "I'm a small business owner preparing a monthly newsletter for about 200 customers. Write a friendly, engaging opening paragraph (3-4 sentences) for this month's newsletter announcing our new loyalty rewards program. Keep it warm and conversational — I want customers to feel excited, not like they're reading an advertisement.",
+        "he": "אני בעל עסק קטן שמכין ניוזלטר חודשי לכ-200 לקוחות. כתוב פסקת פתיחה ידידותית ומרתקת (3-4 משפטים) לניוזלטר של החודש שמכריזה על תוכנית הנאמנות החדשה שלנו. שמור על טון חם ושיחתי — אני רוצה שהלקוחות ירגישו התרגשות, לא כאילו הם קוראים פרסומת."
+      },
+      "positiveFeedback": {
+        "en": "Outstanding work! Your prompt has real clarity, genuine context, a specified format, and a clear intent. This is exactly what a good prompt looks like — you're ready to use AI tools effectively.",
+        "he": "עבודה יוצאת דופן! לפרומפט שלכם יש בהירות אמיתית, הקשר אמיתי, פורמט מצוין וכוונה ברורה. זה בדיוק כיצד נראה פרומפט טוב — אתם מוכנים להשתמש בכלי AI ביעילות."
+      },
+      "improvementFeedback": {
+        "en": "You're on the right track! Check the four-ingredient checklist: (1) Clarity — is the task specific? (2) Context — did you say who you are or what situation you're in? (3) Format — did you say how the output should look? (4) Intent — did you say what you'll do with the result?",
+        "he": "אתם בדרך הנכונה! בדקו את רשימת ארבעת המרכיבים: (1) בהירות — האם המשימה ספציפית? (2) הקשר — אמרתם מי אתם או באיזו מצב אתם? (3) פורמט — אמרתם כיצד הפלט צריך להיראות? (4) כוונה — אמרתם מה תעשו עם התוצאה?"
+      }
+    },
+    {
+      "id": "lesson-10-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "Which of these best describes what makes a prompt 'good'?",
+        "he": "איזה מאלה הכי טוב מתאר מה הופך פרומפט ל'טוב'?"
+      },
+      "options": [
+        {
+          "en": "It is long and detailed with as many words as possible",
+          "he": "הוא ארוך ומפורט עם כמה שיותר מילים"
+        },
+        {
+          "en": "It uses technical AI terminology so the AI understands you better",
+          "he": "הוא משתמש במינוח AI טכני כדי ש-AI יבין אתכם טוב יותר"
+        },
+        {
+          "en": "It is complete — it gives the AI the clarity, context, format, and intent it needs to produce exactly what you want",
+          "he": "הוא שלם — הוא נותן ל-AI את הבהירות, ההקשר, הפורמט והכוונה שהוא צריך כדי לייצר בדיוק מה שאתם רוצים"
+        },
+        {
+          "en": "It is as short as possible to save time",
+          "he": "הוא קצר ככל האפשר לחיסכון בזמן"
+        }
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "en": "A good prompt is complete, not long. It gives the AI what it needs: clarity about the task, context about you and your situation, the format you want, and your intent. Length doesn't matter — a two-sentence prompt with all four ingredients beats a five-paragraph one that's vague. And AI tools don't need special technical jargon — plain, clear language works best.",
+        "he": "פרומפט טוב הוא שלם, לא ארוך. הוא נותן ל-AI מה שהוא צריך: בהירות לגבי המשימה, הקשר עליכם ועל המצב שלכם, הפורמט שאתם רוצים, והכוונה שלכם. אורך לא חשוב — פרומפט של שני משפטים עם כל ארבעת המרכיבים עדיף על אחד של חמש פסקאות שמעורפל. וכלי AI לא צריכים מינוח טכני מיוחד — שפה פשוטה וברורה עובדת הכי טוב."
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "tabs": { "home": "בית", "skillTree": "עץ מיומנויות", "profile": "פרופיל" },
+  "home": { "title": "ברוכים הבאים ל-PromptPlay", "start_lesson": "התחל ללמוד" },
+  "skillTree": {
+    "title": "עץ מיומנויות",
+    "progress": "{{completed}} מתוך {{total}} שיעורים",
+    "chapterProgress": "{{completed}}/{{total}}"
+  },
+  "profile": { "title": "פרופיל" },
+  "common": { "continue": "המשך", "back": "חזור", "loading": "טוען..." },
+  "language": { "switchToHebrew": "עברית", "switchToEnglish": "English" },
+  "lesson": {
+    "complete": "השיעור הושלם!",
+    "start_exercises": "התחל תרגילים",
+    "continue": "המשך",
+    "xp_earned": "+{{xp}} XP",
+    "exercise_count": "תרגיל {{current}} מתוך {{total}}"
+  },
+  "exercise": {
+    "model_answer": "גרסה חזקה אחת:",
+    "score": "ציון: {{score}}%",
+    "passed": "נכון!",
+    "failed": "לא בדיוק — בואו נבדוק"
+  },
+  "rubric": {
+    "clarity": "מטרה ברורה",
+    "specificity": "פרטים ספציפיים",
+    "context": "הקשר מועיל",
+    "intent": "כוונה ברורה"
+  },
+  "streak": {
+    "days": "רצף של {{count}} ימים",
+    "days_one": "רצף של יום {{count}}",
+    "days_other": "רצף של {{count}} ימים",
+    "start": "התחילו את הרצף!",
+    "freeze_available": "{{count}} הקפאת רצף",
+    "freeze_used": "הקפאת רצף הצילה את הרצף!",
+    "milestone": "מדהים! רצף של {{count}} ימים!"
+  },
+  "badge": {
+    "first_lesson": { "title": "צעדים ראשונים", "description": "השלימו את השיעור הראשון" },
+    "streak_7": { "title": "בלהבות", "description": "הגיעו לרצף של 7 ימים" },
+    "chapter_1": { "title": "אלוף הפרק", "description": "השלימו את כל שיעורי פרק 1" },
+    "level_3": { "title": "כוכב עולה", "description": "הגיעו לרמה 3" },
+    "resilient": { "title": "עמיד", "description": "השתמשו בהקפאת רצף והמשיכו" },
+    "earned": "הושג!",
+    "locked": "המשיכו כדי להשיג את התג הזה"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "PromptPlay",
+      "subtitle": "למדו פרומפטינג דרך משחק"
+    },
+    "goal": {
+      "heading": "כמה פעמים תרצו ללמוד?",
+      "casual": "קליל",
+      "regular": "רגיל",
+      "serious": "אינטנסיבי",
+      "xpPerDay": "{{xp}} XP ליום"
+    }
+  },
+  "accountPrompt": {
+    "title": "!שמרו את ההתקדמות שלכם",
+    "description": "צרו חשבון חינמי כדי לסנכרן את ההתקדמות שלכם בין מכשירים ולשמור על הרצף.",
+    "signUp": "צרו חשבון",
+    "skip": "אולי אחר כך"
+  },
+  "auth": {
+    "signUp": {
+      "title": "צרו את החשבון שלכם",
+      "button": "צרו חשבון"
+    },
+    "signIn": {
+      "title": "ברוכים השבים",
+      "button": "התחברו"
+    },
+    "email": "אימייל",
+    "password": "סיסמה",
+    "switchToSignIn": "יש לכם חשבון? התחברו",
+    "switchToSignUp": "אין לכם חשבון? צרו אחד",
+    "cancel": "ביטול",
+    "syncing": "מסנכרנים את ההתקדמות שלכם...",
+    "syncComplete": "ההתקדמות נשמרה!"
+  },
+  "pwa": {
+    "installButton": "התקינו את PromptPlay",
+    "iosInstallHint": "התקינו את PromptPlay: לחצו על שתף, ואז 'הוסף למסך הבית'",
+    "dismiss": "סגור"
+  },
+  "gamification": {
+    "xp_breakdown": "+{{base}} XP",
+    "streak_bonus": "בונוס רצף: x{{multiplier}}",
+    "perfection_bonus": "בונוס מושלם: +{{bonus}} XP",
+    "level": "רמה {{level}}",
+    "level_up": "עליית רמה!",
+    "level_up_message": "הגעת לרמה {{level}}!",
+    "daily_goal": "יעד יומי",
+    "daily_goal_casual": "קליל — {{xp}} XP ליום",
+    "daily_goal_regular": "רגיל — {{xp}} XP ליום",
+    "daily_goal_serious": "רציני — {{xp}} XP ליום",
+    "daily_goal_met": "היעד היומי הושג!",
+    "keep_going": "התקדמות מעולה — המשיכו כך!"
+  }
+}

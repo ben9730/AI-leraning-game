@@ -1,0 +1,118 @@
+{
+  "id": "lesson-04-context",
+  "order": 4,
+  "chapter": 1,
+  "prerequisites": ["lesson-03-specificity"],
+  "xpReward": 15,
+  "content": {
+    "title": {
+      "en": "Give Context",
+      "he": "תנו הקשר"
+    },
+    "body": {
+      "en": "Context helps the AI understand your situation — who you are, who the audience is, and what you've already tried. Without context, the AI has to guess. With context, it can tailor the response exactly to your needs. Think of it as briefing a new colleague before asking for help.",
+      "he": "הקשר עוזר ל-AI להבין את המצב שלכם — מי אתם, מיהו הקהל ומה כבר ניסיתם. בלי הקשר, ה-AI צריך לנחש. עם הקשר, הוא יכול להתאים את התשובה בדיוק לצרכים שלכם. חשבו על זה כמו לסקר עמית חדש לפני שמבקשים עזרה."
+    },
+    "tip": {
+      "en": "Add context by answering: Who am I? Who is this for? What's the situation? What have I tried?",
+      "he": "הוסיפו הקשר על ידי מענה על: מי אני? לשם מי זה? מה המצב? מה ניסיתי?"
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-04-ex-01",
+      "type": "pick-better",
+      "order": 1,
+      "prompt": {
+        "en": "Which cover letter prompt gives the AI more helpful context?",
+        "he": "איזה פרומפט לכתיבת מכתב מקדים נותן ל-AI הקשר שימושי יותר?"
+      },
+      "optionA": {
+        "en": "Write a cover letter for a job application.",
+        "he": "כתוב מכתב מקדים לבקשת עבודה."
+      },
+      "optionB": {
+        "en": "Write a cover letter for a junior product manager role at a fintech startup. I have 2 years of experience in customer support and recently completed a product management course. The company values data-driven thinking and user empathy.",
+        "he": "כתוב מכתב מקדים לתפקיד מנהל מוצר ג'וניור בסטארטאפ פינטק. יש לי 2 שנות ניסיון בתמיכת לקוחות ולאחרונה סיימתי קורס ניהול מוצר. החברה מעריכה חשיבה מבוססת נתונים ואמפתיה למשתמש."
+      },
+      "betterOption": "B",
+      "explanation": {
+        "en": "Option B gives the AI rich context: the role, the company type, your relevant background, and what the company values. This lets the AI write a cover letter that's actually tailored to you — not a generic template.",
+        "he": "אפשרות B נותנת ל-AI הקשר עשיר: התפקיד, סוג החברה, הרקע הרלוונטי שלכם ומה החברה מעריכה. זה מאפשר ל-AI לכתוב מכתב מקדים שמותאם לכם באמת — לא תבנית גנרית."
+      }
+    },
+    {
+      "id": "lesson-04-ex-02",
+      "type": "free-text",
+      "order": 2,
+      "prompt": {
+        "en": "Add context to make this prompt more useful:",
+        "he": "הוסיפו הקשר כדי להפוך את הפרומפט הזה לשימושי יותר:"
+      },
+      "starterPrompt": {
+        "en": "Help me prepare for a meeting.",
+        "he": "עזור לי להתכונן לפגישה."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "context",
+            "label": { "en": "Helpful context", "he": "הקשר מועיל" },
+            "weight": 0.5,
+            "keywords": ["meeting", "team", "manager", "client", "project", "about", "with", "stakeholder", "colleague", "פגישה", "צוות", "מנהל", "לקוח", "פרויקט", "על", "עם", "מחזיק עניין", "עמית"],
+            "required": false
+          },
+          {
+            "key": "intent",
+            "label": { "en": "Clear intent", "he": "כוונה ברורה" },
+            "weight": 0.5,
+            "keywords": ["prepare", "talking points", "agenda", "notes", "summary", "questions", "present", "discuss", "להתכונן", "נקודות לדיון", "סדר יום", "הערות", "סיכום", "שאלות", "להציג", "לדון"],
+            "required": false
+          }
+        ],
+        "passingScore": 50,
+        "scoringMethod": "checklist"
+      },
+      "modelAnswer": {
+        "en": "Help me prepare talking points for a 30-minute project status meeting with my manager. The project is a new mobile app and we're currently 2 weeks behind schedule. I want to explain the delay and propose a revised timeline.",
+        "he": "עזור לי להכין נקודות לדיון לפגישת סטטוס פרויקט של 30 דקות עם המנהל שלי. הפרויקט הוא אפליקציה מובייל חדשה ואנחנו כרגע 2 שבועות מאחורי לוח הזמנים. אני רוצה להסביר את העיכוב ולהציע לוח זמנים מעודכן."
+      },
+      "positiveFeedback": {
+        "en": "Excellent! You've given the AI the context it needs to prepare something genuinely useful for your specific situation.",
+        "he": "מצוין! נתתם ל-AI את ההקשר שהוא צריך כדי להכין משהו שימושי באמת למצב הספציפי שלכם."
+      },
+      "improvementFeedback": {
+        "en": "Good try! Add more context: What kind of meeting is it? Who will be there? What do you want to achieve?",
+        "he": "ניסיון טוב! הוסיפו עוד הקשר: איזה סוג פגישה? מי יהיה שם? מה אתם רוצים להשיג?"
+      }
+    },
+    {
+      "id": "lesson-04-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "Which piece of context would help the AI most when asking for writing feedback?",
+        "he": "איזה חלק מהקשר יעזור ל-AI הכי הרבה כשמבקשים משוב על כתיבה?"
+      },
+      "options": [
+        {
+          "en": "The current date",
+          "he": "התאריך הנוכחי"
+        },
+        {
+          "en": "Who will read the writing and what it needs to accomplish",
+          "he": "מי יקרא את הכתיבה ומה היא צריכה להשיג"
+        },
+        {
+          "en": "How long you spent writing it",
+          "he": "כמה זמן הוצאתם על כתיבתו"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Knowing the audience and purpose is the most useful context for writing feedback. A business proposal for investors needs different feedback than a casual blog post for friends. The date and time spent writing don't affect what good feedback looks like.",
+        "he": "ידיעת הקהל והמטרה היא ההקשר השימושי ביותר למשוב על כתיבה. הצעה עסקית למשקיעים צריכה משוב שונה מפוסט בלוג לא פורמלי לחברים. התאריך והזמן שהוצאתם על הכתיבה לא משפיעים על איך נראה משוב טוב."
+      }
+    }
+  ]
+}

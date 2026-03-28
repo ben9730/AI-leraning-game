@@ -1,0 +1,132 @@
+{
+  "id": "lesson-19-research-assistance",
+  "order": 19,
+  "chapter": 4,
+  "prerequisites": ["lesson-18-brainstorming"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Research Assistance",
+      "he": "עזרה במחקר"
+    },
+    "body": {
+      "en": "AI can help you explore topics, compare options, and organize information. It's great for getting an overview, building a framework, or understanding the key factors in a decision. But remember: always verify AI-provided facts independently. AI tools can produce outdated, incomplete, or incorrect information — especially for current events, statistics, or specialized fields. Use AI to structure your research, not to replace it.",
+      "he": "AI יכול לעזור לכם לחקור נושאים, להשוות אפשרויות ולארגן מידע. הוא מעולה לקבלת סקירה כללית, בניית מסגרת, או הבנת הגורמים המרכזיים בהחלטה. אך זכרו: תמיד אמתו עובדות שסופק על ידי AI באופן עצמאי. כלי AI יכולים לייצר מידע מיושן, חלקי או שגוי — במיוחד לאירועים שוטפים, סטטיסטיקות, או תחומים מתמחים. השתמשו ב-AI לארגון המחקר שלכם, לא להחלפתו."
+    },
+    "tip": {
+      "en": "Use AI to get a research roadmap first: 'What are the key questions I should research about X?' Then use those questions to guide your own fact-checking.",
+      "he": "השתמשו ב-AI כדי לקבל מפת דרכים מחקרית תחילה: 'מהן השאלות המרכזיות שכדאי לי לחקור על X?' לאחר מכן השתמשו בשאלות האלה כדי להנחות את בדיקת העובדות שלכם."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-19-ex-01",
+      "type": "spot-problem",
+      "order": 1,
+      "prompt": {
+        "en": "This research prompt has weaknesses. Identify the problems that will limit the usefulness of the AI's response:",
+        "he": "לפרומפט המחקר הזה יש חולשות. זהו את הבעיות שיגבילו את שימושיות תשובת ה-AI:"
+      },
+      "badExample": {
+        "en": "Tell me everything about electric vehicles.",
+        "he": "ספר לי הכל על כלי רכב חשמליים."
+      },
+      "issues": [
+        {
+          "id": "issue-no-scope",
+          "label": { "en": "No scope or depth specified", "he": "היקף או עומק לא צוין" },
+          "explanation": {
+            "en": "'Everything' is too broad — you might get a 20-page essay when you needed a 5-minute overview. Specify: 'give me an overview', 'focus on cost comparison', 'explain the main types'.",
+            "he": "'הכל' רחב מדי — אתם עלולים לקבל חיבור של 20 עמודים כשהייתם צריכים סקירה של 5 דקות. ציינו: 'תן לי סקירה כללית', 'התמקד בהשוואת עלויות', 'הסבר את הסוגים העיקריים'."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-depth",
+          "label": { "en": "No research purpose or use case", "he": "מטרת מחקר או מקרה שימוש לא צוין" },
+          "explanation": {
+            "en": "Without knowing why you're researching, the AI can't prioritize what matters for you. Are you buying a car? Writing a report? Just curious? The purpose changes what information is most valuable.",
+            "he": "ללא ידיעת סיבת המחקר שלכם, ה-AI לא יכול לתת עדיפות למה שחשוב לכם. האם אתם קונים מכונית? כותבים דוח? רק סקרנים? המטרה משנה מה המידע הכי בעל ערך."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-source-expectation",
+          "label": { "en": "No acknowledgment of AI limitations", "he": "ללא הכרה במגבלות AI" },
+          "explanation": {
+            "en": "Not asking the AI to flag uncertainty means you won't know which facts need independent verification. Adding 'flag any areas where information may be outdated' helps you research safely.",
+            "he": "אי-בקשה מ-AI לסמן אי-ודאות אומר שלא תדעו אילו עובדות צריכות אימות עצמאי. הוספת 'סמן כל תחומים שבהם מידע עלול להיות מיושן' עוזרת לכם לחקור בבטחה."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "distractor-language",
+          "label": { "en": "The prompt uses informal language", "he": "הפרומפט משתמש בשפה לא פורמלית" },
+          "explanation": {
+            "en": "Informal language is not a problem — AI understands conversational requests just as well as formal ones. The real issues are scope, purpose, and fact-checking awareness.",
+            "he": "שפה לא פורמלית אינה בעיה — AI מבין בקשות שיחתיות טוב כמו רשמיות. הבעיות האמיתיות הן היקף, מטרה, ומודעות לבדיקת עובדות."
+          },
+          "isActualIssue": false
+        }
+      ],
+      "explanation": {
+        "en": "A strong research prompt specifies: (1) the scope or depth you need, (2) your purpose (so the AI can prioritize), and (3) a request to flag uncertain or potentially outdated information. This turns the AI into a research assistant, not just an information dump.",
+        "he": "פרומפט מחקר חזק מציין: (1) ההיקף או העומק שאתם צריכים, (2) המטרה שלכם (כדי שה-AI יוכל לתת עדיפות), ו-(3) בקשה לסמן מידע לא בטוח או שעלול להיות מיושן. זה הופך את ה-AI לעוזר מחקר, לא רק לבנק מידע."
+      }
+    },
+    {
+      "id": "lesson-19-ex-02",
+      "type": "mcq",
+      "order": 2,
+      "prompt": {
+        "en": "What is the most important thing to know when using AI for research?",
+        "he": "מה הדבר החשוב ביותר לדעת כשמשתמשים ב-AI למחקר?"
+      },
+      "options": [
+        {
+          "en": "AI has access to the internet and always provides current information",
+          "he": "ל-AI יש גישה לאינטרנט ותמיד מספק מידע עדכני"
+        },
+        {
+          "en": "AI-generated facts may be outdated or incorrect and should be independently verified",
+          "he": "עובדות שנוצרו על ידי AI עלולות להיות מיושנות או שגויות ויש לאמתן באופן עצמאי"
+        },
+        {
+          "en": "AI is only useful for research in scientific or technical fields",
+          "he": "AI שימושי למחקר רק בתחומים מדעיים או טכניים"
+        },
+        {
+          "en": "You should always ask AI for its sources to verify accuracy",
+          "he": "תמיד כדאי לבקש מ-AI את המקורות שלו כדי לאמת דיוק"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "AI tools are trained on data with a knowledge cutoff date, meaning they may not know about recent events or changes. They can also confidently state incorrect information — a phenomenon sometimes called 'hallucination.' Always verify facts from AI-generated research using authoritative sources, especially for statistics, medical, legal, or financial information. AI is excellent for building research frameworks and exploring topics, but final facts should be verified independently.",
+        "he": "כלי AI מאומנים על נתונים עם תאריך קאטאוף ידע, כלומר הם עשויים שלא לדעת על אירועים או שינויים אחרונים. הם יכולים גם לציין מידע שגוי בביטחון — תופעה המכונה לעתים 'הזיה'. תמיד אמתו עובדות ממחקר שנוצר על ידי AI באמצעות מקורות סמכותיים, במיוחד לסטטיסטיקות, מידע רפואי, משפטי או פיננסי. AI מצוין לבניית מסגרות מחקר וחקירת נושאים, אך עובדות סופיות צריכות להיות מאומתות באופן עצמאי."
+      }
+    },
+    {
+      "id": "lesson-19-ex-03",
+      "type": "pick-better",
+      "order": 3,
+      "prompt": {
+        "en": "You want to research options for a new laptop for work. Which research prompt will give you more useful information?",
+        "he": "אתם רוצים לחקור אפשרויות למחשב נייד חדש לעבודה. איזה פרומפט מחקר ייתן לכם מידע שימושי יותר?"
+      },
+      "optionA": {
+        "en": "I'm looking to buy a work laptop with a budget of $1,200. I mainly use it for video calls, document editing, and light photo editing. Compare the key trade-offs between Windows and Mac laptops at this price point — focus on battery life, performance for my use case, and long-term reliability. Flag any areas where this information might be outdated.",
+        "he": "אני מחפש לקנות מחשב נייד לעבודה בתקציב של $1,200. אני בעיקר משתמש בו לשיחות וידאו, עריכת מסמכים ועריכת תמונות קלה. השווה את הפשרות המרכזיות בין מחשבי Windows ו-Mac בטווח מחיר זה — התמקד בחיי סוללה, ביצועים למקרה השימוש שלי ואמינות לטווח ארוך. סמן כל תחומים שבהם המידע עלול להיות מיושן."
+      },
+      "optionB": {
+        "en": "What's the best laptop to buy?",
+        "he": "מה המחשב הנייד הטוב ביותר לקנות?"
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A scopes the research (work laptop, $1,200 budget), states the use case (video calls, document editing, light photo editing), asks for a specific comparison (Windows vs Mac), prioritizes what matters (battery, performance, reliability), and asks the AI to flag potentially outdated information. Option B is so broad that 'best laptop' could mean anything — gaming, school, budget, professional. You'll get a generic answer that requires a lot more back-and-forth.",
+        "he": "אפשרות A מגדירה את היקף המחקר (מחשב עבודה, תקציב $1,200), מציינת את מקרה השימוש (שיחות וידאו, עריכת מסמכים, עריכת תמונות קלה), מבקשת השוואה ספציפית (Windows מול Mac), מעדיפה מה שחשוב (סוללה, ביצועים, אמינות), ומבקשת מ-AI לסמן מידע שעלול להיות מיושן. אפשרות B כל כך רחבה שה'מחשב הטוב ביותר' יכול להיות כל דבר — גיימינג, בית ספר, תקציב, מקצועי. תקבלו תשובה גנרית שדורשת הרבה יותר עצמת נוספת."
+      }
+    }
+  ]
+}

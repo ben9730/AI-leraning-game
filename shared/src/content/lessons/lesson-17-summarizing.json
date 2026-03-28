@@ -1,0 +1,162 @@
+{
+  "id": "lesson-17-summarizing",
+  "order": 17,
+  "chapter": 4,
+  "prerequisites": ["lesson-16-writing-help"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Summarizing",
+      "he": "סיכום"
+    },
+    "body": {
+      "en": "AI can summarize long text into key points. Specify the length, format, and what to focus on for best results. Without these details, you might get a summary that's too long, too short, or focuses on the wrong things. Tell AI: how long the summary should be, what format you want (bullet points, paragraph, numbered list), and what aspect to prioritize. A good summarization prompt turns a 10-page report into exactly the 5 bullet points your boss needs.",
+      "he": "AI יכול לסכם טקסט ארוך לנקודות מפתח. ציינו את האורך, הפורמט, ומה להתמקד בו לקבלת תוצאות הטובות ביותר. ללא הפרטים האלה, אתם עלולים לקבל סיכום שארוך מדי, קצר מדי, או מתמקד בדברים הלא נכונים. אמרו ל-AI: כמה ארוך הסיכום צריך להיות, איזה פורמט אתם רוצים (נקודות, פסקה, רשימה ממוספרת), ואיזה היבט לתת עדיפות. פרומפט סיכום טוב הופך דוח של 10 עמודים לבדיוק 5 הנקודות שהבוס שלכם צריך."
+    },
+    "tip": {
+      "en": "Always specify the audience for your summary — 'summarize for a non-technical manager' gives very different (and more useful) results than just 'summarize this'.",
+      "he": "תמיד ציינו את הקהל לסיכום שלכם — 'סכם עבור מנהל לא-טכני' נותן תוצאות שונות מאוד (ושימושיות יותר) מאשר רק 'סכם את זה'."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-17-ex-01",
+      "type": "spot-problem",
+      "order": 1,
+      "prompt": {
+        "en": "This summarization prompt has several problems. Identify the issues that make it a weak prompt:",
+        "he": "לפרומפט הסיכום הזה יש מספר בעיות. זהו את הבעיות שהופכות אותו לפרומפט חלש:"
+      },
+      "badExample": {
+        "en": "Summarize this.",
+        "he": "סכם את זה."
+      },
+      "issues": [
+        {
+          "id": "issue-no-length",
+          "label": { "en": "No length specified", "he": "אורך לא צוין" },
+          "explanation": {
+            "en": "Without a length instruction, the AI might write 3 sentences or 3 pages. Specify: '3 bullet points', '1 paragraph', 'under 100 words'.",
+            "he": "ללא הוראת אורך, ה-AI עלול לכתוב 3 משפטים או 3 עמודים. ציינו: '3 נקודות', 'פסקה אחת', 'עד 100 מילים'."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-focus",
+          "label": { "en": "No focus area specified", "he": "תחום מיקוד לא צוין" },
+          "explanation": {
+            "en": "Without a focus area, the AI picks what it thinks is most important — which may not match your needs. Specify what matters: 'focus on action items', 'prioritize financial data', 'highlight risks'.",
+            "he": "ללא תחום מיקוד, ה-AI בוחר מה שהוא חושב שהכי חשוב — שעלול שלא להתאים לצרכים שלכם. ציינו מה חשוב: 'התמקד בפריטי פעולה', 'תן עדיפות לנתונים פיננסיים', 'הדגש סיכונים'."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-format",
+          "label": { "en": "No output format specified", "he": "פורמט פלט לא צוין" },
+          "explanation": {
+            "en": "Bullet points, numbered list, or paragraph — each serves different needs. Without specifying, you might get the wrong format for your use case.",
+            "he": "נקודות, רשימה ממוספרת, או פסקה — כל אחת משרתת צרכים שונים. ללא ציון, אתם עלולים לקבל את הפורמט הלא נכון למקרה השימוש שלכם."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "distractor-too-short",
+          "label": { "en": "The prompt is too short", "he": "הפרומפט קצר מדי" },
+          "explanation": {
+            "en": "Length alone isn't the problem — a short but complete prompt can work well. The real issues are the missing specifications.",
+            "he": "אורך לבדו אינו הבעיה — פרומפט קצר אך שלם יכול לעבוד היטב. הבעיות האמיתיות הן המפרטים החסרים."
+          },
+          "isActualIssue": false
+        }
+      ],
+      "explanation": {
+        "en": "A strong summarization prompt always includes: (1) what to summarize (the source or topic), (2) how long the summary should be, (3) what format to use, and (4) what aspect to focus on. 'Summarize this' gives the AI almost zero useful information.",
+        "he": "פרומפט סיכום חזק תמיד כולל: (1) מה לסכם (המקור או הנושא), (2) כמה ארוך הסיכום צריך להיות, (3) איזה פורמט להשתמש, ו-(4) על איזה היבט להתמקד. 'סכם את זה' נותן ל-AI כמעט אפס מידע שימושי."
+      }
+    },
+    {
+      "id": "lesson-17-ex-02",
+      "type": "simulated-chat",
+      "order": 2,
+      "prompt": {
+        "en": "Write a prompt asking an AI to summarize a long meeting transcript. Specify the length, format, and what to focus on.",
+        "he": "כתבו פרומפט המבקש מ-AI לסכם תמליל פגישה ארוך. ציינו את האורך, הפורמט, ומה להתמקד בו."
+      },
+      "systemPrompt": {
+        "en": "You are a helpful assistant who specializes in creating clear, focused summaries. Produce summaries based on the user's specific format and focus requirements.",
+        "he": "אתה עוזר מועיל המתמחה ביצירת סיכומים ברורים וממוקדים. ייצר סיכומים בהתאם לדרישות הפורמט והמיקוד הספציפיות של המשתמש."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "summarize",
+            "label": { "en": "Summarize instruction present", "he": "הוראת סיכום קיימת" },
+            "weight": 0.25,
+            "keywords": ["summarize", "summary", "key points", "highlights", "main points", "סכם", "סיכום", "נקודות מפתח", "עיקרים", "נקודות עיקריות"],
+            "required": false
+          },
+          {
+            "key": "length_format",
+            "label": { "en": "Length or format specified", "he": "אורך או פורמט צוין" },
+            "weight": 0.4,
+            "keywords": ["bullet", "points", "numbered", "paragraph", "words", "sentences", "brief", "short", "נקודות", "ממוספר", "פסקה", "מילים", "משפטים", "קצר", "תמציתי"],
+            "required": false
+          },
+          {
+            "key": "focus",
+            "label": { "en": "Focus area specified", "he": "תחום מיקוד צוין" },
+            "weight": 0.35,
+            "keywords": ["action items", "decisions", "focus on", "prioritize", "key outcomes", "risks", "next steps", "פריטי פעולה", "החלטות", "התמקד ב", "תן עדיפות", "תוצאות מפתח", "סיכונים", "צעדים הבאים"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Summarize the meeting transcript below in 5 bullet points. Focus on action items and decisions made — skip general discussion. Each bullet point should name who is responsible for each action item.",
+        "he": "סכם את תמליל הפגישה למטה ב-5 נקודות. התמקד בפריטי פעולה ובהחלטות שהתקבלו — דלג על הדיון הכללי. כל נקודה צריכה לציין מי אחראי לכל פריט פעולה."
+      },
+      "positiveFeedback": {
+        "en": "Excellent summarization prompt! You specified the format (bullet points), the length (5 bullets), and the focus (action items and decisions). That's a ready-to-use prompt that will save you hours of meeting review.",
+        "he": "פרומפט סיכום מצוין! ציינתם את הפורמט (נקודות), האורך (5 נקודות), והמיקוד (פריטי פעולה והחלטות). זהו פרומפט מוכן לשימוש שיחסוך לכם שעות של סקירת פגישה."
+      },
+      "improvementFeedback": {
+        "en": "A good summarization prompt needs three things: (1) a 'summarize' instruction, (2) the format or length (bullet points, 3 paragraphs, under 150 words), and (3) a focus area (action items, key decisions, risks). Try adding all three!",
+        "he": "פרומפט סיכום טוב צריך שלושה דברים: (1) הוראת 'סכם', (2) הפורמט או האורך (נקודות, 3 פסקאות, עד 150 מילים), ו-(3) תחום מיקוד (פריטי פעולה, החלטות מרכזיות, סיכונים). נסו להוסיף את כל השלושה!"
+      }
+    },
+    {
+      "id": "lesson-17-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "What makes a summarization prompt most effective?",
+        "he": "מה הופך פרומפט סיכום לאפקטיבי ביותר?"
+      },
+      "options": [
+        {
+          "en": "Asking the AI to summarize 'everything important'",
+          "he": "לבקש מה-AI לסכם 'הכל שחשוב'"
+        },
+        {
+          "en": "Specifying length, format, and what to focus on",
+          "he": "ציון אורך, פורמט, ומה להתמקד בו"
+        },
+        {
+          "en": "Providing as much background context as possible about the source document",
+          "he": "מתן כמה שיותר הקשר רקע על מסמך המקור"
+        },
+        {
+          "en": "Using technical AI vocabulary like 'extract key entities'",
+          "he": "שימוש במילים טכניות של AI כמו 'חלץ ישויות מפתח'"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Specifying length (how much), format (how to display it), and focus (what matters) is what separates a useful summary from a generic one. 'Summarize everything important' is too vague. Providing a lot of background context helps but isn't as critical as knowing what you want the output to look like. Technical AI vocabulary is unnecessary — plain language works perfectly.",
+        "he": "ציון אורך (כמה), פורמט (כיצד להציג), ומיקוד (מה חשוב) הוא מה שמפריד בין סיכום שימושי לגנרי. 'סכם הכל שחשוב' מעורפל מדי. מתן הרבה הקשר רקע עוזר אך אינו קריטי כמו לדעת מה אתם רוצים שהפלט ייראה. מינוח AI טכני מיותר — שפה פשוטה עובדת בצורה מושלמת."
+      }
+    }
+  ]
+}

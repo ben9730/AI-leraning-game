@@ -1,0 +1,136 @@
+{
+  "id": "lesson-18-brainstorming",
+  "order": 18,
+  "chapter": 4,
+  "prerequisites": ["lesson-17-summarizing"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Brainstorming",
+      "he": "סיעור מוחות"
+    },
+    "body": {
+      "en": "AI excels at generating ideas quickly. For best brainstorming results, give it a topic, constraints, and the number of ideas you want. Open-ended requests like 'Give me ideas' produce generic results. Constrained requests like 'Give me 10 unusual birthday party themes for adults who love outdoor activities, budget under $50 per person' unlock much more targeted, creative suggestions. Constraints don't limit creativity — they focus it.",
+      "he": "AI מצטיין ביצירת רעיונות במהירות. לקבלת תוצאות סיעור מוחות הטובות ביותר, תנו לו נושא, אילוצים, ומספר הרעיונות שאתם רוצים. בקשות פתוחות כמו 'תן לי רעיונות' מניבות תוצאות גנריות. בקשות עם אילוצים כמו 'תן לי 10 ערכות נושא יוצאות דופן למסיבת יום הולדת למבוגרים שאוהבים פעילויות חוץ, תקציב עד 50$ לאדם' פותחות הצעות הרבה יותר ממוקדות ויצירתיות. אילוצים לא מגבילים יצירתיות — הם מתמקדים בה."
+    },
+    "tip": {
+      "en": "After your first brainstorm, try iteration: 'From the list above, expand on ideas 3 and 7 with more detail.' AI brainstorming is a conversation, not a one-shot request.",
+      "he": "לאחר סיעור המוחות הראשון שלכם, נסו איטרציה: 'מהרשימה למעלה, הרחיבו על רעיונות 3 ו-7 עם פרטים נוספים.' סיעור מוחות עם AI הוא שיחה, לא בקשה חד-פעמית."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-18-ex-01",
+      "type": "free-text",
+      "order": 1,
+      "prompt": {
+        "en": "Write a brainstorming prompt asking an AI for ideas for a birthday party. Include: how many ideas you want, what makes the party special (theme or style), and at least one constraint (budget, age group, location, etc.).",
+        "he": "כתבו פרומפט סיעור מוחות המבקש מ-AI רעיונות למסיבת יום הולדת. כללו: כמה רעיונות אתם רוצים, מה הופך את המסיבה לספציפית (ערכת נושא או סגנון), ולפחות אילוץ אחד (תקציב, קבוצת גיל, מיקום וכו')."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "number_of_ideas",
+            "label": { "en": "Number of ideas requested", "he": "מספר רעיונות התבקש" },
+            "weight": 0.35,
+            "keywords": ["ideas", "suggestions", "options", "give me", "list", "ways", "רעיונות", "הצעות", "אפשרויות", "תן לי", "רשימה", "דרכים", "5", "10", "7", "8", "several", "few", "few ideas"],
+            "required": false
+          },
+          {
+            "key": "topic_specificity",
+            "label": { "en": "Specific party topic or theme", "he": "נושא מסיבה ספציפי" },
+            "weight": 0.35,
+            "keywords": ["birthday", "party", "theme", "adult", "child", "kids", "outdoor", "indoor", "יום הולדת", "מסיבה", "ערכת נושא", "מבוגר", "ילד", "ילדים", "חוץ", "פנים"],
+            "required": false
+          },
+          {
+            "key": "constraints",
+            "label": { "en": "At least one constraint", "he": "לפחות אילוץ אחד" },
+            "weight": 0.3,
+            "keywords": ["budget", "age", "location", "people", "guests", "time", "simple", "cost", "תקציב", "גיל", "מיקום", "אנשים", "אורחים", "זמן", "פשוט", "עלות", "under", "less than", "cheap", "inexpensive"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Give me 10 birthday party ideas for a 7-year-old who loves dinosaurs and outdoor activities. Budget is around $200 total. Focus on activities the kids can do together, not just decor.",
+        "he": "תן לי 10 רעיונות למסיבת יום הולדת לילד בן 7 שאוהב דינוזאורים ופעילויות חוץ. התקציב הוא כ-200$ בסך הכל. התמקד בפעילויות שהילדים יכולים לעשות יחד, לא רק בעיצוב."
+      },
+      "positiveFeedback": {
+        "en": "Great brainstorming prompt! You specified the number of ideas, the specific theme, and constraints. This will generate much more useful ideas than a generic 'give me party ideas' request.",
+        "he": "פרומפט סיעור מוחות נהדר! ציינתם את מספר הרעיונות, ערכת הנושא הספציפית, והאילוצים. זה ייצר רעיונות שימושיים הרבה יותר מבקשה גנרית של 'תן לי רעיונות למסיבה'."
+      },
+      "improvementFeedback": {
+        "en": "A strong brainstorming prompt needs: (1) a specific number of ideas (5, 10, 7), (2) a focused topic or theme (birthday for an 8-year-old who loves space), and (3) at least one constraint (budget, age group, location). Try including all three!",
+        "he": "פרומפט סיעור מוחות חזק צריך: (1) מספר ספציפי של רעיונות (5, 10, 7), (2) נושא ממוקד (יום הולדת לילד בן 8 שאוהב חלל), ו-(3) לפחות אילוץ אחד (תקציב, קבוצת גיל, מיקום). נסו לכלול את כל השלושה!"
+      }
+    },
+    {
+      "id": "lesson-18-ex-02",
+      "type": "pick-better",
+      "order": 2,
+      "prompt": {
+        "en": "You need creative ideas for a new product name. Which prompt will generate more useful suggestions?",
+        "he": "אתם צריכים רעיונות יצירתיים לשם מוצר חדש. איזה פרומפט ייצר הצעות שימושיות יותר?"
+      },
+      "optionA": {
+        "en": "Generate 10 product name ideas for an eco-friendly water bottle made from recycled ocean plastic. Target audience: environmentally conscious 25-40 year olds. The name should be catchy, easy to pronounce, and convey sustainability. Avoid names that sound medical or too technical.",
+        "he": "ייצר 10 רעיונות לשם מוצר לבקבוק מים ידידותי לסביבה העשוי מפלסטיק ממוחזר מהאוקיאנוס. קהל יעד: בני 25-40 מודעי סביבה. השם צריך להיות קליט, קל לבטא, ולהעביר קיימות. הימנע משמות שנשמעים רפואיים או טכניים מדי."
+      },
+      "optionB": {
+        "en": "Give me some product name ideas.",
+        "he": "תן לי כמה רעיונות לשם מוצר."
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A is constrained brainstorming at its best: 10 specific ideas, a defined product (eco water bottle), the target audience (25-40, environmentally conscious), what the name should convey (sustainability), how it should sound (catchy, easy to pronounce), and what to avoid (medical/technical). These constraints don't limit creativity — they direct it toward names that will actually work for this product.",
+        "he": "אפשרות A היא סיעור מוחות עם אילוצים במיטבו: 10 רעיונות ספציפיים, מוצר מוגדר (בקבוק מים אקולוגי), קהל היעד (25-40, מודעי סביבה), מה השם צריך להעביר (קיימות), כיצד הוא צריך להישמע (קליט, קל לבטא), ומה להימנע ממנו (רפואי/טכני). האילוצים האלה לא מגבילים יצירתיות — הם מכוונים אותה לשמות שיעבדו בפועל עבור מוצר זה."
+      }
+    },
+    {
+      "id": "lesson-18-ex-03",
+      "type": "fill-blank",
+      "order": 3,
+      "prompt": {
+        "en": "Complete this brainstorming prompt template by filling in the blanks:",
+        "he": "השלימו את תבנית פרומפט סיעור המוחות הזו על ידי מילוי הריקים:"
+      },
+      "template": {
+        "en": "Give me _[number]_ ideas for _[specific topic]_ that are _[constraint or quality]_.",
+        "he": "תן לי _[מספר]_ רעיונות ל_[נושא ספציפי]_ שהם _[אילוץ או תכונה]_."
+      },
+      "blanks": [
+        {
+          "id": "blank-1",
+          "placeholder": { "en": "number", "he": "מספר" },
+          "acceptableAnswers": {
+            "en": ["5", "7", "10", "8", "6", "3", "15", "twelve", "five", "ten"],
+            "he": ["5", "7", "10", "8", "6", "3", "15", "שתים עשרה", "חמישה", "עשרה"]
+          }
+        },
+        {
+          "id": "blank-2",
+          "placeholder": { "en": "specific topic", "he": "נושא ספציפי" },
+          "acceptableAnswers": {
+            "en": ["birthday party activities", "team building exercises", "low-cost date ideas", "healthy lunch recipes", "creative project names", "office decoration themes", "weekend hobbies"],
+            "he": ["פעילויות מסיבת יום הולדת", "תרגילי גיבוש צוות", "רעיונות דייט בתקציב נמוך", "מתכונים לארוחת צהריים בריאה", "שמות פרויקט יצירתיים", "ערכות נושא לעיצוב משרד", "תחביבי סופ\"ש"]
+          }
+        },
+        {
+          "id": "blank-3",
+          "placeholder": { "en": "constraint or quality", "he": "אילוץ או תכונה" },
+          "acceptableAnswers": {
+            "en": ["under $50", "suitable for beginners", "kid-friendly", "quick to prepare", "eco-friendly", "memorable and easy to spell", "free or low-cost", "suitable for teams of 10+"],
+            "he": ["עד 50$", "מתאים למתחילים", "ידידותי לילדים", "מהיר להכנה", "ידידותי לסביבה", "בלתי נשכח וקל לאיות", "חינמי או בעלות נמוכה", "מתאים לצוותים של 10+"]
+          }
+        }
+      ],
+      "explanation": {
+        "en": "The formula 'Give me [number] ideas for [specific topic] that are [constraint]' is a reliable brainstorming template. The number prevents you from getting either 2 or 20 ideas when you needed 7. The constraint ensures the ideas are actually usable for your situation.",
+        "he": "הנוסחה 'תן לי [מספר] רעיונות ל[נושא ספציפי] שהם [אילוץ]' היא תבנית סיעור מוחות אמינה. המספר מונע מכם לקבל 2 או 20 רעיונות כשהייתם צריכים 7. האילוץ מבטיח שהרעיונות באמת ישמשו למצב שלכם."
+      }
+    }
+  ]
+}

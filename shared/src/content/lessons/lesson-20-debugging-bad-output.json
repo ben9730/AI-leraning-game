@@ -1,0 +1,158 @@
+{
+  "id": "lesson-20-debugging-bad-output",
+  "order": 20,
+  "chapter": 4,
+  "prerequisites": ["lesson-19-research-assistance"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Debugging Bad Output",
+      "he": "דיבוג פלט גרוע"
+    },
+    "body": {
+      "en": "When AI gives a bad response, the problem is usually the prompt. Learn to diagnose it: Was it too vague? Missing context? Wrong format request? The fix is almost always the same: add specificity, add context, or clarify the format. Think like a debugger — if the output is wrong, change the input. The fastest path to a good AI response is not trying the same prompt again, but iterating on it with targeted improvements.",
+      "he": "כשה-AI נותן תשובה גרועה, הבעיה היא בדרך כלל הפרומפט. למדו לאבחן: האם היה מעורפל מדי? חסר הקשר? בקשת פורמט שגויה? התיקון כמעט תמיד זהה: הוסיפו ספציפיות, הוסיפו הקשר, או הבהירו את הפורמט. חשבו כ-debugger — אם הפלט שגוי, שנו את הקלט. הדרך המהירה ביותר לתגובת AI טובה היא לא לנסות את אותו פרומפט שוב, אלא לחזור עליו עם שיפורים ממוקדים."
+    },
+    "tip": {
+      "en": "The three most common prompt problems: (1) Too vague — add specificity. (2) Missing context — tell the AI who you are and why you need this. (3) No format guidance — specify how the output should look.",
+      "he": "שלוש הבעיות הנפוצות ביותר בפרומפט: (1) מעורפל מדי — הוסיפו ספציפיות. (2) חסר הקשר — אמרו ל-AI מי אתם ולמה אתם צריכים את זה. (3) אין הנחיית פורמט — ציינו כיצד הפלט צריך להיראות."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-20-ex-01",
+      "type": "free-text",
+      "order": 1,
+      "prompt": {
+        "en": "This prompt got a generic, unhelpful AI response: 'Write something for my blog.' Rewrite it to fix the problem — add specificity, context, and format guidance so the AI can produce a useful first draft.",
+        "he": "הפרומפט הזה קיבל תגובת AI גנרית ולא מועילה: 'כתוב משהו לבלוג שלי.' שכתבו אותו כדי לתקן את הבעיה — הוסיפו ספציפיות, הקשר, והנחיות פורמט כדי ש-AI יוכל לייצר טיוטה ראשונה שימושית."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "specificity",
+            "label": { "en": "Added specificity (topic or task)", "he": "ספציפיות נוספה (נושא או משימה)" },
+            "weight": 0.35,
+            "keywords": ["about", "topic", "post", "article", "blog post", "write about", "על", "נושא", "פוסט", "מאמר", "פוסט בלוג", "כתוב על"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Added context (audience, purpose, or background)", "he": "הקשר נוסף (קהל, מטרה, או רקע)" },
+            "weight": 0.35,
+            "keywords": ["my audience", "readers", "I run", "my blog", "for people who", "target", "I'm a", "I write", "הקהל שלי", "קוראים", "אני מנהל", "הבלוג שלי", "לאנשים ש", "יעד", "אני", "אני כותב"],
+            "required": false
+          },
+          {
+            "key": "format",
+            "label": { "en": "Added format guidance", "he": "הנחיות פורמט נוספו" },
+            "weight": 0.3,
+            "keywords": ["words", "paragraphs", "sections", "introduction", "conclusion", "bullet", "heading", "מילים", "פסקאות", "סעיפים", "מבוא", "סיכום", "נקודות", "כותרת", "length", "long", "short", "around"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Write a 600-word blog post about the benefits of a morning routine for people who struggle with productivity. My audience is busy professionals in their 30s who want practical, science-backed advice. Start with a relatable hook, then give 3-4 specific morning habits with brief explanations of why they work. End with an encouraging call to action.",
+        "he": "כתוב פוסט בלוג של 600 מילים על היתרונות של שגרת בוקר לאנשים שמתקשים עם פרודוקטיביות. הקהל שלי הוא אנשי מקצוע עסוקים בשנות ה-30 שרוצים עצות מעשיות מגובות מדע. התחל עם פתיח שאפשר להזדהות איתו, ואז תן 3-4 הרגלי בוקר ספציפיים עם הסברים קצרים מדוע הם עובדים. סיים בקריאה לפעולה מעודדת."
+      },
+      "positiveFeedback": {
+        "en": "Excellent debugging! You transformed a vague 2-word prompt into a complete brief. By adding the topic, audience context, length, structure, and goal, you turned a useless request into one that will produce a near-ready first draft.",
+        "he": "דיבוג מצוין! הפכתם פרומפט מעורפל של 2 מילים לתיאור מפורט שלם. על ידי הוספת הנושא, הקשר הקהל, האורך, המבנה והמטרה, הפכתם בקשה חסרת תועלת לאחת שתייצר טיוטה ראשונה כמעט מוכנה."
+      },
+      "improvementFeedback": {
+        "en": "The original prompt 'Write something for my blog' has three problems: too vague (what topic?), no context (what's the blog about? who reads it?), and no format (how long? what structure?). Fix all three in your rewrite: add a specific topic, describe your audience, and specify the length and structure.",
+        "he": "לפרומפט המקורי 'כתוב משהו לבלוג שלי' יש שלוש בעיות: מעורפל מדי (איזה נושא?), אין הקשר (על מה הבלוג? מי קורא אותו?), ואין פורמט (כמה ארוך? איזה מבנה?). תקנו את כל השלושה בשכתוב שלכם: הוסיפו נושא ספציפי, תארו את הקהל שלכם, וציינו את האורך והמבנה."
+      }
+    },
+    {
+      "id": "lesson-20-ex-02",
+      "type": "spot-problem",
+      "order": 2,
+      "prompt": {
+        "en": "This prompt keeps getting bad AI responses. Identify all the problems that are causing the poor output:",
+        "he": "הפרומפט הזה ממשיך לקבל תגובות AI גרועות. זהו את כל הבעיות שגורמות לפלט הגרוע:"
+      },
+      "badExample": {
+        "en": "Help me with my presentation.",
+        "he": "עזור לי עם המצגת שלי."
+      },
+      "issues": [
+        {
+          "id": "issue-vague",
+          "label": { "en": "Too vague — no topic or content specified", "he": "מעורפל מדי — לא צוין נושא או תוכן" },
+          "explanation": {
+            "en": "The AI doesn't know what the presentation is about. Is it sales? Science? A school project? A wedding toast? The topic completely changes what 'help' means.",
+            "he": "ה-AI לא יודע על מה המצגת. האם מדובר במכירות? מדע? פרויקט בית ספרי? נאום חתונה? הנושא משנה לחלוטין מה 'עזרה' אומר."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-context",
+          "label": { "en": "No context — audience and purpose unknown", "he": "אין הקשר — קהל ומטרה לא ידועים" },
+          "explanation": {
+            "en": "Without knowing who the audience is and what the presentation needs to achieve, the AI can't tailor the help. A presentation for investors is completely different from one for a school class.",
+            "he": "ללא ידיעת מי הקהל ומה המצגת צריכה להשיג, ה-AI לא יכול להתאים את העזרה. מצגת למשקיעים שונה לחלוטין ממצגת לכיתת בית ספר."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "issue-no-format",
+          "label": { "en": "No format specified — unclear what kind of help is needed", "he": "פורמט לא צוין — לא ברור איזה סוג עזרה נדרשת" },
+          "explanation": {
+            "en": "'Help' could mean write the slides, give feedback on content, suggest a structure, or improve the language. The AI has to guess, and it will probably guess wrong.",
+            "he": "'עזרה' יכולה לאמר לכתוב את השקופיות, לתת משוב על התוכן, להציע מבנה, או לשפר את השפה. ה-AI צריך לנחש, והוא כנראה ינחש לא נכון."
+          },
+          "isActualIssue": true
+        },
+        {
+          "id": "distractor-politeness",
+          "label": { "en": "The prompt doesn't say 'please'", "he": "הפרומפט לא אומר 'בבקשה'" },
+          "explanation": {
+            "en": "Politeness has no effect on AI output quality. The AI doesn't have feelings to hurt — it responds to information, not courtesy.",
+            "he": "אדיבות אין לה השפעה על איכות הפלט של AI. ל-AI אין רגשות לפגוע בהם — הוא מגיב למידע, לא לנימוס."
+          },
+          "isActualIssue": false
+        }
+      ],
+      "explanation": {
+        "en": "Every bad prompt can be diagnosed with three questions: (1) Is it specific enough about WHAT I want? (2) Did I provide the CONTEXT the AI needs? (3) Did I specify the FORMAT or type of help needed? 'Help me with my presentation' fails all three. The fixed version: 'Help me outline a 10-minute investor pitch for a SaaS startup. I need 6-8 slides covering the problem, solution, market size, business model, traction, and funding ask.'",
+        "he": "כל פרומפט גרוע ניתן לאבחן עם שלוש שאלות: (1) האם הוא ספציפי מספיק לגבי המה? (2) האם סיפקתי את ההקשר שה-AI צריך? (3) האם ציינתי את הפורמט או סוג העזרה הנדרשת? 'עזור לי עם המצגת שלי' נכשל בכל שלושה. הגרסה המתוקנת: 'עזור לי לתכנן מצגת של 10 דקות לסבב גיוס כסף לסטארטאפ SaaS. אני צריך 6-8 שקופיות המכסות את הבעיה, הפתרון, גודל השוק, המודל העסקי, הצמיחה, ובקשת המימון.'"
+      }
+    },
+    {
+      "id": "lesson-20-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "You've completed all 20 lessons. Which of these best describes what makes an AI prompt effective?",
+        "he": "השלמתם את כל 20 השיעורים. איזה מאלה הכי טוב מתאר מה הופך פרומפט AI לאפקטיבי?"
+      },
+      "options": [
+        {
+          "en": "Using the longest, most detailed prompt possible",
+          "he": "שימוש בפרומפט הארוך והמפורט ביותר האפשרי"
+        },
+        {
+          "en": "Combining clear intent, relevant context, and specific format — and iterating when the first result isn't perfect",
+          "he": "שילוב כוונה ברורה, הקשר רלוונטי, ופורמט ספציפי — ואיטרציה כשהתוצאה הראשונה אינה מושלמת"
+        },
+        {
+          "en": "Using technical AI terminology so the AI understands your expertise level",
+          "he": "שימוש במינוח AI טכני כדי ש-AI יבין את רמת המומחיות שלכם"
+        },
+        {
+          "en": "Always using the same proven prompt template for every task",
+          "he": "תמיד שימוש באותה תבנית פרומפט מוכחת לכל משימה"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Effective prompting is about combining clear intent (what you want), relevant context (who you are and why), and specific format (how you want it) — and being willing to iterate when the first result misses the mark. Length, technical jargon, and rigid templates are secondary. You've learned: roles, constraints, few-shot examples, iteration, chain of thought, and how to debug bad output. These skills work across any AI tool, any task, and any topic.",
+        "he": "פרומפטינג יעיל עניינו שילוב כוונה ברורה (מה אתם רוצים), הקשר רלוונטי (מי אתם ולמה), ופורמט ספציפי (איך אתם רוצים את זה) — ונכונות לאיטרציה כשהתוצאה הראשונה מחמיצה את המטרה. אורך, מינוח טכני, ותבניות קשיחות הם משניים. למדתם: תפקידים, אילוצים, דוגמאות few-shot, איטרציה, שרשרת מחשבה, וכיצד לדבג פלט גרוע. המיומנויות האלה עובדות בכל כלי AI, כל משימה, וכל נושא."
+      }
+    }
+  ]
+}

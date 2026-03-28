@@ -1,0 +1,104 @@
+{
+  "tabs": { "home": "Home", "skillTree": "Skill Tree", "profile": "Profile" },
+  "home": { "title": "Welcome to PromptPlay", "start_lesson": "Start Learning" },
+  "skillTree": {
+    "title": "Skill Tree",
+    "progress": "{{completed}} of {{total}} lessons",
+    "chapterProgress": "{{completed}}/{{total}}"
+  },
+  "profile": { "title": "Profile" },
+  "common": { "continue": "Continue", "back": "Back", "loading": "Loading..." },
+  "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" },
+  "lesson": {
+    "complete": "Lesson Complete!",
+    "start_exercises": "Start Exercises",
+    "continue": "Continue",
+    "xp_earned": "+{{xp}} XP",
+    "exercise_count": "Exercise {{current}} of {{total}}"
+  },
+  "exercise": {
+    "model_answer": "One strong version:",
+    "score": "Score: {{score}}%",
+    "passed": "Correct!",
+    "failed": "Not quite — let's review"
+  },
+  "rubric": {
+    "clarity": "Clear goal",
+    "specificity": "Specific details",
+    "context": "Helpful context",
+    "intent": "Clear intent"
+  },
+  "streak": {
+    "days": "{{count}} day streak",
+    "days_one": "{{count}} day streak",
+    "days_other": "{{count}} day streak",
+    "start": "Start your streak!",
+    "freeze_available": "{{count}} streak freeze",
+    "freeze_used": "Streak freeze saved your streak!",
+    "milestone": "Amazing! {{count}}-day streak!"
+  },
+  "badge": {
+    "first_lesson": { "title": "First Steps", "description": "Complete your first lesson" },
+    "streak_7": { "title": "On Fire", "description": "Reach a 7-day streak" },
+    "chapter_1": { "title": "Chapter Champion", "description": "Complete all Chapter 1 lessons" },
+    "level_3": { "title": "Rising Star", "description": "Reach Level 3" },
+    "resilient": { "title": "Resilient", "description": "Use a streak freeze and keep going" },
+    "earned": "Earned!",
+    "locked": "Keep going to earn this badge"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "PromptPlay",
+      "subtitle": "Learn AI prompting through play"
+    },
+    "goal": {
+      "heading": "How often do you want to learn?",
+      "casual": "Casual",
+      "regular": "Regular",
+      "serious": "Serious",
+      "xpPerDay": "{{xp}} XP per day"
+    }
+  },
+  "accountPrompt": {
+    "title": "Save your progress!",
+    "description": "Create a free account to sync your progress across devices and keep your streaks safe.",
+    "signUp": "Create Account",
+    "skip": "Maybe Later"
+  },
+  "auth": {
+    "signUp": {
+      "title": "Create your account",
+      "button": "Create Account"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "button": "Sign In"
+    },
+    "email": "Email",
+    "password": "Password",
+    "switchToSignIn": "Already have an account? Sign in",
+    "switchToSignUp": "Don't have an account? Create one",
+    "cancel": "Cancel",
+    "syncing": "Syncing your progress...",
+    "syncComplete": "Progress saved!"
+  },
+  "pwa": {
+    "installButton": "Install PromptPlay",
+    "iosInstallHint": "Install PromptPlay: tap Share, then 'Add to Home Screen'",
+    "dismiss": "Dismiss"
+  },
+  "gamification": {
+    "xp_breakdown": "+{{base}} XP",
+    "streak_bonus": "Streak bonus: x{{multiplier}}",
+    "perfection_bonus": "Perfection bonus: +{{bonus}} XP",
+    "level": "Level {{level}}",
+    "level_up": "Level Up!",
+    "level_up_message": "You reached Level {{level}}!",
+    "daily_goal": "Daily Goal",
+    "daily_goal_casual": "Casual — {{xp}} XP/day",
+    "daily_goal_regular": "Regular — {{xp}} XP/day",
+    "daily_goal_serious": "Serious — {{xp}} XP/day",
+    "daily_goal_met": "Daily goal reached!",
+    "keep_going": "Great progress — keep it up!"
+  }
+}

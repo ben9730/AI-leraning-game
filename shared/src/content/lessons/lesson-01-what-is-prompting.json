@@ -1,0 +1,73 @@
+{
+  "id": "lesson-01-what-is-prompting",
+  "order": 1,
+  "chapter": 1,
+  "prerequisites": [],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "What Is Prompting?",
+      "he": "מה זה פרומפטינג?"
+    },
+    "body": {
+      "en": "A prompt is a message you write to an AI tool to get a response. The better your prompt, the better the result. Think of it like giving directions — the clearer you are, the more likely you'll arrive at the right destination.",
+      "he": "פרומפט הוא הודעה שאתם כותבים לכלי AI כדי לקבל תשובה. ככל שהפרומפט שלכם טוב יותר, כך התוצאה תהיה טובה יותר. חשבו על זה כמו לתת הוראות דרך — ככל שאתם ברורים יותר, כך סביר יותר שתגיעו ליעד הנכון."
+    },
+    "tip": {
+      "en": "These skills work with any AI tool — ChatGPT, Claude, Gemini, and beyond.",
+      "he": "המיומנויות האלו עובדות עם כל כלי AI — ChatGPT, Claude, Gemini ועוד."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-01-ex-01",
+      "type": "mcq",
+      "order": 1,
+      "prompt": {
+        "en": "What is a prompt in the context of AI tools?",
+        "he": "מה זה פרומפט בהקשר של כלי AI?"
+      },
+      "options": [
+        {
+          "en": "A message you write to an AI to get a response",
+          "he": "הודעה שאתם כותבים ל-AI כדי לקבל תשובה"
+        },
+        {
+          "en": "A type of computer program",
+          "he": "סוג של תוכנת מחשב"
+        },
+        {
+          "en": "A button you click to start the AI",
+          "he": "כפתור שלוחצים עליו כדי להפעיל את ה-AI"
+        }
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "en": "A prompt is simply the message or question you give to an AI tool. The AI reads your prompt and generates a response based on it.",
+        "he": "פרומפט הוא פשוט ההודעה או השאלה שאתם נותנים לכלי AI. ה-AI קורא את הפרומפט שלכם ויוצר תשובה בהתאם."
+      }
+    },
+    {
+      "id": "lesson-01-ex-02",
+      "type": "pick-better",
+      "order": 2,
+      "prompt": {
+        "en": "Which prompt would get you a more useful response from an AI?",
+        "he": "איזה פרומפט יקבל תשובה שימושית יותר מ-AI?"
+      },
+      "optionA": {
+        "en": "Help me with my email.",
+        "he": "עזור לי עם האימייל שלי."
+      },
+      "optionB": {
+        "en": "Help me write a short, friendly email to my colleague thanking them for covering my shift last Tuesday.",
+        "he": "עזור לי לכתוב אימייל קצר וידידותי לעמית שלי שמודה לו על כך שכיסה את המשמרת שלי ביום שלישי האחרון."
+      },
+      "betterOption": "B",
+      "explanation": {
+        "en": "Option B gives the AI the context it needs: the type of email (short, friendly), who it's for (colleague), and why (covering a shift). The more specific you are, the better the AI can help.",
+        "he": "אפשרות B נותנת ל-AI את ההקשר שהוא צריך: סוג האימייל (קצר, ידידותי), למי הוא מיועד (עמית), ולמה (כיסוי משמרת). ככל שאתם יותר ספציפיים, כך ה-AI יכול לעזור טוב יותר."
+      }
+    }
+  ]
+}

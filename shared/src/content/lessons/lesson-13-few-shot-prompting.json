@@ -1,0 +1,120 @@
+{
+  "id": "lesson-13-few-shot-prompting",
+  "order": 13,
+  "chapter": 3,
+  "prerequisites": ["lesson-12-set-constraints"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Few-Shot Prompting",
+      "he": "few-shot — דוגמאות ללמידה"
+    },
+    "body": {
+      "en": "Show AI examples of what you want. Give 1-3 examples of input/output pairs before your actual request, and AI will follow the pattern. This technique — called few-shot prompting — is especially powerful for formatting, tone, or creative tasks where describing what you want is harder than just showing it. Example: 'Happy birthday → מזל טוב. Good morning → בוקר טוב. Now translate: Thank you →'",
+      "he": "הראו ל-AI דוגמאות ממה שאתם רוצים. תנו 1-3 דוגמאות של זוגות קלט/פלט לפני הבקשה האמיתית שלכם, וה-AI יעקוב אחרי הדפוס. טכניקה זו — הנקראת few-shot / דוגמאות ללמידה — חזקה במיוחד לפורמטים, טון, או משימות יצירתיות שבהן לתאר מה אתם רוצים קשה יותר מלהראות זאת. דוגמה: 'Happy birthday → מזל טוב. Good morning → בוקר טוב. כעת תרגם: Thank you →'"
+    },
+    "tip": {
+      "en": "One good example is usually enough to establish a pattern. Two or three examples give more consistency. More than five examples rarely improves results.",
+      "he": "דוגמה טובה אחת בדרך כלל מספיקה לביסוס דפוס. שתיים או שלוש דוגמאות נותנות עקביות רבה יותר. יותר מחמש דוגמאות לעתים רחוקות משפרת תוצאות."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-13-ex-01",
+      "type": "fill-blank",
+      "order": 1,
+      "prompt": {
+        "en": "Complete this few-shot prompt by filling in the blanks. The AI should learn from the examples and follow the same pattern:",
+        "he": "השלימו את הפרומפט של few-shot הזה על ידי מילוי הריקים. ה-AI צריך ללמוד מהדוגמאות ולעקוב אחרי אותו דפוס:"
+      },
+      "template": {
+        "en": "Formal: I would like to request a meeting. Casual: _[casual version]_. Formal: The project deadline has been extended. Casual: _[casual version]_. Now convert this: Formal: We appreciate your patience. Casual: _[your answer]_",
+        "he": "רשמי: ברצוני לבקש פגישה. לא רשמי: _[גרסה לא רשמית]_. רשמי: מועד הגשת הפרויקט הוארך. לא רשמי: _[גרסה לא רשמית]_. כעת המירו: רשמי: אנו מעריכים את סבלנותכם. לא רשמי: _[התשובה שלכם]_"
+      },
+      "blanks": [
+        {
+          "id": "blank-1",
+          "placeholder": { "en": "casual version of meeting request", "he": "גרסה לא רשמית של בקשת פגישה" },
+          "acceptableAnswers": {
+            "en": ["Can we meet?", "Let's grab a meeting", "Want to meet up?", "Can we get together?", "Hey, can we talk?"],
+            "he": ["נוכל להיפגש?", "בוא ניפגש", "רוצה להיפגש?", "אפשר להתראות?", "היי, נוכל לדבר?"]
+          }
+        },
+        {
+          "id": "blank-2",
+          "placeholder": { "en": "casual version of deadline extension", "he": "גרסה לא רשמית של הארכת מועד הגשה" },
+          "acceptableAnswers": {
+            "en": ["Good news, the deadline got pushed back!", "We got more time for the project", "The deadline's been moved", "You've got more time", "Project deadline just got extended"],
+            "he": ["חדשות טובות, הדדליין נדחה!", "יש לנו יותר זמן לפרויקט", "המועד הוזז", "יש לך יותר זמן", "מועד הגשת הפרויקט זה עתה הוארך"]
+          }
+        },
+        {
+          "id": "blank-3",
+          "placeholder": { "en": "casual version of appreciation message", "he": "גרסה לא רשמית של מסר הערכה" },
+          "acceptableAnswers": {
+            "en": ["Thanks for your patience!", "Thanks for bearing with us", "We really appreciate your patience!", "Thanks for waiting", "Appreciate your patience"],
+            "he": ["תודה על הסבלנות שלך!", "תודה שנשאת איתנו", "אנחנו מאוד מעריכים את הסבלנות שלך!", "תודה שחיכית", "מעריכים את הסבלנות שלך"]
+          }
+        }
+      ],
+      "explanation": {
+        "en": "Few-shot prompting works because you're showing the AI the exact transformation you want (formal → casual) rather than describing it. The AI recognizes the pattern from two examples and applies it to your third request. This works for translation, style conversion, formatting, and many other tasks.",
+        "he": "few-shot עובד כי אתם מראים ל-AI בדיוק את הטרנספורמציה שאתם רוצים (רשמי → לא רשמי) במקום לתאר אותה. ה-AI מזהה את הדפוס מדוגמאות שתיים ומיישם אותו על הבקשה השלישית שלכם. זה עובד לתרגום, המרת סגנון, פורמטים ומשימות רבות אחרות."
+      }
+    },
+    {
+      "id": "lesson-13-ex-02",
+      "type": "mcq",
+      "order": 2,
+      "prompt": {
+        "en": "How many examples are typically enough to establish a pattern with few-shot prompting?",
+        "he": "כמה דוגמאות בדרך כלל מספיקות לביסוס דפוס עם few-shot?"
+      },
+      "options": [
+        {
+          "en": "Zero — just describe what you want in words",
+          "he": "אפס — רק תארו מה אתם רוצים במילים"
+        },
+        {
+          "en": "1 to 3 examples is usually sufficient",
+          "he": "1 עד 3 דוגמאות בדרך כלל מספיקות"
+        },
+        {
+          "en": "At least 10 examples for reliable results",
+          "he": "לפחות 10 דוגמאות לתוצאות אמינות"
+        },
+        {
+          "en": "You need dozens of examples to train the AI properly",
+          "he": "אתם צריכים עשרות דוגמאות כדי לאמן את ה-AI כראוי"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "1 to 3 examples is usually all you need for few-shot prompting in a regular AI conversation. One example establishes the pattern; two or three add consistency. More than 5 rarely helps and wastes space in your prompt. AI models are trained to recognize patterns quickly — you don't need to 'train' them with dozens of examples.",
+        "he": "1 עד 3 דוגמאות הוא בדרך כלל כל מה שאתם צריכים ל-few-shot בשיחת AI רגילה. דוגמה אחת מבססת את הדפוס; שתיים או שלוש מוסיפות עקביות. יותר מ-5 לעתים רחוקות עוזר ומבזבז מקום בפרומפט שלכם. מודלי AI מאומנים לזהות דפוסים במהירות — אתם לא צריכים 'לאמן' אותם עם עשרות דוגמאות."
+      }
+    },
+    {
+      "id": "lesson-13-ex-03",
+      "type": "pick-better",
+      "order": 3,
+      "prompt": {
+        "en": "You want the AI to write product descriptions in a specific style. Which approach will give more consistent results?",
+        "he": "אתם רוצים שה-AI יכתוב תיאורי מוצרים בסגנון ספציפי. איזה גישה תיתן תוצאות עקביות יותר?"
+      },
+      "optionA": {
+        "en": "Write product descriptions in a fun, energetic style like these examples:\nExample product: Wireless headphones → 'Untether your music! These wireless headphones deliver rich, crystal-clear sound wherever you go.'\nExample product: Water bottle → 'Stay hydrated, stay unstoppable! This leakproof bottle keeps your drinks cold for 24 hours.'\nNow write a description for: Running shoes",
+        "he": "כתוב תיאורי מוצרים בסגנון כיפי ואנרגטי כמו הדוגמאות האלה:\nדוגמת מוצר: אוזניות אלחוטיות → 'שחררו את המוזיקה! האוזניות האלחוטיות האלה מספקות צליל עשיר וצלול בכל מקום שתלכו.'\nדוגמת מוצר: בקבוק מים → 'הישארו לחים, הישארו בלתי ניתנים לעצירה! הבקבוק ה-leakproof הזה שומר על השתייה שלכם קרה 24 שעות.'\nכעת כתוב תיאור עבור: נעלי ריצה"
+      },
+      "optionB": {
+        "en": "Write a fun and energetic product description for running shoes.",
+        "he": "כתוב תיאור מוצר כיפי ואנרגטי עבור נעלי ריצה."
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A uses few-shot examples to show exactly what 'fun and energetic' looks like — including the exclamation structure, specific claims, and length. Option B describes the style but leaves interpretation to the AI, which could produce something very different from what you have in mind. When consistency matters, examples beat descriptions.",
+        "he": "אפשרות A משתמשת בדוגמאות few-shot כדי להראות בדיוק כיצד נראה 'כיפי ואנרגטי' — כולל מבנה הקריאות, טענות ספציפיות ואורך. אפשרות B מתארת את הסגנון אך משאירה את הפרשנות ל-AI, שעלול לייצר משהו שונה מאוד ממה שיש בראשכם. כשעקביות חשובה, דוגמאות עדיפות על תיאורים."
+      }
+    }
+  ]
+}
