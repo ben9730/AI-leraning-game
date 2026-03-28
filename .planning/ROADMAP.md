@@ -98,7 +98,7 @@ Plans:
 
 Plans:
 - [x] 07-01-PLAN.md — Monorepo root + shared/ skeleton + Vite 6 + React 19 + Tailwind v4 web project scaffold
-- [ ] 07-02-PLAN.md — Extract portable TS to shared/, copy tests, configure Vitest, ESLint no-RN-import rule
+- [x] 07-02-PLAN.md — Extract portable TS to shared/, copy tests, configure Vitest, ESLint no-RN-import rule
 
 ### Phase 8: State + i18n + RTL
 **Goal**: Users can switch between English and Hebrew with instant RTL layout flip and have their progress persist across browser sessions
