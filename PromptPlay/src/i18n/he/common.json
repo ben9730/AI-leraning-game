@@ -33,6 +33,15 @@
     "freeze_used": "הקפאת רצף הצילה את הרצף!",
     "milestone": "מדהים! רצף של {{count}} ימים!"
   },
+  "badge": {
+    "first_lesson": { "title": "צעדים ראשונים", "description": "השלימו את השיעור הראשון" },
+    "streak_7": { "title": "בלהבות", "description": "הגיעו לרצף של 7 ימים" },
+    "chapter_1": { "title": "אלוף הפרק", "description": "השלימו את כל שיעורי פרק 1" },
+    "level_3": { "title": "כוכב עולה", "description": "הגיעו לרמה 3" },
+    "resilient": { "title": "עמיד", "description": "השתמשו בהקפאת רצף והמשיכו" },
+    "earned": "הושג!",
+    "locked": "המשיכו כדי להשיג את התג הזה"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "בונוס רצף: x{{multiplier}}",

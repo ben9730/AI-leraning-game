@@ -33,6 +33,15 @@
     "freeze_used": "Streak freeze saved your streak!",
     "milestone": "Amazing! {{count}}-day streak!"
   },
+  "badge": {
+    "first_lesson": { "title": "First Steps", "description": "Complete your first lesson" },
+    "streak_7": { "title": "On Fire", "description": "Reach a 7-day streak" },
+    "chapter_1": { "title": "Chapter Champion", "description": "Complete all Chapter 1 lessons" },
+    "level_3": { "title": "Rising Star", "description": "Reach Level 3" },
+    "resilient": { "title": "Resilient", "description": "Use a streak freeze and keep going" },
+    "earned": "Earned!",
+    "locked": "Keep going to earn this badge"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "Streak bonus: x{{multiplier}}",
