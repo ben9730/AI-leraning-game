@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { zustandMMKVStorage } from '../persistence/MMKVAdapter'
-import { UserProgress, XPTransaction } from './types'
+import { UserProgress, XPTransaction, getLevel } from './types'
 
-const todayISO = (): string => new Date().toISOString().slice(0, 10)
+// Use local timezone (en-CA produces YYYY-MM-DD format)
+const todayISO = (): string => new Date().toLocaleDateString('en-CA')
 
 const generateId = (): string => {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
@@ -33,15 +34,28 @@ export const useProgressStore = create<ProgressStore>()(
       language: 'en' as const,
       dailyGoal: null,
       streakFreezes: 0,
+      peakStreak: 0,
+      pendingLevelUp: null,
+      streakFreezeUsedEver: false,
 
       // Actions
       addXP: (amount: number, source: XPTransaction['source']) => {
+        const state = get()
+        const prevLevel = getLevel(state.xpTotal)
+        const newLevel = getLevel(state.xpTotal + amount)
         const tx: XPTransaction = { amount, source, timestamp: Date.now() }
-        set(state => ({
+        set({
           xpTotal: state.xpTotal + amount,
           xpHistory: [...state.xpHistory, tx],
-        }))
+          ...(newLevel > prevLevel ? { pendingLevelUp: newLevel } : {}),
+        })
       },
+
+      clearPendingLevelUp: () => set({ pendingLevelUp: null }),
+
+      // Stub actions — implemented in plan 03-02; prevent type errors now
+      consumeStreakFreeze: () => {},
+      grantStreakFreeze: () => {},
 
       completeLesson: (lessonId: string) => {
         const { completedLessons } = get()
@@ -62,10 +76,15 @@ export const useProgressStore = create<ProgressStore>()(
       setDailyGoal: (goal: UserProgress['dailyGoal']) => set({ dailyGoal: goal }),
 
       updateStreak: () => {
-        const { lastActivityDate, streakCount } = get()
+        const { lastActivityDate, streakCount, peakStreak } = get()
         const today = todayISO()
         if (lastActivityDate !== today) {
-          set({ streakCount: streakCount + 1, lastActivityDate: today })
+          const newStreak = streakCount + 1
+          set({
+            streakCount: newStreak,
+            lastActivityDate: today,
+            peakStreak: Math.max(peakStreak, newStreak),
+          })
         }
       },
     }),
@@ -79,6 +98,10 @@ export const useProgressStore = create<ProgressStore>()(
       },
       onRehydrateStorage: () => (state) => {
         if (state) {
+          // Backfill peakStreak for existing users upgrading from older versions
+          if ((state as { peakStreak?: number }).peakStreak === undefined) {
+            state.peakStreak = state.streakCount
+          }
           state.setHasHydrated(true)
         }
       },

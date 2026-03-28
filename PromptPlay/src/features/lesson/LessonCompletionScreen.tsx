@@ -3,14 +3,16 @@ import { View, Text, Pressable, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { Lesson } from '@/src/content/schema'
 import { isRTL } from '@/src/i18n'
+import { XPResult } from '@/src/features/gamification/engine'
 
 interface LessonCompletionScreenProps {
   lesson: Lesson
   totalScore: number
   onFinish: () => void
+  xpBreakdown?: XPResult  // populated by plan 03-03 celebration UI
 }
 
-export function LessonCompletionScreen({ lesson, totalScore, onFinish }: LessonCompletionScreenProps) {
+export function LessonCompletionScreen({ lesson, totalScore, onFinish, xpBreakdown }: LessonCompletionScreenProps) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language as 'en' | 'he'
   const rtl = isRTL()

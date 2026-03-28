@@ -7,6 +7,7 @@ import { useLessonSession } from './useLessonSession'
 import { LessonContentScreen } from './LessonContentScreen'
 import { LessonCompletionScreen } from './LessonCompletionScreen'
 import { ExerciseRunner } from '@/src/features/exercise/ExerciseRunner'
+import { calcXP } from '@/src/features/gamification/engine'
 
 interface LessonScreenProps {
   lessonId: string
@@ -17,13 +18,19 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   const completeLesson = useProgressStore(s => s.completeLesson)
   const addXP = useProgressStore(s => s.addXP)
   const unlockLesson = useProgressStore(s => s.unlockLesson)
+  const updateStreak = useProgressStore(s => s.updateStreak)
 
   const lesson = useMemo(() => loadLesson(lessonId), [lessonId])
   const { step, advance, currentExercise, exerciseCount, exerciseIndex } = useLessonSession(lesson)
 
   const handleFinish = () => {
+    const streakCount = useProgressStore.getState().streakCount
+    const isPerfect = step.phase === 'complete' && step.totalScore === 100
+    const xpResult = calcXP(lesson.xpReward, streakCount, isPerfect)
+
     completeLesson(lesson.id)
-    addXP(lesson.xpReward, 'lesson_complete')
+    addXP(xpResult.total, 'lesson_complete')
+    updateStreak()
 
     // Unlock the next lesson in the curriculum
     const currentIndex = curriculum.indexOf(lesson.id)
@@ -56,11 +63,15 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   }
 
   // phase === 'complete'
+  const isPerfect = step.totalScore === 100
+  const xpResult = calcXP(lesson.xpReward, useProgressStore.getState().streakCount, isPerfect)
+
   return (
     <LessonCompletionScreen
       lesson={lesson}
       totalScore={step.totalScore}
       onFinish={handleFinish}
+      xpBreakdown={xpResult}
     />
   )
 }

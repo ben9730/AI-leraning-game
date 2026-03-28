@@ -23,5 +23,19 @@
     "specificity": "פרטים ספציפיים",
     "context": "הקשר מועיל",
     "intent": "כוונה ברורה"
+  },
+  "gamification": {
+    "xp_breakdown": "+{{base}} XP",
+    "streak_bonus": "בונוס רצף: x{{multiplier}}",
+    "perfection_bonus": "בונוס מושלם: +{{bonus}} XP",
+    "level": "רמה {{level}}",
+    "level_up": "עליית רמה!",
+    "level_up_message": "הגעת לרמה {{level}}!",
+    "daily_goal": "יעד יומי",
+    "daily_goal_casual": "קליל — {{xp}} XP ליום",
+    "daily_goal_regular": "רגיל — {{xp}} XP ליום",
+    "daily_goal_serious": "רציני — {{xp}} XP ליום",
+    "daily_goal_met": "היעד היומי הושג!",
+    "keep_going": "התקדמות מעולה — המשיכו כך!"
   }
 }

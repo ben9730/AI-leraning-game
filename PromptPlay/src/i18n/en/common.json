@@ -23,5 +23,19 @@
     "specificity": "Specific details",
     "context": "Helpful context",
     "intent": "Clear intent"
+  },
+  "gamification": {
+    "xp_breakdown": "+{{base}} XP",
+    "streak_bonus": "Streak bonus: x{{multiplier}}",
+    "perfection_bonus": "Perfection bonus: +{{bonus}} XP",
+    "level": "Level {{level}}",
+    "level_up": "Level Up!",
+    "level_up_message": "You reached Level {{level}}!",
+    "daily_goal": "Daily Goal",
+    "daily_goal_casual": "Casual — {{xp}} XP/day",
+    "daily_goal_regular": "Regular — {{xp}} XP/day",
+    "daily_goal_serious": "Serious — {{xp}} XP/day",
+    "daily_goal_met": "Daily goal reached!",
+    "keep_going": "Great progress — keep it up!"
   }
 }
