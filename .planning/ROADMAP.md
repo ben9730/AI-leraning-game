@@ -78,12 +78,12 @@ Plans:
   4. A new user can reach the first interactive exercise within 60 seconds of opening the app without creating an account
   5. Account creation prompt appears after lesson 2 or 3 completion — not before — and is skippable
   6. Supabase email/password auth saves progress to the cloud and restores it on a different device after login
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: Skill tree UI — lesson nodes, lock/unlock/complete states, chapter groupings, progress indicator
-- [ ] 04-02: Onboarding flow — goal selection, immediate lesson 1, deferred account prompt
-- [ ] 04-03: Supabase auth + cloud sync — email/password auth, progress sync, RLS policies
+- [ ] 04-01-PLAN.md — Skill tree UI: derived node state hook, SkillTreeNode/ChapterHeader components, full skill-tree.tsx screen with scroll-to-current
+- [ ] 04-02-PLAN.md — Onboarding flow: route-guard redirect, goal selection screen, deferred AccountPromptModal after lesson 2
+- [ ] 04-03-PLAN.md — Supabase auth + cloud sync: client singleton, useAuth hook, syncProgress functions, AuthScreen UI, wiring to account prompt
 
 ### Phase 5: Full Curriculum
 **Goal**: Author all 20 lessons across 4 chapters in English and Hebrew, implement the simulated AI chat exercise type, and graduate the scoring rubric from checklist to weighted keyword scoring.
@@ -95,7 +95,7 @@ Plans:
   3. From lesson 6 onward, scoring uses the weighted keyword rubric with partial credit; lessons 1-5 use the binary checklist
   4. All 20 lessons are fully translated to Hebrew and render correctly in RTL layout on a physical device
   5. Every lesson teaches a tool-agnostic principle with no reference to specific AI tool UIs
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 05-01: Simulated AI chat exercise type — prompt input, pre-scripted response rendering, rubric scoring
@@ -112,7 +112,7 @@ Plans:
   3. Total PWA cache stays under 50MB to comply with iOS Safari's cache eviction limit
   4. Celebration animations (level-up, lesson completion) run at 60fps on a 2GB RAM Android device
   5. All lesson content and UI is readable and usable on mobile viewports without horizontal scrolling
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 - [ ] 06-01: Service worker (Workbox) — CacheFirst app shell + lesson JSON, StaleWhileRevalidate images
