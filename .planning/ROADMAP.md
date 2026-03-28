@@ -98,7 +98,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — SimulatedChatCard component + evaluateSimulatedChat evaluator + registry entry for simulated-chat exercise type
+- [x] 05-01-PLAN.md — SimulatedChatCard component + evaluateSimulatedChat evaluator + registry entry for simulated-chat exercise type
 - [ ] 05-02-PLAN.md — Chapters 1-2 content (lessons 06-10 authored EN+HE), loader/curriculum extended, structural validation tests
 - [ ] 05-03-PLAN.md — Chapters 3-4 content (lessons 11-20 authored EN+HE), loader/curriculum completed to 20 lessons, full test coverage
 
@@ -129,5 +129,5 @@ Plans:
 | 2. Lesson Engine + Core Exercises | 0/3 | Not started | - |
 | 3. Gamification Engine | 3/3 | Complete   | 2026-03-28 |
 | 4. Skill Tree + Onboarding | 2/3 | In Progress|  |
-| 5. Full Curriculum | 0/3 | Not started | - |
+| 5. Full Curriculum | 1/3 | In Progress|  |
 | 6. PWA Polish | 0/3 | Not started | - |

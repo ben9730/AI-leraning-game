@@ -32,7 +32,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **EXER-02**: Multiple choice exercises — concept questions with instant feedback
 - [x] **EXER-03**: Pick-the-better-prompt exercises — two-panel comparison with explanation
 - [x] **EXER-04**: Rewrite-the-bad-prompt exercises — free text input + rubric scoring
-- [ ] **EXER-05**: Simulated AI chat — user writes prompt, sees pre-scripted response, gets scored (core differentiator)
+- [x] **EXER-05**: Simulated AI chat — user writes prompt, sees pre-scripted response, gets scored (core differentiator)
 - [x] **EXER-06**: Fill-in-the-blank exercises — complete a partial prompt
 - [x] **EXER-07**: Spot-the-problem exercises — identify what's wrong with a prompt
 - [ ] **EXER-08**: Scoring rubric system — evaluates Clarity, Specificity, Context, Intent dimensions
@@ -159,7 +159,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXER-02 | Phase 2 | Complete |
 | EXER-03 | Phase 2 | Complete |
 | EXER-04 | Phase 2 | Complete |
-| EXER-05 | Phase 5 | Pending |
+| EXER-05 | Phase 5 | Complete |
 | EXER-06 | Phase 2 | Complete |
 | EXER-07 | Phase 2 | Complete |
 | EXER-08 | Phase 2 | Pending |
