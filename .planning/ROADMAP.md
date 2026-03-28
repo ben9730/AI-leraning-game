@@ -115,9 +115,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Service worker (Workbox) — CacheFirst app shell + lesson JSON, StaleWhileRevalidate images
-- [ ] 06-02: PWA installability + iOS constraints — manifest, install nudge UI, cache budget audit
-- [ ] 06-03: Performance audit — animation profiling on low-end Android, responsive layout fixes
+- [ ] 06-01-PLAN.md — Service worker + Workbox: CacheFirst app shell + lesson JSON, StaleWhileRevalidate images, SW registration hook
+- [ ] 06-02-PLAN.md — PWA installability + iOS constraints: web manifest, PWA icons, InstallBanner (iOS nudge + Android prompt), cache budget audit
+- [ ] 06-03-PLAN.md — Performance audit: animation profiling (transform/opacity only), responsive layout fixes, regression guard tests
 
 ## Progress
 
