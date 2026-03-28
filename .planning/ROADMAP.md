@@ -99,8 +99,8 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md — SimulatedChatCard component + evaluateSimulatedChat evaluator + registry entry for simulated-chat exercise type
-- [ ] 05-02-PLAN.md — Chapters 1-2 content (lessons 06-10 authored EN+HE), loader/curriculum extended, structural validation tests
-- [ ] 05-03-PLAN.md — Chapters 3-4 content (lessons 11-20 authored EN+HE), loader/curriculum completed to 20 lessons, full test coverage
+- [x] 05-02-PLAN.md — Chapters 1-2 content (lessons 06-10 authored EN+HE), loader/curriculum extended, structural validation tests
+- [x] 05-03-PLAN.md — Chapters 3-4 content (lessons 11-20 authored EN+HE), loader/curriculum completed to 20 lessons, full test coverage
 
 ### Phase 6: PWA Polish
 **Goal**: Harden the app for production with offline lesson access, PWA installability, iOS cache constraints, and animation performance on low-end devices.
