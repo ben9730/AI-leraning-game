@@ -61,13 +61,32 @@
 
 ## Traceability
 
-| Requirement | Phase | Plan |
-|-------------|-------|------|
-| FOUND-01..04 | TBD | TBD |
-| STATE-01..03 | TBD | TBD |
-| CONT-01..02 | TBD | TBD |
-| EXER-01..03 | TBD | TBD |
-| LESS-01..03 | TBD | TBD |
-| GAME-01..04 | TBD | TBD |
-| TREE-01..04 | TBD | TBD |
-| PWA-01..04 | TBD | TBD |
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| FOUND-01 | Phase 7 | Pending |
+| FOUND-02 | Phase 7 | Pending |
+| FOUND-03 | Phase 7 | Pending |
+| FOUND-04 | Phase 7 | Pending |
+| STATE-01 | Phase 8 | Pending |
+| STATE-02 | Phase 8 | Pending |
+| STATE-03 | Phase 8 | Pending |
+| CONT-01 | Phase 9 | Pending |
+| CONT-02 | Phase 9 | Pending |
+| EXER-01 | Phase 10 | Pending |
+| EXER-02 | Phase 10 | Pending |
+| EXER-03 | Phase 10 | Pending |
+| LESS-01 | Phase 11 | Pending |
+| LESS-02 | Phase 11 | Pending |
+| LESS-03 | Phase 11 | Pending |
+| GAME-01 | Phase 12 | Pending |
+| GAME-02 | Phase 12 | Pending |
+| GAME-03 | Phase 12 | Pending |
+| GAME-04 | Phase 12 | Pending |
+| TREE-01 | Phase 13 | Pending |
+| TREE-02 | Phase 13 | Pending |
+| TREE-03 | Phase 13 | Pending |
+| TREE-04 | Phase 13 | Pending |
+| PWA-01 | Phase 14 | Pending |
+| PWA-02 | Phase 14 | Pending |
+| PWA-03 | Phase 14 | Pending |
+| PWA-04 | Phase 14 | Pending |

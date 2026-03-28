@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
-status: defining-requirements
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-28T16:51:53.583Z"
+status: ready-to-plan
+stopped_at: Roadmap created for v2.0
+last_updated: "2026-03-28T18:00:00.000Z"
 last_activity: 2026-03-28
 progress:
-  total_phases: 6
-  completed_phases: 5
-  total_plans: 18
-  completed_plans: 17
+  total_phases: 8
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
   percent: 0
 ---
 
@@ -21,22 +21,21 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** v2.0 — Web-First Rebuild (researching stack)
+**Current focus:** Phase 7 — Foundation + Shared Extraction
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-28 — Milestone v2.0 started
+Phase: 7 of 14 (Foundation + Shared Extraction)
+Plan: 0 of 0 in current phase (not yet planned)
+Status: Ready to plan
+Last activity: 2026-03-28 — v2.0 roadmap created (8 phases, 27 requirements)
 
 Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 **Velocity:**
-
-- Total plans completed: 0
+- Total plans completed: 0 (v2.0 milestone)
 - Average duration: —
 - Total execution time: 0 hours
 
@@ -47,21 +46,10 @@ Progress: [░░░░░░░░░░] 0%
 | — | — | — | — |
 
 **Recent Trend:**
-
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
-| Phase 01-foundation P01 | 25 | 2 tasks | 9 files |
-| Phase 02-lesson-engine-core-exercises P01 | 27 | 2 tasks | 14 files |
-| Phase 02-lesson-engine-core-exercises P02 | 35 | 2 tasks | 22 files |
-| Phase 03-gamification-engine P01 | 25 | 2 tasks | 11 files |
-| Phase 03-gamification-engine P02 | 25 | 2 tasks | 7 files |
-| Phase 03-gamification-engine P03 | 35 | 2 tasks | 14 files |
-| Phase 04-skill-tree-onboarding P02 | 18 | 2 tasks | 8 files |
-| Phase 04-skill-tree-onboarding P01 | 25 | 2 tasks | 9 files |
-| Phase 05-full-curriculum P01 | 3 | 2 tasks | 5 files |
-| Phase 06-pwa-polish P02 | 25 | 2 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -70,32 +58,10 @@ Progress: [░░░░░░░░░░] 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- Roadmap: RTL + content schema are Phase 1 non-negotiables — must be done before any UI or content work
-- Roadmap: EXER-05 (simulated AI chat) deferred to Phase 5 — engine must be proven before authoring the core differentiator
-- Roadmap: Notifications (NOTF-01/02/03) are v2 scope — not in v1 roadmap
-- [Phase 01-foundation]: Use --legacy-peer-deps for @testing-library/react-native due to peer dep conflict with Expo 55 canary
-- [Phase 01-foundation]: isRTL() reads i18n.language not I18nManager.isRTL to avoid expo/expo#34225 bug
-- [Phase 01-foundation]: setLanguage calls Updates.reloadAsync for RTL flip — full reload required for I18nManager to take effect
-- [Phase 02-lesson-engine-core-exercises]: useRef for score accumulation in useLessonSession avoids stale closure bug in setState callback
-- [Phase 02-lesson-engine-core-exercises]: Dual-project Jest config: node preset for content tests, react-native preset for hook tests — avoids fighting ts-jest with RN setup files
-- [Phase 02-lesson-engine-core-exercises]: babel.config.js with babel-preset-expo added to enable react-native Jest preset to transform node_modules
-- [Phase 02-lesson-engine-core-exercises]: expo-haptics mocked via __mocks__/expo-haptics.js + moduleNameMapper — native module cannot run in Jest
-- [Phase 02-lesson-engine-core-exercises]: SpotProblemCard uses deterministic order (issues then distractors) for v1 — avoids test flakiness from shuffle
-- [Phase 03-gamification-engine]: Level always derived from xpTotal via getLevel() — never stored in state
-- [Phase 03-gamification-engine]: todayISO uses toLocaleDateString('en-CA') for local timezone correctness
-- [Phase 03-gamification-engine]: offsetDate parses ISO as local midnight (T00:00:00) to avoid UTC shift in streak day calculations
-- [Phase 03-gamification-engine]: Streak freeze only consumed on exactly 1 missed day — 2+ day gaps preserve freezes and reset streak
-- [Phase 03-gamification-engine]: Lottie placeholder JSON files used for v1 — real animations to be swapped before release
-- [Phase 03-gamification-engine]: Level-up modal shown post-Continue (not mid-completion) — user taps Continue on completion screen first, then sees modal
-- [Phase 03-gamification-engine]: tone.test.ts scopes gamification/streak/badge/level keys only — exercise.failed excluded as instructional not punitive
-- [Phase 04-skill-tree-onboarding]: useProgressStore.getState().dailyGoal read post-hydration in RootLayout to avoid Rules of Hooks violation in conditional branch
-- [Phase 04-skill-tree-onboarding]: accountPromptShown flag prevents showing account prompt modal twice in same session
-- [Phase 04-skill-tree-onboarding]: Pure functions extracted to skillTreeUtils.ts to avoid MMKV chain in node jest preset
-- [Phase 04-skill-tree-onboarding]: skill-tree jest project uses node preset + testPathIgnorePatterns on react-native project
-- [Phase 05-full-curriculum]: evaluateSimulatedChat is an exact type-alias of evaluateFreeText algorithm — same normalize + scoring loop, only type parameter differs
-- [Phase 05-full-curriculum]: SimulatedChatCard uses borderTopEndRadius/borderTopStartRadius for chat bubble tails (RTL-safe)
-- [Phase 06-pwa-polish]: InstallBanner uses full react-native mock in jsdom jest project — RN ESM cannot be loaded by ts-jest without babel transform
-- [Phase 06-pwa-polish]: Placeholder PNG icons generated via Node.js zlib/deflate — no sharp dependency needed for v1
+- [v2.0 pivot]: Web-first rebuild — Expo/RN web support too broken, pure TS logic is portable
+- [v2.0 stack]: Vite 6 + React 19 + Tailwind v4 + Zustand 5 + React Router 7 + vite-plugin-pwa
+- [v2.0 architecture]: Monorepo with shared/ (pure TS) + web/ (Vite SPA) + PromptPlay/ (existing, untouched)
+- [v2.0 RTL]: CSS logical properties + document.dir — no physical left/right anywhere
 
 ### Pending Todos
 
@@ -103,13 +69,11 @@ None yet.
 
 ### Blockers/Concerns
 
-- Phase 1: MMKV + Expo Go conflict needs a decision — AsyncStorage for dev or dev builds from day one (see research SUMMARY.md)
-- Phase 1: RTL testing automation in Expo is unresolved — investigate during Phase 1 planning
-- Phase 4: Supabase RLS policy design for multi-table lesson progress needs careful review before Phase 4 planning
-- Phase 5: Hebrew native review process and AI-term glossary must be established before Phase 5 begins
+- Phase 10: Exercise component rebuild needs per-component accessibility planning (research recommended)
+- Phase 13: Skill tree web visualization approach (CSS Grid vs SVG vs Canvas) needs investigation
 
 ## Session Continuity
 
-Last session: 2026-03-28T16:51:53.578Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-03-28
+Stopped at: v2.0 roadmap created — ready to plan Phase 7
 Resume file: None

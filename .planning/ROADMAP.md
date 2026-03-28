@@ -1,30 +1,17 @@
 # Roadmap: PromptPlay
 
-## Overview
+## Milestones
 
-Six phases deliver a complete "Duolingo for AI" PWA: Foundation locks in RTL and content schema before any UI is built, Lesson Engine + Exercise types prove the core learning loop, Gamification layers XP and streaks on top of a working engine, Skill Tree and Onboarding complete the retention surface, Full Curriculum authors all 20 lessons in English and Hebrew, and PWA Polish hardens offline and performance for production.
+- ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-03-28)
+- 🚧 **v2.0 Web-First Rebuild** - Phases 7-14 (in progress)
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - Expo scaffold, RTL/i18n infrastructure, content schema, Zustand/MMKV persistence
-- [ ] **Phase 2: Lesson Engine + Core Exercises** - Lesson flow, exercise type registry, 5 authored lessons, evaluator
-- [x] **Phase 3: Gamification Engine** - XP, streaks, streak freeze, levels, badges, celebrations (completed 2026-03-28)
-- [ ] **Phase 4: Skill Tree + Onboarding** - Visual skill map, deferred-signup onboarding, Supabase auth
-- [ ] **Phase 5: Full Curriculum** - All 20 lessons authored in EN + HE, all exercise types, graduated scoring
-- [ ] **Phase 6: PWA Polish** - Service worker, offline support, iOS constraints, performance audit
-
-## Phase Details
+<details>
+<summary>✅ v1.0 MVP (Phases 1-6) - SHIPPED 2026-03-28</summary>
 
 ### Phase 1: Foundation
 **Goal**: Establish the non-negotiable architectural foundations — RTL layout, i18n, content schema, and state persistence — before any UI or content is authored.
-**Depends on**: Nothing (first phase)
-**Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-04, FOUND-05, FOUND-06, FOUND-07
-**Success Criteria** (what must be TRUE):
-  1. App runs on device with a tab bar (Home, Skill Tree, Profile) and switching tabs works in both English and Hebrew locales
-  2. All layout properties use `paddingStart/End` and `marginStart/End` — no directional `left`/`right` CSS — verified by RTL smoke test in Hebrew locale
-  3. A lesson JSON file conforming to the `Lesson + LocalizedString` schema loads without error and its content renders correctly
-  4. User progress (XP, streak, completed lessons) persists across app restarts via MMKV without hydration flicker
-  5. `t('key')` translation function works for both `en` and `he` and the locale can be switched at runtime
 **Plans**: 3 plans
 
 Plans:
@@ -34,15 +21,7 @@ Plans:
 
 ### Phase 2: Lesson Engine + Core Exercises
 **Goal**: Deliver a working lesson loop — load lesson, sequence exercises, evaluate answers, show completion — with enough authored content to test the engine end-to-end.
-**Depends on**: Phase 1
-**Requirements**: LESS-01, LESS-02, LESS-03, LESS-04, LESS-05, LESS-06, EXER-01, EXER-02, EXER-03, EXER-04, EXER-06, EXER-07, EXER-08, EXER-09, EXER-10
-**Success Criteria** (what must be TRUE):
-  1. User can open a lesson, tap through content + exercises, and reach a completion screen that shows XP earned
-  2. Multiple choice, pick-the-better-prompt, rewrite-the-bad-prompt, fill-in-the-blank, and spot-the-problem exercise types all render and score correctly
-  3. Scoring rubric returns a `{ score, passed, feedback, breakdown }` object with per-criterion detail visible to the user immediately after submission
-  4. Lessons 1-5 are fully playable end-to-end with RTL-correct rendering in Hebrew locale
-  5. Lesson progress states (not started / in progress / completed) persist correctly after restart
-**Plans:** 3 plans
+**Plans**: 3 plans
 
 Plans:
 - [x] 02-01-PLAN.md — Lesson engine shell: navigation route, state machine hook, content/completion screens, progress wiring
@@ -51,15 +30,6 @@ Plans:
 
 ### Phase 3: Gamification Engine
 **Goal**: Wrap the lesson loop with XP, streaks, levels, badges, and celebrations so completing a lesson feels rewarding and returning daily has a tangible hook.
-**Depends on**: Phase 2
-**Requirements**: GAME-01, GAME-02, GAME-03, GAME-04, GAME-05, GAME-06, GAME-07, GAME-08, GAME-09
-**Success Criteria** (what must be TRUE):
-  1. Completing a lesson awards XP with a Lottie celebration animation and the XP total updates immediately in the store
-  2. Daily streak increments on the first lesson each day and resets at midnight local time; streak count displays with a flame icon
-  3. Streak freeze is granted after a 7-day streak milestone and can be spent to block a missed-day reset
-  4. Reaching an XP level threshold triggers a full-screen level-up celebration (Reanimated + Lottie)
-  5. At least 3 achievement badges are earnable (first lesson, 7-day streak, chapter complete) and display in the Profile tab
-  6. No hearts, energy gates, or guilt-framing appear anywhere in the app; tone throughout is encouraging
 **Plans**: 3 plans
 
 Plans:
@@ -69,15 +39,6 @@ Plans:
 
 ### Phase 4: Skill Tree + Onboarding
 **Goal**: Give users a visible map of their learning journey and a friction-free first-session experience that puts them in an exercise within 60 seconds.
-**Depends on**: Phase 3
-**Requirements**: TREE-01, TREE-02, TREE-03, TREE-04, TREE-05, ONBR-01, ONBR-02, ONBR-03, ONBR-04, ONBR-05
-**Success Criteria** (what must be TRUE):
-  1. The Skill Tree tab renders all lesson nodes with correct locked/unlocked/complete visual states based on real progress data
-  2. Tapping a lesson node navigates into that lesson (or shows a review prompt for completed lessons)
-  3. Chapter groupings (4 chapters, 20 lessons) are visually distinct on the skill tree
-  4. A new user can reach the first interactive exercise within 60 seconds of opening the app without creating an account
-  5. Account creation prompt appears after lesson 2 or 3 completion — not before — and is skippable
-  6. Supabase email/password auth saves progress to the cloud and restores it on a different device after login
 **Plans**: 3 plans
 
 Plans:
@@ -87,14 +48,6 @@ Plans:
 
 ### Phase 5: Full Curriculum
 **Goal**: Author all 20 lessons across 4 chapters in English and Hebrew, implement the simulated AI chat exercise type, and graduate the scoring rubric from checklist to weighted keyword scoring.
-**Depends on**: Phase 4
-**Requirements**: CONT-01, CONT-02, CONT-03, CONT-04, CONT-05, CONT-06, CONT-07, CONT-08, EXER-05
-**Success Criteria** (what must be TRUE):
-  1. All 20 lessons are playable end-to-end in the English locale with 2-3 exercises each and correct chapter grouping
-  2. The simulated AI chat exercise renders a pre-scripted AI response to the user's prompt and scores it against a rubric
-  3. From lesson 6 onward, scoring uses the weighted keyword rubric with partial credit; lessons 1-5 use the binary checklist
-  4. All 20 lessons are fully translated to Hebrew and render correctly in RTL layout on a physical device
-  5. Every lesson teaches a tool-agnostic principle with no reference to specific AI tool UIs
 **Plans**: 3 plans
 
 Plans:
@@ -104,14 +57,6 @@ Plans:
 
 ### Phase 6: PWA Polish
 **Goal**: Harden the app for production with offline lesson access, PWA installability, iOS cache constraints, and animation performance on low-end devices.
-**Depends on**: Phase 5
-**Requirements**: PWA-01, PWA-02, PWA-03, PWA-04, PWA-05
-**Success Criteria** (what must be TRUE):
-  1. Previously visited lessons are accessible offline — the app shell and lesson JSON load without a network connection
-  2. The app can be installed to the home screen on Android (auto-prompt) and iOS (in-app install nudge visible)
-  3. Total PWA cache stays under 50MB to comply with iOS Safari's cache eviction limit
-  4. Celebration animations (level-up, lesson completion) run at 60fps on a 2GB RAM Android device
-  5. All lesson content and UI is readable and usable on mobile viewports without horizontal scrolling
 **Plans**: 3 plans
 
 Plans:
@@ -119,15 +64,136 @@ Plans:
 - [x] 06-02-PLAN.md — PWA installability + iOS constraints: web manifest, PWA icons, InstallBanner (iOS nudge + Android prompt), cache budget audit
 - [x] 06-03-PLAN.md — Performance audit: animation profiling (transform/opacity only), responsive layout fixes, regression guard tests
 
+</details>
+
+### 🚧 v2.0 Web-First Rebuild (In Progress)
+
+**Milestone Goal:** Rebuild PromptPlay as a web-first Vite + React 19 SPA, porting all curriculum and game logic from the Expo/React Native codebase. Pure TypeScript logic (~600 lines) ports directly via a shared/ monorepo package; UI is rebuilt with Tailwind v4 and CSS logical properties for RTL.
+
+**Phase Numbering:**
+- Integer phases (7, 8, 9...): Planned milestone work
+- Decimal phases (7.1, 7.2): Urgent insertions (marked with INSERTED)
+
+- [ ] **Phase 7: Foundation + Shared Extraction** - Vite 6 + React 19 scaffold, monorepo with shared/ package, portable TS extraction, lint guardrails
+- [ ] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties
+- [ ] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings
+- [ ] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI
+- [ ] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock
+- [ ] **Phase 12: Gamification** - XP/streak/badge engine from shared/, celebration animations in CSS, streak + level UI
+- [ ] **Phase 13: Skill Tree + Navigation** - Tab navigation, skill tree visualization, onboarding flow, profile tab
+- [ ] **Phase 14: PWA + Web Polish** - Service worker + offline, install banner, responsive layout, SEO meta tags
+
+## Phase Details
+
+### Phase 7: Foundation + Shared Extraction
+**Goal**: Establish the web project scaffold and extract all portable TypeScript logic into a shared package that both the existing RN app and new web app can consume
+**Depends on**: Nothing (first phase of v2.0)
+**Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-04
+**Success Criteria** (what must be TRUE):
+  1. Running `npm run dev` in the web/ directory starts a Vite dev server that renders a React 19 page with Tailwind v4 styling
+  2. The shared/ package exports all pure TS modules (evaluators, gamification engine, content schema, store types) and they import cleanly in the web project with zero react-native dependencies
+  3. An ESLint rule in shared/ fails the build if any file imports from react-native or expo-* packages
+  4. TypeScript path aliases (@shared/) resolve correctly in tsconfig, vite.config, and vitest.config
+**Plans**: TBD
+
+### Phase 8: State + i18n + RTL
+**Goal**: Users can switch between English and Hebrew with instant RTL layout flip and have their progress persist across browser sessions
+**Depends on**: Phase 7
+**Requirements**: STATE-01, STATE-02, STATE-03
+**Success Criteria** (what must be TRUE):
+  1. User progress (XP, streak, completed lessons) persists in localStorage and survives browser restart without hydration flicker
+  2. User can toggle between English and Hebrew and the entire UI re-renders in the selected language without a page reload
+  3. When Hebrew is selected, document direction is RTL and all layout uses CSS logical properties (padding-inline-start, margin-inline-end) with no physical left/right breaking
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 9: Content Pipeline
+**Goal**: All 20 lesson JSON files load correctly through a Vite-native content loader and are organized into chapters for curriculum navigation
+**Depends on**: Phase 7
+**Requirements**: CONT-01, CONT-02
+**Success Criteria** (what must be TRUE):
+  1. All 20 lesson JSON files load via Vite import.meta.glob and render lesson content (title, body, tip) correctly in both EN and HE
+  2. Curriculum index returns 4 chapters with correct lesson groupings, and lesson order matches the existing v1 sequence
+**Plans**: TBD
+
+### Phase 10: Exercise System
+**Goal**: Users can interact with all 6 exercise types in the browser with keyboard accessibility and receive immediate scored feedback
+**Depends on**: Phase 8, Phase 9
+**Requirements**: EXER-01, EXER-02, EXER-03
+**Success Criteria** (what must be TRUE):
+  1. The exercise type registry maps each of the 6 type keys (mcq, pick-better, free-text, fill-blank, spot-problem, simulated-chat) to a React component and a shared/ evaluator
+  2. All 6 exercise components render correctly, accept user input via mouse and keyboard (Tab/Enter/Space), and submit for evaluation
+  3. After submission, a feedback UI displays score, pass/fail, and per-criterion breakdown from the evaluator
+  4. All exercise components render correctly in RTL mode (Hebrew)
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 11: Lesson Flow
+**Goal**: Users can play through a complete lesson from intro to exercises to completion screen, with progress saved and sequential lesson unlocking
+**Depends on**: Phase 10
+**Requirements**: LESS-01, LESS-02, LESS-03
+**Success Criteria** (what must be TRUE):
+  1. User can open a lesson, view the intro content, complete 2-3 exercises in sequence, and reach a completion screen showing XP earned
+  2. Lesson progress states (not started / in progress / completed) persist across browser sessions via the Zustand store
+  3. Lessons unlock sequentially -- a user cannot access lesson N+1 until lesson N is completed, and completed lessons show a review option
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 12: Gamification
+**Goal**: Completing lessons feels rewarding with XP, streaks, levels, and badges, and returning daily has a visible hook
+**Depends on**: Phase 11
+**Requirements**: GAME-01, GAME-02, GAME-03, GAME-04
+**Success Criteria** (what must be TRUE):
+  1. Completing a lesson awards XP with a CSS celebration animation and the XP total updates immediately in the UI
+  2. Daily streak increments on the first lesson completion each day, resets correctly at midnight local time, and streak freeze works as in v1
+  3. Reaching a level-up XP threshold triggers a full-screen celebration modal with CSS/Motion animation
+  4. Badges (first lesson, 7-day streak, chapter complete) are earnable and display in the profile view
+  5. Streak flame icon, XP counter, and level indicator are visible on the main screen at all times
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 13: Skill Tree + Navigation
+**Goal**: Users can navigate the app via tabs, see their full learning journey on a visual skill tree, and new users reach their first exercise within 60 seconds
+**Depends on**: Phase 12
+**Requirements**: TREE-01, TREE-02, TREE-03, TREE-04
+**Success Criteria** (what must be TRUE):
+  1. Tab-based navigation (Home, Skill Tree, Profile) works with browser back/forward and direct URL access
+  2. Skill tree renders all 20 lesson nodes across 4 chapters with correct locked/unlocked/complete visual states derived from real progress
+  3. A brand-new user completes the onboarding goal selection and reaches the first interactive exercise within 60 seconds
+  4. Profile tab displays earned badges, XP stats, streak info, and a working language switcher
+**Plans**: TBD
+**UI hint**: yes
+
+### Phase 14: PWA + Web Polish
+**Goal**: The app works offline for previously visited lessons, is installable as a PWA, looks good on all screen sizes, and has proper meta tags for sharing
+**Depends on**: Phase 13
+**Requirements**: PWA-01, PWA-02, PWA-03, PWA-04
+**Success Criteria** (what must be TRUE):
+  1. Previously visited lessons load and are playable with no network connection via a Workbox service worker
+  2. Install banner appears on Android (auto-prompt) and iOS (in-app nudge) and the app can be added to the home screen
+  3. Layout is mobile-first with a desktop-enhanced view (wider content area, optional sidebar) that works from 320px to 1440px+
+  4. Pages have correct SEO meta tags and Open Graph cards so sharing a lesson URL shows a rich preview
+**Plans**: TBD
+**UI hint**: yes
+
 ## Progress
 
-**Execution Order:** 1 -> 2 -> 3 -> 4 -> 5 -> 6
+**Execution Order:** 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14
+(Phases 9 and 8 can run in parallel; Phase 10 depends on both)
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Foundation | 1/3 | In Progress|  |
-| 2. Lesson Engine + Core Exercises | 0/3 | Not started | - |
-| 3. Gamification Engine | 3/3 | Complete   | 2026-03-28 |
-| 4. Skill Tree + Onboarding | 2/3 | In Progress|  |
-| 5. Full Curriculum | 1/3 | In Progress|  |
-| 6. PWA Polish | 2/3 | In Progress|  |
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Foundation | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 2. Lesson Engine | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 3. Gamification | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 4. Skill Tree | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 5. Full Curriculum | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
+| 7. Foundation + Shared Extraction | v2.0 | 0/0 | Not started | - |
+| 8. State + i18n + RTL | v2.0 | 0/0 | Not started | - |
+| 9. Content Pipeline | v2.0 | 0/0 | Not started | - |
+| 10. Exercise System | v2.0 | 0/0 | Not started | - |
+| 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
+| 12. Gamification | v2.0 | 0/0 | Not started | - |
+| 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
+| 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
