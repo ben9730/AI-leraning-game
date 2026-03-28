@@ -61,6 +61,21 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 | English + Hebrew from day one | Bilingual from start avoids costly RTL retrofit later | — Pending |
 | One learning path for v1 | Validate engagement with one great path before expanding | — Pending |
 | Tech stack via research | Let domain research inform the best choice rather than assuming | — Pending |
+| Web-first rebuild (v2.0) | Expo/React Native web support is too broken — blank screens, import.meta errors, native modules fail on web. Pure TS game logic is portable. | v2.0 pivot |
+
+## Current Milestone: v2.0 Web-First Rebuild
+
+**Goal:** Rebuild PromptPlay as a web-first app with a modern web stack, porting all existing curriculum and game logic from the Expo/React Native codebase.
+
+**Target features:**
+- Web-first stack (to be determined by research — Next.js, Vite+React, etc.)
+- Port all 20 lessons, 6 exercise types, evaluators
+- Port XP/streaks/badges/level-up gamification engine
+- English + Hebrew with RTL support
+- PWA installability (service worker, offline lessons)
+- Optional mobile wrapper (Capacitor/TWA) for app stores
+
+**Why pivot:** Expo/React Native web support is fundamentally broken — Expo Router blank screens, import.meta syntax errors from zustand ESM, MMKV native-only, font loading failures. All game logic is pure TypeScript and portable without rewrite.
 
 ## Evolution
 
@@ -80,4 +95,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 after initialization*
+*Last updated: 2026-03-28 — v2.0 Web-First Rebuild milestone started*

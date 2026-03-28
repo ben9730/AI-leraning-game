@@ -1,8 +1,8 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
+milestone: v2.0
+milestone_name: Web-First Rebuild
+status: defining-requirements
 stopped_at: Completed 06-02-PLAN.md
 last_updated: "2026-03-28T16:51:53.583Z"
 last_activity: 2026-03-28
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 06 — PWA Polish
+**Current focus:** v2.0 — Web-First Rebuild (researching stack)
 
 ## Current Position
 
-Phase: 06 (PWA Polish) — EXECUTING
-Plan: 2 of 3
-Status: Ready to execute
-Last activity: 2026-03-28
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-28 — Milestone v2.0 started
 
 Progress: [░░░░░░░░░░] 0%
 
