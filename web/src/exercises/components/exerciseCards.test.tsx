@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
@@ -17,6 +17,10 @@ vi.mock('@/hooks/useLanguage', () => ({
     setLanguage: vi.fn(),
   }),
 }))
+
+import { MCQCard } from './MCQCard'
+import { PickBetterCard } from './PickBetterCard'
+import { FreeTextCard } from './FreeTextCard'
 
 const mcqFixture: MCQExercise = {
   id: 'mcq-1',
@@ -75,13 +79,6 @@ const freeTextFixture: FreeTextExercise = {
 }
 
 describe('MCQCard', () => {
-  let MCQCard: typeof import('../MCQCard').MCQCard
-
-  beforeEach(async () => {
-    const mod = await import('../MCQCard')
-    MCQCard = mod.MCQCard
-  })
-
   it('renders the prompt and all options', () => {
     const onComplete = vi.fn()
     render(<MCQCard exercise={mcqFixture} onComplete={onComplete} />)
@@ -100,7 +97,7 @@ describe('MCQCard', () => {
     expect(submitBtn).toBeDisabled()
   })
 
-  it('clicking an option and submitting shows FeedbackCard with score', async () => {
+  it('clicking an option and submitting shows FeedbackCard with score', () => {
     const onComplete = vi.fn()
     render(<MCQCard exercise={mcqFixture} onComplete={onComplete} />)
 
@@ -137,13 +134,6 @@ describe('MCQCard', () => {
 })
 
 describe('PickBetterCard', () => {
-  let PickBetterCard: typeof import('../PickBetterCard').PickBetterCard
-
-  beforeEach(async () => {
-    const mod = await import('../PickBetterCard')
-    PickBetterCard = mod.PickBetterCard
-  })
-
   it('renders prompt and both options', () => {
     const onComplete = vi.fn()
     render(<PickBetterCard exercise={pickBetterFixture} onComplete={onComplete} />)
@@ -183,13 +173,6 @@ describe('PickBetterCard', () => {
 })
 
 describe('FreeTextCard', () => {
-  let FreeTextCard: typeof import('../FreeTextCard').FreeTextCard
-
-  beforeEach(async () => {
-    const mod = await import('../FreeTextCard')
-    FreeTextCard = mod.FreeTextCard
-  })
-
   it('renders prompt and starter prompt', () => {
     const onComplete = vi.fn()
     render(<FreeTextCard exercise={freeTextFixture} onComplete={onComplete} />)
