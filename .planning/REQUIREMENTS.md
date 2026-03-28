@@ -45,8 +45,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **GAME-02**: Daily streak tracking with midnight reset (local timezone)
 - [x] **GAME-03**: Streak freeze — one free freeze earned per 7-day streak milestone
 - [x] **GAME-04**: Level system — XP thresholds define levels, level-up triggers celebration
-- [ ] **GAME-05**: 3-5 milestone achievement badges (first lesson, 7-day streak, chapter complete, etc.)
-- [ ] **GAME-06**: Celebration animations on lesson completion and level-up (Reanimated + Lottie)
+- [x] **GAME-05**: 3-5 milestone achievement badges (first lesson, 7-day streak, chapter complete, etc.)
+- [x] **GAME-06**: Celebration animations on lesson completion and level-up (Reanimated + Lottie)
 - [x] **GAME-07**: No hearts/energy gate — unlimited attempts, bonus XP for perfection instead
 - [x] **GAME-08**: Daily goal setting (casual/regular/serious) affecting XP targets
 - [x] **GAME-09**: No guilt-based mechanics — friendly, encouraging tone in all notifications
@@ -169,8 +169,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GAME-02 | Phase 3 | Complete |
 | GAME-03 | Phase 3 | Complete |
 | GAME-04 | Phase 3 | Complete |
-| GAME-05 | Phase 3 | Pending |
-| GAME-06 | Phase 3 | Pending |
+| GAME-05 | Phase 3 | Complete |
+| GAME-06 | Phase 3 | Complete |
 | GAME-07 | Phase 3 | Complete |
 | GAME-08 | Phase 3 | Complete |
 | GAME-09 | Phase 3 | Complete |

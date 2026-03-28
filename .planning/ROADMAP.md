@@ -8,7 +8,7 @@ Six phases deliver a complete "Duolingo for AI" PWA: Foundation locks in RTL and
 
 - [ ] **Phase 1: Foundation** - Expo scaffold, RTL/i18n infrastructure, content schema, Zustand/MMKV persistence
 - [ ] **Phase 2: Lesson Engine + Core Exercises** - Lesson flow, exercise type registry, 5 authored lessons, evaluator
-- [ ] **Phase 3: Gamification Engine** - XP, streaks, streak freeze, levels, badges, celebrations
+- [x] **Phase 3: Gamification Engine** - XP, streaks, streak freeze, levels, badges, celebrations (completed 2026-03-28)
 - [ ] **Phase 4: Skill Tree + Onboarding** - Visual skill map, deferred-signup onboarding, Supabase auth
 - [ ] **Phase 5: Full Curriculum** - All 20 lessons authored in EN + HE, all exercise types, graduated scoring
 - [ ] **Phase 6: PWA Polish** - Service worker, offline support, iOS constraints, performance audit
@@ -65,7 +65,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — XP engine + level system: calcXP pure function, streak multiplier, perfection bonus, level-up detection in store, daily goal XP targets
 - [x] 03-02-PLAN.md — Streak + freeze mechanics: calcStreakUpdate pure function, midnight local reset, freeze grant at 7-day milestone, StreakBadge component on home tab
-- [ ] 03-03-PLAN.md — Badges + celebrations: deriveBadges system, Lottie lesson celebration, full-screen level-up modal, badge grid in Profile tab, tone audit
+- [x] 03-03-PLAN.md — Badges + celebrations: deriveBadges system, Lottie lesson celebration, full-screen level-up modal, badge grid in Profile tab, tone audit
 
 ### Phase 4: Skill Tree + Onboarding
 **Goal**: Give users a visible map of their learning journey and a friction-free first-session experience that puts them in an exercise within 60 seconds.
@@ -127,7 +127,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 1/3 | In Progress|  |
 | 2. Lesson Engine + Core Exercises | 0/3 | Not started | - |
-| 3. Gamification Engine | 2/3 | In Progress|  |
+| 3. Gamification Engine | 3/3 | Complete   | 2026-03-28 |
 | 4. Skill Tree + Onboarding | 0/3 | Not started | - |
 | 5. Full Curriculum | 0/3 | Not started | - |
 | 6. PWA Polish | 0/3 | Not started | - |
