@@ -1,0 +1,142 @@
+{
+  "id": "lesson-08-set-the-format",
+  "order": 8,
+  "chapter": 2,
+  "prerequisites": ["lesson-07-give-context"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Set the Format",
+      "he": "קבעו את הפורמט"
+    },
+    "body": {
+      "en": "You can tell an AI tool exactly how to format its response — and it will follow your instructions. Want a bullet-point list? Ask for it. Need a table? Specify it. Prefer step-by-step instructions? Say so. Without format instructions, the AI picks whatever seems most common for that type of request — which might not match how you plan to use the output. Specifying format saves you editing time and gets you output that's ready to use.",
+      "he": "אתם יכולים לומר לכלי AI בדיוק כיצד לפרמט את תשובתו — והוא יעקוב אחרי ההוראות שלכם. רוצים רשימת נקודות? בקשו זאת. צריכים טבלה? ציינו זאת. מעדיפים הוראות שלב-אחר-שלב? אמרו זאת. ללא הוראות פורמט, ה-AI בוחר את מה שנראה הכי נפוץ לסוג הבקשה הזו — מה שאולי לא מתאים לאופן שבו אתם מתכננים להשתמש בפלט. ציון פורמט חוסך לכם זמן עריכה ומביא פלט מוכן לשימוש."
+    },
+    "tip": {
+      "en": "End your prompt with the format you want: '...as a numbered list', '...in a table with two columns', '...as 3 short paragraphs'. This works with any AI tool.",
+      "he": "סיימו את הפרומפט שלכם עם הפורמט שאתם רוצים: '...כרשימה ממוספרת', '...בטבלה עם שתי עמודות', '...כ-3 פסקאות קצרות'. זה עובד עם כל כלי AI."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-08-ex-01",
+      "type": "fill-blank",
+      "order": 1,
+      "prompt": {
+        "en": "Complete this prompt to specify a clear output format:",
+        "he": "השלימו את הפרומפט הזה כדי לציין פורמט פלט ברור:"
+      },
+      "template": {
+        "en": "Write a summary of the benefits of daily exercise as a ___.",
+        "he": "כתוב סיכום של יתרונות הפעילות הגופנית היומיומית כ___."
+      },
+      "acceptableAnswers": [
+        {
+          "en": "bullet-point list",
+          "he": "רשימת נקודות"
+        },
+        {
+          "en": "numbered list",
+          "he": "רשימה ממוספרת"
+        },
+        {
+          "en": "table",
+          "he": "טבלה"
+        },
+        {
+          "en": "short paragraph",
+          "he": "פסקה קצרה"
+        },
+        {
+          "en": "step-by-step guide",
+          "he": "מדריך שלב אחר שלב"
+        }
+      ],
+      "explanation": {
+        "en": "Any specific format instruction works: 'bullet-point list', 'numbered list', 'table', 'short paragraph', or 'step-by-step guide'. The key is naming the format explicitly so the AI knows how to structure its output — rather than guessing.",
+        "he": "כל הוראת פורמט ספציפית עובדת: 'רשימת נקודות', 'רשימה ממוספרת', 'טבלה', 'פסקה קצרה' או 'מדריך שלב אחר שלב'. המפתח הוא לציין את הפורמט במפורש כדי שה-AI ידע כיצד לבנות את הפלט — במקום לנחש."
+      }
+    },
+    {
+      "id": "lesson-08-ex-02",
+      "type": "mcq",
+      "order": 2,
+      "prompt": {
+        "en": "When is it MOST important to specify an output format in your prompt?",
+        "he": "מתי הכי חשוב לציין פורמט פלט בפרומפט שלכם?"
+      },
+      "options": [
+        {
+          "en": "Always — every prompt needs a format instruction",
+          "he": "תמיד — כל פרומפט צריך הוראת פורמט"
+        },
+        {
+          "en": "When you plan to paste or use the output directly (e.g., a slide, a table, a to-do list)",
+          "he": "כאשר אתם מתכננים להדביק או להשתמש בפלט ישירות (למשל, שקופית, טבלה, רשימת מטלות)"
+        },
+        {
+          "en": "Only when asking for very long responses",
+          "he": "רק כאשר מבקשים תשובות ארוכות מאוד"
+        },
+        {
+          "en": "When the AI makes a mistake on the first try",
+          "he": "כאשר ה-AI טועה בניסיון הראשון"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Format specification is most valuable when you'll use the output directly — pasting it into a presentation, spreadsheet, email, or task manager. For conversational questions or quick facts, the default format is usually fine. The point is: when format matters to your use case, tell the AI upfront.",
+        "he": "ציון פורמט הכי בעל ערך כאשר אתם תשתמשו בפלט ישירות — הדבקתו בהצגה, גיליון אלקטרוני, אימייל או מנהל משימות. לשאלות שיחתיות או עובדות מהירות, פורמט ברירת המחדל בדרך כלל בסדר. הנקודה היא: כאשר פורמט חשוב לתרחיש השימוש שלכם, אמרו ל-AI מראש."
+      }
+    },
+    {
+      "id": "lesson-08-ex-03",
+      "type": "free-text",
+      "order": 3,
+      "prompt": {
+        "en": "Write a prompt asking an AI tool to help you plan a week of healthy meals. Make sure to specify the format you want the output in.",
+        "he": "כתבו פרומפט המבקש מכלי AI לעזור לכם לתכנן שבוע של ארוחות בריאות. הקפידו לציין את הפורמט שאתם רוצים שהפלט יהיה בו."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "clarity",
+            "label": { "en": "Task is clear", "he": "המשימה ברורה" },
+            "weight": 0.3,
+            "keywords": ["meal", "plan", "week", "healthy", "food", "breakfast", "lunch", "dinner", "ארוחה", "תכנית", "שבוע", "בריא", "אוכל", "ארוחת בוקר", "ארוחת צהריים", "ארוחת ערב"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Format specified", "he": "פורמט צוין" },
+            "weight": 0.5,
+            "keywords": ["table", "list", "column", "row", "day", "Monday", "format", "structured", "bullet", "numbered", "טבלה", "רשימה", "עמודה", "שורה", "יום", "שני", "פורמט", "ממובנה", "נקודות", "ממוספר"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Context or constraints", "he": "הקשר או אילוצים" },
+            "weight": 0.2,
+            "keywords": ["vegetarian", "vegan", "gluten", "calories", "servings", "quick", "easy", "budget", "family", "צמחוני", "טבעוני", "גלוטן", "קלוריות", "מנות", "מהיר", "קל", "תקציב", "משפחה"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Create a 7-day healthy meal plan for one person. Present it as a table with columns for Day, Breakfast, Lunch, and Dinner. Each meal should be quick to prepare (under 30 minutes), vegetarian-friendly, and include at least one serving of vegetables.",
+        "he": "צור תכנית ארוחות בריאה ל-7 ימים עבור אדם אחד. הצג אותה כטבלה עם עמודות עבור יום, ארוחת בוקר, ארוחת צהריים וארוחת ערב. כל ארוחה צריכה להיות מהירה להכנה (פחות מ-30 דקות), ידידותית לצמחונים, ולכלול לפחות מנה אחת של ירקות."
+      },
+      "positiveFeedback": {
+        "en": "Great job! You specified a format for the output — that's the key skill in this lesson. A meal plan in a table is immediately usable, unlike a wall of unstructured text.",
+        "he": "עבודה מצוינת! ציינתם פורמט לפלט — זו המיומנות המרכזית בשיעור זה. תכנית ארוחות בטבלה ניתנת לשימוש מיידי, בניגוד לגוש של טקסט לא מובנה."
+      },
+      "improvementFeedback": {
+        "en": "Good start! Try adding a format instruction — tell the AI HOW you want the meal plan presented. For example: 'as a table', 'as a day-by-day list', or 'in a structured weekly calendar format'.",
+        "he": "התחלה טובה! נסו להוסיף הוראת פורמט — אמרו ל-AI כיצד אתם רוצים שתכנית הארוחות תוצג. לדוגמה: 'כטבלה', 'כרשימה יום אחרי יום' או 'בפורמט לוח שנה שבועי מובנה'."
+      }
+    }
+  ]
+}

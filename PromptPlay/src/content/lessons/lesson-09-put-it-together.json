@@ -1,0 +1,126 @@
+{
+  "id": "lesson-09-put-it-together",
+  "order": 9,
+  "chapter": 2,
+  "prerequisites": ["lesson-08-set-the-format"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Put It Together",
+      "he": "שלבו הכל ביחד"
+    },
+    "body": {
+      "en": "You now have three powerful prompting tools: clarity, context, and format. The strongest prompts use all three — and there's a simple pattern to follow. Think of it like a sandwich: start with context (who you are and why), fill in the clear task (what you need), and finish with the format (how you want it). Example: 'I'm a student summarizing research for a 5-minute class presentation. Summarize the key causes of World War I in 4 bullet points, using simple language.' That's the sandwich — context, task, format.",
+      "he": "כעת יש לכם שלושה כלי פרומפטים חזקים: בהירות, הקשר ופורמט. הפרומפטים החזקים ביותר משתמשים בכל שלושה — ויש תבנית פשוטה לעקוב אחריה. חשבו על זה כמו כריך: התחילו עם הקשר (מי אתם ולמה), מלאו את המשימה הברורה (מה אתם צריכים), וסיימו עם הפורמט (איך אתם רוצים את זה). דוגמה: 'אני סטודנט שמסכם מחקר להצגה בכיתה של 5 דקות. סכם את הסיבות העיקריות למלחמת העולם הראשונה ב-4 נקודות, בשפה פשוטה.' זה הכריך — הקשר, משימה, פורמט."
+    },
+    "tip": {
+      "en": "Use the sandwich checklist: (1) Context — who am I? (2) Task — what do I need? (3) Format — how should it look? Check all three before sending. Works with any AI tool.",
+      "he": "השתמשו ברשימת הכריך: (1) הקשר — מי אני? (2) משימה — מה אני צריך? (3) פורמט — איך זה צריך להיראות? בדקו את כל השלושה לפני השליחה. עובד עם כל כלי AI."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-09-ex-01",
+      "type": "spot-problem",
+      "order": 1,
+      "prompt": {
+        "en": "What's missing from this prompt? Select all problems:",
+        "he": "מה חסר בפרומפט הזה? בחרו את כל הבעיות:"
+      },
+      "problematicPrompt": {
+        "en": "Write something about social media.",
+        "he": "כתוב משהו על רשתות חברתיות."
+      },
+      "issues": [
+        {
+          "en": "No context about who is asking or why",
+          "he": "אין הקשר על מי שואל ולמה"
+        },
+        {
+          "en": "The task is too vague — 'something' could mean anything",
+          "he": "המשימה מעורפלת מדי — 'משהו' יכול להיות כל דבר"
+        },
+        {
+          "en": "No output format specified",
+          "he": "לא צוין פורמט פלט"
+        }
+      ],
+      "distractors": [
+        {
+          "en": "The topic is too niche or specific",
+          "he": "הנושא נישתי מדי או ספציפי מדי"
+        },
+        {
+          "en": "The prompt is too long",
+          "he": "הפרומפט ארוך מדי"
+        }
+      ],
+      "hints": [
+        {
+          "en": "Apply the sandwich check: does this prompt have context, a clear task, and a format?",
+          "he": "החילו את בדיקת הכריך: האם לפרומפט הזה יש הקשר, משימה ברורה ופורמט?"
+        }
+      ],
+      "explanation": {
+        "en": "This prompt is missing all three sandwich ingredients: (1) no context — why do you need this? who are you? (2) the task is completely vague — 'something' gives the AI no direction, (3) no format — an article? a list? a tweet? The AI will produce a generic essay that's probably not what you need.",
+        "he": "בפרומפט הזה חסרים כל שלושת מרכיבי הכריך: (1) אין הקשר — למה אתם צריכים את זה? מי אתם? (2) המשימה מעורפלת לחלוטין — 'משהו' לא נותן ל-AI כיוון, (3) אין פורמט — מאמר? רשימה? ציוץ? ה-AI יייצר חיבור גנרי שכנראה לא מה שאתם צריכים."
+      }
+    },
+    {
+      "id": "lesson-09-ex-02",
+      "type": "simulated-chat",
+      "order": 2,
+      "prompt": {
+        "en": "Write a prompt using the sandwich technique — context + clear task + format. Ask an AI tool for help with something real you might actually need.",
+        "he": "כתבו פרומפט באמצעות טכניקת הכריך — הקשר + משימה ברורה + פורמט. בקשו מכלי AI עזרה במשהו אמיתי שאולי באמת תצטרכו."
+      },
+      "systemContext": {
+        "en": "You are a helpful AI assistant. When someone sends you a well-structured prompt (with context, a clear task, and a format), respond with a realistic, high-quality sample output that demonstrates exactly what a good AI response looks like when given a good prompt. Keep your response concise but complete.",
+        "he": "אתה עוזר AI מועיל. כאשר מישהו שולח לך פרומפט מובנה היטב (עם הקשר, משימה ברורה ופורמט), הגב עם פלט דוגמה ריאליסטי ואיכותי שמדגים בדיוק כיצד נראית תשובת AI טובה כשניתן פרומפט טוב. שמור על תשובה תמציתית אך שלמה."
+      },
+      "preScriptedResponse": {
+        "en": "Here's my response based on your structured prompt:\n\n[High-quality output formatted exactly as you requested]\n\nNotice how providing context, a clear task, and a format instruction allowed me to produce exactly what you needed — no guessing, no generic filler.",
+        "he": "הנה תשובתי בהתבסס על הפרומפט המובנה שלכם:\n\n[פלט איכותי מפורמט בדיוק כפי שביקשתם]\n\nשימו לב כיצד מתן הקשר, משימה ברורה והוראת פורמט אפשרו לי לייצר בדיוק מה שהייתם צריכים — ללא ניחוש, ללא מילוי גנרי."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "context",
+            "label": { "en": "Context included", "he": "הקשר כלול" },
+            "weight": 0.35,
+            "keywords": ["I am", "I'm", "as a", "for my", "my", "I need", "I work", "student", "teacher", "manager", "professional", "אני", "כ", "עבור", "שלי", "אני צריך", "אני עובד", "סטודנט", "מורה", "מנהל", "מקצועי"],
+            "required": false
+          },
+          {
+            "key": "clarity",
+            "label": { "en": "Clear task", "he": "משימה ברורה" },
+            "weight": 0.35,
+            "keywords": ["write", "create", "list", "summarize", "explain", "help", "make", "generate", "כתוב", "צור", "רשום", "סכם", "הסבר", "עזור", "עשה", "יצר"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Format specified", "he": "פורמט צוין" },
+            "weight": 0.3,
+            "keywords": ["bullet", "list", "table", "paragraph", "steps", "numbered", "format", "short", "points", "נקודות", "רשימה", "טבלה", "פסקה", "שלבים", "ממוספר", "פורמט", "קצר"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "I'm a freelance graphic designer preparing a client proposal. List 5 key questions I should ask a new client before starting a logo design project. Format it as a numbered list with a one-sentence explanation for why each question matters.",
+        "he": "אני מעצב גרפי עצמאי שמכין הצעת מחיר ללקוח. רשום 5 שאלות מפתח שכדאי לי לשאול לקוח חדש לפני שמתחילים פרויקט עיצוב לוגו. פרמט את זה כרשימה ממוספרת עם הסבר של משפט אחד מדוע כל שאלה חשובה."
+      },
+      "positiveFeedback": {
+        "en": "Excellent sandwich prompt! You used context, a clear task, and a specific format — that's the complete recipe for a prompt that gets exactly what you need.",
+        "he": "פרומפט כריך מצוין! השתמשתם בהקשר, משימה ברורה ופורמט ספציפי — זה המתכון המלא לפרומפט שמקבל בדיוק מה שאתם צריכים."
+      },
+      "improvementFeedback": {
+        "en": "Good effort! Check the sandwich: (1) Did you include context about who you are or why you need this? (2) Is your task clearly stated? (3) Did you specify how you want the output formatted?",
+        "he": "מאמץ טוב! בדקו את הכריך: (1) האם כללתם הקשר על מי אתם או למה אתם צריכים את זה? (2) האם המשימה שלכם מצוינת בבירור? (3) האם ציינתם כיצד אתם רוצים שהפלט יפורמט?"
+      }
+    }
+  ]
+}
