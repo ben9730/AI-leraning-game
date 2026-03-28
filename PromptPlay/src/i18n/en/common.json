@@ -1,8 +1,15 @@
 {
   "tabs": { "home": "Home", "skillTree": "Skill Tree", "profile": "Profile" },
-  "home": { "title": "Welcome to PromptPlay" },
+  "home": { "title": "Welcome to PromptPlay", "start_lesson": "Start Learning" },
   "skillTree": { "title": "Skill Tree" },
   "profile": { "title": "Profile" },
   "common": { "continue": "Continue", "back": "Back", "loading": "Loading..." },
-  "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" }
+  "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" },
+  "lesson": {
+    "complete": "Lesson Complete!",
+    "start_exercises": "Start Exercises",
+    "continue": "Continue",
+    "xp_earned": "+{{xp}} XP",
+    "exercise_count": "Exercise {{current}} of {{total}}"
+  }
 }
