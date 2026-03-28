@@ -1,20 +1,18 @@
 import React, { useMemo } from 'react'
-import { View, Text, Pressable, StyleSheet, ActivityIndicator } from 'react-native'
 import { useRouter } from 'expo-router'
-import { useTranslation } from 'react-i18next'
 import { loadLesson } from '@/src/content/loader'
 import { curriculum } from '@/src/content/curriculum'
 import { useProgressStore } from '@/src/store/useProgressStore'
 import { useLessonSession } from './useLessonSession'
 import { LessonContentScreen } from './LessonContentScreen'
 import { LessonCompletionScreen } from './LessonCompletionScreen'
+import { ExerciseRunner } from '@/src/features/exercise/ExerciseRunner'
 
 interface LessonScreenProps {
   lessonId: string
 }
 
 export function LessonScreen({ lessonId }: LessonScreenProps) {
-  const { t } = useTranslation()
   const router = useRouter()
   const completeLesson = useProgressStore(s => s.completeLesson)
   const addXP = useProgressStore(s => s.addXP)
@@ -47,21 +45,13 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
 
   if (step.phase === 'exercise') {
     return (
-      <View style={styles.exercisePlaceholder} key={currentExercise?.id}>
-        <Text style={styles.exerciseText}>
-          {t('lesson.exercise_count', {
-            current: exerciseIndex + 1,
-            total: exerciseCount,
-          })}
-        </Text>
-        <Pressable
-          style={({ pressed }) => [styles.nextButton, pressed && styles.nextButtonPressed]}
-          onPress={() => advance(100)}
-          accessibilityRole="button"
-        >
-          <Text style={styles.nextButtonText}>Next (placeholder)</Text>
-        </Pressable>
-      </View>
+      <ExerciseRunner
+        key={currentExercise?.id}
+        exercise={currentExercise!}
+        onComplete={(result) => advance(result.score)}
+        exerciseIndex={exerciseIndex}
+        exerciseCount={exerciseCount}
+      />
     )
   }
 
@@ -74,37 +64,3 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     />
   )
 }
-
-const styles = StyleSheet.create({
-  exercisePlaceholder: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingStart: 24,
-    paddingEnd: 24,
-    backgroundColor: '#fff',
-  },
-  exerciseText: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1a1a2e',
-    marginBottom: 32,
-    textAlign: 'center',
-  },
-  nextButton: {
-    backgroundColor: '#6C63FF',
-    borderRadius: 12,
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingStart: 40,
-    paddingEnd: 40,
-  },
-  nextButtonPressed: {
-    opacity: 0.85,
-  },
-  nextButtonText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: '600',
-  },
-})

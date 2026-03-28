@@ -17,13 +17,16 @@ module.exports = {
       displayName: 'react-native',
       preset: 'react-native',
       testMatch: ['<rootDir>/src/features/**/*.test.{ts,tsx}'],
-      moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+      moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/$1',
+        '^expo-haptics$': '<rootDir>/__mocks__/expo-haptics.js',
+      },
       transform: {
         '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react' } }],
         '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',
       },
       transformIgnorePatterns: [
-        'node_modules/(?!(react-native|@react-native|@testing-library/react-native|expo|@expo|@react-navigation)/)',
+        'node_modules/(?!(react-native|@react-native|@testing-library/react-native|expo|@expo|expo-haptics|@react-navigation)/)',
       ],
     },
   ],
