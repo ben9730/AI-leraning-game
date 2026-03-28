@@ -1,0 +1,129 @@
+{
+  "id": "lesson-11-give-ai-a-role",
+  "order": 11,
+  "chapter": 3,
+  "prerequisites": ["lesson-10-your-first-good-prompt"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Give AI a Role",
+      "he": "תנו ל-AI תפקיד"
+    },
+    "body": {
+      "en": "You can tell AI to act as a specific role — a teacher, editor, advisor, or expert. Assigning a role changes the style and depth of responses. A prompt starting with 'You are a...' or 'Act as a...' immediately shifts the AI's tone and perspective. A 'You are a nutritionist' prompt gets very different results than just asking a health question with no context.",
+      "he": "אתם יכולים לומר ל-AI לשמש בתפקיד ספציפי — מורה, עורך, יועץ או מומחה. מתן תפקיד משנה את הסגנון ואת עומק התשובות. פרומפט שמתחיל ב'אתה...' או 'פעל כ...' מחליף מיד את הטון ונקודת המבט של ה-AI. פרומפט של 'אתה תזונאי' מניב תוצאות שונות מאוד מאשר פשוט לשאול שאלת בריאות ללא הקשר."
+    },
+    "tip": {
+      "en": "Roles work best when combined with context. 'Act as a chef specializing in quick weeknight meals' is more powerful than just 'Act as a chef.'",
+      "he": "תפקידים עובדים הכי טוב כשמשלבים אותם עם הקשר. 'פעל כשף המתמחה בארוחות ערב מהירות לימות השבוע' חזק יותר מאשר רק 'פעל כשף'."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-11-ex-01",
+      "type": "simulated-chat",
+      "order": 1,
+      "prompt": {
+        "en": "Write a prompt asking an AI for cooking advice. Start with 'Act as a...' or 'You are a...' to assign a role, and make sure to include what you want to cook and any constraints you have.",
+        "he": "כתבו פרומפט המבקש מ-AI עצת בישול. התחילו ב'פעל כ...' או 'אתה...' כדי להקצות תפקיד, וודאו לכלול מה אתם רוצים לבשל וכל אילוצים שיש לכם."
+      },
+      "systemPrompt": {
+        "en": "You are a friendly cooking instructor. Give practical, encouraging cooking advice based on the user's request.",
+        "he": "אתה מדריך בישול ידידותי. תן עצות בישול מעשיות ומעודדות בהתאם לבקשת המשתמש."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "role",
+            "label": { "en": "Role assigned", "he": "תפקיד הוקצה" },
+            "weight": 0.4,
+            "keywords": ["act as", "you are", "as a", "פעל כ", "אתה", "בתור", "כ-"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Specific food topic", "he": "נושא מזון ספציפי" },
+            "weight": 0.35,
+            "keywords": ["cook", "recipe", "meal", "dish", "ingredient", "food", "bake", "grill", "בישול", "מתכון", "ארוחה", "מנה", "מרכיב", "אוכל", "אפייה", "צלייה"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Context or constraints included", "he": "הקשר או אילוצים כלולים" },
+            "weight": 0.25,
+            "keywords": ["beginner", "quick", "easy", "vegetarian", "vegan", "healthy", "budget", "minutes", "מתחיל", "מהיר", "קל", "צמחוני", "טבעוני", "בריא", "תקציב", "דקות"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Act as a professional chef specializing in quick weeknight dinners. I'm a beginner cook with about 30 minutes and basic pantry ingredients. Suggest a simple pasta dish I can make tonight.",
+        "he": "פעל כשף מקצועי המתמחה בארוחות ערב מהירות לימות השבוע. אני טבח מתחיל עם כ-30 דקות ומרכיבי מזווה בסיסיים. הצע מנת פסטה פשוטה שאוכל להכין הלילה."
+      },
+      "positiveFeedback": {
+        "en": "Great work! You assigned a role and gave the AI the context it needs. Role-based prompts like this get much more targeted, useful responses.",
+        "he": "עבודה נהדרת! הקצתם תפקיד ונתתם ל-AI את ההקשר שהוא צריך. פרומפטים מבוססי תפקיד כאלה מקבלים תגובות הרבה יותר ממוקדות ושימושיות."
+      },
+      "improvementFeedback": {
+        "en": "Try starting with 'Act as a...' or 'You are a...' to give the AI a specific role. Then add what you want to cook and any constraints (time, skill level, ingredients).",
+        "he": "נסו להתחיל ב'פעל כ...' או 'אתה...' כדי לתת ל-AI תפקיד ספציפי. לאחר מכן הוסיפו מה אתם רוצים לבשל וכל אילוצים (זמן, רמת מיומנות, מרכיבים)."
+      }
+    },
+    {
+      "id": "lesson-11-ex-02",
+      "type": "pick-better",
+      "order": 2,
+      "prompt": {
+        "en": "Which prompt will get more useful cooking advice?",
+        "he": "איזה פרומפט יקבל עצת בישול שימושית יותר?"
+      },
+      "optionA": {
+        "en": "You are a professional pastry chef. I'm hosting a birthday party for 10 people and need a impressive but not too difficult cake recipe. I have about 2 hours and a standard home oven.",
+        "he": "אתה קונדיטור מקצועי. אני מארח מסיבת יום הולדת ל-10 אנשים וצריך מתכון עוגה מרשים אך לא קשה מדי. יש לי כ-2 שעות ותנור ביתי סטנדרטי."
+      },
+      "optionB": {
+        "en": "Tell me how to make a good birthday cake.",
+        "he": "ספר לי איך להכין עוגת יום הולדת טובה."
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A assigns a role (pastry chef), gives context (10 guests, birthday party), adds constraints (2 hours, home oven), and specifies difficulty level. Option B is so vague the AI can only give a generic answer — it doesn't know your skill level, time, or what 'good' means to you.",
+        "he": "אפשרות A מקצה תפקיד (קונדיטור), נותנת הקשר (10 אורחים, מסיבת יום הולדת), מוסיפה אילוצים (2 שעות, תנור ביתי), ומציינת רמת קושי. אפשרות B כל כך מעורפלת שה-AI יכול רק לתת תשובה גנרית — הוא לא יודע את רמת המיומנות שלכם, הזמן, או מה 'טוב' אומר לכם."
+      }
+    },
+    {
+      "id": "lesson-11-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "When is assigning a role to AI most useful?",
+        "he": "מתי הקצאת תפקיד ל-AI הכי שימושית?"
+      },
+      "options": [
+        {
+          "en": "Only when you need creative writing",
+          "he": "רק כשאתם צריכים כתיבה יצירתית"
+        },
+        {
+          "en": "When you want a specific expertise level, tone, or perspective in the response",
+          "he": "כשאתם רוצים רמת מומחיות, טון או נקודת מבט ספציפיים בתשובה"
+        },
+        {
+          "en": "Roles make no difference — AI always responds the same way",
+          "he": "תפקידים לא משנים — AI תמיד מגיב באותו אופן"
+        },
+        {
+          "en": "Only for technical or scientific questions",
+          "he": "רק לשאלות טכניות או מדעיות"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Roles are useful any time you want a specific expertise level, tone, or perspective — whether you're asking for medical-style explanations, friendly coaching, expert analysis, or beginner-friendly instructions. They work for creative, technical, professional, and casual tasks alike.",
+        "he": "תפקידים שימושיים בכל פעם שאתם רוצים רמת מומחיות, טון או נקודת מבט ספציפיים — בין אם אתם מבקשים הסברים בסגנון רפואי, אימון ידידותי, ניתוח מומחים, או הוראות ידידותיות למתחילים. הם עובדים למשימות יצירתיות, טכניות, מקצועיות וקלות כאחד."
+      }
+    }
+  ]
+}

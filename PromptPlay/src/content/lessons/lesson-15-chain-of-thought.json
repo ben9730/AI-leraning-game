@@ -1,0 +1,129 @@
+{
+  "id": "lesson-15-chain-of-thought",
+  "order": 15,
+  "chapter": 3,
+  "prerequisites": ["lesson-14-iteration"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Chain of Thought",
+      "he": "שרשרת מחשבה"
+    },
+    "body": {
+      "en": "Ask AI to 'think step by step' or 'explain your reasoning.' This technique — called chain of thought — improves accuracy for complex questions by forcing the AI to show its work. Instead of jumping to an answer, the AI walks through each step of its logic. This helps catch errors and gives you a result you can verify. It's especially powerful for math, logic puzzles, multi-step analysis, and decision-making.",
+      "he": "בקשו מ-AI 'לחשוב צעד אחר צעד' או 'להסביר את ההגיון שלו'. טכניקה זו — הנקראת שרשרת מחשבה — משפרת דיוק לשאלות מורכבות על ידי כפיית ה-AI להראות את עבודתו. במקום לקפוץ לתשובה, ה-AI עובר על כל שלב של ההיגיון שלו. זה עוזר לזהות שגיאות ונותן לכם תוצאה שאתם יכולים לאמת. זה חזק במיוחד למתמטיקה, חידות היגיון, ניתוח רב-שלבי וקבלת החלטות."
+    },
+    "tip": {
+      "en": "Simple phrases that trigger chain of thought: 'Think step by step', 'Show your reasoning', 'Explain how you got there', 'Walk me through your logic'.",
+      "he": "ביטויים פשוטים שמפעילים שרשרת מחשבה: 'חשוב צעד אחר צעד', 'הראה את ההגיון שלך', 'הסבר כיצד הגעת לשם', 'הובל אותי דרך ההיגיון שלך'."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-15-ex-01",
+      "type": "mcq",
+      "order": 1,
+      "prompt": {
+        "en": "Chain-of-thought prompting is most helpful for which type of task?",
+        "he": "שרשרת מחשבה הכי מועילה לאיזה סוג של משימה?"
+      },
+      "options": [
+        {
+          "en": "Writing a short poem about autumn",
+          "he": "כתיבת שיר קצר על סתיו"
+        },
+        {
+          "en": "Solving a multi-step math or logic problem",
+          "he": "פתרון בעיית מתמטיקה או היגיון רב-שלבית"
+        },
+        {
+          "en": "Translating a single word from English to Hebrew",
+          "he": "תרגום מילה אחת מאנגלית לעברית"
+        },
+        {
+          "en": "Picking a background color for a website",
+          "he": "בחירת צבע רקע לאתר אינטרנט"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Chain of thought shines when there are multiple steps to work through, like math problems, logic puzzles, decision trees, or multi-factor analysis. For simple tasks (translating a word, picking a color), it adds unnecessary steps. For creative tasks (writing a poem), showing reasoning can actually hurt the creative flow. Save it for problems where you need the AI to be precise and verifiable.",
+        "he": "שרשרת מחשבה מבריקה כשיש מספר שלבים לעבור, כמו בעיות מתמטיקה, חידות היגיון, עצי החלטה, או ניתוח רב-גורמי. למשימות פשוטות (תרגום מילה, בחירת צבע), היא מוסיפה שלבים מיותרים. למשימות יצירתיות (כתיבת שיר), הצגת ההגיון יכולה בעצם לפגוע בזרימה היצירתית. שמרו אותה לבעיות שבהן אתם צריכים ש-AI יהיה מדויק וניתן לאימות."
+      }
+    },
+    {
+      "id": "lesson-15-ex-02",
+      "type": "simulated-chat",
+      "order": 2,
+      "prompt": {
+        "en": "You want to solve a logic puzzle about scheduling. Write a prompt that asks an AI to help you figure out who should attend which meeting — and explicitly ask it to reason through the problem step by step.",
+        "he": "אתם רוצים לפתור חידת היגיון על תזמון. כתבו פרומפט המבקש מ-AI לעזור לכם להבין מי צריך להשתתף באיזו פגישה — ובקשו ממנו במפורש לנמק את הבעיה צעד אחר צעד."
+      },
+      "systemPrompt": {
+        "en": "You are a logical problem-solving assistant. When asked to reason step by step, walk through each step of your logic clearly.",
+        "he": "אתה עוזר לפתרון בעיות לוגי. כשמבקשים ממך לנמק צעד אחר צעד, עבור על כל שלב של ההיגיון שלך בבירור."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "step_by_step",
+            "label": { "en": "Step-by-step instruction", "he": "הוראת צעד אחר צעד" },
+            "weight": 0.45,
+            "keywords": ["step by step", "step-by-step", "think through", "reason", "reasoning", "explain", "walk me through", "show your work", "צעד אחר צעד", "חשוב דרך", "נמק", "היגיון", "הסבר", "הובל אותי", "הראה את עבודתך"],
+            "required": false
+          },
+          {
+            "key": "logic_problem",
+            "label": { "en": "Logic or analysis task", "he": "משימת היגיון או ניתוח" },
+            "weight": 0.35,
+            "keywords": ["schedule", "meeting", "who", "which", "when", "figure out", "determine", "analyze", "לוח זמנים", "פגישה", "מי", "איזה", "מתי", "להבין", "לקבוע", "לנתח"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Problem context provided", "he": "הקשר הבעיה סופק" },
+            "weight": 0.2,
+            "keywords": ["people", "team", "available", "conflict", "overlap", "אנשים", "צוות", "זמין", "קונפליקט", "חפיפה", "constraint", "requirement"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "I need to figure out which of my 3 team members (Alice, Bob, Carol) should attend which of two meetings next Tuesday. Alice is unavailable after 3pm, Bob is in back-to-back meetings from 10-12, and Carol can attend any time. Meeting A is at 11am and Meeting B is at 4pm. Please reason through this step by step and tell me who can attend each meeting.",
+        "he": "אני צריך להבין איזה מ-3 חברי הצוות שלי (עלי, בן, קרול) צריכים להשתתף באיזו משתי הפגישות ביום שלישי הבא. עלי לא זמינה אחרי 15:00, בן בפגישות רצופות מ-10 עד 12, וקרול יכולה להגיע בכל שעה. פגישה א' בשעה 11:00 ופגישה ב' בשעה 16:00. אנא נמק צעד אחר צעד ואמור לי מי יכול להשתתף בכל פגישה."
+      },
+      "positiveFeedback": {
+        "en": "Excellent! You gave the AI a logic problem with constraints and explicitly asked it to reason step by step. This is exactly when chain-of-thought prompting pays off — you can follow the AI's reasoning and catch any mistakes.",
+        "he": "מצוין! נתתם ל-AI בעיית היגיון עם אילוצים ובמפורש ביקשתם ממנו לנמק צעד אחר צעד. זה בדיוק כשפרומפט שרשרת מחשבה משתלם — תוכלו לעקוב אחרי ההיגיון של ה-AI ולזהות שגיאות."
+      },
+      "improvementFeedback": {
+        "en": "For chain-of-thought prompting, include: (1) a problem that requires multiple steps to solve, and (2) an explicit instruction like 'think step by step', 'reason through this', or 'explain your logic'. Both elements are needed.",
+        "he": "לפרומפט שרשרת מחשבה, כללו: (1) בעיה שדורשת מספר שלבים לפתרון, ו-(2) הוראה מפורשת כמו 'חשוב צעד אחר צעד', 'נמק דרך זה', או 'הסבר את ההיגיון שלך'. שני האלמנטים נדרשים."
+      }
+    },
+    {
+      "id": "lesson-15-ex-03",
+      "type": "pick-better",
+      "order": 3,
+      "prompt": {
+        "en": "You want an AI to help you decide between two job offers. Which prompt will give a more thorough, verifiable analysis?",
+        "he": "אתם רוצים ש-AI יעזור לכם להחליט בין שני הצעות עבודה. איזה פרומפט ייתן ניתוח יסודי יותר וניתן לאימות?"
+      },
+      "optionA": {
+        "en": "I have two job offers: Job A pays $80k with great benefits and a long commute; Job B pays $95k with fewer benefits and remote work. Think through this step by step, considering salary, total compensation, lifestyle impact, and career growth, then give me your recommendation.",
+        "he": "יש לי שתי הצעות עבודה: עבודה א' משלמת 80k$ עם הטבות נהדרות ונסיעות ארוכות; עבודה ב' משלמת 95k$ עם פחות הטבות ועבודה מרחוק. חשוב דרך זה צעד אחר צעד, תוך שיקול השכר, שכר הכולל, השפעת אורח חיים וצמיחה מקצועית, ואז תן לי את המלצתך."
+      },
+      "optionB": {
+        "en": "Which job offer should I take: $80k with benefits and commute, or $95k remote with fewer benefits?",
+        "he": "איזו הצעת עבודה כדאי לי לקחת: 80k$ עם הטבות ונסיעות, או 95k$ עבודה מרחוק עם פחות הטבות?"
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A asks the AI to reason step by step and specifies the factors to consider (salary, total compensation, lifestyle, career growth). You'll get a structured analysis you can review and critique. Option B will likely get a quick opinion with no visible reasoning — you can't tell how the AI weighed the factors, and it might miss important considerations.",
+        "he": "אפשרות A מבקשת מה-AI לנמק צעד אחר צעד ומציינת את הגורמים לשקול (שכר, שכר כולל, אורח חיים, צמיחה מקצועית). תקבלו ניתוח מובנה שתוכלו לסקור ולבקר. אפשרות B כנראה תקבל חוות דעת מהירה ללא היגיון גלוי — לא תוכלו לדעת כיצד ה-AI שקל את הגורמים, ועלול להחמיץ שיקולים חשובים."
+      }
+    }
+  ]
+}

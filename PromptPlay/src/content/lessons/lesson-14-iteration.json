@@ -1,0 +1,127 @@
+{
+  "id": "lesson-14-iteration",
+  "order": 14,
+  "chapter": 3,
+  "prerequisites": ["lesson-13-few-shot-prompting"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Iteration: The Follow-Up",
+      "he": "איטרציה: הפרומפט הבא"
+    },
+    "body": {
+      "en": "Your first prompt rarely gives a perfect result. Iteration means refining: ask follow-ups, add constraints, shift focus. Think of it as a conversation, not a single shot. If the response is too long, say 'Make it shorter.' If it missed something important, say 'Now focus on...' or 'Add more detail about...' Each follow-up builds on the previous response — the AI remembers the context of the conversation.",
+      "he": "הפרומפט הראשון שלכם לעתים רחוקות נותן תוצאה מושלמת. איטרציה אומרת לשכלל: בקשו פרומפטים נוספים, הוסיפו אילוצים, שנו מיקוד. חשבו על זה כשיחה, לא כירייה אחת. אם התשובה ארוכה מדי, אמרו 'קצר יותר.' אם פספסה משהו חשוב, אמרו 'כעת התמקד ב...' או 'הוסף פרטים על...' כל פרומפט המשך בונה על התשובה הקודמת — ה-AI זוכר את הקשר השיחה."
+    },
+    "tip": {
+      "en": "The best follow-ups are specific: 'Make it shorter' is good. 'Cut it to 3 bullet points and focus only on cost' is better.",
+      "he": "פרומפטי ההמשך הטובים ביותר הם ספציפיים: 'קצר יותר' זה טוב. 'קצץ ל-3 נקודות והתמקד רק בעלות' זה טוב יותר."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-14-ex-01",
+      "type": "simulated-chat",
+      "order": 1,
+      "prompt": {
+        "en": "Write an initial prompt asking an AI to help you plan a trip. Include your destination, how long you'll be there, and what types of activities you enjoy.",
+        "he": "כתבו פרומפט ראשוני המבקש מ-AI לעזור לכם לתכנן טיול. כללו את היעד שלכם, כמה זמן תהיו שם, ואיזה סוגי פעילויות אתם נהנים מהם."
+      },
+      "systemPrompt": {
+        "en": "You are a helpful travel advisor. Give practical, enthusiastic travel recommendations based on the user's interests and timeframe.",
+        "he": "אתה יועץ נסיעות מועיל. תן המלצות נסיעה מעשיות ונלהבות בהתאם לתחומי העניין ולמסגרת הזמן של המשתמש."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "destination",
+            "label": { "en": "Destination specified", "he": "יעד צוין" },
+            "weight": 0.4,
+            "keywords": ["trip", "travel", "visit", "going to", "vacation", "holiday", "טיול", "נסיעה", "לבקר", "הולך ל", "חופשה", "נופש", "Paris", "Tokyo", "New York", "Rome", "Barcelona", "London", "Israel", "Italy", "Japan", "France"],
+            "required": false
+          },
+          {
+            "key": "timeframe",
+            "label": { "en": "Timeframe mentioned", "he": "מסגרת זמן הוזכרה" },
+            "weight": 0.3,
+            "keywords": ["days", "week", "weekend", "night", "hours", "ימים", "שבוע", "סוף שבוע", "לילה", "שעות", "day trip", "long weekend"],
+            "required": false
+          },
+          {
+            "key": "interests",
+            "label": { "en": "Interests or activities mentioned", "he": "תחומי עניין או פעילויות הוזכרו" },
+            "weight": 0.3,
+            "keywords": ["food", "museum", "hiking", "beach", "culture", "history", "art", "shopping", "nightlife", "אוכל", "מוזיאון", "טיול", "חוף", "תרבות", "היסטוריה", "אמנות", "קניות", "חיי לילה"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "I'm planning a 4-day trip to Lisbon, Portugal. I love food, walking tours, and local culture — especially markets and street food. What should I prioritize, and can you suggest a rough day-by-day itinerary?",
+        "he": "אני מתכנן טיול של 4 ימים ללמבוע, פורטוגל. אני אוהב אוכל, טיולים ברגל ותרבות מקומית — במיוחד שווקים ואוכל רחוב. על מה כדאי לי לתת עדיפות, ותוכל להציע לוח זמנים גס יום אחר יום?"
+      },
+      "positiveFeedback": {
+        "en": "Great first prompt! You have a clear destination, timeframe, and interests. Now practice the follow-up in the next exercise.",
+        "he": "פרומפט ראשוני נהדר! יש לכם יעד ברור, מסגרת זמן ותחומי עניין. כעת תרגלו את הפרומפט הממשיך בתרגיל הבא."
+      },
+      "improvementFeedback": {
+        "en": "A good trip planning prompt needs: (1) a specific destination, (2) how long you'll be there (days/week), and (3) what you enjoy doing. Try adding all three!",
+        "he": "פרומפט תכנון טיול טוב צריך: (1) יעד ספציפי, (2) כמה זמן תהיו שם (ימים/שבוע), ו-(3) מה אתם נהנים לעשות. נסו להוסיף את שלושתם!"
+      }
+    },
+    {
+      "id": "lesson-14-ex-02",
+      "type": "simulated-chat",
+      "order": 2,
+      "prompt": {
+        "en": "The AI gave you a detailed itinerary, but it's too long and doesn't focus enough on food experiences. Write a follow-up prompt to refine the response — ask it to shorten the plan and put more emphasis on food.",
+        "he": "ה-AI נתן לכם לוח זמנים מפורט, אך הוא ארוך מדי ולא מתמקד מספיק בחוויות אוכל. כתבו פרומפט המשך לשכלל את התשובה — בקשו ממנו לקצר את התוכנית ולשים דגש רב יותר על אוכל."
+      },
+      "systemPrompt": {
+        "en": "You are a helpful travel advisor. The user previously asked about a trip and got a detailed response. Now help them refine their travel plan based on their follow-up request.",
+        "he": "אתה יועץ נסיעות מועיל. המשתמש קודם לכן שאל על טיול וקיבל תשובה מפורטת. כעת עזור לו לשכלל את תוכנית הנסיעה בהתאם לבקשת ההמשך שלו."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "refinement",
+            "label": { "en": "Refinement keyword", "he": "מילת שכלול" },
+            "weight": 0.4,
+            "keywords": ["shorter", "shorten", "shorter", "less", "more detail", "focus on", "emphasize", "cut", "trim", "קצר יותר", "לקצר", "פחות", "פרטים נוספים", "התמקד ב", "הדגש", "גזור", "קצץ"],
+            "required": false
+          },
+          {
+            "key": "food_focus",
+            "label": { "en": "Food emphasis requested", "he": "דגש על אוכל התבקש" },
+            "weight": 0.35,
+            "keywords": ["food", "restaurant", "eat", "dining", "meal", "cuisine", "taste", "אוכל", "מסעדה", "לאכול", "אוכל", "ארוחה", "מטבח", "טעם"],
+            "required": false
+          },
+          {
+            "key": "format",
+            "label": { "en": "Format or length guidance", "he": "הנחיות פורמט או אורך" },
+            "weight": 0.25,
+            "keywords": ["brief", "concise", "bullet", "list", "summary", "shorter", "simple", "תמציתי", "קצר", "נקודות", "רשימה", "סיכום", "פשוט"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Can you shorten this to a brief bullet-point summary and focus more on the food experiences? I want the best restaurants, food markets, and local dishes to try — that's my top priority for this trip.",
+        "he": "תוכל לקצר את זה לסיכום קצר של נקודות ולהתמקד יותר בחוויות האוכל? אני רוצה את המסעדות הטובות ביותר, שווקי האוכל והמנות המקומיות לנסות — זו העדיפות העליונה שלי לטיול הזה."
+      },
+      "positiveFeedback": {
+        "en": "Excellent follow-up! You asked for a shorter format AND redirected the focus to food. This is iteration in action — each prompt refines the previous response to get closer to exactly what you need.",
+        "he": "פרומפט המשך מצוין! ביקשתם פורמט קצר יותר וגם הפנתם מחדש את המיקוד לאוכל. זו איטרציה בפעולה — כל פרומפט משכלל את התשובה הקודמת כדי להתקרב לבדיוק מה שאתם צריכים."
+      },
+      "improvementFeedback": {
+        "en": "A good follow-up prompt does two things: (1) tells the AI what to change (make it shorter, add more detail), and (2) tells it what to focus on (food experiences). Try adding both of these elements.",
+        "he": "פרומפט המשך טוב עושה שני דברים: (1) אומר ל-AI מה לשנות (קצר יותר, הוסף פרטים נוספים), ו-(2) אומר לו על מה להתמקד (חוויות אוכל). נסו להוסיף את שני האלמנטים האלה."
+      }
+    }
+  ]
+}
