@@ -4,8 +4,8 @@
 **Core Value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
 
 ## Foundation (FOUND)
-- [ ] **FOUND-01**: Vite 6 + React 19 + Tailwind v4 project scaffold with TypeScript
-- [ ] **FOUND-02**: Monorepo structure with shared/ package for portable TS logic
+- [x] **FOUND-01**: Vite 6 + React 19 + Tailwind v4 project scaffold with TypeScript
+- [x] **FOUND-02**: Monorepo structure with shared/ package for portable TS logic
 - [ ] **FOUND-03**: Extract all pure TS code (evaluators, gamification, content schema, store types) to shared/
 - [ ] **FOUND-04**: Lint rules preventing react-native imports in shared/
 
@@ -63,8 +63,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 7 | Pending |
-| FOUND-02 | Phase 7 | Pending |
+| FOUND-01 | Phase 7 | Complete (07-01) |
+| FOUND-02 | Phase 7 | Complete (07-01) |
 | FOUND-03 | Phase 7 | Pending |
 | FOUND-04 | Phase 7 | Pending |
 | STATE-01 | Phase 8 | Pending |
