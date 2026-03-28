@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useRouter } from 'expo-router'
 import { loadLesson } from '@/src/content/loader'
 import { curriculum } from '@/src/content/curriculum'
@@ -8,6 +8,7 @@ import { LessonContentScreen } from './LessonContentScreen'
 import { LessonCompletionScreen } from './LessonCompletionScreen'
 import { ExerciseRunner } from '@/src/features/exercise/ExerciseRunner'
 import { calcXP } from '@/src/features/gamification/engine'
+import { LevelUpModal } from '@/src/features/gamification/celebrations/LevelUpModal'
 
 interface LessonScreenProps {
   lessonId: string
@@ -19,6 +20,10 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   const addXP = useProgressStore(s => s.addXP)
   const unlockLesson = useProgressStore(s => s.unlockLesson)
   const updateStreak = useProgressStore(s => s.updateStreak)
+  const clearPendingLevelUp = useProgressStore(s => s.clearPendingLevelUp)
+
+  const [showLevelUp, setShowLevelUp] = useState(false)
+  const [pendingLevel, setPendingLevel] = useState<number | null>(null)
 
   const lesson = useMemo(() => loadLesson(lessonId), [lessonId])
   const { step, advance, currentExercise, exerciseCount, exerciseIndex } = useLessonSession(lesson)
@@ -38,6 +43,20 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
       unlockLesson(curriculum[currentIndex + 1])
     }
 
+    // Check if a level-up occurred after all store updates
+    const pendingLevelUp = useProgressStore.getState().pendingLevelUp
+    if (pendingLevelUp !== null) {
+      setPendingLevel(pendingLevelUp)
+      setShowLevelUp(true)
+    } else {
+      router.replace('/(tabs)')
+    }
+  }
+
+  const handleLevelUpDismiss = () => {
+    clearPendingLevelUp()
+    setShowLevelUp(false)
+    setPendingLevel(null)
     router.replace('/(tabs)')
   }
 
@@ -67,11 +86,19 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   const xpResult = calcXP(lesson.xpReward, useProgressStore.getState().streakCount, isPerfect)
 
   return (
-    <LessonCompletionScreen
-      lesson={lesson}
-      totalScore={step.totalScore}
-      onFinish={handleFinish}
-      xpBreakdown={xpResult}
-    />
+    <>
+      <LessonCompletionScreen
+        lesson={lesson}
+        totalScore={step.totalScore}
+        onFinish={handleFinish}
+        xpBreakdown={xpResult}
+      />
+      {showLevelUp && pendingLevel !== null && (
+        <LevelUpModal
+          level={pendingLevel}
+          onDismiss={handleLevelUpDismiss}
+        />
+      )}
+    </>
   )
 }

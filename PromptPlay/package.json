@@ -24,6 +24,7 @@
     "expo-updates": "55.0.17-canary-20260328-2049187",
     "expo-web-browser": "55.0.11-canary-20260328-2049187",
     "i18next": "^26.0.1",
+    "lottie-react-native": "~7.3.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-i18next": "^17.0.1",

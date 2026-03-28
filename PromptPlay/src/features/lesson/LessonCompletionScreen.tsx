@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { Lesson } from '@/src/content/schema'
 import { isRTL } from '@/src/i18n'
 import { XPResult } from '@/src/features/gamification/engine'
+import { LessonCelebration } from '@/src/features/gamification/celebrations/LessonCelebration'
 
 interface LessonCompletionScreenProps {
   lesson: Lesson
@@ -18,6 +19,9 @@ export function LessonCompletionScreen({ lesson, totalScore, onFinish, xpBreakdo
   const rtl = isRTL()
   const textAlign = rtl ? 'right' : 'left'
   const writingDirection = rtl ? 'rtl' : 'ltr'
+
+  const [celebrationDone, setCelebrationDone] = useState(false)
+  const xpDisplay = xpBreakdown ? xpBreakdown.total : lesson.xpReward
 
   return (
     <View style={styles.container}>
@@ -42,11 +46,29 @@ export function LessonCompletionScreen({ lesson, totalScore, onFinish, xpBreakdo
 
           <View style={styles.statBox}>
             <Text style={styles.statValue}>
-              {t('lesson.xp_earned', { xp: lesson.xpReward })}
+              {t('lesson.xp_earned', { xp: xpDisplay })}
             </Text>
             <Text style={styles.statLabel}>XP Earned</Text>
           </View>
         </View>
+
+        {xpBreakdown && (
+          <View style={styles.breakdownContainer}>
+            <Text style={[styles.breakdownLine, { textAlign }]}>
+              {t('gamification.xp_breakdown', { base: xpBreakdown.base })}
+            </Text>
+            {xpBreakdown.streakMultiplier > 1 && (
+              <Text style={[styles.breakdownLine, { textAlign }]}>
+                {t('gamification.streak_bonus', { multiplier: xpBreakdown.streakMultiplier })}
+              </Text>
+            )}
+            {xpBreakdown.perfectionBonus > 0 && (
+              <Text style={[styles.breakdownLine, { textAlign }]}>
+                {t('gamification.perfection_bonus', { bonus: xpBreakdown.perfectionBonus })}
+              </Text>
+            )}
+          </View>
+        )}
       </View>
 
       <View style={styles.footer}>
@@ -59,6 +81,11 @@ export function LessonCompletionScreen({ lesson, totalScore, onFinish, xpBreakdo
           <Text style={styles.buttonText}>{t('lesson.continue')}</Text>
         </Pressable>
       </View>
+
+      <LessonCelebration
+        visible={!celebrationDone}
+        onFinish={() => setCelebrationDone(true)}
+      />
     </View>
   )
 }
@@ -122,6 +149,18 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: 13,
     color: '#888',
+  },
+  breakdownContainer: {
+    marginTop: 16,
+    width: '100%',
+    paddingStart: 8,
+    paddingEnd: 8,
+  },
+  breakdownLine: {
+    fontSize: 14,
+    color: '#6C63FF',
+    marginBottom: 4,
+    width: '100%',
   },
   footer: {
     paddingStart: 24,

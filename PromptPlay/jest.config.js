@@ -31,13 +31,14 @@ module.exports = {
       moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/$1',
         '^expo-haptics$': '<rootDir>/__mocks__/expo-haptics.js',
+        '^lottie-react-native$': '<rootDir>/__mocks__/lottie-react-native.js',
       },
       transform: {
         '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react' } }],
         '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',
       },
       transformIgnorePatterns: [
-        'node_modules/(?!(react-native|@react-native|@testing-library/react-native|expo|@expo|expo-haptics|@react-navigation)/)',
+        'node_modules/(?!(react-native|@react-native|@testing-library/react-native|expo|@expo|expo-haptics|lottie-react-native|@react-navigation)/)',
       ],
     },
   ],
