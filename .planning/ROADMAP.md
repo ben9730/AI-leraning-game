@@ -121,7 +121,10 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. All 20 lesson JSON files load via Vite import.meta.glob and render lesson content (title, body, tip) correctly in both EN and HE
   2. Curriculum index returns 4 chapters with correct lesson groupings, and lesson order matches the existing v1 sequence
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — Vite content loader (import.meta.glob), curriculum re-export, content pipeline tests
 
 ### Phase 10: Exercise System
 **Goal**: Users can interact with all 6 exercise types in the browser with keyboard accessibility and receive immediate scored feedback
@@ -198,7 +201,7 @@ Plans:
 | 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
-| 9. Content Pipeline | v2.0 | 0/0 | Not started | - |
+| 9. Content Pipeline | v2.0 | 0/1 | Not started | - |
 | 10. Exercise System | v2.0 | 0/0 | Not started | - |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
