@@ -21,5 +21,6 @@
       "@shared/*": ["../shared/src/*"]
     }
   },
-  "include": ["src", "../shared/src"]
+  "include": ["src", "../shared/src"],
+  "exclude": ["../shared/src/**/*.test.ts", "../shared/src/**/__tests__/**"]
 }
