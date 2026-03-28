@@ -42,12 +42,12 @@ Plans:
   3. Scoring rubric returns a `{ score, passed, feedback, breakdown }` object with per-criterion detail visible to the user immediately after submission
   4. Lessons 1-5 are fully playable end-to-end with RTL-correct rendering in Hebrew locale
   5. Lesson progress states (not started / in progress / completed) persist correctly after restart
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 02-01: Lesson Engine — loader, content screen, exercise sequence, completion screen, progress state
-- [ ] 02-02: Exercise Runner + evaluators — type registry, MCQ, pick-better-prompt, rewrite, fill-in-blank, spot-problem
-- [ ] 02-03: Scoring rubric system — checklist evaluator (lessons 1-5), keyword rubric (lesson 6+), feedback renderer
+- [ ] 02-01-PLAN.md — Lesson engine shell: navigation route, state machine hook, content/completion screens, progress wiring
+- [ ] 02-02-PLAN.md — Exercise runner + evaluators: type registry, 5 exercise components (MCQ, pick-better, free-text, fill-blank, spot-problem), 5 pure evaluator functions
+- [ ] 02-03-PLAN.md — Scoring feedback + content: FeedbackCard per-criterion display, lessons 02-05 authored (bilingual), loader/curriculum updated, end-to-end verification
 
 ### Phase 3: Gamification Engine
 **Goal**: Wrap the lesson loop with XP, streaks, levels, badges, and celebrations so completing a lesson feels rewarding and returning daily has a tangible hook.
