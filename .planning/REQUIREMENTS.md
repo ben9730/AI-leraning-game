@@ -1,208 +1,73 @@
-# Requirements: PromptPlay
+# Requirements: PromptPlay v2.0 Web-First Rebuild
 
 **Defined:** 2026-03-28
 **Core Value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
 
-## v1 Requirements
+## Foundation (FOUND)
+- [ ] **FOUND-01**: Vite 6 + React 19 + Tailwind v4 project scaffold with TypeScript
+- [ ] **FOUND-02**: Monorepo structure with shared/ package for portable TS logic
+- [ ] **FOUND-03**: Extract all pure TS code (evaluators, gamification, content schema, store types) to shared/
+- [ ] **FOUND-04**: Lint rules preventing react-native imports in shared/
 
-Requirements for initial release. Each maps to roadmap phases.
+## State & i18n (STATE)
+- [ ] **STATE-01**: Zustand store with localStorage persistence adapter (same UserProgress shape as v1)
+- [ ] **STATE-02**: i18next with EN + HE translations (port existing common.json files)
+- [ ] **STATE-03**: RTL support via document.dir + CSS logical properties (instant language switch, no page reload)
 
-### Foundation
+## Content Pipeline (CONT)
+- [ ] **CONT-01**: Content loader using Vite import.meta.glob for all 20 lesson JSON files
+- [ ] **CONT-02**: Curriculum index and chapter groupings (4 chapters, 20 lessons)
 
-- [x] **FOUND-01**: Project bootstrapped with Expo (React Native) + TypeScript
-- [ ] **FOUND-02**: Zustand store with MMKV persistence for user progress (XP, streaks, completed lessons)
-- [x] **FOUND-03**: i18n system with English + Hebrew support using `t('key')` translation function
-- [x] **FOUND-04**: RTL layout support using directional CSS properties (`paddingStart/End`, `marginStart/End`) from day one
-- [ ] **FOUND-05**: Content schema defined — JSON format for lessons, exercises, and scoring rubrics with `LocalizedString { en, he }` shape
-- [x] **FOUND-06**: Expo Router navigation structure (tab-based: Home, Skill Tree, Profile)
-- [ ] **FOUND-07**: PersistenceAdapter interface wrapping MMKV for local storage
+## Exercise System (EXER)
+- [ ] **EXER-01**: Exercise type registry pattern (map of type key to React component + evaluator)
+- [ ] **EXER-02**: 6 web exercise components (MCQ, pick-better, free-text, fill-blank, spot-problem, simulated-chat)
+- [ ] **EXER-03**: All evaluators wired with scoring feedback UI (score, passed, per-criterion breakdown)
 
-### Lesson Engine
+## Lesson Flow (LESS)
+- [ ] **LESS-01**: Lesson screen with intro → exercise sequence → completion screen showing XP earned
+- [ ] **LESS-02**: Lesson progress states (not started / in progress / completed) persisted across sessions
+- [ ] **LESS-03**: Navigation between lessons with sequential unlock logic
 
-- [x] **LESS-01**: Lesson loader that fetches lesson by ID from bundled JSON
-- [x] **LESS-02**: Lesson flow — content screen → exercise sequence → completion screen
-- [x] **LESS-03**: Content renderer displaying lesson text with RTL-aware mixed Hebrew/English support
-- [x] **LESS-04**: Lesson completion fires events consumed by gamification engine
-- [x] **LESS-05**: Lesson progress tracked — not started / in progress / completed states
-- [ ] **LESS-06**: Minimum 5 authored lessons for initial testing (Lesson 1 = 60-second "aha" demo)
+## Gamification (GAME)
+- [ ] **GAME-01**: XP engine, streak tracking, streak freeze, level-up detection (ported from shared/ pure TS)
+- [ ] **GAME-02**: Badge system — first lesson, 7-day streak, chapter complete (ported from shared/)
+- [ ] **GAME-03**: Celebration animations using CSS transitions / Motion (replacing Lottie + Reanimated)
+- [ ] **GAME-04**: Streak display with flame icon, XP counter, level indicator visible in UI
 
-### Exercise Engine
+## Skill Tree & Navigation (TREE)
+- [ ] **TREE-01**: Tab-based navigation (Home, Skill Tree, Profile)
+- [ ] **TREE-02**: Skill tree visualization with locked/unlocked/complete visual states per lesson
+- [ ] **TREE-03**: Onboarding flow: goal selection, reach first exercise within 60 seconds
+- [ ] **TREE-04**: Profile tab showing badges, stats, language switcher
 
-- [x] **EXER-01**: Exercise type registry pattern — map of type key → component + evaluator
-- [x] **EXER-02**: Multiple choice exercises — concept questions with instant feedback
-- [x] **EXER-03**: Pick-the-better-prompt exercises — two-panel comparison with explanation
-- [x] **EXER-04**: Rewrite-the-bad-prompt exercises — free text input + rubric scoring
-- [x] **EXER-05**: Simulated AI chat — user writes prompt, sees pre-scripted response, gets scored (core differentiator)
-- [x] **EXER-06**: Fill-in-the-blank exercises — complete a partial prompt
-- [x] **EXER-07**: Spot-the-problem exercises — identify what's wrong with a prompt
-- [ ] **EXER-08**: Scoring rubric system — evaluates Clarity, Specificity, Context, Intent dimensions
-- [ ] **EXER-09**: Score feedback with transparent per-criterion breakdown (not just a number)
-- [ ] **EXER-10**: Checklist-based scoring for early lessons (1-5), keyword-weighted rubric from lesson 6+
+## PWA & Web Polish (PWA)
+- [ ] **PWA-01**: Service worker with Workbox for offline lesson access (previously visited lessons)
+- [ ] **PWA-02**: Web manifest + install banner (Android auto-prompt, iOS in-app nudge)
+- [ ] **PWA-03**: Responsive layout — mobile-first with desktop-enhanced sidebar/wider content
+- [ ] **PWA-04**: SEO meta tags + Open Graph cards for lesson/page sharing
 
-### Gamification
-
-- [x] **GAME-01**: XP system — base XP per exercise + streak multiplier + perfection bonus
-- [x] **GAME-02**: Daily streak tracking with midnight reset (local timezone)
-- [x] **GAME-03**: Streak freeze — one free freeze earned per 7-day streak milestone
-- [x] **GAME-04**: Level system — XP thresholds define levels, level-up triggers celebration
-- [x] **GAME-05**: 3-5 milestone achievement badges (first lesson, 7-day streak, chapter complete, etc.)
-- [x] **GAME-06**: Celebration animations on lesson completion and level-up (Reanimated + Lottie)
-- [x] **GAME-07**: No hearts/energy gate — unlimited attempts, bonus XP for perfection instead
-- [x] **GAME-08**: Daily goal setting (casual/regular/serious) affecting XP targets
-- [x] **GAME-09**: No guilt-based mechanics — friendly, encouraging tone in all notifications
-
-### Skill Tree
-
-- [x] **TREE-01**: Visual skill map showing all lessons with lock/unlock/complete states
-- [x] **TREE-02**: Linear progression — each lesson unlocks the next
-- [x] **TREE-03**: Chapter groupings visible on skill tree (5 chapters)
-- [x] **TREE-04**: Tap lesson node to start or review completed lesson
-- [x] **TREE-05**: Current progress indicator showing position in learning path
-
-### Onboarding
-
-- [x] **ONBR-01**: No signup wall — user starts learning immediately
-- [x] **ONBR-02**: Quick goal selection (casual/regular/serious) on first launch
-- [x] **ONBR-03**: Immediate first lesson experience within 60 seconds of opening app
-- [x] **ONBR-04**: Deferred account creation — prompt after lesson 2-3, not before
-- [ ] **ONBR-05**: Supabase auth integration (email + password) for cloud progress sync
-
-### Content
-
-- [ ] **CONT-01**: 20 lessons authored across 4 chapters in English
-- [ ] **CONT-02**: Chapter 1: "What Can AI Do?" (5 lessons — discovering AI capabilities)
-- [ ] **CONT-03**: Chapter 2: "Your First Good Prompt" (5 lessons — clarity, specificity, context)
-- [ ] **CONT-04**: Chapter 3: "Level Up Your Prompts" (5 lessons — roles, examples, constraints, iteration)
-- [ ] **CONT-05**: Chapter 4: "Real-World Skills" (5 lessons — writing, research, brainstorming, analysis)
-- [ ] **CONT-06**: All 20 lessons translated to Hebrew with native review
-- [ ] **CONT-07**: Each lesson includes 2-3 exercises with variety of types
-- [ ] **CONT-08**: Tool-agnostic content — teaches principles, not specific tool UIs
-
-### Polish & PWA
-
-- [ ] **PWA-01**: Service worker for offline lesson access (Workbox)
-- [x] **PWA-02**: App installable as PWA on mobile devices
-- [ ] **PWA-03**: Responsive layout optimized for mobile viewports
-- [ ] **PWA-04**: Animation performance tested on low-end Android devices
-- [x] **PWA-05**: iOS PWA constraints handled (50MB cache limit, no auto-install prompt)
-
-## v2 Requirements
-
-Deferred to future release. Tracked but not in current roadmap.
-
-### Social & Competition
-
-- **SOCL-01**: Leaderboards — weekly XP rankings among friends
-- **SOCL-02**: Share achievement badges on social media
-- **SOCL-03**: Friend system — add friends, see their progress
-
-### Advanced Content
-
-- **ADVN-01**: Chapter 5: "AI Power User" (6 lessons — chaining, multi-step, advanced techniques)
-- **ADVN-02**: Multiple learning paths (writing, coding, business, creative)
-- **ADVN-03**: Daily challenge — new prompt challenge every day
-- **ADVN-04**: User-submitted prompt challenges
-
-### Notifications
-
-- **NOTF-01**: Push notifications for streak reminders (opt-in, friendly tone)
-- **NOTF-02**: Weekly progress summary notification
-- **NOTF-03**: Streak-about-to-break reminder
-
-### Monetization
-
-- **MNTZ-01**: Freemium model with premium tier
-- **MNTZ-02**: Premium: ad-free, extra streak freezes, bonus lessons
-- **MNTZ-03**: In-app purchase integration
-
-### Native App
-
-- **NATV-01**: iOS App Store deployment
-- **NATV-02**: Android Play Store deployment
+## Future (v2.1+)
+- Supabase auth + cloud sync (deferred — local-only for v2.0)
+- Capacitor / TWA mobile wrapper (deferred — web-first validation)
+- Push notifications (requires backend infrastructure)
+- Leaderboards / social features
+- Multiple learning paths / tracks
 
 ## Out of Scope
-
-Explicitly excluded. Documented to prevent scope creep.
-
-| Feature | Reason |
-|---------|--------|
-| Live AI API calls | Zero marginal cost — all interactions pre-built/simulated |
-| Hearts/energy gate | #1 user revolt trigger in learning apps — unlimited attempts instead |
-| Guilt-based notifications | Research shows loss-framing causes stress and churn |
-| Video lessons | Production overhead; text + interactive exercises sufficient for v1 |
-| Real-time multiplayer | High complexity, not needed to validate core learning experience |
-| OAuth/social login | Email/password sufficient for v1 |
-| Admin dashboard | Content managed via JSON files in codebase for v1 |
-| Analytics/tracking | Defer until user base established |
-| Multiple languages beyond EN+HE | Defer to v2+ after validating bilingual approach |
+- Real AI API integration — simulated exercises only (same as v1)
+- Video content
+- Monetization system
+- Native app store deployment (v2.0 is web/PWA only)
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
-
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| FOUND-01 | Phase 1 | Complete |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Complete |
-| FOUND-04 | Phase 1 | Complete |
-| FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Complete |
-| FOUND-07 | Phase 1 | Pending |
-| LESS-01 | Phase 2 | Complete |
-| LESS-02 | Phase 2 | Complete |
-| LESS-03 | Phase 2 | Complete |
-| LESS-04 | Phase 2 | Complete |
-| LESS-05 | Phase 2 | Complete |
-| LESS-06 | Phase 2 | Pending |
-| EXER-01 | Phase 2 | Complete |
-| EXER-02 | Phase 2 | Complete |
-| EXER-03 | Phase 2 | Complete |
-| EXER-04 | Phase 2 | Complete |
-| EXER-05 | Phase 5 | Complete |
-| EXER-06 | Phase 2 | Complete |
-| EXER-07 | Phase 2 | Complete |
-| EXER-08 | Phase 2 | Pending |
-| EXER-09 | Phase 2 | Pending |
-| EXER-10 | Phase 2 | Pending |
-| GAME-01 | Phase 3 | Complete |
-| GAME-02 | Phase 3 | Complete |
-| GAME-03 | Phase 3 | Complete |
-| GAME-04 | Phase 3 | Complete |
-| GAME-05 | Phase 3 | Complete |
-| GAME-06 | Phase 3 | Complete |
-| GAME-07 | Phase 3 | Complete |
-| GAME-08 | Phase 3 | Complete |
-| GAME-09 | Phase 3 | Complete |
-| TREE-01 | Phase 4 | Complete |
-| TREE-02 | Phase 4 | Complete |
-| TREE-03 | Phase 4 | Complete |
-| TREE-04 | Phase 4 | Complete |
-| TREE-05 | Phase 4 | Complete |
-| ONBR-01 | Phase 4 | Complete |
-| ONBR-02 | Phase 4 | Complete |
-| ONBR-03 | Phase 4 | Complete |
-| ONBR-04 | Phase 4 | Complete |
-| ONBR-05 | Phase 4 | Pending |
-| CONT-01 | Phase 5 | Pending |
-| CONT-02 | Phase 5 | Pending |
-| CONT-03 | Phase 5 | Pending |
-| CONT-04 | Phase 5 | Pending |
-| CONT-05 | Phase 5 | Pending |
-| CONT-06 | Phase 5 | Pending |
-| CONT-07 | Phase 5 | Pending |
-| CONT-08 | Phase 5 | Pending |
-| PWA-01 | Phase 6 | Pending |
-| PWA-02 | Phase 6 | Complete |
-| PWA-03 | Phase 6 | Pending |
-| PWA-04 | Phase 6 | Pending |
-| PWA-05 | Phase 6 | Complete |
-
-**Coverage:**
-- v1 requirements: 52 total
-- Mapped to phases: 52
-- Unmapped: 0 ✓
-
----
-*Requirements defined: 2026-03-28*
-*Last updated: 2026-03-28 after roadmap creation — all 52 requirements mapped*
+| Requirement | Phase | Plan |
+|-------------|-------|------|
+| FOUND-01..04 | TBD | TBD |
+| STATE-01..03 | TBD | TBD |
+| CONT-01..02 | TBD | TBD |
+| EXER-01..03 | TBD | TBD |
+| LESS-01..03 | TBD | TBD |
+| GAME-01..04 | TBD | TBD |
+| TREE-01..04 | TBD | TBD |
+| PWA-01..04 | TBD | TBD |
