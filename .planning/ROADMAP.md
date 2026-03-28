@@ -76,7 +76,7 @@ Plans:
 
 - [ ] **Phase 7: Foundation + Shared Extraction** - Vite 6 + React 19 scaffold, monorepo with shared/ package, portable TS extraction, lint guardrails
 - [x] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties (completed 2026-03-28)
-- [ ] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings
+- [x] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings (completed 2026-03-28)
 - [ ] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI
 - [ ] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock
 - [ ] **Phase 12: Gamification** - XP/streak/badge engine from shared/, celebration animations in CSS, streak + level UI
@@ -124,7 +124,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 09-01-PLAN.md — Vite content loader (import.meta.glob), curriculum re-export, content pipeline tests
+- [x] 09-01-PLAN.md — Vite content loader (import.meta.glob), curriculum re-export, content pipeline tests
 
 ### Phase 10: Exercise System
 **Goal**: Users can interact with all 6 exercise types in the browser with keyboard accessibility and receive immediate scored feedback
@@ -201,7 +201,7 @@ Plans:
 | 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
-| 9. Content Pipeline | v2.0 | 0/1 | Not started | - |
+| 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
 | 10. Exercise System | v2.0 | 0/0 | Not started | - |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |

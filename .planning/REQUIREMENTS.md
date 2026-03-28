@@ -15,8 +15,8 @@
 - [x] **STATE-03**: RTL support via document.dir + CSS logical properties (instant language switch, no page reload)
 
 ## Content Pipeline (CONT)
-- [ ] **CONT-01**: Content loader using Vite import.meta.glob for all 20 lesson JSON files
-- [ ] **CONT-02**: Curriculum index and chapter groupings (4 chapters, 20 lessons)
+- [x] **CONT-01**: Content loader using Vite import.meta.glob for all 20 lesson JSON files
+- [x] **CONT-02**: Curriculum index and chapter groupings (4 chapters, 20 lessons)
 
 ## Exercise System (EXER)
 - [ ] **EXER-01**: Exercise type registry pattern (map of type key to React component + evaluator)
@@ -70,8 +70,8 @@
 | STATE-01 | Phase 8 | Pending |
 | STATE-02 | Phase 8 | Complete |
 | STATE-03 | Phase 8 | Complete |
-| CONT-01 | Phase 9 | Pending |
-| CONT-02 | Phase 9 | Pending |
+| CONT-01 | Phase 9 | Complete |
+| CONT-02 | Phase 9 | Complete |
 | EXER-01 | Phase 10 | Pending |
 | EXER-02 | Phase 10 | Pending |
 | EXER-03 | Phase 10 | Pending |

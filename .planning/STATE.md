@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
 status: verifying
-stopped_at: Completed 08-02-PLAN.md -- i18n + RTL done, phase 8 complete
-last_updated: "2026-03-28T20:05:27.339Z"
+stopped_at: Completed 09-01-PLAN.md -- content pipeline loader done
+last_updated: "2026-03-28T20:16:26.683Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 8
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 3
+  total_plans: 5
+  completed_plans: 5
   percent: 6
 ---
 
@@ -54,6 +54,7 @@ Progress: [█░░░░░░░░░] 6%
 *Updated after each plan completion*
 | Phase 07 P02 | 12min | 2 tasks | 58 files |
 | Phase 08 P02 | 4min | 2 tasks | 10 files |
+| Phase 09 P01 | 2min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 07]: ESLint flat config with no-restricted-imports guard for react-native/expo in shared/
 - [Phase 08]: i18next with initReactI18next for seamless React integration via useTranslation hook
 - [Phase 08]: CSS logical property convention: ps/pe/ms/me only, never physical pl/pr/ml/mr in Tailwind
+- [Phase 09]: import.meta.glob with eager:true for synchronous lesson loading matching v1 Metro behavior
+- [Phase 09]: Content barrel pattern: import { loadLesson, chapters } from '@/content' as single entry point for web/
 
 ### Pending Todos
 
@@ -82,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T20:05:27.334Z
-Stopped at: Completed 08-02-PLAN.md -- i18n + RTL done, phase 8 complete
+Last session: 2026-03-28T20:16:26.678Z
+Stopped at: Completed 09-01-PLAN.md -- content pipeline loader done
 Resume file: None
