@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.33",
+    "@supabase/supabase-js": "^2.100.1",
     "expo": "55.0.10-canary-20260328-2049187",
     "expo-constants": "55.0.10-canary-20260328-2049187",
     "expo-dev-client": "55.0.20-canary-20260328-2049187",
@@ -18,6 +19,7 @@
     "expo-linking": "55.0.10-canary-20260328-2049187",
     "expo-localization": "55.0.10-canary-20260328-2049187",
     "expo-router": "55.0.9-canary-20260328-2049187",
+    "expo-secure-store": "55.0.10-canary-20260328-2049187",
     "expo-splash-screen": "55.0.14-canary-20260328-2049187",
     "expo-status-bar": "55.0.5-canary-20260328-2049187",
     "expo-symbols": "55.0.6-canary-20260328-2049187",

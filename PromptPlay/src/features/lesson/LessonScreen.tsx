@@ -10,6 +10,9 @@ import { ExerciseRunner } from '@/src/features/exercise/ExerciseRunner'
 import { calcXP } from '@/src/features/gamification/engine'
 import { LevelUpModal } from '@/src/features/gamification/celebrations/LevelUpModal'
 import { AccountPromptModal } from '@/src/features/onboarding/AccountPromptModal'
+import { AuthScreen } from '@/src/features/auth/AuthScreen'
+import { syncProgressToCloud } from '@/src/features/auth/syncProgress'
+import { supabase } from '@/src/lib/supabase'
 
 interface LessonScreenProps {
   lessonId: string
@@ -27,6 +30,7 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   const [pendingLevel, setPendingLevel] = useState<number | null>(null)
   const [showAccountPrompt, setShowAccountPrompt] = useState(false)
   const [accountPromptShown, setAccountPromptShown] = useState(false)
+  const [showAuth, setShowAuth] = useState(false)
 
   const lesson = useMemo(() => loadLesson(lessonId), [lessonId])
   const { step, advance, currentExercise, exerciseCount, exerciseIndex } = useLessonSession(lesson)
@@ -41,7 +45,7 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     }
   }
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     const streakCount = useProgressStore.getState().streakCount
     const isPerfect = step.phase === 'complete' && step.totalScore === 100
     const xpResult = calcXP(lesson.xpReward, streakCount, isPerfect)
@@ -54,6 +58,14 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     const currentIndex = curriculum.indexOf(lesson.id)
     if (currentIndex !== -1 && currentIndex + 1 < curriculum.length) {
       unlockLesson(curriculum[currentIndex + 1])
+    }
+
+    // Silent sync for already signed-in users (fire-and-forget)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session) {
+      syncProgressToCloud(session.user.id).catch(() => {
+        // Sync failure is non-blocking — user continues regardless
+      })
     }
 
     // Show account prompt after lesson 2 completion (once per session)
@@ -80,10 +92,26 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   }
 
   const handleAccountPromptSignUp = () => {
-    // Real auth wiring deferred to plan 04-03. For now, dismiss and navigate home.
     setShowAccountPrompt(false)
     setAccountPromptShown(true)
-    router.replace('/(tabs)')
+    setShowAuth(true)
+  }
+
+  const handleAuthSuccess = async () => {
+    setShowAuth(false)
+    // Sync to cloud after successful auth (session just established)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session) {
+      syncProgressToCloud(session.user.id).catch(() => {
+        // Non-blocking
+      })
+    }
+    navigateAfterLesson()
+  }
+
+  const handleAuthCancel = () => {
+    setShowAuth(false)
+    navigateAfterLesson()
   }
 
   if (step.phase === 'intro') {
@@ -130,6 +158,12 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
         onSignUp={handleAccountPromptSignUp}
         onSkip={handleAccountPromptSkip}
       />
+      {showAuth && (
+        <AuthScreen
+          onSuccess={handleAuthSuccess}
+          onCancel={handleAuthCancel}
+        />
+      )}
     </>
   )
 }

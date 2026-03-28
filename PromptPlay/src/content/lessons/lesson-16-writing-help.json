@@ -1,0 +1,97 @@
+{
+  "id": "lesson-16-writing-help",
+  "order": 16,
+  "chapter": 4,
+  "prerequisites": ["lesson-15-chain-of-thought"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Writing Help",
+      "he": "עזרה בכתיבה"
+    },
+    "body": {
+      "en": "AI is a powerful writing partner. Use it to draft, edit, rewrite, or get feedback on text. The key is giving it the right context: who is your audience, what tone do you want, and what is the purpose of the text. A prompt like 'Write an email' gives the AI almost nothing. But 'Write a professional email to my manager asking for a day off, keeping it brief and respectful' gives it everything it needs to help you.",
+      "he": "AI הוא שותף כתיבה חזק. השתמשו בו לניסוח, עריכה, שכתוב, או קבלת משוב על טקסט. המפתח הוא לתת לו את ההקשר הנכון: מי הקהל שלכם, איזה טון אתם רוצים, ומה מטרת הטקסט. פרומפט כמו 'כתוב אימייל' נותן ל-AI כמעט כלום. אך 'כתוב אימייל מקצועי למנהל שלי המבקש יום חופשה, תוך שמירה על קוצר ודרך ארץ' נותן לו כל מה שהוא צריך כדי לעזור לך."
+    },
+    "tip": {
+      "en": "For any writing task, always specify: (1) what you want written, (2) who it's for, (3) the tone/style, and (4) the purpose. These four elements unlock dramatically better writing help.",
+      "he": "לכל משימת כתיבה, תמיד ציינו: (1) מה אתם רוצים שייכתב, (2) למי זה מיועד, (3) הטון/סגנון, ו-(4) המטרה. ארבעת האלמנטים האלה פותחים עזרת כתיבה טובה בהרבה."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-16-ex-01",
+      "type": "simulated-chat",
+      "order": 1,
+      "prompt": {
+        "en": "Write a prompt asking an AI to help you draft a professional email. Be sure to specify: who you're writing to, the tone you want, and the purpose of the email.",
+        "he": "כתבו פרומפט המבקש מ-AI לעזור לכם לנסח אימייל מקצועי. הקפידו לציין: למי אתם כותבים, הטון שאתם רוצים, ומטרת האימייל."
+      },
+      "systemPrompt": {
+        "en": "You are a professional writing assistant. Help the user draft clear, appropriate emails based on their requirements.",
+        "he": "אתה עוזר כתיבה מקצועי. עזור למשתמש לנסח אימיילים ברורים ומתאימים בהתאם לדרישותיו."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "audience",
+            "label": { "en": "Audience specified", "he": "קהל יעד צוין" },
+            "weight": 0.35,
+            "keywords": ["manager", "boss", "colleague", "client", "customer", "team", "HR", "professor", "מנהל", "בוס", "עמית", "לקוח", "צוות", "מחלקת כח אדם", "פרופסור", "to my", "writing to", "לכתוב ל"],
+            "required": false
+          },
+          {
+            "key": "tone",
+            "label": { "en": "Tone or style specified", "he": "טון או סגנון צוין" },
+            "weight": 0.35,
+            "keywords": ["professional", "formal", "friendly", "polite", "respectful", "brief", "concise", "casual", "מקצועי", "רשמי", "ידידותי", "מנומס", "דרך ארץ", "קצר", "תמציתי", "לא פורמלי"],
+            "required": false
+          },
+          {
+            "key": "purpose",
+            "label": { "en": "Purpose of email stated", "he": "מטרת האימייל הוצהרה" },
+            "weight": 0.3,
+            "keywords": ["ask", "request", "inform", "follow up", "introduce", "apologize", "thank", "confirm", "לבקש", "לבקשה", "לעדכן", "מעקב", "להציג", "להתנצל", "להודות", "לאשר"],
+            "required": false
+          }
+        ],
+        "passingScore": 60,
+        "scoringMethod": "weighted-keyword"
+      },
+      "modelAnswer": {
+        "en": "Help me draft a professional email to my manager requesting Friday off for a personal appointment. The tone should be respectful and brief — no more than 3 sentences. I want to give enough notice and offer to make up any urgent work.",
+        "he": "עזור לי לנסח אימייל מקצועי למנהל שלי המבקש חופשה ביום שישי לפגישה אישית. הטון צריך להיות מכבד וקצר — לא יותר מ-3 משפטים. אני רוצה לתת מספיק הודעה מראש ולהציע לפצות על כל עבודה דחופה."
+      },
+      "positiveFeedback": {
+        "en": "Well done! You gave the AI the audience (manager), tone (professional/respectful), and purpose (request time off). With these three elements, the AI can produce a ready-to-send email rather than a generic template.",
+        "he": "כל הכבוד! נתתם ל-AI את הקהל (מנהל), הטון (מקצועי/מכבד), והמטרה (בקשת חופשה). עם שלושת האלמנטים האלה, ה-AI יכול לייצר אימייל מוכן לשליחה ולא תבנית גנרית."
+      },
+      "improvementFeedback": {
+        "en": "For writing help, include three things: (1) who you're writing to (manager, client, colleague), (2) the tone you want (professional, friendly, brief), and (3) the purpose of the email (request, update, apology). Try adding all three!",
+        "he": "לעזרת כתיבה, כללו שלושה דברים: (1) למי אתם כותבים (מנהל, לקוח, עמית), (2) הטון שאתם רוצים (מקצועי, ידידותי, קצר), ו-(3) מטרת האימייל (בקשה, עדכון, התנצלות). נסו להוסיף את כל השלושה!"
+      }
+    },
+    {
+      "id": "lesson-16-ex-02",
+      "type": "pick-better",
+      "order": 2,
+      "prompt": {
+        "en": "You need help writing a cover letter for a job application. Which prompt will get you better writing assistance?",
+        "he": "אתם צריכים עזרה בכתיבת מכתב מקדים לבקשת עבודה. איזה פרומפט יקבל עזרת כתיבה טובה יותר?"
+      },
+      "optionA": {
+        "en": "Write a cover letter for a software engineer position at a mid-size tech company. I have 3 years of experience in React and Node.js. The tone should be confident but not arrogant — show enthusiasm for the product. Keep it to 3 paragraphs: opening hook, key experience, and why I want this specific company.",
+        "he": "כתוב מכתב מקדים לתפקיד מהנדס תוכנה בחברת טכנולוגיה בינונית. יש לי 3 שנות ניסיון ב-React ו-Node.js. הטון צריך להיות בטוח אך לא יהיר — הראה התלהבות מהמוצר. שמור על 3 פסקאות: פתיחה מושכת, ניסיון מרכזי, ולמה אני רוצה את החברה הספציפית הזו."
+      },
+      "optionB": {
+        "en": "Write me a cover letter for a job.",
+        "he": "כתוב לי מכתב מקדים לעבודה."
+      },
+      "betterOption": "A",
+      "explanation": {
+        "en": "Option A gives the AI everything: the role (software engineer), the context (3 years React/Node.js), the tone (confident but not arrogant), the structure (3 specific paragraphs), and even the emotional goal (enthusiasm for the product). Option B will produce a completely generic template that needs major customization. The more writing context you provide, the closer the first draft is to what you actually need.",
+        "he": "אפשרות A נותנת ל-AI הכל: התפקיד (מהנדס תוכנה), ההקשר (3 שנות ניסיון ב-React/Node.js), הטון (בטוח אך לא יהיר), המבנה (3 פסקאות ספציפיות), ואפילו המטרה הרגשית (התלהבות מהמוצר). אפשרות B תייצר תבנית גנרית לחלוטין שצריכה התאמה מרכזית. ככל שתספקו יותר הקשר כתיבה, כך הטיוטה הראשונה קרובה יותר למה שאתם באמת צריכים."
+      }
+    }
+  ]
+}
