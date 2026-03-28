@@ -13,6 +13,17 @@ module.exports = {
       },
     },
     {
+      // Pure TypeScript gamification logic tests (no RN dependencies)
+      displayName: 'gamification',
+      preset: 'ts-jest',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/src/features/gamification/**/*.test.{ts,tsx}'],
+      moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+      transform: {
+        '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react' } }],
+      },
+    },
+    {
       // React Native feature tests (hooks, components)
       displayName: 'react-native',
       preset: 'react-native',
