@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* RTL Convention: Use ONLY CSS logical properties throughout this project.
+   Tailwind v4 utilities: ps-* pe-* ms-* me-* start-* end-* text-start text-end
+   NEVER use: pl-* pr-* ml-* mr-* left-* right-* text-left text-right
+   document.documentElement.dir is set to 'rtl' when Hebrew is active */
