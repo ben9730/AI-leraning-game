@@ -5,7 +5,8 @@ import { useRouter } from 'expo-router';
 import { isRTL } from '@/src/i18n';
 import { chapters } from '@/src/content/curriculum';
 import { loadLesson } from '@/src/content/loader';
-import { useProgressStore } from '@/src/store/useProgressStore';
+import { useProgressStore } from '@/src/store/useProgressStore'
+import { StreakBadge } from '@/src/features/gamification/streakDisplay';
 
 export default function HomeScreen() {
   const { t, i18n } = useTranslation();
@@ -29,7 +30,9 @@ export default function HomeScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={[styles.title, { textAlign }]}>{t('home.title')}</Text>
 
-      <View style={styles.lessonList}>
+      <StreakBadge />
+
+      <View style={[styles.lessonList, styles.lessonListSpacing]}>
         {lessonRows.map(({ id, lesson, isCompleted, isUnlocked }) => {
           const locked = !isUnlocked;
           return (
@@ -103,6 +106,9 @@ const styles = StyleSheet.create({
   },
   lessonList: {
     gap: 12,
+  },
+  lessonListSpacing: {
+    marginTop: 20,
   },
   lessonRow: {
     flexDirection: 'row',

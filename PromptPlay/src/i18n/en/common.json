@@ -24,6 +24,15 @@
     "context": "Helpful context",
     "intent": "Clear intent"
   },
+  "streak": {
+    "days": "{{count}} day streak",
+    "days_one": "{{count}} day streak",
+    "days_other": "{{count}} day streak",
+    "start": "Start your streak!",
+    "freeze_available": "{{count}} streak freeze",
+    "freeze_used": "Streak freeze saved your streak!",
+    "milestone": "Amazing! {{count}}-day streak!"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "Streak bonus: x{{multiplier}}",

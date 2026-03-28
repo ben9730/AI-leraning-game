@@ -24,6 +24,15 @@
     "context": "הקשר מועיל",
     "intent": "כוונה ברורה"
   },
+  "streak": {
+    "days": "רצף של {{count}} ימים",
+    "days_one": "רצף של יום {{count}}",
+    "days_other": "רצף של {{count}} ימים",
+    "start": "התחילו את הרצף!",
+    "freeze_available": "{{count}} הקפאת רצף",
+    "freeze_used": "הקפאת רצף הצילה את הרצף!",
+    "milestone": "מדהים! רצף של {{count}} ימים!"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "בונוס רצף: x{{multiplier}}",
