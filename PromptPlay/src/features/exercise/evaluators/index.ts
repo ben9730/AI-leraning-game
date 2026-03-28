@@ -1,0 +1,5 @@
+export { evaluateMCQ } from './evaluateMCQ'
+export { evaluatePickBetter } from './evaluatePickBetter'
+export { evaluateFreeText } from './evaluateFreeText'
+export { evaluateFillBlank } from './evaluateFillBlank'
+export { evaluateSpotProblem } from './evaluateSpotProblem'
