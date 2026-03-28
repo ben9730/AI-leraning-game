@@ -61,10 +61,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Onboarding
 
-- [ ] **ONBR-01**: No signup wall — user starts learning immediately
-- [ ] **ONBR-02**: Quick goal selection (casual/regular/serious) on first launch
-- [ ] **ONBR-03**: Immediate first lesson experience within 60 seconds of opening app
-- [ ] **ONBR-04**: Deferred account creation — prompt after lesson 2-3, not before
+- [x] **ONBR-01**: No signup wall — user starts learning immediately
+- [x] **ONBR-02**: Quick goal selection (casual/regular/serious) on first launch
+- [x] **ONBR-03**: Immediate first lesson experience within 60 seconds of opening app
+- [x] **ONBR-04**: Deferred account creation — prompt after lesson 2-3, not before
 - [ ] **ONBR-05**: Supabase auth integration (email + password) for cloud progress sync
 
 ### Content
@@ -179,10 +179,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TREE-03 | Phase 4 | Pending |
 | TREE-04 | Phase 4 | Pending |
 | TREE-05 | Phase 4 | Pending |
-| ONBR-01 | Phase 4 | Pending |
-| ONBR-02 | Phase 4 | Pending |
-| ONBR-03 | Phase 4 | Pending |
-| ONBR-04 | Phase 4 | Pending |
+| ONBR-01 | Phase 4 | Complete |
+| ONBR-02 | Phase 4 | Complete |
+| ONBR-03 | Phase 4 | Complete |
+| ONBR-04 | Phase 4 | Complete |
 | ONBR-05 | Phase 4 | Pending |
 | CONT-01 | Phase 5 | Pending |
 | CONT-02 | Phase 5 | Pending |

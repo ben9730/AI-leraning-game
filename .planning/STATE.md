@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 03-03-PLAN.md (checkpoint pending human-verify)
-last_updated: "2026-03-28T15:06:03.449Z"
+status: executing
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-28T15:44:52.472Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 12
+  completed_plans: 10
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 03 — Gamification Engine
+**Current focus:** Phase 04 — Skill Tree + Onboarding
 
 ## Current Position
 
-Phase: 03 (Gamification Engine) — EXECUTING
-Plan: 3 of 3
-Status: Phase complete — ready for verification
+Phase: 04 (Skill Tree + Onboarding) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
 Last activity: 2026-03-28
 
 Progress: [░░░░░░░░░░] 0%
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-gamification-engine P01 | 25 | 2 tasks | 11 files |
 | Phase 03-gamification-engine P02 | 25 | 2 tasks | 7 files |
 | Phase 03-gamification-engine P03 | 35 | 2 tasks | 14 files |
+| Phase 04-skill-tree-onboarding P02 | 18 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,8 @@ Recent decisions affecting current work:
 - [Phase 03-gamification-engine]: Lottie placeholder JSON files used for v1 — real animations to be swapped before release
 - [Phase 03-gamification-engine]: Level-up modal shown post-Continue (not mid-completion) — user taps Continue on completion screen first, then sees modal
 - [Phase 03-gamification-engine]: tone.test.ts scopes gamification/streak/badge/level keys only — exercise.failed excluded as instructional not punitive
+- [Phase 04-skill-tree-onboarding]: useProgressStore.getState().dailyGoal read post-hydration in RootLayout to avoid Rules of Hooks violation in conditional branch
+- [Phase 04-skill-tree-onboarding]: accountPromptShown flag prevents showing account prompt modal twice in same session
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T15:05:48.699Z
-Stopped at: Completed 03-03-PLAN.md (checkpoint pending human-verify)
+Last session: 2026-03-28T15:44:52.467Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
