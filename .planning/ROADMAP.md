@@ -46,7 +46,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Lesson engine shell: navigation route, state machine hook, content/completion screens, progress wiring
-- [ ] 02-02-PLAN.md — Exercise runner + evaluators: type registry, 5 exercise components (MCQ, pick-better, free-text, fill-blank, spot-problem), 5 pure evaluator functions
+- [x] 02-02-PLAN.md — Exercise runner + evaluators: type registry, 5 exercise components (MCQ, pick-better, free-text, fill-blank, spot-problem), 5 pure evaluator functions
 - [ ] 02-03-PLAN.md — Scoring feedback + content: FeedbackCard per-criterion display, lessons 02-05 authored (bilingual), loader/curriculum updated, end-to-end verification
 
 ### Phase 3: Gamification Engine

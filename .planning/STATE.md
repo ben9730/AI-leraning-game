@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-lesson-engine-core-exercises-01-PLAN.md
-last_updated: "2026-03-28T14:07:56.413Z"
+stopped_at: Completed 02-lesson-engine-core-exercises-02-PLAN.md
+last_updated: "2026-03-28T14:45:00.000Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 02 (Lesson Engine + Core Exercises) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-03-28
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 25 | 2 tasks | 9 files |
 | Phase 02-lesson-engine-core-exercises P01 | 27 | 2 tasks | 14 files |
+| Phase 02-lesson-engine-core-exercises P02 | 35 | 2 tasks | 22 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 02-lesson-engine-core-exercises]: useRef for score accumulation in useLessonSession avoids stale closure bug in setState callback
 - [Phase 02-lesson-engine-core-exercises]: Dual-project Jest config: node preset for content tests, react-native preset for hook tests — avoids fighting ts-jest with RN setup files
 - [Phase 02-lesson-engine-core-exercises]: babel.config.js with babel-preset-expo added to enable react-native Jest preset to transform node_modules
+- [Phase 02-lesson-engine-core-exercises]: expo-haptics mocked via __mocks__/expo-haptics.js + moduleNameMapper — native module cannot run in Jest
+- [Phase 02-lesson-engine-core-exercises]: SpotProblemCard uses deterministic order (issues then distractors) for v1 — avoids test flakiness from shuffle
 
 ### Pending Todos
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T14:07:56.408Z
-Stopped at: Completed 02-lesson-engine-core-exercises-01-PLAN.md
+Last session: 2026-03-28T14:45:00.000Z
+Stopped at: Completed 02-lesson-engine-core-exercises-02-PLAN.md
 Resume file: None

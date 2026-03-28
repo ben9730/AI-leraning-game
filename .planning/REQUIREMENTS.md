@@ -28,13 +28,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Exercise Engine
 
-- [ ] **EXER-01**: Exercise type registry pattern — map of type key → component + evaluator
-- [ ] **EXER-02**: Multiple choice exercises — concept questions with instant feedback
-- [ ] **EXER-03**: Pick-the-better-prompt exercises — two-panel comparison with explanation
-- [ ] **EXER-04**: Rewrite-the-bad-prompt exercises — free text input + rubric scoring
+- [x] **EXER-01**: Exercise type registry pattern — map of type key → component + evaluator
+- [x] **EXER-02**: Multiple choice exercises — concept questions with instant feedback
+- [x] **EXER-03**: Pick-the-better-prompt exercises — two-panel comparison with explanation
+- [x] **EXER-04**: Rewrite-the-bad-prompt exercises — free text input + rubric scoring
 - [ ] **EXER-05**: Simulated AI chat — user writes prompt, sees pre-scripted response, gets scored (core differentiator)
-- [ ] **EXER-06**: Fill-in-the-blank exercises — complete a partial prompt
-- [ ] **EXER-07**: Spot-the-problem exercises — identify what's wrong with a prompt
+- [x] **EXER-06**: Fill-in-the-blank exercises — complete a partial prompt
+- [x] **EXER-07**: Spot-the-problem exercises — identify what's wrong with a prompt
 - [ ] **EXER-08**: Scoring rubric system — evaluates Clarity, Specificity, Context, Intent dimensions
 - [ ] **EXER-09**: Score feedback with transparent per-criterion breakdown (not just a number)
 - [ ] **EXER-10**: Checklist-based scoring for early lessons (1-5), keyword-weighted rubric from lesson 6+
@@ -155,13 +155,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LESS-04 | Phase 2 | Complete |
 | LESS-05 | Phase 2 | Complete |
 | LESS-06 | Phase 2 | Pending |
-| EXER-01 | Phase 2 | Pending |
-| EXER-02 | Phase 2 | Pending |
-| EXER-03 | Phase 2 | Pending |
-| EXER-04 | Phase 2 | Pending |
+| EXER-01 | Phase 2 | Complete |
+| EXER-02 | Phase 2 | Complete |
+| EXER-03 | Phase 2 | Complete |
+| EXER-04 | Phase 2 | Complete |
 | EXER-05 | Phase 5 | Pending |
-| EXER-06 | Phase 2 | Pending |
-| EXER-07 | Phase 2 | Pending |
+| EXER-06 | Phase 2 | Complete |
+| EXER-07 | Phase 2 | Complete |
 | EXER-08 | Phase 2 | Pending |
 | EXER-09 | Phase 2 | Pending |
 | EXER-10 | Phase 2 | Pending |
