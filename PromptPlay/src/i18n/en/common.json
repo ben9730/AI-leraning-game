@@ -1,0 +1,8 @@
+{
+  "tabs": { "home": "Home", "skillTree": "Skill Tree", "profile": "Profile" },
+  "home": { "title": "Welcome to PromptPlay" },
+  "skillTree": { "title": "Skill Tree" },
+  "profile": { "title": "Profile" },
+  "common": { "continue": "Continue", "back": "Back", "loading": "Loading..." },
+  "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" }
+}
