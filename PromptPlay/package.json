@@ -11,6 +11,7 @@
     "check:cache-budget": "expo export --platform web && node -e \"const fs=require('fs');const path=require('path');function dirSize(d){let s=0;for(const f of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,f.name);s+=f.isDirectory()?dirSize(p):fs.statSync(p).size;}return s;}const mb=dirSize('dist')/1024/1024;console.log(mb.toFixed(1)+'MB / 35MB budget');if(mb>35)process.exit(1);\""
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.18.7",
     "@react-navigation/native": "^7.1.33",
     "@supabase/supabase-js": "^2.100.1",
     "expo": "55.0.10-canary-20260328-2049187",
@@ -25,7 +26,6 @@
     "expo-splash-screen": "55.0.14-canary-20260328-2049187",
     "expo-status-bar": "55.0.5-canary-20260328-2049187",
     "expo-symbols": "55.0.6-canary-20260328-2049187",
-    "expo-updates": "55.0.17-canary-20260328-2049187",
     "expo-web-browser": "55.0.11-canary-20260328-2049187",
     "i18next": "^26.0.1",
     "lottie-react-native": "~7.3.4",
@@ -55,6 +55,7 @@
     "@types/jest": "^30.0.0",
     "@types/react": "~19.2.2",
     "@types/react-test-renderer": "^19.1.0",
+    "babel-plugin-transform-import-meta": "^2.3.3",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "react-test-renderer": "^19.2.0",

@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Localization from 'expo-localization';
 import { I18nManager } from 'react-native';
-import * as Updates from 'expo-updates';
+import { reloadApp } from './reload';
 
 import enCommon from './en/common.json';
 import heCommon from './he/common.json';
@@ -29,7 +29,7 @@ export async function setLanguage(lang: 'en' | 'he'): Promise<void> {
   const shouldBeRTL = lang === 'he';
   I18nManager.allowRTL(shouldBeRTL);
   I18nManager.forceRTL(shouldBeRTL);
-  await Updates.reloadAsync();
+  await reloadApp();
 }
 
 export function isRTL(): boolean {

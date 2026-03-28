@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { zustandMMKVStorage } from '../persistence/MMKVAdapter'
@@ -33,7 +34,9 @@ export const useProgressStore = create<ProgressStore>()(
       completedLessons: [] as string[],
       unlockedLessons: ['lesson-01-what-is-prompting'] as string[],
       language: 'en' as const,
-      dailyGoal: null,
+      // On web, skip onboarding (Expo Router Redirect is broken on web).
+      // Native gets null → triggers onboarding redirect in _layout.tsx.
+      dailyGoal: Platform.OS === 'web' ? 'casual' : null,
       streakFreezes: 0,
       peakStreak: 0,
       pendingLevelUp: null,
@@ -121,8 +124,9 @@ export const useProgressStore = create<ProgressStore>()(
           if ((state as { peakStreak?: number }).peakStreak === undefined) {
             state.peakStreak = state.streakCount
           }
-          state.setHasHydrated(true)
         }
+        // Always mark hydrated — even when no persisted data exists (first web load)
+        useProgressStore.getState().setHasHydrated(true)
       },
     }
   )

@@ -1,6 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Redirect, Stack } from 'expo-router';
+import { Platform } from 'react-native';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -40,18 +41,11 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  // Gate rendering until both fonts are loaded and MMKV store is hydrated.
-  // MMKV is synchronous so this resolves on the first render after mount —
-  // no visible flicker, but prevents child components reading stale defaults.
-  if (!loaded || !hasHydrated) {
+  // Gate rendering until store is hydrated (and fonts loaded on native).
+  // On web, font loading via expo-font may fail — use system fonts as fallback.
+  const fontsReady = loaded || Platform.OS === 'web';
+  if (!fontsReady || !hasHydrated) {
     return null;
-  }
-
-  // Redirect new users (no goal set) to onboarding before showing tabs.
-  // Hydration guard above ensures dailyGoal is read from persisted store, not default null.
-  const dailyGoal = useProgressStore.getState().dailyGoal;
-  if (dailyGoal === null) {
-    return <Redirect href="/(onboarding)/welcome" />;
   }
 
   return <RootLayoutNav />;

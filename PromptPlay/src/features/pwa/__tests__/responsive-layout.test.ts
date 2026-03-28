@@ -13,7 +13,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const TABS_DIR = path.resolve(__dirname, '../../../../../app/(tabs)')
+const TABS_DIR = path.resolve(__dirname, '../../../../app/(tabs)')
 const EXERCISE_DIR = path.resolve(__dirname, '../../exercise')
 
 const TAB_FILES = [
