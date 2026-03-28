@@ -65,6 +65,23 @@
     "signUp": "צרו חשבון",
     "skip": "אולי אחר כך"
   },
+  "auth": {
+    "signUp": {
+      "title": "צרו את החשבון שלכם",
+      "button": "צרו חשבון"
+    },
+    "signIn": {
+      "title": "ברוכים השבים",
+      "button": "התחברו"
+    },
+    "email": "אימייל",
+    "password": "סיסמה",
+    "switchToSignIn": "יש לכם חשבון? התחברו",
+    "switchToSignUp": "אין לכם חשבון? צרו אחד",
+    "cancel": "ביטול",
+    "syncing": "מסנכרנים את ההתקדמות שלכם...",
+    "syncComplete": "ההתקדמות נשמרה!"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "בונוס רצף: x{{multiplier}}",

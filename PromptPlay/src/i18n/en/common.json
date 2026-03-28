@@ -65,6 +65,23 @@
     "signUp": "Create Account",
     "skip": "Maybe Later"
   },
+  "auth": {
+    "signUp": {
+      "title": "Create your account",
+      "button": "Create Account"
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "button": "Sign In"
+    },
+    "email": "Email",
+    "password": "Password",
+    "switchToSignIn": "Already have an account? Sign in",
+    "switchToSignUp": "Don't have an account? Create one",
+    "cancel": "Cancel",
+    "syncing": "Syncing your progress...",
+    "syncComplete": "Progress saved!"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "Streak bonus: x{{multiplier}}",
