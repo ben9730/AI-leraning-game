@@ -41,14 +41,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Gamification
 
-- [ ] **GAME-01**: XP system — base XP per exercise + streak multiplier + perfection bonus
+- [x] **GAME-01**: XP system — base XP per exercise + streak multiplier + perfection bonus
 - [ ] **GAME-02**: Daily streak tracking with midnight reset (local timezone)
 - [ ] **GAME-03**: Streak freeze — one free freeze earned per 7-day streak milestone
-- [ ] **GAME-04**: Level system — XP thresholds define levels, level-up triggers celebration
+- [x] **GAME-04**: Level system — XP thresholds define levels, level-up triggers celebration
 - [ ] **GAME-05**: 3-5 milestone achievement badges (first lesson, 7-day streak, chapter complete, etc.)
 - [ ] **GAME-06**: Celebration animations on lesson completion and level-up (Reanimated + Lottie)
-- [ ] **GAME-07**: No hearts/energy gate — unlimited attempts, bonus XP for perfection instead
-- [ ] **GAME-08**: Daily goal setting (casual/regular/serious) affecting XP targets
+- [x] **GAME-07**: No hearts/energy gate — unlimited attempts, bonus XP for perfection instead
+- [x] **GAME-08**: Daily goal setting (casual/regular/serious) affecting XP targets
 - [ ] **GAME-09**: No guilt-based mechanics — friendly, encouraging tone in all notifications
 
 ### Skill Tree
@@ -165,14 +165,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXER-08 | Phase 2 | Pending |
 | EXER-09 | Phase 2 | Pending |
 | EXER-10 | Phase 2 | Pending |
-| GAME-01 | Phase 3 | Pending |
+| GAME-01 | Phase 3 | Complete |
 | GAME-02 | Phase 3 | Pending |
 | GAME-03 | Phase 3 | Pending |
-| GAME-04 | Phase 3 | Pending |
+| GAME-04 | Phase 3 | Complete |
 | GAME-05 | Phase 3 | Pending |
 | GAME-06 | Phase 3 | Pending |
-| GAME-07 | Phase 3 | Pending |
-| GAME-08 | Phase 3 | Pending |
+| GAME-07 | Phase 3 | Complete |
+| GAME-08 | Phase 3 | Complete |
 | GAME-09 | Phase 3 | Pending |
 | TREE-01 | Phase 4 | Pending |
 | TREE-02 | Phase 4 | Pending |

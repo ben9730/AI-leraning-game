@@ -63,7 +63,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — XP engine + level system: calcXP pure function, streak multiplier, perfection bonus, level-up detection in store, daily goal XP targets
+- [x] 03-01-PLAN.md — XP engine + level system: calcXP pure function, streak multiplier, perfection bonus, level-up detection in store, daily goal XP targets
 - [ ] 03-02-PLAN.md — Streak + freeze mechanics: calcStreakUpdate pure function, midnight local reset, freeze grant at 7-day milestone, StreakBadge component on home tab
 - [ ] 03-03-PLAN.md — Badges + celebrations: deriveBadges system, Lottie lesson celebration, full-screen level-up modal, badge grid in Profile tab, tone audit
 
