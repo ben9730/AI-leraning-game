@@ -53,11 +53,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Skill Tree
 
-- [ ] **TREE-01**: Visual skill map showing all lessons with lock/unlock/complete states
-- [ ] **TREE-02**: Linear progression — each lesson unlocks the next
-- [ ] **TREE-03**: Chapter groupings visible on skill tree (5 chapters)
-- [ ] **TREE-04**: Tap lesson node to start or review completed lesson
-- [ ] **TREE-05**: Current progress indicator showing position in learning path
+- [x] **TREE-01**: Visual skill map showing all lessons with lock/unlock/complete states
+- [x] **TREE-02**: Linear progression — each lesson unlocks the next
+- [x] **TREE-03**: Chapter groupings visible on skill tree (5 chapters)
+- [x] **TREE-04**: Tap lesson node to start or review completed lesson
+- [x] **TREE-05**: Current progress indicator showing position in learning path
 
 ### Onboarding
 
@@ -174,11 +174,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GAME-07 | Phase 3 | Complete |
 | GAME-08 | Phase 3 | Complete |
 | GAME-09 | Phase 3 | Complete |
-| TREE-01 | Phase 4 | Pending |
-| TREE-02 | Phase 4 | Pending |
-| TREE-03 | Phase 4 | Pending |
-| TREE-04 | Phase 4 | Pending |
-| TREE-05 | Phase 4 | Pending |
+| TREE-01 | Phase 4 | Complete |
+| TREE-02 | Phase 4 | Complete |
+| TREE-03 | Phase 4 | Complete |
+| TREE-04 | Phase 4 | Complete |
+| TREE-05 | Phase 4 | Complete |
 | ONBR-01 | Phase 4 | Complete |
 | ONBR-02 | Phase 4 | Complete |
 | ONBR-03 | Phase 4 | Complete |

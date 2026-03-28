@@ -81,7 +81,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Skill tree UI: derived node state hook, SkillTreeNode/ChapterHeader components, full skill-tree.tsx screen with scroll-to-current
+- [x] 04-01-PLAN.md — Skill tree UI: derived node state hook, SkillTreeNode/ChapterHeader components, full skill-tree.tsx screen with scroll-to-current
 - [x] 04-02-PLAN.md — Onboarding flow: route-guard redirect, goal selection screen, deferred AccountPromptModal after lesson 2
 - [ ] 04-03-PLAN.md — Supabase auth + cloud sync: client singleton, useAuth hook, syncProgress functions, AuthScreen UI, wiring to account prompt
 
@@ -128,6 +128,6 @@ Plans:
 | 1. Foundation | 1/3 | In Progress|  |
 | 2. Lesson Engine + Core Exercises | 0/3 | Not started | - |
 | 3. Gamification Engine | 3/3 | Complete   | 2026-03-28 |
-| 4. Skill Tree + Onboarding | 1/3 | In Progress|  |
+| 4. Skill Tree + Onboarding | 2/3 | In Progress|  |
 | 5. Full Curriculum | 0/3 | Not started | - |
 | 6. PWA Polish | 0/3 | Not started | - |
