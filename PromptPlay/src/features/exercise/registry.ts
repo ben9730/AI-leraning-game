@@ -6,6 +6,7 @@ import { PickBetterCard } from './components/PickBetterCard'
 import { FreeTextCard } from './components/FreeTextCard'
 import { FillBlankCard } from './components/FillBlankCard'
 import { SpotProblemCard } from './components/SpotProblemCard'
+import { SimulatedChatCard } from './components/SimulatedChatCard'
 
 export type ExerciseComponentProps = {
   exercise: Exercise
@@ -20,5 +21,5 @@ export const EXERCISE_REGISTRY: Partial<
   'free-text': FreeTextCard as React.ComponentType<ExerciseComponentProps>,
   'fill-blank': FillBlankCard as React.ComponentType<ExerciseComponentProps>,
   'spot-problem': SpotProblemCard as React.ComponentType<ExerciseComponentProps>,
-  // 'simulated-chat': Phase 5
+  'simulated-chat': SimulatedChatCard as React.ComponentType<ExerciseComponentProps>,
 }
