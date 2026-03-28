@@ -7,6 +7,7 @@ import 'react-native-reanimated';
 import '@/src/i18n';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { useHasHydrated } from '@/src/store/useProgressStore';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -25,6 +26,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+  const hasHydrated = useHasHydrated();
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -37,7 +39,10 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  if (!loaded) {
+  // Gate rendering until both fonts are loaded and MMKV store is hydrated.
+  // MMKV is synchronous so this resolves on the first render after mount —
+  // no visible flicker, but prevents child components reading stale defaults.
+  if (!loaded || !hasHydrated) {
     return null;
   }
 
