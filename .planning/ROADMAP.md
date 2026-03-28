@@ -135,8 +135,12 @@ Plans:
   2. All 6 exercise components render correctly, accept user input via mouse and keyboard (Tab/Enter/Space), and submit for evaluation
   3. After submission, a feedback UI displays score, pass/fail, and per-criterion breakdown from the evaluator
   4. All exercise components render correctly in RTL mode (Hebrew)
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 10-01-PLAN.md — Exercise registry + FeedbackCard + MCQCard + PickBetterCard + FreeTextCard components
+- [ ] 10-02-PLAN.md — FillBlankCard + SpotProblemCard + SimulatedChatCard + full integration tests
 
 ### Phase 11: Lesson Flow
 **Goal**: Users can play through a complete lesson from intro to exercises to completion screen, with progress saved and sequential lesson unlocking
@@ -202,7 +206,7 @@ Plans:
 | 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
-| 10. Exercise System | v2.0 | 0/0 | Not started | - |
+| 10. Exercise System | v2.0 | 0/2 | Not started | - |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
