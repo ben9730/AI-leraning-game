@@ -82,6 +82,11 @@
     "syncing": "Syncing your progress...",
     "syncComplete": "Progress saved!"
   },
+  "pwa": {
+    "installButton": "Install PromptPlay",
+    "iosInstallHint": "Install PromptPlay: tap Share, then 'Add to Home Screen'",
+    "dismiss": "Dismiss"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "Streak bonus: x{{multiplier}}",

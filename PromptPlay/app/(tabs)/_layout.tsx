@@ -1,12 +1,16 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { InstallBanner } from '../../src/features/pwa/InstallBanner';
 
 export default function TabLayout() {
   const { t } = useTranslation();
 
   return (
-    <Tabs
+    <View style={{ flex: 1 }}>
+      <InstallBanner />
+      <Tabs
       screenOptions={{
         headerShown: true,
       }}>
@@ -29,5 +33,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </View>
   );
 }

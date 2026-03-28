@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export --platform web && npx workbox-cli injectManifest workbox-config.js"
+    "build:web": "expo export --platform web && npx workbox-cli injectManifest workbox-config.js",
+    "check:cache-budget": "expo export --platform web && node -e \"const fs=require('fs');const path=require('path');function dirSize(d){let s=0;for(const f of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,f.name);s+=f.isDirectory()?dirSize(p):fs.statSync(p).size;}return s;}const mb=dirSize('dist')/1024/1024;console.log(mb.toFixed(1)+'MB / 35MB budget');if(mb>35)process.exit(1);\""
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.33",

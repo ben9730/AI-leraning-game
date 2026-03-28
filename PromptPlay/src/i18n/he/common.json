@@ -82,6 +82,11 @@
     "syncing": "מסנכרנים את ההתקדמות שלכם...",
     "syncComplete": "ההתקדמות נשמרה!"
   },
+  "pwa": {
+    "installButton": "התקינו את PromptPlay",
+    "iosInstallHint": "התקינו את PromptPlay: לחצו על שתף, ואז 'הוסף למסך הבית'",
+    "dismiss": "סגור"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "בונוס רצף: x{{multiplier}}",
