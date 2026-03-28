@@ -29,8 +29,8 @@ Six phases deliver a complete "Duolingo for AI" PWA: Foundation locks in RTL and
 
 Plans:
 - [x] 01-01-PLAN.md — Expo project bootstrap: TypeScript, expo-router tabs, i18next, I18nManager RTL wiring
-- [ ] 01-02-PLAN.md — Zustand store + MMKV PersistenceAdapter: UserProgress state shape, persist/hydrate
-- [ ] 01-03-PLAN.md — Content schema: TypeScript interfaces for Lesson, Exercise, LocalizedString, PromptRubric; one seed lesson JSON
+- [x] 01-02-PLAN.md — Zustand store + MMKV PersistenceAdapter: UserProgress state shape, persist/hydrate
+- [x] 01-03-PLAN.md — Content schema: TypeScript interfaces for Lesson, Exercise, LocalizedString, PromptRubric; one seed lesson JSON
 
 ### Phase 2: Lesson Engine + Core Exercises
 **Goal**: Deliver a working lesson loop — load lesson, sequence exercises, evaluate answers, show completion — with enough authored content to test the engine end-to-end.
