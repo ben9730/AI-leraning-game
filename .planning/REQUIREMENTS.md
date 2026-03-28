@@ -9,12 +9,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Project bootstrapped with Expo (React Native) + TypeScript
+- [x] **FOUND-01**: Project bootstrapped with Expo (React Native) + TypeScript
 - [ ] **FOUND-02**: Zustand store with MMKV persistence for user progress (XP, streaks, completed lessons)
-- [ ] **FOUND-03**: i18n system with English + Hebrew support using `t('key')` translation function
-- [ ] **FOUND-04**: RTL layout support using directional CSS properties (`paddingStart/End`, `marginStart/End`) from day one
+- [x] **FOUND-03**: i18n system with English + Hebrew support using `t('key')` translation function
+- [x] **FOUND-04**: RTL layout support using directional CSS properties (`paddingStart/End`, `marginStart/End`) from day one
 - [ ] **FOUND-05**: Content schema defined — JSON format for lessons, exercises, and scoring rubrics with `LocalizedString { en, he }` shape
-- [ ] **FOUND-06**: Expo Router navigation structure (tab-based: Home, Skill Tree, Profile)
+- [x] **FOUND-06**: Expo Router navigation structure (tab-based: Home, Skill Tree, Profile)
 - [ ] **FOUND-07**: PersistenceAdapter interface wrapping MMKV for local storage
 
 ### Lesson Engine
@@ -142,12 +142,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
+| FOUND-01 | Phase 1 | Complete |
 | FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Complete |
+| FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 1 | Pending |
 | LESS-01 | Phase 2 | Pending |
 | LESS-02 | Phase 2 | Pending |
