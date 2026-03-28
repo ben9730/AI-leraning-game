@@ -108,8 +108,11 @@ Plans:
   1. User progress (XP, streak, completed lessons) persists in localStorage and survives browser restart without hydration flicker
   2. User can toggle between English and Hebrew and the entire UI re-renders in the selected language without a page reload
   3. When Hebrew is selected, document direction is RTL and all layout uses CSS logical properties (padding-inline-start, margin-inline-end) with no physical left/right breaking
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 2 plans
+
+Plans:
+- [ ] 08-01-PLAN.md — Zustand store with localStorage persistence, hydration gate in main.tsx
+- [ ] 08-02-PLAN.md — i18next setup with EN+HE from shared/, useLanguage hook with RTL, Tailwind logical properties
 
 ### Phase 9: Content Pipeline
 **Goal**: All 20 lesson JSON files load correctly through a Vite-native content loader and are organized into chapters for curriculum navigation
@@ -193,8 +196,8 @@ Plans:
 | 4. Skill Tree | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 5. Full Curriculum | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
-| 7. Foundation + Shared Extraction | v2.0 | 1/2 | In progress | - |
-| 8. State + i18n + RTL | v2.0 | 0/0 | Not started | - |
+| 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
+| 8. State + i18n + RTL | v2.0 | 0/2 | Not started | - |
 | 9. Content Pipeline | v2.0 | 0/0 | Not started | - |
 | 10. Exercise System | v2.0 | 0/0 | Not started | - |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
