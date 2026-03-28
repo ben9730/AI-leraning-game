@@ -60,12 +60,12 @@ Plans:
   4. Reaching an XP level threshold triggers a full-screen level-up celebration (Reanimated + Lottie)
   5. At least 3 achievement badges are earnable (first lesson, 7-day streak, chapter complete) and display in the Profile tab
   6. No hearts, energy gates, or guilt-framing appear anywhere in the app; tone throughout is encouraging
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: XP + level engine — base XP, streak multiplier, perfection bonus, level-up detection, daily goal setting
-- [ ] 03-02: Streak + freeze mechanics — midnight reset, freeze grant at 7-day milestone, streak display
-- [ ] 03-03: Badges + celebrations — 3-5 milestone badges, Lottie completion animation, level-up screen, haptics
+- [ ] 03-01-PLAN.md — XP engine + level system: calcXP pure function, streak multiplier, perfection bonus, level-up detection in store, daily goal XP targets
+- [ ] 03-02-PLAN.md — Streak + freeze mechanics: calcStreakUpdate pure function, midnight local reset, freeze grant at 7-day milestone, StreakBadge component on home tab
+- [ ] 03-03-PLAN.md — Badges + celebrations: deriveBadges system, Lottie lesson celebration, full-screen level-up modal, badge grid in Profile tab, tone audit
 
 ### Phase 4: Skill Tree + Onboarding
 **Goal**: Give users a visible map of their learning journey and a friction-free first-session experience that puts them in an exercise within 60 seconds.
