@@ -1,7 +1,11 @@
 {
   "tabs": { "home": "בית", "skillTree": "עץ מיומנויות", "profile": "פרופיל" },
   "home": { "title": "ברוכים הבאים ל-PromptPlay", "start_lesson": "התחל ללמוד" },
-  "skillTree": { "title": "עץ מיומנויות" },
+  "skillTree": {
+    "title": "עץ מיומנויות",
+    "progress": "{{completed}} מתוך {{total}} שיעורים",
+    "chapterProgress": "{{completed}}/{{total}}"
+  },
   "profile": { "title": "פרופיל" },
   "common": { "continue": "המשך", "back": "חזור", "loading": "טוען..." },
   "language": { "switchToHebrew": "עברית", "switchToEnglish": "English" },

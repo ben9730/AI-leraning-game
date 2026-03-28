@@ -9,6 +9,7 @@ import { LessonCompletionScreen } from './LessonCompletionScreen'
 import { ExerciseRunner } from '@/src/features/exercise/ExerciseRunner'
 import { calcXP } from '@/src/features/gamification/engine'
 import { LevelUpModal } from '@/src/features/gamification/celebrations/LevelUpModal'
+import { AccountPromptModal } from '@/src/features/onboarding/AccountPromptModal'
 
 interface LessonScreenProps {
   lessonId: string
@@ -24,9 +25,21 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
 
   const [showLevelUp, setShowLevelUp] = useState(false)
   const [pendingLevel, setPendingLevel] = useState<number | null>(null)
+  const [showAccountPrompt, setShowAccountPrompt] = useState(false)
+  const [accountPromptShown, setAccountPromptShown] = useState(false)
 
   const lesson = useMemo(() => loadLesson(lessonId), [lessonId])
   const { step, advance, currentExercise, exerciseCount, exerciseIndex } = useLessonSession(lesson)
+
+  const navigateAfterLesson = () => {
+    const pendingLevelUp = useProgressStore.getState().pendingLevelUp
+    if (pendingLevelUp !== null) {
+      setPendingLevel(pendingLevelUp)
+      setShowLevelUp(true)
+    } else {
+      router.replace('/(tabs)')
+    }
+  }
 
   const handleFinish = () => {
     const streakCount = useProgressStore.getState().streakCount
@@ -43,20 +56,33 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
       unlockLesson(curriculum[currentIndex + 1])
     }
 
-    // Check if a level-up occurred after all store updates
-    const pendingLevelUp = useProgressStore.getState().pendingLevelUp
-    if (pendingLevelUp !== null) {
-      setPendingLevel(pendingLevelUp)
-      setShowLevelUp(true)
-    } else {
-      router.replace('/(tabs)')
+    // Show account prompt after lesson 2 completion (once per session)
+    const completedCount = useProgressStore.getState().completedLessons.length
+    if (completedCount >= 2 && !accountPromptShown) {
+      setShowAccountPrompt(true)
+      return
     }
+
+    navigateAfterLesson()
   }
 
   const handleLevelUpDismiss = () => {
     clearPendingLevelUp()
     setShowLevelUp(false)
     setPendingLevel(null)
+    router.replace('/(tabs)')
+  }
+
+  const handleAccountPromptSkip = () => {
+    setShowAccountPrompt(false)
+    setAccountPromptShown(true)
+    navigateAfterLesson()
+  }
+
+  const handleAccountPromptSignUp = () => {
+    // Real auth wiring deferred to plan 04-03. For now, dismiss and navigate home.
+    setShowAccountPrompt(false)
+    setAccountPromptShown(true)
     router.replace('/(tabs)')
   }
 
@@ -99,6 +125,11 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
           onDismiss={handleLevelUpDismiss}
         />
       )}
+      <AccountPromptModal
+        visible={showAccountPrompt}
+        onSignUp={handleAccountPromptSignUp}
+        onSkip={handleAccountPromptSkip}
+      />
     </>
   )
 }
