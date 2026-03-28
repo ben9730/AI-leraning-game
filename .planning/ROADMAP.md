@@ -98,9 +98,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: Simulated AI chat exercise type — prompt input, pre-scripted response rendering, rubric scoring
-- [ ] 05-02: Chapters 1-2 content (lessons 1-10) — EN + HE authored and RTL-tested
-- [ ] 05-03: Chapters 3-4 content (lessons 11-20) — EN + HE authored, native Hebrew review, AI-term glossary
+- [ ] 05-01-PLAN.md — SimulatedChatCard component + evaluateSimulatedChat evaluator + registry entry for simulated-chat exercise type
+- [ ] 05-02-PLAN.md — Chapters 1-2 content (lessons 06-10 authored EN+HE), loader/curriculum extended, structural validation tests
+- [ ] 05-03-PLAN.md — Chapters 3-4 content (lessons 11-20 authored EN+HE), loader/curriculum completed to 20 lessons, full test coverage
 
 ### Phase 6: PWA Polish
 **Goal**: Harden the app for production with offline lesson access, PWA installability, iOS cache constraints, and animation performance on low-end devices.
