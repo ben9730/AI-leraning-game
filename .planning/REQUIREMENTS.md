@@ -19,11 +19,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Lesson Engine
 
-- [ ] **LESS-01**: Lesson loader that fetches lesson by ID from bundled JSON
-- [ ] **LESS-02**: Lesson flow — content screen → exercise sequence → completion screen
-- [ ] **LESS-03**: Content renderer displaying lesson text with RTL-aware mixed Hebrew/English support
-- [ ] **LESS-04**: Lesson completion fires events consumed by gamification engine
-- [ ] **LESS-05**: Lesson progress tracked — not started / in progress / completed states
+- [x] **LESS-01**: Lesson loader that fetches lesson by ID from bundled JSON
+- [x] **LESS-02**: Lesson flow — content screen → exercise sequence → completion screen
+- [x] **LESS-03**: Content renderer displaying lesson text with RTL-aware mixed Hebrew/English support
+- [x] **LESS-04**: Lesson completion fires events consumed by gamification engine
+- [x] **LESS-05**: Lesson progress tracked — not started / in progress / completed states
 - [ ] **LESS-06**: Minimum 5 authored lessons for initial testing (Lesson 1 = 60-second "aha" demo)
 
 ### Exercise Engine
@@ -149,11 +149,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-05 | Phase 1 | Pending |
 | FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 1 | Pending |
-| LESS-01 | Phase 2 | Pending |
-| LESS-02 | Phase 2 | Pending |
-| LESS-03 | Phase 2 | Pending |
-| LESS-04 | Phase 2 | Pending |
-| LESS-05 | Phase 2 | Pending |
+| LESS-01 | Phase 2 | Complete |
+| LESS-02 | Phase 2 | Complete |
+| LESS-03 | Phase 2 | Complete |
+| LESS-04 | Phase 2 | Complete |
+| LESS-05 | Phase 2 | Complete |
 | LESS-06 | Phase 2 | Pending |
 | EXER-01 | Phase 2 | Pending |
 | EXER-02 | Phase 2 | Pending |
