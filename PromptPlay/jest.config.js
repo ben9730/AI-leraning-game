@@ -24,10 +24,22 @@ module.exports = {
       },
     },
     {
+      // Pure TypeScript skill-tree logic tests (no RN dependencies)
+      displayName: 'skill-tree',
+      preset: 'ts-jest',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/src/features/skill-tree/**/*.test.{ts,tsx}'],
+      moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+      transform: {
+        '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react' } }],
+      },
+    },
+    {
       // React Native feature tests (hooks, components)
       displayName: 'react-native',
       preset: 'react-native',
       testMatch: ['<rootDir>/src/features/**/*.test.{ts,tsx}'],
+      testPathIgnorePatterns: ['/node_modules/', '/src/features/skill-tree/'],
       moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/$1',
         '^expo-haptics$': '<rootDir>/__mocks__/expo-haptics.js',
