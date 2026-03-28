@@ -1,13 +1,13 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '@/src/i18n';
 
 import { useColorScheme } from '@/components/useColorScheme';
-import { useHasHydrated } from '@/src/store/useProgressStore';
+import { useHasHydrated, useProgressStore } from '@/src/store/useProgressStore';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,6 +46,13 @@ export default function RootLayout() {
     return null;
   }
 
+  // Redirect new users (no goal set) to onboarding before showing tabs.
+  // Hydration guard above ensures dailyGoal is read from persisted store, not default null.
+  const dailyGoal = useProgressStore.getState().dailyGoal;
+  if (dailyGoal === null) {
+    return <Redirect href="/(onboarding)/welcome" />;
+  }
+
   return <RootLayoutNav />;
 }
 
@@ -55,6 +62,7 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(lesson)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />

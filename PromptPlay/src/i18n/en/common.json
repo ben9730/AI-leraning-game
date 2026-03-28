@@ -42,6 +42,25 @@
     "earned": "Earned!",
     "locked": "Keep going to earn this badge"
   },
+  "onboarding": {
+    "welcome": {
+      "title": "PromptPlay",
+      "subtitle": "Learn AI prompting through play"
+    },
+    "goal": {
+      "heading": "How often do you want to learn?",
+      "casual": "Casual",
+      "regular": "Regular",
+      "serious": "Serious",
+      "xpPerDay": "{{xp}} XP per day"
+    }
+  },
+  "accountPrompt": {
+    "title": "Save your progress!",
+    "description": "Create a free account to sync your progress across devices and keep your streaks safe.",
+    "signUp": "Create Account",
+    "skip": "Maybe Later"
+  },
   "gamification": {
     "xp_breakdown": "+{{base}} XP",
     "streak_bonus": "Streak bonus: x{{multiplier}}",
