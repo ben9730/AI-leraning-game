@@ -25,12 +25,12 @@ Six phases deliver a complete "Duolingo for AI" PWA: Foundation locks in RTL and
   3. A lesson JSON file conforming to the `Lesson + LocalizedString` schema loads without error and its content renders correctly
   4. User progress (XP, streak, completed lessons) persists across app restarts via MMKV without hydration flicker
   5. `t('key')` translation function works for both `en` and `he` and the locale can be switched at runtime
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: Expo project bootstrap — TypeScript, expo-router tabs, i18next, I18nManager RTL wiring
-- [ ] 01-02: Zustand store + MMKV PersistenceAdapter — UserProgress state shape, persist/hydrate
-- [ ] 01-03: Content schema — TypeScript interfaces for Lesson, Exercise, LocalizedString, PromptRubric; one seed lesson JSON
+- [ ] 01-01-PLAN.md — Expo project bootstrap: TypeScript, expo-router tabs, i18next, I18nManager RTL wiring
+- [ ] 01-02-PLAN.md — Zustand store + MMKV PersistenceAdapter: UserProgress state shape, persist/hydrate
+- [ ] 01-03-PLAN.md — Content schema: TypeScript interfaces for Lesson, Exercise, LocalizedString, PromptRubric; one seed lesson JSON
 
 ### Phase 2: Lesson Engine + Core Exercises
 **Goal**: Deliver a working lesson loop — load lesson, sequence exercises, evaluate answers, show completion — with enough authored content to test the engine end-to-end.
@@ -121,11 +121,11 @@ Plans:
 
 ## Progress
 
-**Execution Order:** 1 → 2 → 3 → 4 → 5 → 6
+**Execution Order:** 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 0/3 | Planning complete | - |
 | 2. Lesson Engine + Core Exercises | 0/3 | Not started | - |
 | 3. Gamification Engine | 0/3 | Not started | - |
 | 4. Skill Tree + Onboarding | 0/3 | Not started | - |
