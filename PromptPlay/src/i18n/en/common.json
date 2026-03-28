@@ -11,5 +11,17 @@
     "continue": "Continue",
     "xp_earned": "+{{xp}} XP",
     "exercise_count": "Exercise {{current}} of {{total}}"
+  },
+  "exercise": {
+    "model_answer": "One strong version:",
+    "score": "Score: {{score}}%",
+    "passed": "Correct!",
+    "failed": "Not quite — let's review"
+  },
+  "rubric": {
+    "clarity": "Clear goal",
+    "specificity": "Specific details",
+    "context": "Helpful context",
+    "intent": "Clear intent"
   }
 }

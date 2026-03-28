@@ -1,0 +1,122 @@
+{
+  "id": "lesson-03-specificity",
+  "order": 3,
+  "chapter": 1,
+  "prerequisites": ["lesson-02-clarity"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Be Specific",
+      "he": "היו ספציפיים"
+    },
+    "body": {
+      "en": "Specificity means including the details that matter — who the audience is, how many items you want, what format, what tone. Think of it like ordering at a restaurant: 'a burger' versus 'a medium-rare burger with no onions on a whole-wheat bun'. The more details you give, the more tailored the result.",
+      "he": "ספציפיות משמעותה לכלול את הפרטים שחשובים — מיהו הקהל, כמה פריטים אתם רוצים, איזה פורמט, איזה טון. חשבו על זה כמו הזמנה במסעדה: 'המבורגר' לעומת 'המבורגר מדיום-ריר בלי בצל על לחם מלא'. ככל שאתם נותנים יותר פרטים, כך התוצאה תהיה מותאמת יותר."
+    },
+    "tip": {
+      "en": "Ask yourself: Who? How many? What format? What tone? What should I leave out? Each answer makes your prompt sharper.",
+      "he": "שאלו את עצמכם: מי? כמה? איזה פורמט? איזה טון? מה להשמיט? כל תשובה מחדדת את הפרומפט שלכם."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-03-ex-01",
+      "type": "mcq",
+      "order": 1,
+      "prompt": {
+        "en": "What makes a prompt more specific?",
+        "he": "מה הופך פרומפט לספציפי יותר?"
+      },
+      "options": [
+        {
+          "en": "Making it longer by adding filler words",
+          "he": "להאריך אותו על ידי הוספת מילות מילוי"
+        },
+        {
+          "en": "Adding details like audience, format, length, and tone",
+          "he": "הוספת פרטים כמו קהל, פורמט, אורך וטון"
+        },
+        {
+          "en": "Using more technical vocabulary",
+          "he": "שימוש במילים טכניות יותר"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Specificity comes from meaningful details — who the content is for, how long it should be, what format it should take, and what tone to use. Longer sentences with filler words or jargon don't make a prompt more specific.",
+        "he": "ספציפיות נובעת מפרטים משמעותיים — למי מיועד התוכן, כמה זמן הוא צריך להיות, באיזה פורמט ובאיזה טון. משפטים ארוכים עם מילות מילוי או ז'רגון לא הופכים פרומפט לספציפי יותר."
+      }
+    },
+    {
+      "id": "lesson-03-ex-02",
+      "type": "fill-blank",
+      "order": 2,
+      "prompt": {
+        "en": "Fill in the blank to complete this specific prompt:",
+        "he": "מלאו את החסר כדי להשלים פרומפט ספציפי זה:"
+      },
+      "template": {
+        "en": "Write a ___ summarizing the key points of the meeting for my team.",
+        "he": "כתבו ___ שמסכם את הנקודות העיקריות של הפגישה לצוות שלי."
+      },
+      "acceptableAnswers": [
+        { "en": "paragraph", "he": "פסקה" },
+        { "en": "summary", "he": "סיכום" },
+        { "en": "short summary", "he": "סיכום קצר" },
+        { "en": "bullet list", "he": "רשימת נקודות" },
+        { "en": "list", "he": "רשימה" },
+        { "en": "brief overview", "he": "סקירה קצרה" },
+        { "en": "email", "he": "אימייל" }
+      ],
+      "explanation": {
+        "en": "Adding a format word like 'paragraph', 'summary', or 'bullet list' immediately makes the prompt more specific — the AI knows exactly what shape the output should take.",
+        "he": "הוספת מילת פורמט כמו 'פסקה', 'סיכום' או 'רשימת נקודות' מיד הופכת את הפרומפט לספציפי יותר — ה-AI יודע בדיוק באיזה צורה צריכה להיות הפלט."
+      }
+    },
+    {
+      "id": "lesson-03-ex-03",
+      "type": "free-text",
+      "order": 3,
+      "prompt": {
+        "en": "Make this vague prompt more specific:",
+        "he": "הפכו את הפרומפט המעורפל הזה לספציפי יותר:"
+      },
+      "starterPrompt": {
+        "en": "Tell me about dogs.",
+        "he": "ספר לי על כלבים."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "specificity",
+            "label": { "en": "Specific details", "he": "פרטים ספציפיים" },
+            "weight": 0.5,
+            "keywords": ["breed", "type", "specific", "number", "list", "size", "small", "large", "top", "best", "גזע", "סוג", "ספציפי", "מספר", "רשימה", "קטן", "גדול"],
+            "required": false
+          },
+          {
+            "key": "context",
+            "label": { "en": "Helpful context", "he": "הקשר מועיל" },
+            "weight": 0.5,
+            "keywords": ["for", "because", "about", "topic", "apartment", "family", "child", "train", "pet", "owner", "בשביל", "כי", "על", "נושא", "דירה", "משפחה", "ילד", "לאמן", "חיית מחמד", "בעלים"],
+            "required": false
+          }
+        ],
+        "passingScore": 50,
+        "scoringMethod": "checklist"
+      },
+      "modelAnswer": {
+        "en": "Give me a list of 5 small dog breeds that are good for apartment living and easy to train for first-time owners.",
+        "he": "תן לי רשימה של 5 גזעי כלבים קטנים שמתאימים לחיים בדירה ופשוטים לאימון עבור בעלים ראשונים."
+      },
+      "positiveFeedback": {
+        "en": "Much better! You added specific details that help the AI give you a truly useful answer.",
+        "he": "הרבה יותר טוב! הוספתם פרטים ספציפיים שעוזרים ל-AI לתת לכם תשובה שימושית באמת."
+      },
+      "improvementFeedback": {
+        "en": "Try adding more details — what type of dog? How many? What's the context (apartment, family with kids, first-time owner)?",
+        "he": "נסו להוסיף עוד פרטים — איזה סוג כלב? כמה? מה ההקשר (דירה, משפחה עם ילדים, בעלים ראשון)?"
+      }
+    }
+  ]
+}

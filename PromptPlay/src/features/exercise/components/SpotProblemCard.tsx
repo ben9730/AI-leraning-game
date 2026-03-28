@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import type { SpotProblemExercise } from '@/src/content/schema'
 import type { EvaluationResult } from '../types'
 import { evaluateSpotProblem } from '../evaluators/evaluateSpotProblem'
+import { FeedbackCard } from './FeedbackCard'
 
 interface SpotProblemCardProps {
   exercise: SpotProblemExercise
@@ -101,7 +102,12 @@ export function SpotProblemCard({ exercise, onComplete }: SpotProblemCardProps) 
         </Pressable>
       ) : (
         <View style={styles.feedbackContainer}>
-          <Text style={styles.feedbackText}>{result?.feedback[lang]}</Text>
+          {result && (
+            <FeedbackCard
+              result={result}
+              lang={lang}
+            />
+          )}
           <Pressable
             style={styles.continueButton}
             onPress={() => onComplete(result!)}
@@ -204,17 +210,6 @@ const styles = StyleSheet.create({
   },
   feedbackContainer: {
     gap: 16,
-  },
-  feedbackText: {
-    fontSize: 15,
-    color: '#444',
-    lineHeight: 22,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 10,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingStart: 16,
-    paddingEnd: 16,
   },
   continueButton: {
     backgroundColor: '#6C63FF',

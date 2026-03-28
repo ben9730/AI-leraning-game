@@ -11,5 +11,17 @@
     "continue": "המשך",
     "xp_earned": "+{{xp}} XP",
     "exercise_count": "תרגיל {{current}} מתוך {{total}}"
+  },
+  "exercise": {
+    "model_answer": "גרסה חזקה אחת:",
+    "score": "ציון: {{score}}%",
+    "passed": "נכון!",
+    "failed": "לא בדיוק — בואו נבדוק"
+  },
+  "rubric": {
+    "clarity": "מטרה ברורה",
+    "specificity": "פרטים ספציפיים",
+    "context": "הקשר מועיל",
+    "intent": "כוונה ברורה"
   }
 }

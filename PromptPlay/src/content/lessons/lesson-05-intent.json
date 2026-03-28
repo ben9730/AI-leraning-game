@@ -1,0 +1,143 @@
+{
+  "id": "lesson-05-intent",
+  "order": 5,
+  "chapter": 1,
+  "prerequisites": ["lesson-04-context"],
+  "xpReward": 15,
+  "content": {
+    "title": {
+      "en": "State Your Intent",
+      "he": "הביעו את כוונתכם"
+    },
+    "body": {
+      "en": "Intent tells the AI what you plan to DO with the output — this shapes the format, length, and tone of the response. 'I need this for a presentation' versus 'I need this for my personal notes' will produce very different results. Always tell the AI your goal, not just your topic.",
+      "he": "כוונה אומרת ל-AI מה אתם מתכננים לעשות עם הפלט — זה מעצב את הפורמט, האורך והטון של התשובה. 'אני צריך את זה להצגה' לעומת 'אני צריך את זה לרשימות אישיות שלי' יפיק תוצאות שונות מאוד. תמיד ספרו ל-AI את המטרה שלכם, לא רק את הנושא."
+    },
+    "tip": {
+      "en": "End your prompt with your intent: '...so I can present it to my team', '...for a social media post', '...to include in my report'.",
+      "he": "סיימו את הפרומפט שלכם עם הכוונה: '...כדי שאוכל להציג לצוות', '...לפוסט ברשתות חברתיות', '...לכלול בדו\"ח שלי'."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-05-ex-01",
+      "type": "spot-problem",
+      "order": 1,
+      "prompt": {
+        "en": "What's wrong with this prompt? Select all the problems:",
+        "he": "מה לא בסדר עם הפרומפט הזה? בחרו את כל הבעיות:"
+      },
+      "problematicPrompt": {
+        "en": "Tell me about climate change.",
+        "he": "ספר לי על שינוי אקלים."
+      },
+      "issues": [
+        {
+          "en": "No specified intent or purpose",
+          "he": "אין כוונה או מטרה מוגדרת"
+        },
+        {
+          "en": "No output format specified",
+          "he": "לא צוין פורמט פלט"
+        },
+        {
+          "en": "Topic is too broad",
+          "he": "הנושא רחב מדי"
+        }
+      ],
+      "distractors": [
+        {
+          "en": "Too short in length",
+          "he": "קצר מדי באורך"
+        },
+        {
+          "en": "Wrong language",
+          "he": "שפה שגויה"
+        }
+      ],
+      "hints": [
+        {
+          "en": "Think about what the AI needs to know to give you a useful answer.",
+          "he": "חשבו מה ה-AI צריך לדעת כדי לתת לכם תשובה שימושית."
+        }
+      ],
+      "explanation": {
+        "en": "The prompt has three real problems: it doesn't say WHY you need the information (intent), it doesn't say what format you want (a summary? bullet points? an essay?), and 'climate change' is an enormous topic. The prompt's length and language are fine — those aren't the issues.",
+        "he": "לפרומפט יש שלוש בעיות אמיתיות: הוא לא אומר לָמָה אתם צריכים את המידע (כוונה), הוא לא אומר איזה פורמט אתם רוצים (סיכום? נקודות? חיבור?), ו'שינוי אקלים' הוא נושא עצום. אורך הפרומפט והשפה שלו בסדר — אלה לא הבעיות."
+      }
+    },
+    {
+      "id": "lesson-05-ex-02",
+      "type": "free-text",
+      "order": 2,
+      "prompt": {
+        "en": "Rewrite this prompt with a clear intent:",
+        "he": "שכתבו את הפרומפט הזה עם כוונה ברורה:"
+      },
+      "starterPrompt": {
+        "en": "Write something about my product.",
+        "he": "כתוב משהו על המוצר שלי."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "intent",
+            "label": { "en": "Clear intent", "he": "כוונה ברורה" },
+            "weight": 0.5,
+            "keywords": ["description", "review", "ad", "post", "marketing", "sell", "promote", "announce", "תיאור", "ביקורת", "פרסום", "פוסט", "שיווק", "למכור", "לקדם", "להכריז"],
+            "required": false
+          },
+          {
+            "key": "clarity",
+            "label": { "en": "Clear goal", "he": "מטרה ברורה" },
+            "weight": 0.5,
+            "keywords": ["product", "feature", "benefit", "audience", "customer", "for", "מוצר", "תכונה", "יתרון", "קהל", "לקוח", "עבור"],
+            "required": false
+          }
+        ],
+        "passingScore": 50,
+        "scoringMethod": "checklist"
+      },
+      "modelAnswer": {
+        "en": "Write a compelling 3-sentence product description for our new task management app, highlighting the key benefit of saving time, aimed at busy freelancers who struggle to stay organized.",
+        "he": "כתוב תיאור מוצר מרתק של 3 משפטים לאפליקציית ניהול המשימות החדשה שלנו, תוך הדגשת היתרון המרכזי של חסכון בזמן, מכוון לפרילנסרים עסוקים שמתקשים להישאר מאורגנים."
+      },
+      "positiveFeedback": {
+        "en": "Great work! Your rewrite has clear intent — the AI knows exactly what kind of content to produce and what it will be used for.",
+        "he": "עבודה מצוינת! לשכתוב שלכם יש כוונה ברורה — ה-AI יודע בדיוק איזה סוג תוכן לייצר ולשם מה הוא ישמש."
+      },
+      "improvementFeedback": {
+        "en": "Good start! Try adding what TYPE of content you want (description, ad, social post) and who it's meant for.",
+        "he": "התחלה טובה! נסו להוסיף איזה סוג תוכן אתם רוצים (תיאור, פרסומת, פוסט) ולמי הוא מיועד."
+      }
+    },
+    {
+      "id": "lesson-05-ex-03",
+      "type": "mcq",
+      "order": 3,
+      "prompt": {
+        "en": "What does stating your intent help the AI do?",
+        "he": "במה עוזרת הבעת הכוונה ל-AI?"
+      },
+      "options": [
+        {
+          "en": "Run faster and give answers more quickly",
+          "he": "לפעול מהר יותר ולתת תשובות מהר יותר"
+        },
+        {
+          "en": "Tailor the format, length, and tone to match how you'll actually use the output",
+          "he": "להתאים את הפורמט, האורך והטון לאופן שבו תשתמשו בפלט"
+        },
+        {
+          "en": "Avoid giving any information that might be wrong",
+          "he": "להימנע מלתת מידע שעלול להיות שגוי"
+        }
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "en": "Stating your intent — 'I need this for a presentation', 'for a quick social post', 'for my personal notes' — tells the AI how to shape the response. The same topic will require very different outputs depending on use. Intent doesn't make the AI faster or guarantee accuracy.",
+        "he": "הבעת הכוונה — 'אני צריך את זה להצגה', 'לפוסט מהיר ברשתות', 'לרשימות אישיות שלי' — אומרת ל-AI איך לעצב את התשובה. אותו נושא ידרוש פלטים שונים מאוד בהתאם לשימוש. כוונה לא הופכת את ה-AI למהיר יותר ולא מבטיחה דיוק."
+      }
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "lesson-02-clarity",
+  "order": 2,
+  "chapter": 1,
+  "prerequisites": ["lesson-01-what-is-prompting"],
+  "xpReward": 10,
+  "content": {
+    "title": {
+      "en": "Be Clear",
+      "he": "היו ברורים"
+    },
+    "body": {
+      "en": "Clarity means the AI knows exactly what you want. A clear prompt uses a specific action verb (write, summarize, list, explain) and describes what you want to receive. Vague prompts get vague answers — clear prompts get useful results.",
+      "he": "בהירות משמעותה שה-AI יודע בדיוק מה אתם רוצים. פרומפט ברור משתמש בפועל פעולה ספציפי (כתוב, סכם, רשום, הסבר) ומתאר מה אתם רוצים לקבל. פרומפטים מעורפלים מקבלים תשובות מעורפלות — פרומפטים ברורים מקבלים תוצאות שימושיות."
+    },
+    "tip": {
+      "en": "Start your prompt with an action verb: Write, List, Summarize, Explain, Create, Draft.",
+      "he": "התחילו את הפרומפט שלכם עם פועל פעולה: כתבו, רשמו, סכמו, הסבירו, צרו, נסחו."
+    }
+  },
+  "exercises": [
+    {
+      "id": "lesson-02-ex-01",
+      "type": "mcq",
+      "order": 1,
+      "prompt": {
+        "en": "Which of these prompts is the clearest?",
+        "he": "איזה מהפרומפטים הבאים הוא הברור ביותר?"
+      },
+      "options": [
+        {
+          "en": "Help me.",
+          "he": "עזור לי."
+        },
+        {
+          "en": "Write something about remote work.",
+          "he": "כתוב משהו על עבודה מרחוק."
+        },
+        {
+          "en": "Write a 3-paragraph blog post about the top benefits of remote work for software developers.",
+          "he": "כתוב פוסט בלוג של 3 פסקאות על היתרונות המרכזיים של עבודה מרחוק עבור מפתחי תוכנה."
+        }
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "en": "The third option is clearest because it specifies the action (write), the format (3-paragraph blog post), and the topic with audience (remote work benefits for software developers). The first two are too vague for the AI to know what you actually need.",
+        "he": "האפשרות השלישית היא הברורה ביותר כי היא מציינת את הפעולה (כתוב), הפורמט (פוסט בלוג של 3 פסקאות) והנושא עם הקהל (יתרונות עבודה מרחוק למפתחי תוכנה). שתי האפשרויות הראשונות מעורפלות מדי כדי שה-AI יבין מה אתם באמת צריכים."
+      }
+    },
+    {
+      "id": "lesson-02-ex-02",
+      "type": "free-text",
+      "order": 2,
+      "prompt": {
+        "en": "Rewrite this vague prompt to be clearer:",
+        "he": "שכתבו את הפרומפט המעורפל הזה כדי שיהיה ברור יותר:"
+      },
+      "starterPrompt": {
+        "en": "Help me with my email.",
+        "he": "עזור לי עם האימייל שלי."
+      },
+      "rubric": {
+        "criteria": [
+          {
+            "key": "clarity",
+            "label": { "en": "Clear goal", "he": "מטרה ברורה" },
+            "weight": 0.5,
+            "keywords": ["write", "draft", "create", "compose", "כתוב", "נסח", "צור"],
+            "required": false
+          },
+          {
+            "key": "specificity",
+            "label": { "en": "Specific details", "he": "פרטים ספציפיים" },
+            "weight": 0.5,
+            "keywords": ["email", "message", "paragraph", "short", "long", "words", "subject", "colleague", "boss", "client", "אימייל", "הודעה", "פסקה", "קצר", "ארוך", "מילים"],
+            "required": false
+          }
+        ],
+        "passingScore": 50,
+        "scoringMethod": "checklist"
+      },
+      "modelAnswer": {
+        "en": "Draft a short, professional email to my manager explaining that I'll be 15 minutes late to today's meeting.",
+        "he": "נסח אימייל קצר ומקצועי למנהל שלי שמסביר שאהיה מאוחר ב-15 דקות לפגישה של היום."
+      },
+      "positiveFeedback": {
+        "en": "Great rewrite! Your prompt is clear and specific — the AI knows exactly what kind of email to write.",
+        "he": "שכתוב מצוין! הפרומפט שלכם ברור וספציפי — ה-AI יודע בדיוק איזה סוג אימייל לכתוב."
+      },
+      "improvementFeedback": {
+        "en": "Good start! Try to add an action verb (write, draft) and more details about what kind of email you need.",
+        "he": "התחלה טובה! נסו להוסיף פועל פעולה (כתוב, נסח) ופרטים נוספים על איזה סוג אימייל אתם צריכים."
+      }
+    },
+    {
+      "id": "lesson-02-ex-03",
+      "type": "pick-better",
+      "order": 3,
+      "prompt": {
+        "en": "Which prompt would get you a better recipe recommendation?",
+        "he": "איזה פרומפט יקבל המלצת מתכון טובה יותר?"
+      },
+      "optionA": {
+        "en": "Give me a recipe.",
+        "he": "תן לי מתכון."
+      },
+      "optionB": {
+        "en": "Suggest a quick vegetarian dinner recipe that takes under 30 minutes and uses ingredients I probably have at home.",
+        "he": "הצע מתכון ארוחת ערב צמחוני מהיר שלוקח פחות מ-30 דקות ומשתמש במרכיבים שכנראה יש לי בבית."
+      },
+      "betterOption": "B",
+      "explanation": {
+        "en": "Option B tells the AI exactly what you need: the type (vegetarian dinner), the constraint (under 30 minutes), and the context (ingredients at home). Option A could return thousands of possibilities — none of them tailored to you.",
+        "he": "אפשרות B אומרת ל-AI בדיוק מה אתם צריכים: הסוג (ארוחת ערב צמחונית), המגבלה (פחות מ-30 דקות) וההקשר (מרכיבים בבית). אפשרות A יכולה להחזיר אלפי אפשרויות — אף אחת מהן לא מותאמת לכם."
+      }
+    }
+  ]
+}
