@@ -8,6 +8,7 @@ import '@/src/i18n';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { useHasHydrated, useProgressStore } from '@/src/store/useProgressStore';
+import { useServiceWorker } from '@/src/features/pwa/useServiceWorker';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,6 +59,8 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  // Register service worker after window.load — web only, no-op on native
+  useServiceWorker();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

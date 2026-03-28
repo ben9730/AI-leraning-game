@@ -35,11 +35,26 @@ module.exports = {
       },
     },
     {
+      // PWA feature tests — need jsdom for window + navigator globals
+      displayName: 'pwa',
+      preset: 'ts-jest',
+      testEnvironment: 'jsdom',
+      testMatch: ['<rootDir>/src/features/pwa/**/*.test.{ts,tsx}'],
+      moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+      transform: {
+        '^.+\\.tsx?$': ['ts-jest', { tsconfig: { jsx: 'react' } }],
+      },
+    },
+    {
       // React Native feature tests (hooks, components)
       displayName: 'react-native',
       preset: 'react-native',
       testMatch: ['<rootDir>/src/features/**/*.test.{ts,tsx}'],
-      testPathIgnorePatterns: ['/node_modules/', '/src/features/skill-tree/'],
+      testPathIgnorePatterns: [
+        '/node_modules/',
+        '/src/features/skill-tree/',
+        '/src/features/pwa/',
+      ],
       moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/$1',
         '^expo-haptics$': '<rootDir>/__mocks__/expo-haptics.js',
