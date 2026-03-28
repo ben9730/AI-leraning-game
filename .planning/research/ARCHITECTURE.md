@@ -1,30 +1,100 @@
-# Architecture Patterns
+# Architecture Patterns: Web-First PWA Rebuild
 
-**Domain:** Gamified bilingual mobile learning app (PWA-first)
+**Domain:** Web-first PWA rebuild of PromptPlay (gamified AI prompting course)
 **Researched:** 2026-03-28
-**Confidence:** MEDIUM-HIGH
+**Confidence:** HIGH (based on direct codebase analysis + verified web ecosystem research)
 
 ---
 
 ## Recommended Architecture
 
-### Overview: Feature-Sliced + Layered Hybrid
+### High-Level: Vite React SPA with Shared Core Package
 
-A feature-sliced architecture where each major domain (lesson engine, gamification, content, user state) owns its slice of logic, state, and UI components. Layers enforce data flow direction: UI → Engine → Store → Persistence.
+The web app is a **Vite + React 19 + TypeScript SPA** deployed as a PWA. No server-side rendering -- all content is bundled JSON, there is no SEO requirement (app behind onboarding, not a content site), and existing pure-TS logic ports directly into a client-side React app.
+
+The project uses a **monorepo structure**: a new `web/` directory alongside the existing `PromptPlay/` directory, with portable logic extracted into `shared/`.
 
 ```
-src/
-  app/           # App shell, routing, providers
-  features/
-    lesson/      # Lesson engine, reader, progress
-    exercise/    # Exercise runner, evaluator, types
-    gamification/# XP, streaks, badges, level-up
-    skill-tree/  # Map view, lock/unlock logic
-    i18n/        # Language switching, RTL manager
-  content/       # Static lesson data (JSON), type schemas
-  store/         # Global state (Zustand or Redux Toolkit)
-  persistence/   # AsyncStorage/IndexedDB adapters
-  shared/        # UI primitives, hooks, utilities
+code-learning-game/
+  PromptPlay/              # Existing Expo/RN app (untouched)
+  shared/                  # Extracted pure TS (zero framework deps)
+    src/
+      content/
+        schema.ts          # Types: Lesson, Exercise, LocalizedString, etc.
+        curriculum.ts      # Chapter[] + curriculum ordering
+        loader.ts          # Platform-agnostic interface (impl per consumer)
+        lessons/           # 20 lesson JSON files (moved here)
+      gamification/
+        engine.ts          # calcXP, calcStreakUpdate, shouldGrantFreeze
+        badges.ts          # deriveBadges, BADGE_DEFINITIONS
+        constants.ts       # LEVEL_THRESHOLDS, XP values, streak tiers
+      exercise/
+        evaluators/        # 6 evaluator functions (pure TS)
+        types.ts           # EvaluationResult interface
+      store/
+        types.ts           # UserProgress, XPTransaction, getLevel()
+      i18n/
+        en/common.json     # English UI strings
+        he/common.json     # Hebrew UI strings
+  web/                     # New Vite React SPA
+    index.html
+    vite.config.ts
+    tsconfig.json
+    tailwind.config.ts
+    public/
+      manifest.json
+      service-worker.js
+      icons/
+    src/
+      main.tsx             # Entry: React root + i18n init + store hydration gate
+      App.tsx              # BrowserRouter + Routes + Layout shell
+      routes/              # Page components
+        Home.tsx           # Dashboard (today's lesson, streak, XP)
+        SkillTree.tsx      # Curriculum map
+        Lesson.tsx         # Dynamic: /lesson/:lessonId
+        Profile.tsx        # Stats, badges, settings
+        Onboarding.tsx     # Goal selection + first lesson funnel
+      features/
+        exercise/
+          ExerciseRunner.tsx
+          registry.ts      # Web exercise registry (type -> component)
+          components/      # 6 web exercise cards (MCQ, FreeText, etc.)
+        lesson/
+          LessonScreen.tsx
+          LessonContent.tsx
+          LessonCompletion.tsx
+          useLessonSession.ts  # Portable hook (import from shared or copy)
+        gamification/
+          StreakDisplay.tsx
+          LessonCelebration.tsx
+          LevelUpModal.tsx
+          BadgeList.tsx
+        skill-tree/
+          SkillTreeNode.tsx
+          ChapterHeader.tsx
+          useSkillTreeData.ts
+        pwa/
+          InstallBanner.tsx
+          useInstallPrompt.ts
+          useServiceWorker.ts
+        onboarding/
+          GoalSelector.tsx
+      store/
+        useProgressStore.ts   # Zustand + persist(localStorage)
+      i18n/
+        index.ts              # react-i18next init (browser-native)
+      ui/                     # Design system primitives
+        Button.tsx
+        Card.tsx
+        Modal.tsx
+        ProgressBar.tsx
+        Layout.tsx            # App shell: nav bar, content area, RTL dir
+      lib/
+        supabase.ts
+      styles/
+        globals.css           # CSS custom properties (design tokens)
+      hooks/
+        useLocale.ts
 ```
 
 ---
@@ -33,15 +103,16 @@ src/
 
 | Component | Responsibility | Communicates With |
 |-----------|---------------|-------------------|
-| **Lesson Engine** | Load lesson by ID, sequence content + exercises, track completion | Content store, Exercise Evaluator, Gamification Engine |
-| **Content Renderer** | Display markdown/rich text, handle RTL text direction | i18n context, Lesson Engine |
-| **Exercise Runner** | Present exercise UI by type (MCQ, free-text, prompt-builder, drag-drop), collect answer | Exercise Evaluator |
-| **Exercise Evaluator** | Score answer against rubric, return feedback + score | Lesson Engine, Gamification Engine |
-| **Gamification Engine** | Award XP, update streaks, check level-up, unlock next lessons | User Progress Store |
-| **User Progress Store** | Source of truth for XP total, streak, completed lessons, current level | All features (read), Gamification Engine (write) |
-| **Skill Tree View** | Render lesson map, show lock/unlock state, handle navigation | User Progress Store |
-| **Persistence Layer** | Read/write to IndexedDB (PWA) or AsyncStorage (RN), sync when online | User Progress Store |
-| **i18n Manager** | Provide translations, detect/set language, apply RTL flag | All UI components |
+| `shared/` | Pure TS logic: content schema, loaders, evaluators, gamification math, types | Imported by `web/` (and optionally `PromptPlay/`) |
+| `web/src/store/` | Zustand state: progress, XP, streaks, unlocks, language | All features read/write via hooks |
+| `web/src/features/exercise/` | Exercise rendering + evaluation orchestration | Imports evaluators from `shared/`, updates store on completion |
+| `web/src/features/lesson/` | Lesson flow: intro -> exercises -> completion | Uses `useLessonSession` (portable), drives ExerciseRunner |
+| `web/src/features/gamification/` | XP display, streak UI, badges, celebrations | Reads store, imports `deriveBadges`/`calcXP` from `shared/` |
+| `web/src/features/skill-tree/` | Visual curriculum map with node states | Reads store + `shared/content/curriculum` |
+| `web/src/features/pwa/` | Install banner, service worker registration | Browser APIs only |
+| `web/src/routes/` | Page-level composition (compose features into pages) | Composes features, handles route params |
+| `web/src/ui/` | Design system primitives (Button, Card, Modal, etc.) | Used by all features |
+| `web/src/i18n/` | i18next init + RTL direction management | Provides `useTranslation`, sets `dir` on `<html>` |
 
 ---
 
@@ -49,382 +120,491 @@ src/
 
 ```
 User opens app
-  → App shell loads User Progress from Persistence
-  → Skill Tree renders lessons (locked/unlocked by progress)
+  -> main.tsx renders App with hydration gate (wait for store rehydration)
+  -> React Router renders current route
+  -> SkillTree reads store.completedLessons + shared/curriculum -> renders node states
 
-User selects lesson
-  → Lesson Engine loads lesson JSON by ID
-  → Content Renderer displays intro text (RTL-aware)
+User selects lesson (clicks unlocked node)
+  -> Navigate to /lesson/:lessonId
+  -> Lesson route loads lesson via shared/content/loader
+  -> LessonScreen renders intro content (RTL-aware)
 
 User reaches exercise
-  → Exercise Runner mounts correct component by exercise.type
-  → User submits answer
+  -> useLessonSession advances step to { phase: 'exercise', index: 0 }
+  -> ExerciseRunner looks up EXERCISE_REGISTRY[exercise.type]
+  -> Renders correct card component (e.g., MCQCard)
 
-Answer submitted
-  → Exercise Evaluator scores against rubric
-  → Returns: { score, feedback, passed }
+User submits answer
+  -> Card component calls evaluator function (from shared/exercise/evaluators/)
+  -> Evaluator returns EvaluationResult { score, passed, feedback }
+  -> Card shows feedback, then calls onComplete(result)
 
-Exercise passed
-  → Lesson Engine advances to next step or marks lesson complete
-  → Gamification Engine receives: { event: "lesson_complete", lessonId, score }
-  → XP calculated: base_xp + streak_multiplier + perfection_bonus
-  → Streak updated: if today's date !== last_activity_date → increment/reset
-  → Level check: if total_xp >= level_threshold → level_up event
-  → User Progress Store updated (single write)
-  → Persistence Layer saves to IndexedDB / AsyncStorage
+Exercise complete
+  -> useLessonSession advances to next exercise or { phase: 'complete' }
+
+Lesson complete
+  -> LessonCompletion fires: store.addXP(), store.completeLesson(), store.updateStreak()
+  -> Zustand persist middleware auto-saves to localStorage
+  -> Derived state (badges via deriveBadges, level via getLevel) recomputes
+  -> Celebration UI renders (XP animation, optional level-up modal)
+  -> Unlock next lesson(s) based on prerequisites
 
 UI updates
-  → XP animation, confetti/celebration if level-up
-  → Skill Tree unlocks next lesson
-  → Streak counter updates
+  -> SkillTree re-renders with new node states
+  -> Home dashboard shows updated streak/XP
 ```
 
-**Key rule:** Data flows one direction. UI never writes to the store directly — it dispatches events to engines which update state.
+**Key rule:** UI never writes to shared logic directly. UI calls store actions, store actions call shared pure functions, results flow back through React state.
 
 ---
 
-## Content Architecture
+## Portable Code Strategy
 
-### Lesson JSON Schema
+### Tier 1: Direct Copy (zero changes needed)
 
-All lesson content lives as static JSON files bundled with the app. No server round-trips for content.
+These files have ZERO framework dependencies -- pure TypeScript only:
 
-```typescript
-// Lesson schema
-interface Lesson {
-  id: string                    // e.g. "lesson-01-what-is-prompting"
-  order: number                 // Position in skill tree
-  prerequisites: string[]       // Lesson IDs that must be complete first
-  xpReward: number              // Base XP for completion
-  content: {
-    title: LocalizedString       // { en: "...", he: "..." }
-    body: LocalizedString        // Markdown string per locale
-    tip?: LocalizedString        // Optional callout box
-  }
-  exercises: Exercise[]
-}
+| File | Lines | Why Portable |
+|------|-------|-------------|
+| `content/schema.ts` | 179 | Pure types + `validateRubricWeights()` function |
+| `content/curriculum.ts` | 54 | Pure data: `Chapter[]` array + `curriculum` string[] |
+| `content/lessons/*.json` | ~20 files | Static JSON data |
+| `gamification/engine.ts` | 112 | Pure functions: `calcStreakUpdate`, `calcXP`, `shouldGrantFreeze`, `offsetDate` |
+| `gamification/badges.ts` | 94 | Pure function: `deriveBadges` + `BADGE_DEFINITIONS` array |
+| `gamification/constants.ts` | 22 | Pure constants: `LEVEL_THRESHOLDS`, `BASE_LESSON_XP`, `STREAK_MULTIPLIER_TIERS` |
+| `exercise/evaluators/*.ts` | 6 files | Pure evaluator functions (no UI deps) |
+| `exercise/types.ts` | 9 | Pure type: `EvaluationResult` |
+| `store/types.ts` | 40 | Pure types + `getLevel()` derived function |
+| `i18n/en/common.json` | - | Static translation strings |
+| `i18n/he/common.json` | - | Static translation strings |
+| `features/lesson/useLessonSession.ts` | 49 | Pure React hooks only (`useState`, `useRef`) -- no RN deps |
+| `features/skill-tree/skillTreeUtils.ts` | 44 | Pure functions: `deriveNodeStates`, `getCurrentLessonId` |
 
-// Exercise schema
-interface Exercise {
-  id: string
-  type: "mcq" | "free-text" | "prompt-builder" | "drag-drop"
-  prompt: LocalizedString
-  rubric: Rubric
-  // type-specific fields below
-}
+### Tier 2: Light Adaptation (minor changes)
 
-interface MCQExercise extends Exercise {
-  type: "mcq"
-  options: LocalizedString[]
-  correctIndex: number
-  explanation: LocalizedString
-}
+| File | What Changes | Effort |
+|------|-------------|--------|
+| `content/loader.ts` | Replace 20 static `import` + `require()` calls with `import.meta.glob` (Vite) | Small: ~15 lines |
+| `store/useProgressStore.ts` | Remove `Platform.OS` check (line 39), remove MMKV import, use `createJSONStorage(() => localStorage)` | Small: ~5 line changes |
+| `i18n/index.ts` | Remove `expo-localization` + `I18nManager` + `reloadApp()`; use `navigator.language` + `document.documentElement.dir` | Medium: rewrite ~20 lines |
+| `features/skill-tree/useSkillTreeData.ts` | Check for RN-specific imports; hook logic itself is likely portable | Tiny: verify and fix imports |
 
-interface FreeTextExercise extends Exercise {
-  type: "free-text"
-  simulatedResponse: LocalizedString   // Pre-scripted "AI" response to show
-  rubric: PromptRubric
-}
+### Tier 3: Full Rebuild (new web components)
 
-interface PromptRubric {
-  criteria: Array<{
-    key: "clarity" | "specificity" | "context" | "intent"
-    weight: number               // Sums to 1.0
-    keywords: string[]           // Presence signals good scoring
-    required: boolean
-  }>
-  passingScore: number           // 0-100
-}
-
-interface LocalizedString {
-  en: string
-  he: string
-}
-```
-
-### File Organization for Content
-
-```
-content/
-  lessons/
-    lesson-01-what-is-prompting.json
-    lesson-02-clarity.json
-    ...
-  curriculum.json    # Ordered list of lesson IDs + metadata for skill tree
-  schema.ts          # TypeScript types (source of truth)
-```
-
-**Why JSON not MDX/YAML:**
-- JSON is natively parseable without build transforms
-- Type-safe with TypeScript interfaces
-- Easy to iterate on content without code changes
-- MDX adds unnecessary build complexity; YAML loses type safety at parse time
+| Component | RN Dependency | Web Replacement |
+|-----------|--------------|----------------|
+| MCQCard, FreeTextCard, FillBlankCard, PickBetterCard, SpotProblemCard, SimulatedChatCard | `View`, `Text`, `Pressable`, `StyleSheet`, `expo-haptics` | HTML/CSS + Tailwind, `<button>`, optional Web Vibration API |
+| ExerciseRunner | `View`, `Text`, `StyleSheet` | HTML `<div>` + Tailwind |
+| SkillTreeNode, ChapterHeader | RN layout primitives | HTML/CSS with Tailwind |
+| LessonScreen, LessonContentScreen, LessonCompletionScreen | RN layout + Expo Router navigation | React Router `useParams` + HTML/CSS |
+| StreakDisplay, LessonCelebration, LevelUpModal | Reanimated + Lottie animations | CSS animations + optional Lottie-web |
+| App shell / navigation | Expo Router (`Stack`, `Tabs`) | React Router `<Routes>` + bottom tab bar component |
+| GoalSelector, AccountPromptModal | RN `Modal`, `Pressable` | HTML `<dialog>` or custom modal |
+| InstallBanner | `Platform.OS` guard | Direct browser API (remove guard) |
 
 ---
 
-## State Architecture
+## Patterns to Follow
 
-### What Lives Where
+### Pattern 1: Exercise Type Registry (preserved)
 
-| State | Storage | Why |
-|-------|---------|-----|
-| Completed lessons | IndexedDB / AsyncStorage | Persistent, needs offline access |
-| XP total + history | IndexedDB / AsyncStorage | Persistent |
-| Current streak + last activity date | IndexedDB / AsyncStorage | Persistent |
-| Current level | Derived from XP (not stored) | Computed on read |
-| Active lesson session | In-memory (Zustand) | Ephemeral, resets on lesson exit |
-| Exercise answer (in-progress) | In-memory (React state) | Component-local, not global |
-| Language preference | AsyncStorage | Persistent, loaded at boot |
-| UI state (modals, animations) | React state / Zustand | Component-level |
-
-### State Shape
+The existing registry pattern carries over unchanged. Only the component implementations change from RN to web.
 
 ```typescript
-interface UserProgress {
-  userId: string                 // Generated UUID, stored locally
-  xpTotal: number
-  xpHistory: XPTransaction[]     // { amount, source, timestamp }
-  streakCount: number
-  lastActivityDate: string       // ISO date string YYYY-MM-DD
-  completedLessons: string[]     // Lesson IDs
-  unlockedLessons: string[]      // Computed from completedLessons + prerequisites
-  language: "en" | "he"
+// web/src/features/exercise/registry.ts
+import type { Exercise } from '@shared/content/schema'
+import type { EvaluationResult } from '@shared/exercise/types'
+import { MCQCard } from './components/MCQCard'
+import { FreeTextCard } from './components/FreeTextCard'
+import { PickBetterCard } from './components/PickBetterCard'
+import { FillBlankCard } from './components/FillBlankCard'
+import { SpotProblemCard } from './components/SpotProblemCard'
+import { SimulatedChatCard } from './components/SimulatedChatCard'
+
+export type ExerciseComponentProps = {
+  exercise: Exercise
+  onComplete: (result: EvaluationResult) => void
+}
+
+export const EXERCISE_REGISTRY: Partial<
+  Record<Exercise['type'], React.ComponentType<ExerciseComponentProps>>
+> = {
+  mcq: MCQCard,
+  'free-text': FreeTextCard,
+  'pick-better': PickBetterCard,
+  'fill-blank': FillBlankCard,
+  'spot-problem': SpotProblemCard,
+  'simulated-chat': SimulatedChatCard,
 }
 ```
 
-### State Management Library
+**Extension contract:** Adding a new exercise type = (1) add evaluator to `shared/exercise/evaluators/`, (2) add component to `web/src/features/exercise/components/`, (3) register in `registry.ts`. Zero other files change.
 
-**Use Zustand** (not Redux). Reasons:
-- Zero boilerplate for a medium-complexity app
-- Works identically in React Native and web (PWA)
-- Persist middleware handles IndexedDB/AsyncStorage sync
-- Simpler mental model for a team building fast
+### Pattern 2: Zustand Store with localStorage Persistence
 
-Redux Toolkit is valid if team already knows it, but adds ceremony without benefit at this scale.
-
----
-
-## Bilingual Architecture (EN + HE)
-
-### i18n Library
-
-**Use i18next + react-i18next.** Standard, well-tested, supports React Native and web equally.
-
-### File Structure
-
-```
-i18n/
-  en/
-    common.json      # Shared UI strings (buttons, labels)
-    lessons.json     # Lesson titles/descriptions (if not in content JSON)
-    gamification.json# XP messages, level names, streak text
-  he/
-    common.json
-    lessons.json
-    gamification.json
-  index.ts           # i18next initialization
-```
-
-**Note:** Lesson body content (long-form) lives in the lesson JSON files as `LocalizedString` objects, not in i18n files. i18n files handle UI chrome only.
-
-### RTL Strategy
+Simplified from the existing store: no MMKV branching, no Platform.OS checks, no Expo dependencies.
 
 ```typescript
-// At app boot and on language change:
-import { I18nManager } from 'react-native' // or @expo/metro-runtime equivalent
-import * as Updates from 'expo-updates'
+// web/src/store/useProgressStore.ts
+import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import { UserProgress, XPTransaction, getLevel } from '@shared/store/types'
+import { calcStreakUpdate, shouldGrantFreeze } from '@shared/gamification/engine'
 
-const setLanguage = async (lang: 'en' | 'he') => {
-  await i18n.changeLanguage(lang)
-  const shouldBeRTL = lang === 'he'
-  if (I18nManager.isRTL !== shouldBeRTL) {
-    I18nManager.forceRTL(shouldBeRTL)
-    await Updates.reloadAsync() // Required: RTL needs app reload
-  }
-  await AsyncStorage.setItem('language', lang)
+const todayISO = (): string => new Date().toLocaleDateString('en-CA')
+
+type ProgressStore = UserProgress & {
+  _hasHydrated: boolean
+  setHasHydrated: (v: boolean) => void
+}
+
+export const useProgressStore = create<ProgressStore>()(
+  persist(
+    (set, get) => ({
+      _hasHydrated: false,
+      setHasHydrated: (v: boolean) => set({ _hasHydrated: v }),
+
+      // Same initial state as existing (minus Platform.OS check)
+      userId: crypto.randomUUID(),
+      xpTotal: 0,
+      xpHistory: [] as XPTransaction[],
+      streakCount: 0,
+      lastActivityDate: '',
+      completedLessons: [] as string[],
+      unlockedLessons: ['lesson-01-what-is-prompting'] as string[],
+      language: 'en' as const,
+      dailyGoal: null,  // Always null on web -- onboarding sets it
+      streakFreezes: 0,
+      peakStreak: 0,
+      pendingLevelUp: null,
+      streakFreezeUsedEver: false,
+
+      // Actions: identical to existing store
+      addXP: (amount, source) => { /* same implementation */ },
+      completeLesson: (lessonId) => { /* same */ },
+      unlockLesson: (lessonId) => { /* same */ },
+      setLanguage: (lang) => set({ language: lang }),
+      setDailyGoal: (goal) => set({ dailyGoal: goal }),
+      updateStreak: () => { /* same calcStreakUpdate logic */ },
+      clearPendingLevelUp: () => set({ pendingLevelUp: null }),
+      consumeStreakFreeze: () => { /* same */ },
+      grantStreakFreeze: () => { /* same */ },
+    }),
+    {
+      name: 'user-progress',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => {
+        const { _hasHydrated, setHasHydrated, ...persisted } = state
+        return persisted
+      },
+      onRehydrateStorage: () => (state) => {
+        if (state && state.peakStreak === undefined) {
+          state.peakStreak = state.streakCount
+        }
+        useProgressStore.getState().setHasHydrated(true)
+      },
+    }
+  )
+)
+
+export const useHasHydrated = () => useProgressStore(s => s._hasHydrated)
+```
+
+### Pattern 3: RTL via CSS Logical Properties + dir Attribute
+
+Replace React Native's `I18nManager.forceRTL()` with the web-native approach.
+
+**i18n initialization:**
+```typescript
+// web/src/i18n/index.ts
+import i18next from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import enCommon from '@shared/i18n/en/common.json'
+import heCommon from '@shared/i18n/he/common.json'
+
+const detectedLang = navigator.language?.startsWith('he') ? 'he' : 'en'
+
+i18next.use(initReactI18next).init({
+  resources: { en: { common: enCommon }, he: { common: heCommon } },
+  lng: detectedLang,
+  fallbackLng: 'en',
+  ns: ['common'],
+  defaultNS: 'common',
+  interpolation: { escapeValue: false },
+})
+
+export function setLanguage(lang: 'en' | 'he'): void {
+  i18next.changeLanguage(lang)
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr'
+  document.documentElement.lang = lang
+}
+
+// Set initial direction on load
+document.documentElement.dir = detectedLang === 'he' ? 'rtl' : 'ltr'
+document.documentElement.lang = detectedLang
+
+export default i18next
+```
+
+**CSS convention -- mandatory for all components:**
+```css
+/* ALWAYS use logical properties -- NEVER physical (left/right) */
+.card {
+  padding-inline-start: 1rem;     /* replaces paddingStart in RN */
+  padding-inline-end: 1rem;       /* replaces paddingEnd in RN */
+  margin-block-start: 0.5rem;
+  text-align: start;              /* NOT text-align: left */
 }
 ```
 
-**RTL Rules for all UI components:**
-- Use `marginStart/marginEnd` never `marginLeft/marginRight`
-- Use `paddingStart/paddingEnd` never `paddingLeft/paddingRight`
-- Text alignment: `textAlign: 'auto'` or direction-aware (not hardcoded `left`)
-- Icons with directionality (arrows, chevrons) must be manually mirrored
-- Test every screen in both directions — simulator RTL has known edge cases, test on device
+**Tailwind v4 RTL:** Tailwind v4 supports logical properties natively. Use `ps-4` (padding-inline-start) and `pe-4` (padding-inline-end) instead of `pl-4`/`pr-4`. Use `ms-4`/`me-4` instead of `ml-4`/`mr-4`.
 
-### Content Direction
+### Pattern 4: Content Loading via Vite import.meta.glob
 
-Lesson body text inherits language direction from i18n context. Hebrew content in `LocalizedString.he` fields will render RTL automatically when the Hebrew locale is active.
-
----
-
-## Offline-First Architecture
-
-### Strategy: Cache-First for Content, Sync-on-Online for Progress
-
-```
-Content (lessons JSON): Bundle with app → always available offline
-User Progress:          Write locally first → sync to cloud when online (v2 cloud sync)
-UI Assets:              Service worker caches static assets on install
-```
-
-### PWA Implementation (v1)
-
-Using Workbox (via `vite-plugin-pwa` or CRA's built-in):
-
-```
-Cache Strategy by Resource Type:
-  App shell (HTML/JS/CSS) → CacheFirst (versioned, update on deploy)
-  Lesson JSON content     → CacheFirst (bundled, no network needed)
-  Images / icons          → StaleWhileRevalidate
-  User progress           → NetworkFirst with IndexedDB fallback
-```
-
-### Data Persistence
-
-- **IndexedDB** (PWA) via `idb` or Dexie.js — structured storage for progress
-- **AsyncStorage** (React Native) — key-value, fine for this data size
-- Both wrapped behind a `PersistenceAdapter` interface so the store layer is platform-agnostic
+Replace Metro's static `require()` imports with Vite's glob import.
 
 ```typescript
-interface PersistenceAdapter {
-  get(key: string): Promise<unknown>
-  set(key: string, value: unknown): Promise<void>
-  clear(): Promise<void>
+// shared/content/loader.ts (web-compatible version)
+import type { Lesson } from './schema'
+
+// Vite resolves at build time -- all 20 JSONs become part of the bundle
+const lessonModules = import.meta.glob<{ default: Lesson }>(
+  './lessons/*.json',
+  { eager: true }
+)
+
+const lessons: Record<string, Lesson> = {}
+for (const [path, mod] of Object.entries(lessonModules)) {
+  const id = path.replace('./lessons/', '').replace('.json', '')
+  lessons[id] = mod.default
+}
+
+export function loadLesson(id: string): Lesson {
+  const lesson = lessons[id]
+  if (!lesson) throw new Error(`Lesson not found: ${id}`)
+  return lesson
+}
+
+export function getAllLessonIds(): string[] {
+  return Object.keys(lessons)
 }
 ```
 
----
+**Note:** `import.meta.glob` is Vite-specific. If both PromptPlay and web need to consume `shared/`, the loader should be split: `shared/content/loader.ts` defines the interface, `web/src/content/webLoader.ts` implements it with `import.meta.glob`, and PromptPlay keeps its existing static imports.
 
-## Exercise Engine
+### Pattern 5: React Router Route Structure
 
-### Type Registry Pattern
-
-Register exercise renderers by type key. The Exercise Runner looks up the renderer, passes props — no switch statements scattered through the codebase.
+Map existing Expo Router file-based routes to React Router declarative routes:
 
 ```typescript
-// Exercise type registry
-const EXERCISE_REGISTRY: Record<ExerciseType, ExerciseComponent> = {
-  'mcq':            MCQExercise,
-  'free-text':      FreeTextExercise,
-  'prompt-builder': PromptBuilderExercise,
-  'drag-drop':      DragDropExercise,
-}
+// web/src/App.tsx
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
+import { Layout } from './ui/Layout'
+import { Home } from './routes/Home'
+import { SkillTree } from './routes/SkillTree'
+import { Lesson } from './routes/Lesson'
+import { Profile } from './routes/Profile'
+import { Onboarding } from './routes/Onboarding'
+import { useProgressStore } from './store/useProgressStore'
 
-// Exercise Runner
-const ExerciseRunner = ({ exercise, onComplete }) => {
-  const Component = EXERCISE_REGISTRY[exercise.type]
-  return <Component exercise={exercise} onSubmit={onComplete} />
+export function App() {
+  const dailyGoal = useProgressStore(s => s.dailyGoal)
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Redirect to onboarding if dailyGoal not set */}
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route element={<Layout />}>
+          <Route index element={dailyGoal ? <Home /> : <Navigate to="/onboarding" />} />
+          <Route path="skill-tree" element={<SkillTree />} />
+          <Route path="lesson/:lessonId" element={<Lesson />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 ```
 
-Adding a new exercise type = create component + register it. Zero changes to the runner.
+**Route mapping from Expo Router:**
 
-### Evaluator Pattern
+| Expo Router Path | React Router Path | Component | Notes |
+|-----------------|------------------|-----------|-------|
+| `app/(tabs)/index.tsx` | `/` | Home | Dashboard with streak, XP, continue button |
+| `app/(tabs)/skill-tree.tsx` | `/skill-tree` | SkillTree | Full curriculum map |
+| `app/(tabs)/profile.tsx` | `/profile` | Profile | Stats, badges, language toggle |
+| `app/(lesson)/[lessonId].tsx` | `/lesson/:lessonId` | Lesson | Dynamic route, full-screen (no tab bar) |
+| `app/(onboarding)/welcome.tsx` | `/onboarding` | Onboarding | Goal selection, first-time flow |
 
-Each exercise type has a corresponding evaluator function. Evaluators are pure functions (testable in isolation).
+### Pattern 6: Mobile-First Responsive Layout
+
+The app targets mobile browsers primarily (PWA installed on phone). Layout should be mobile-first with a max-width container for desktop.
 
 ```typescript
-type Evaluator<T extends Exercise> = (
-  exercise: T,
-  answer: unknown
-) => EvaluationResult
+// web/src/ui/Layout.tsx
+import { Outlet, NavLink } from 'react-router'
 
-interface EvaluationResult {
-  score: number        // 0-100
-  passed: boolean
-  feedback: LocalizedString
-  breakdown?: Record<string, number>  // Per-criterion scores for rubric display
-}
+export function Layout() {
+  return (
+    <div className="min-h-dvh flex flex-col bg-white mx-auto max-w-lg">
+      {/* Main content area */}
+      <main className="flex-1 overflow-y-auto">
+        <Outlet />
+      </main>
 
-// Free-text evaluator: keyword matching against rubric
-const evaluateFreeText: Evaluator<FreeTextExercise> = (exercise, answer) => {
-  const text = (answer as string).toLowerCase()
-  let score = 0
-  const breakdown: Record<string, number> = {}
-
-  for (const criterion of exercise.rubric.criteria) {
-    const hit = criterion.keywords.some(kw => text.includes(kw))
-    const criterionScore = hit ? criterion.weight * 100 : 0
-    breakdown[criterion.key] = criterionScore
-    score += criterionScore
-  }
-
-  return {
-    score,
-    passed: score >= exercise.rubric.passingScore,
-    feedback: score >= exercise.rubric.passingScore
-      ? exercise.positiveFeeback
-      : exercise.improvementFeedback,
-    breakdown,
-  }
+      {/* Bottom tab bar (mobile pattern) */}
+      <nav className="flex border-t border-gray-200 bg-white">
+        <NavLink to="/" className={navLinkClass}>Home</NavLink>
+        <NavLink to="/skill-tree" className={navLinkClass}>Learn</NavLink>
+        <NavLink to="/profile" className={navLinkClass}>Profile</NavLink>
+      </nav>
+    </div>
+  )
 }
 ```
-
-**Note on free-text scoring:** Keyword matching is intentionally simple for v1. It handles the "simulated AI" requirement without NLP overhead. The rubric keywords are hand-tuned per exercise.
 
 ---
 
 ## Anti-Patterns to Avoid
 
-### Anti-Pattern 1: Storing Derived State
-**What:** Storing `currentLevel` in the database when it can be computed from `xpTotal`.
-**Why bad:** State desync bugs, extra writes, harder to change level formulas.
-**Instead:** Derive level from XP on every read with a pure `getLevel(xp: number)` function.
+### Anti-Pattern 1: Importing from PromptPlay/ directly
+**What:** Importing shared logic directly from `PromptPlay/src/` in the web app.
+**Why bad:** Creates tight coupling; RN-specific imports leak in; path aliases diverge; changes in one app break the other.
+**Instead:** Extract shared code into `shared/` package. Both apps import from there via TypeScript path aliases (`@shared/`).
 
-### Anti-Pattern 2: Hardcoding RTL in Components
-**What:** Adding `if (language === 'he') { style.marginLeft = 0; style.marginRight = 8 }`
-**Why bad:** Brittle, misses cases, doesn't scale to future languages.
-**Instead:** Use `marginStart/marginEnd` always. Let the RTL flag handle direction.
+### Anti-Pattern 2: Using physical CSS properties
+**What:** Writing `margin-left`, `padding-right`, `text-align: left`, `float: left`.
+**Why bad:** Breaks RTL layout. Requires manual overrides for Hebrew.
+**Instead:** Logical properties exclusively: `margin-inline-start`, `padding-inline-end`, `text-align: start`. In Tailwind: `ms-*`, `me-*`, `ps-*`, `pe-*`.
 
-### Anti-Pattern 3: Content in Code
-**What:** Writing lesson text as JSX/template literals in components.
-**Why bad:** Translators can't edit it, content changes require code deploys, no schema validation.
-**Instead:** All content in JSON files with `LocalizedString` shape. Validated by TypeScript types.
+### Anti-Pattern 3: Replicating StyleSheet.create
+**What:** Creating JS objects for styles to mirror the RN pattern.
+**Why bad:** Unnecessary abstraction on the web. RN's StyleSheet exists because the native bridge needs serializable style objects. Web has native CSS.
+**Instead:** Tailwind utility classes for rapid development. CSS custom properties for design tokens shared across components.
 
-### Anti-Pattern 4: Monolithic Progress Update
-**What:** One giant function that updates XP, checks streak, checks level, unlocks lessons, saves to DB.
-**Why bad:** Untestable, hard to extend, mutation soup.
-**Instead:** Compose: `calculateXP()` → `updateStreak()` → `checkLevelUp()` → `computeUnlocks()` → single `save()`.
+### Anti-Pattern 4: Platform.OS checks in web-only code
+**What:** Using `if (Platform.OS === 'web')` guards in the web codebase.
+**Why bad:** This is a web-only app. There is no other platform. Dead code.
+**Instead:** Use browser APIs directly. The `shared/` package must be platform-agnostic (no browser APIs, no RN APIs).
 
-### Anti-Pattern 5: RTL as an Afterthought
-**What:** Building all UI in LTR, then adding RTL conditionals later.
-**Why bad:** Requires touching every component, layout bugs are subtle and everywhere.
-**Instead:** Use directional properties from day one. Test RTL on every new screen as it's built.
+### Anti-Pattern 5: Over-abstracting persistence
+**What:** Building a `PersistenceAdapter` interface with multiple implementations for the web app.
+**Why bad:** Web only uses `localStorage`. The adapter pattern existed in PromptPlay because of MMKV (native) vs localStorage (web) branching. On web-only, it adds indirection for zero benefit.
+**Instead:** Use Zustand's built-in `createJSONStorage(() => localStorage)` directly.
 
----
-
-## Build Order Implications
-
-1. **Persistence layer first** — everything else depends on being able to save/load progress
-2. **Content schema + first lesson** — defines the data contract all other layers use
-3. **Lesson Engine + Content Renderer** — core loop before gamification
-4. **Exercise Runner + 1-2 exercise types** — validate the type registry pattern early
-5. **Evaluator for free-text** — the most complex type; smoke-test scoring logic
-6. **Gamification Engine** — add XP/streaks once core lesson flow works
-7. **Skill Tree View** — needs progress data and lesson metadata to render meaningfully
-8. **i18n + RTL** — wire in early but validate on each screen as it ships
-9. **PWA/offline hardening** — add service worker config last, after content is stable
+### Anti-Pattern 6: Storing exercise state in global store
+**What:** Putting the currently selected answer, submission state, or feedback into Zustand.
+**Why bad:** Exercise state is ephemeral -- it resets on each exercise. Global store causes unnecessary re-renders and state leaks.
+**Instead:** Use local React `useState` within each exercise card component (as the existing codebase correctly does).
 
 ---
 
 ## Scalability Considerations
 
-| Concern | V1 (1 path, ~25 lessons) | V2 (multiple paths) | V3 (10K+ users) |
-|---------|--------------------------|---------------------|-----------------|
-| Content storage | Bundled JSON | Bundled JSON, path-split | CDN-hosted, lazy-loaded per path |
-| Progress storage | IndexedDB (local) | Local + cloud sync (Supabase) | Cloud-primary with offline cache |
-| Lesson unlock logic | Client-side | Client-side | Server-side validation (anti-cheat) |
-| Exercise evaluation | Client-side keyword match | Client-side | Client-side (no change needed) |
-| Streaks | Client-side clock | Server-verified timestamps | Server-authoritative |
+| Concern | Current (20 lessons) | At 100 lessons | At 500 lessons |
+|---------|---------------------|----------------|----------------|
+| Bundle size | All lessons bundled (~200KB JSON) | ~1MB, still acceptable | Must lazy-load per chapter |
+| Content loading | `import.meta.glob` eager | Switch to lazy glob (`eager: false`) | Code-split by chapter |
+| State (localStorage) | ~5KB | ~20KB (more completedLessons) | ~50KB, still well within 5MB limit |
+| Skill tree rendering | Render all nodes | Paginate by chapter | Virtual scroll required |
+| i18n bundles | 2 locales, ~10KB each | Same | Same (UI strings stable) |
+
+**Recommendation:** Start with eager imports. The current 20 lessons produce ~200KB of bundled JSON. Lazy loading is a premature optimization until content exceeds 50 lessons.
+
+---
+
+## Integration Points (Shared <-> Web)
+
+| Integration Point | Shared Module | Web Consumer | Direction |
+|-------------------|--------------|-------------|-----------|
+| Exercise evaluation | `shared/exercise/evaluators/*` | Exercise card components | Card calls evaluator, gets EvaluationResult |
+| Content loading | `shared/content/` (schema, curriculum) | Lesson route, skill tree, home | Web loader wraps shared data |
+| XP calculation | `shared/gamification/engine.calcXP` | Store `addXP` action | Store calls calcXP for total |
+| Streak logic | `shared/gamification/engine.calcStreakUpdate` | Store `updateStreak` action | Store calls engine, updates state |
+| Badge derivation | `shared/gamification/badges.deriveBadges` | Profile page, badge list | Computed from store state on render |
+| Skill tree state | `shared/content/curriculum` + `skillTreeUtils` | Skill tree feature | Combines curriculum data + progress |
+| Level derivation | `shared/store/types.getLevel` | XP display, level-up check | Pure function, called anywhere |
+| Type safety | `shared/content/schema` types | All exercise + lesson components | Types imported throughout |
+
+---
+
+## Build Order (Dependency-Aware)
+
+Each phase builds on the one before it. Dependencies flow downward.
+
+### Phase 1: Foundation
+- Vite + React + TypeScript project scaffold
+- Extract `shared/` from PromptPlay (copy portable files)
+- TypeScript path aliases (`@shared/`, `@/`)
+- Tailwind v4 setup with logical property conventions
+- React Router shell with placeholder routes
+- **Output:** App renders, routes work, shared/ compiles
+
+### Phase 2: State + i18n
+- Zustand store (web version) with localStorage persistence
+- Hydration gate in main.tsx
+- i18n init with react-i18next (browser-native)
+- RTL support via `document.dir` + CSS logical properties
+- Language toggle
+- **Output:** State persists across refreshes, RTL flips correctly
+
+### Phase 3: Content Pipeline
+- Vite-compatible content loader (`import.meta.glob`)
+- Verify all 20 lesson JSONs load correctly
+- Lesson content rendering (title, body, tip)
+- **Output:** Can navigate to `/lesson/:id` and see content
+
+### Phase 4: Exercise System
+- Exercise registry (web version)
+- ExerciseRunner component
+- All 6 exercise card components (web versions)
+- Wire evaluators from shared/
+- **Output:** Can complete exercises and see feedback
+
+### Phase 5: Lesson Flow
+- useLessonSession hook (copy from shared)
+- LessonScreen: intro -> exercises -> completion flow
+- Store integration: addXP, completeLesson, updateStreak on completion
+- Lesson unlock logic (prerequisites)
+- **Output:** Full lesson loop works end-to-end
+
+### Phase 6: Gamification UI
+- XP/streak display on home page
+- Badges list (derived from store state)
+- Lesson celebration screen
+- Level-up modal
+- CSS animations for celebrations
+- **Output:** Gamification visuals match existing app
+
+### Phase 7: Skill Tree + Navigation
+- Skill tree visualization with node states
+- Chapter headers
+- Bottom tab navigation
+- Onboarding flow (goal selection)
+- Route guards (redirect to onboarding if needed)
+- **Output:** Full navigation working
+
+### Phase 8: PWA + Polish
+- Service worker (vite-plugin-pwa)
+- Web app manifest
+- Install banner
+- Offline support
+- Responsive design audit
+- Performance optimization
+- **Output:** Installable PWA
+
+**Rationale:** This order ensures each phase has its dependencies satisfied. Content pipeline before exercises (exercises render content). Exercises before lesson flow (lesson flow sequences exercises). Lesson flow before gamification UI (gamification fires on lesson completion). State and i18n early because everything depends on them.
 
 ---
 
 ## Sources
 
-- [React Native Architecture Overview](https://reactnative.dev/architecture/overview) — HIGH confidence
-- [React Native I18nManager](https://reactnative.dev/docs/i18nmanager) — HIGH confidence
-- [Implementing RTL in React Native Expo](https://geekyants.com/blog/implementing-rtl-right-to-left-in-react-native-expo---a-step-by-step-guide) — MEDIUM confidence
-- [Offline-First React Apps 2025](https://emirbalic.com/building-offline-first-react-apps-in-2025-pwa-rsc-service-workers/) — MEDIUM confidence
-- [Software Architecture for Gamification](https://hackernoon.com/a-software-architecture-for-the-gamification-of-se-environments) — MEDIUM confidence
-- [Building React Native App for 20+ Languages](https://dev.to/pocket_linguist/building-a-react-native-app-for-20-languages-lessons-in-i18n-378d) — MEDIUM confidence
+- **Codebase analysis:** Direct reading of all 50+ source files in PromptPlay/src/
+- [Vite vs Next.js 2025 comparison](https://strapi.io/blog/vite-vs-nextjs-2025-developer-framework-comparison) -- MEDIUM confidence
+- [vite-plugin-pwa (zero-config PWA)](https://github.com/vite-pwa/vite-plugin-pwa) -- HIGH confidence
+- [CSS logical properties for RTL](https://madrus4u.vercel.app/blog/rtl-implementation-guide) -- MEDIUM confidence
+- [React Router v7 with Vite](https://blog.logrocket.com/file-based-routing-react-router-v7/) -- MEDIUM confidence
+- [Zustand persist middleware docs](https://zustand.docs.pmnd.rs/reference/middlewares/persist) -- HIGH confidence
+- [Tailwind CSS v4](https://tailwindcss.com/) -- HIGH confidence
+- [Zustand + Vite + PWA boilerplate](https://github.com/ascii-16/react-query-zustand-ts-vite-boilerplate) -- LOW confidence (reference only)

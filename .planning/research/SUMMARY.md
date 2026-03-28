@@ -1,331 +1,189 @@
 # Project Research Summary
 
-**Project:** PromptPlay — Duolingo-style AI Literacy Learning App
-**Domain:** Gamified mobile learning app (AI prompting skills)
+**Project:** PromptPlay Web (v2.0 Web-First PWA Rebuild)
+**Domain:** Gamified educational web app (RN-to-web migration)
 **Researched:** 2026-03-28
-**Confidence:** MEDIUM-HIGH
-
----
+**Confidence:** HIGH
 
 ## Executive Summary
 
-PromptPlay is a gamified skill-building app in an uncontested niche: there is no dominant "Duolingo for AI." The product teaches universal prompting principles through bite-sized lessons, simulated AI interactions, and Duolingo-style progression mechanics — with zero per-user API cost, since all AI responses are pre-scripted. Research confirms the technical approach is sound and the market timing is strong, but the product's success will ultimately hinge on content quality and first-session experience, not technical sophistication.
+PromptPlay is a Duolingo-style gamified app teaching AI prompting skills, currently built as an Expo/React Native app. The v2.0 milestone is a full web-first rebuild as a Vite + React 19 SPA deployed as a PWA. This is NOT a framework migration -- it is a clean rebuild of UI components while extracting and reusing a large body of portable pure-TypeScript logic (evaluators, gamification engine, content schema, store types). Research across all four dimensions converges on a clear approach: monorepo with a `shared/` package for portable TS, a new `web/` Vite project for the SPA, and the existing `PromptPlay/` directory left untouched.
 
-The recommended stack is Expo (React Native) + TypeScript, Zustand + MMKV for state, Supabase for auth and cloud progress sync, and bundled JSON for all lesson content. This combination delivers a PWA today and a native app store presence later without rewriting anything. The gamification system should follow the Duolingo model selectively: adopt streaks, XP, and lesson celebrations (proven high-ROI), but explicitly reject hearts/energy gates, guilt-based notifications, and leaderboards for v1. The curriculum spans 26 lessons across 5 chapters, fully specified and ready to author.
+The recommended stack is Vite 6 + React 19 + TypeScript 5 + Tailwind v4 + Zustand 5 + React Router 7 + vite-plugin-pwa. This stack was chosen because PromptPlay is a client-only app with bundled JSON content -- there is no SEO requirement, no server-side data fetching, and no API routes. Next.js and Remix add complexity with zero benefit. The existing codebase already uses Zustand and i18next, so state management and internationalization port with minimal friction. Tailwind v4's native logical property utilities (`ps-*`, `pe-*`, `ms-*`, `me-*`) make RTL support cleaner than the RN approach.
 
-The two non-negotiable architectural decisions that must be made from line one: RTL support (Hebrew is a first-class layout requirement, not a translation layer) and the scoring rubric schema (all lesson content depends on it). Bolting either on later is a documented rewrite-class mistake. Build order should therefore start with i18n/RTL infrastructure and the content schema, before any UI or lesson content is written.
-
----
+The primary risks are: (1) RN-specific imports leaking into the shared package and breaking web builds, (2) physical CSS properties breaking Hebrew RTL layout (this is the single most pervasive risk -- every component must use logical properties from day one), and (3) content loader incompatibility between Metro and Vite bundlers requiring platform-specific implementations. All three are preventable with lint rules, conventions, and architecture decisions established in Phase 1.
 
 ## Key Findings
 
 ### Recommended Stack
 
-Expo (React Native) with TypeScript is the clear winner for a solo or small team building a mobile-first PWA that may go native later. It avoids the Dart learning tax of Flutter while providing native navigation feel, haptics, and an app store path that a pure PWA cannot offer. State is handled by Zustand (2KB, no boilerplate) persisted via MMKV (synchronous, 10-30x faster than AsyncStorage, eliminates hydration flicker). Supabase provides auth and progress cloud-sync on predictable $25/mo pricing with SQL that fits the relational lesson/progress data model better than Firebase's Firestore.
-
-All lesson content ships as bundled JSON — zero CMS cost, fully offline, version-controlled alongside code. A CMS (Sanity) is a v2+ concern only when non-developer content editors exist. Animations use Reanimated (UI-thread, no JS bridge jank) for progress bars and micro-interactions, and Lottie for milestone celebrations (level-up, streak flame). i18next handles translations; React Native I18nManager handles RTL layout flipping.
+The stack prioritizes zero-overhead tooling for a client-only SPA. No SSR framework, no runtime CSS-in-JS, no heavy animation libraries. Every technology is either already used in the existing codebase (Zustand, i18next, TypeScript) or is the standard web replacement for an RN-specific tool (Tailwind replaces StyleSheet, CSS animations replace Reanimated, localStorage replaces MMKV).
 
 **Core technologies:**
-- **Expo SDK 52+ / React Native 0.76+**: App shell and UI rendering — fastest path to PWA + native from one codebase
-- **TypeScript 5.x**: Language — prevents category of bugs in XP/streak/scoring logic
-- **Zustand 4.x**: Global state (XP, streaks, progress) — zero boilerplate, hook-based, fine-grained updates
-- **react-native-mmkv 2.x**: Persistent local storage — synchronous reads, no hydration flicker
-- **Supabase**: Auth + cloud progress sync — SQL, predictable pricing, Row Level Security for user data
-- **Bundled JSON**: All lesson content — offline, zero cost, version-controlled
-- **react-native-reanimated**: Core animations — UI-thread, no jank
-- **lottie-react-native**: Celebration animations — designer-friendly, free assets on LottieFiles
-- **i18next + expo-localization**: i18n — battle-tested, works identically on RN and web
-- **expo-router**: Navigation — file-based, Expo-native
-- **expo-haptics**: Tap feedback — one-line integration
+- **Vite 6**: Build tool + dev server -- fastest DX for React SPAs, native ESM, `import.meta.glob` for content loading, vite-plugin-pwa for service worker
+- **React 19 + TypeScript 5**: Team already knows React from RN; type safety across shared code is critical
+- **Tailwind v4**: Utility-first CSS with built-in logical property utilities for RTL; zero-runtime; CSS-first config
+- **Zustand 5**: Same store shape, same actions, same persist middleware as existing app; `createJSONStorage(() => localStorage)` replaces MMKV
+- **React Router 7**: Client-side routing with dynamic params (`/lesson/:id`), layout routes, navigation guards
+- **vite-plugin-pwa**: Zero-config PWA with Workbox service worker for offline caching
+- **Vitest + Testing Library + Playwright**: Vite-native testing stack; Playwright already configured in the project
 
 ### Expected Features
 
-**Must have (table stakes):**
-- Daily streak tracking with flame icon — core Duolingo expectation; 7-day streak = 3.6x retention
-- XP points per lesson and exercise — immediate reward signal
-- Streak freeze — reduces churn 21% for at-risk users (Duolingo data)
-- Progress bar within lessons ("Exercise 2 of 4") — users need location feedback
-- Lesson completion celebration screen — dopamine signal; XP awarded display
-- Skill tree / learning path map — users must see the full journey, with locked/unlocked states
-- Level / tier system — sense of mastery beyond individual lessons
-- Onboarding: goal setting → instant first lesson → deferred account creation
-- Daily XP goal (5/10/15 min pace) — users 40% more likely to return when self-paced
-- Lesson review / retry with best score tracking
-- RTL layout for Hebrew — architecture-level requirement, not a skin
+**Must have (table stakes -- feature parity with existing app):**
+- All 6 exercise types (MCQ, free-text, pick-better, fill-blank, spot-problem, simulated-chat)
+- Lesson flow (intro -> exercises -> completion) with XP/streak/badge tracking
+- EN/HE bilingual support with full RTL layout
+- Persistent progress via localStorage
+- PWA installability with offline content access
+- Skill tree / curriculum map navigation
+- Onboarding (goal selection)
 
-**Should have (differentiators):**
-- Simulated AI response pane — user writes prompt, sees pre-scripted "AI" response; the core novel interaction
-- Prompt quality scoring with rubric breakdown (Clarity, Specificity, Context, Intent) — with visible per-criterion feedback
-- "What went wrong" feedback explaining WHY a prompt scored low
-- Prompt comparison exercise (pick the stronger of two prompts)
-- Prompt fix / debug exercise (improve a bad prompt)
-- Before/after prompt examples showing output quality difference
-- Tool-agnostic framing ("works in ChatGPT, Claude, Gemini") on every lesson
-- 3-5 meaningful achievement badges (skill milestones, not participation trophies)
-- Friendly mascot tone — non-judgmental, low-intimidation
+**Should have (web-specific improvements over RN version):**
+- Instant RTL switching without app reload (web platform advantage)
+- URL-based lesson sharing (`/lesson/lesson-05-intent`)
+- Keyboard accessibility for all exercises (Tab, Enter, Space)
+- Responsive desktop layout (mobile-first with max-width container)
 
-**Defer (v2+):**
-- Leaderboards / leagues — high implementation cost, needs social infra
-- Gems / virtual currency — only useful when a store exists
-- Multiple learning paths — validate one path first
-- Lessons 21-26 (Chapter 5) — build after validating Chapters 1-4 completion rates
-- Native app store submission — PWA first, native after validation
-- CMS (Sanity) — only when non-developer editors need to author content
-
-**Explicit anti-features (never build):**
-- Hearts / energy gates — #1 Duolingo complaint, documented rage-quit trigger
-- Guilt-based push notifications — "Your streak is about to die!" is a dark pattern
-- Real AI API calls — hard constraint: zero marginal cost required
-- AI-generated course content — Duolingo lost user trust doing this; hand-craft every lesson
-
-### Exercise Mix for V1
-
-The lesson engine must support these exercise types (in recommended v1 priority order):
-1. Multiple choice — concept questions (low build cost, 40% of exercises)
-2. Pick the better prompt — two-panel compare (low build cost, high learning value)
-3. Rewrite the bad prompt — free text + rubric scoring (medium build cost)
-4. Simulated AI chat — write prompt, see pre-scripted response, get scored (medium; core differentiator)
-5. Fill-in-the-blank — complete a partial prompt (low build cost)
-6. Spot the problem — identify what's wrong with a prompt (low build cost)
-
-Defer: drag-and-drop prompt builder (medium-high build cost for marginal value in v1).
-
-**Scoring approach:** Start with Approach B (binary checklist: did you include a role? a goal? a format?) for Lessons 1-5 to reduce beginner anxiety. Graduate to Approach A (weighted keyword rubric with partial scores) from Lesson 6 onward.
+**Defer (cut from this milestone):**
+- Native app store deployment
+- Cloud sync with Supabase (local-first only)
+- Push notifications
+- Haptic feedback
+- New exercise types not already in the existing app
 
 ### Architecture Approach
 
-The architecture follows a Feature-Sliced + Layered Hybrid pattern: each domain (lesson engine, exercise runner, gamification, skill tree, i18n) owns its slice of logic, state, and UI components. Data flows in one direction — UI dispatches events to engines, engines update the Zustand store, the store persists via MMKV/AsyncStorage. The UI never writes to the store directly.
-
-The Exercise Runner uses a type registry pattern: a record mapping exercise type keys to React components. Adding a new exercise type requires creating one component and registering it — zero changes to the runner itself. Evaluators are pure functions (testable in isolation), one per exercise type.
-
-Content architecture: all lesson JSON is bundled with the app. Lesson body text lives in `LocalizedString` objects (`{ en: "...", he: "..." }`) inside each lesson JSON file. UI chrome (button labels, error messages, XP text) lives in separate i18n files. This separation keeps content structure clean for RTL.
+The architecture is a monorepo with three directories: `PromptPlay/` (existing, untouched), `shared/` (extracted pure TS with zero framework dependencies), and `web/` (new Vite React SPA). The `shared/` package contains ~600 lines of directly portable code across content schema, gamification engine, exercise evaluators, and store types. The web app follows a feature-sliced structure with clear boundaries: exercise system, lesson flow, gamification UI, skill tree, PWA, and onboarding -- each as a self-contained feature directory under `web/src/features/`.
 
 **Major components:**
-1. **Lesson Engine** — loads lesson by ID, sequences content + exercises, tracks completion, fires events to Gamification Engine
-2. **Exercise Runner + Evaluator** — renders correct exercise component by type; evaluator scores against rubric, returns `{ score, passed, feedback, breakdown }`
-3. **Gamification Engine** — receives lesson/exercise completion events; calculates XP (base + streak multiplier + perfection bonus), updates streak, checks level-up, computes lesson unlocks
-4. **User Progress Store (Zustand)** — single source of truth for XP, streak, completed lessons, language preference; persisted via MMKV
-5. **Skill Tree View** — renders the lesson map using progress store; locked/unlocked/complete states; handles lesson navigation
-6. **i18n Manager** — provides `t('key')` translations, detects/sets locale, applies RTL flag via `I18nManager.forceRTL()` + `Updates.reloadAsync()`
-7. **Persistence Layer** — abstract `PersistenceAdapter` interface wrapping MMKV (RN) / IndexedDB (PWA); Supabase sync on top for cloud backup
-8. **Content Renderer** — displays lesson markdown, RTL-aware text direction, handles mixed Hebrew/English inline content
-
-**Key state rule:** `currentLevel` is derived from `xpTotal` on every read — never stored. Avoids desync bugs and makes level formula changes trivial.
+1. **shared/** -- Pure TS logic: content schema/curriculum, 6 evaluator functions, gamification engine (XP, streaks, badges), store types
+2. **web/src/store/** -- Zustand with localStorage persistence, hydration gate pattern
+3. **web/src/features/exercise/** -- Exercise registry pattern (type key -> component + evaluator), 6 web exercise card components
+4. **web/src/features/lesson/** -- Lesson flow orchestration using portable `useLessonSession` hook
+5. **web/src/features/gamification/** -- XP display, streak UI, badge list, celebration animations (CSS)
+6. **web/src/features/skill-tree/** -- Visual curriculum map with node states derived from store + shared curriculum data
+7. **web/src/ui/** -- Design system primitives (Button, Card, Modal, ProgressBar, Layout shell)
 
 ### Critical Pitfalls
 
-1. **RTL bolted on after launch** — Use `marginStart/marginEnd` and `paddingStart/paddingEnd` exclusively from day one. Never use directional properties (`left`, `right`, `margin-left`). Test every screen in Hebrew locale on a physical device as it is built, not as a final QA pass. RTL on React Native has known iOS/Android rendering differences that only appear on device.
-
-2. **First-session value failure ("Tutorial Island")** — User must be in an interactive exercise within 60 seconds of opening the app. The first exercise must produce a visible "aha" moment (write a prompt → see before/after AI response → feel capable). Defer account creation until after Lesson 1 completes. Duolingo's biggest single retention lift came from removing the signup wall before the first lesson.
-
-3. **Opaque or unfair scoring** — Score on structural dimensions (did the prompt include a role? a format? a goal?), not word matching. Always show the per-criterion breakdown immediately. Always display the model prompt after submission — not as "the right answer" but as "one strong version." Give partial credit generously. Never mark a response wrong without a specific, actionable explanation.
-
-4. **Over-gamification (feels manipulative)** — No guilt-based notifications. No loss-framing. Separate intrinsic rewards (skill tree progress, new lesson unlocked) from extrinsic (XP, badges) — intrinsic must be the primary driver. Badges earned for skill milestones only. Reserve celebration animations for lesson completion, level-up, and streak milestones — not every exercise tap.
-
-5. **Shallow content that teaches nothing** — Every lesson must have one explicitly stated transferable insight: "Next time you use ChatGPT, do X." Exercises must require active production (writing a prompt), not passive recognition only. Resist cutting content to hit a length target. The curriculum research has specified the Day 0 user state: "has tried AI once or twice, got unhelpful responses, does not know why" — write to that person.
-
-**Additional risks to flag:**
-- **iOS PWA limitations** — 50MB cache limit, 7-day cache eviction, no automatic install prompt. Design for these constraints from the start.
-- **AI curriculum drift** — Tool UIs change every 3-6 months. Enforce the tool-agnostic rule strictly: teach principles ("give the AI a role"), never tool mechanics ("click Settings > Customize ChatGPT"). Schedule quarterly content audits post-launch.
-- **Hebrew translation quality** — Build and maintain an AI-term glossary (translate vs. transliterate decisions) before authoring any Hebrew content. Machine translation is insufficient for instructional text.
-
----
+1. **RN imports leaking into shared/** -- A single transitive `react-native` import breaks the web build. Prevent with lint rules banning RN imports in `shared/`, separate tsconfig without RN types, and CI grep checks.
+2. **Physical CSS properties breaking RTL** -- This is the most pervasive risk. Every `margin-left`, `padding-right`, `text-align: left` must be a logical property instead. Prevent with strict Tailwind conventions (`ps-*` never `pl-*`), ESLint rules, and testing every component in RTL mode.
+3. **Content loader incompatibility** -- Metro and Vite handle JSON imports differently. Do NOT put the loader in `shared/`. Each platform implements its own loader (`import.meta.glob` for web, static imports for RN) conforming to the same interface.
+4. **Zustand hydration race condition** -- Components render before localStorage rehydration completes, causing a flash of empty state. Prevent with the existing `_hasHydrated` / hydration gate pattern (already proven in the RN codebase).
+5. **Path alias resolution in monorepo** -- `@shared/` must be defined in THREE places (tsconfig, vite.config, vitest.config) or builds/tests fail silently. Validate alias resolution in CI before writing extensive code.
 
 ## Implications for Roadmap
 
-### Phase 1: Foundation — Infrastructure + Schema
+Based on research, suggested phase structure:
 
-**Rationale:** RTL and the content schema are the two decisions that, if deferred, require rewriting everything that comes after. Both must be established before any UI or content work begins. STACK.md and ARCHITECTURE.md both independently flag this ordering.
+### Phase 1: Foundation + Shared Extraction
+**Rationale:** Everything depends on the monorepo structure and shared code being correctly extracted. This must be first.
+**Delivers:** Vite project scaffold, `shared/` package with all portable TS (~15 files), TypeScript path aliases, Tailwind v4 with logical property conventions, React Router shell with placeholder routes.
+**Addresses:** Project scaffold, shared code extraction (FEATURES: offline content access foundation)
+**Avoids:** Pitfall 1 (RN imports in shared) -- establish lint rules and CI checks here; Pitfall 9 (path alias resolution) -- validate in all three configs
 
-**Delivers:**
-- Expo project scaffolded with TypeScript, expo-router, i18next, I18nManager, RTL conventions enforced
-- Zustand store + MMKV persistence wired up with the `UserProgress` state shape defined
-- Lesson JSON schema (TypeScript interfaces: `Lesson`, `Exercise`, `MCQExercise`, `FreeTextExercise`, `PromptRubric`, `LocalizedString`) finalized
-- Supabase project created: schema for `users`, `lesson_progress`, `exercise_attempts` with RLS policies
-- One "hello world" lesson JSON proving the schema works end-to-end
+### Phase 2: State Management + i18n + RTL
+**Rationale:** Every UI component depends on the store and i18n. These are horizontal concerns that must exist before any feature work.
+**Delivers:** Zustand store (web version) with localStorage persistence, hydration gate in main.tsx, i18next initialization with browser-native language detection, RTL support via `document.dir` + CSS logical properties, language toggle.
+**Addresses:** FEATURES: EN/HE language toggle, RTL layout support, persistent progress
+**Avoids:** Pitfall 4 (hydration race -- gate app render on `_hasHydrated`), Pitfall 2 (RTL conventions established early as project standard)
 
-**Avoids:** RTL bolted on late (Pitfall 1), state management complexity from undefined data model (Pitfall 9)
+### Phase 3: Content Pipeline
+**Rationale:** Exercises render content. Content loading must work before exercise components can be built.
+**Delivers:** Vite-compatible content loader using `import.meta.glob`, verification that all 20 lesson JSONs load correctly, lesson content rendering (title, body, tip) with RTL-aware text.
+**Addresses:** FEATURES: Lesson content display, offline content access
+**Avoids:** Pitfall 3 (loader incompatibility) -- web-specific loader, shared interface only
 
-**Research flag:** RTL testing automation in Expo is unresolved — needs investigation during this phase.
+### Phase 4: Exercise System
+**Rationale:** The 6 exercise types are the core interaction. They depend on content (Phase 3) and i18n (Phase 2).
+**Delivers:** Exercise registry (web version), ExerciseRunner component, all 6 exercise card components rebuilt as web components with keyboard accessibility, evaluators wired from shared.
+**Addresses:** FEATURES: All 6 exercise types, exercise evaluation with feedback, keyboard accessibility
+**Avoids:** Pitfall 2/5 (RTL in every component), Pitfall 6 (accessibility from day one -- `role`, `tabIndex`, `aria-live`)
 
----
+### Phase 5: Lesson Flow + Gamification
+**Rationale:** Lesson flow sequences exercises (Phase 4) and fires gamification events on completion. This completes the core loop.
+**Delivers:** Full lesson loop (intro -> exercises -> completion), XP/streak/badge store integration, lesson unlock logic (prerequisites), celebration UI with CSS animations, level-up modal, XP/streak display on home page, badge list.
+**Addresses:** FEATURES: Lesson flow, XP system, streak tracking, badge system, lesson completion celebration, level-up modal
+**Avoids:** Pitfall 7 (LocalizedString reactivity) -- use `useLocale` hook consistently
 
-### Phase 2: Lesson Engine + Core Exercise Types
+### Phase 6: Skill Tree + Navigation + Onboarding
+**Rationale:** With the core loop working, users need navigation to discover and access lessons. Skill tree requires both content data and progress state.
+**Delivers:** Skill tree visualization with node states (locked/unlocked/completed), chapter headers, bottom tab navigation, onboarding flow (goal selection), route guards (redirect to onboarding if needed).
+**Addresses:** FEATURES: Skill tree, onboarding, URL-based lesson sharing (comes free with React Router)
 
-**Rationale:** The lesson loop is the product's core mechanic. Everything else (gamification, skill tree, onboarding) is a wrapper around it. Validate the engine with 2-3 exercise types before building the full curriculum or gamification layer.
+### Phase 7: Accessibility + Responsive Design
+**Rationale:** With all features built, audit and polish for keyboard navigation consistency and desktop layout.
+**Delivers:** Full keyboard navigation audit, ARIA attribute review, responsive desktop layout with max-width container, focus management after exercise submission.
+**Addresses:** FEATURES: Keyboard accessibility (audit), responsive desktop layout
 
-**Delivers:**
-- Lesson Engine: loads lesson JSON, sequences intro → exercises → completion
-- Exercise Runner with type registry pattern
-- Exercise types: multiple choice (MCQ), pick-the-better-prompt, rewrite-the-bad-prompt (free-text + Approach B checklist scoring)
-- Exercise Evaluator: pure function per type, returns `{ score, passed, feedback, breakdown }`
-- Content Renderer: displays lesson markdown, RTL-aware
-- 5 fully authored lessons (Chapter 1: Lessons 1-4, plus Lesson 5) — enough to test the engine end-to-end
-
-**Avoids:** Tutorial Island (Pitfall 3) — Lesson 1 designed as a 60-second "aha" demo
-
-**Research flag:** Free-text rubric keyword design needs hands-on tuning against real user inputs — plan a small usability test after this phase.
-
----
-
-### Phase 3: Gamification Engine
-
-**Rationale:** Gamification depends on a working lesson engine (needs completion events to fire XP). Building it after Phase 2 means the engine is already tested. XP + streaks + streak freeze are the three highest-ROI gamification mechanics and should ship together.
-
-**Delivers:**
-- Gamification Engine: XP calculation (base + streak multiplier + perfection bonus), streak tracking, level-up detection, lesson unlock computation
-- XP awarded screen with Lottie celebration animation
-- Streak display (flame + day count), streak freeze mechanic
-- Level / tier system with level-up full-screen celebration
-- Daily XP goal setting (5/10/15 min pace)
-- 3-5 achievement badges (skill milestones only)
-- expo-haptics wired to correct-answer feedback
-
-**Avoids:** Over-gamification dark patterns (Pitfall 2) — no guilt notifications, no loss-framing; reward milestones not participation
-
-**Standard patterns:** XP and streak logic are well-documented; no phase research needed. Animation implementation with Reanimated + Lottie is well-documented.
-
----
-
-### Phase 4: Skill Tree + Onboarding
-
-**Rationale:** Skill tree requires progress data (Phase 3) and lesson metadata (Phase 2) to render meaningfully. Onboarding requires the first lesson to be polished (Phase 2). Both are retention-critical but depend on prior phases.
-
-**Delivers:**
-- Skill Tree View: renders all 26 lesson nodes with locked/unlocked/complete states; chapter groupings
-- Lesson navigation from skill tree to lesson engine
-- Onboarding flow: goal setting (30 sec) → instant Lesson 1 (no signup wall) → account creation prompt after Lesson 1 completion → opt-in streak reminder
-- Supabase auth: email/password + Google OAuth
-
-**Avoids:** Tutorial Island (Pitfall 3) — deferred signup is the proven retention pattern
-
-**Research flag:** Supabase RLS policy design for lesson progress needs careful review during this phase.
-
----
-
-### Phase 5: Full Curriculum — Chapters 1-4 (Lessons 1-20)
-
-**Rationale:** With a proven engine and gamification layer, author the full v1 curriculum. Chapters 1-4 (20 lessons) are the validation target. Chapter 5 (Lessons 21-26) is deferred until Chapter 1-4 completion rates are measured.
-
-**Delivers:**
-- All 20 lessons (Chapters 1-4) fully authored in EN + HE
-- Simulated AI chat exercise type implemented (the core differentiator)
-- Scoring graduated to Approach A (weighted rubric) from Lesson 6
-- Hebrew content reviewed by a native speaker; AI-term glossary maintained
-- All lessons tested in RTL on a physical Hebrew-locale device
-
-**Avoids:** Shallow content (Pitfall 4), wrong difficulty curve (Pitfall 5), translation quality issues (Pitfall 11), AI curriculum drift (Pitfall 10)
-
-**Research flag:** Hebrew content authoring workflow (native review process) needs to be defined before this phase begins.
-
----
-
-### Phase 6: PWA Polish + Notifications
-
-**Rationale:** Engagement hooks (push notifications, streak reminders) and PWA hardening are a retention layer, not a core loop component. They belong after the core loop is validated.
-
-**Delivers:**
-- Push notifications: opt-in streak reminder at user's preferred time, midnight warning before streak expires (friendly tone, no guilt-framing)
-- PWA service worker (Workbox): CacheFirst for app shell + lesson JSON, StaleWhileRevalidate for images
-- Explicit iOS install-to-home-screen prompt in UI
-- Storage optimized to stay under iOS 50MB PWA cache limit
-- Low-end Android animation performance audit (test on 2GB RAM device)
-
-**Avoids:** iOS PWA limitations discovered late (Pitfall 8), animation performance on low-end Android (Pitfall 14), reward fatigue from celebration overload (Pitfall 13)
-
-**Research flag:** iOS push notification registration flow (iOS 16.4+) differs from Android — needs device testing during this phase.
-
----
+### Phase 8: PWA + Performance + Polish
+**Rationale:** PWA is a polish phase -- the app must work fully online before adding offline/install capabilities.
+**Delivers:** Service worker via vite-plugin-pwa with Workbox, web app manifest, install banner component, offline support verification, performance optimization (lighthouse audit), iOS-specific meta tags.
+**Addresses:** FEATURES: PWA installability, offline content access (full verification)
+**Avoids:** Pitfall 8 (stale cache -- use `registerType: 'autoUpdate'`), Pitfall 10 (missing meta tags), Pitfall 12 (animation performance on low-end devices)
 
 ### Phase Ordering Rationale
 
-- **Schema before content:** The lesson JSON schema defines the data contract for the entire content pipeline. Changing the schema after 20 lessons are authored is a painful rewrite.
-- **Engine before gamification:** Gamification emits events from lesson completion — the engine must exist first. Building them simultaneously leads to tight coupling and harder debugging.
-- **Gamification before skill tree:** The skill tree renders unlock states computed by the gamification engine. Reversed order means mocking data that already exists.
-- **Core loop before onboarding:** Onboarding sends users into Lesson 1. Lesson 1 must be polished before optimizing the path to it.
-- **Full curriculum after engine validation:** Writing 26 lessons before the exercise types are proven is wasted work if rubric design needs changing.
-- **PWA hardening last:** Offline and notification infrastructure does not affect core loop development and is easier to add after content is stable.
+- **Dependency chain:** shared extraction -> state/i18n -> content -> exercises -> lesson flow -> navigation -> polish. Each phase consumes what the previous phase built.
+- **Risk front-loading:** The three critical pitfalls (RN imports, RTL, content loader) are all addressed in Phases 1-3. By Phase 4, the foundation is proven.
+- **Core loop priority:** Phases 1-5 deliver a working lesson from start to finish. A user can complete a lesson, earn XP, and see their streak update. Everything after Phase 5 is navigation and polish.
+- **Portable code reuse:** ~600 lines of pure TS port directly. The exercise evaluators, gamification engine, and store types are the most valuable shared code and are consumed starting in Phase 4.
+- **Gamification with lesson flow:** Research shows gamification UI and lesson flow are tightly coupled (gamification fires on lesson completion). Combining them in Phase 5 avoids a half-working state.
 
 ### Research Flags
 
-Phases needing deeper research during planning:
-- **Phase 1:** RTL testing automation in Expo — how to catch RTL regressions in CI
-- **Phase 1:** MMKV + Expo Go conflict — decide: use AsyncStorage during dev and switch to MMKV for production builds, or use dev builds from day one
-- **Phase 4:** Supabase RLS policy design for lesson progress — row-level security for multi-table progress data needs careful schema design
-- **Phase 5:** Hebrew content authoring workflow — define native review process and AI-term glossary before writing any Hebrew lessons
-- **Phase 6:** iOS push notification registration — differs from Android, requires physical device testing
+Phases likely needing deeper research during planning:
+- **Phase 4 (Exercise System):** 6 distinct component rebuilds with different interaction patterns (radio selection, free text input, drag-and-drop for fill-blank, chat simulation). Each needs per-component accessibility planning. Recommend `/gsd:research-phase 4`.
+- **Phase 6 (Skill Tree):** Most complex UI component. The RN version uses specific layout calculations. Web implementation approach (CSS Grid? SVG? Canvas?) needs investigation. Recommend `/gsd:research-phase 6`.
 
 Phases with standard patterns (skip research-phase):
-- **Phase 2:** Lesson engine + exercise registry — well-documented React Native patterns
-- **Phase 3:** XP/streak/level logic — custom Zustand store logic, no library needed, straightforward implementation
-- **Phase 3:** Reanimated + Lottie animations — official Expo docs are thorough
-- **Phase 6:** Workbox PWA service worker — well-documented, standard cache strategies apply
-
----
-
-## Content Structure
-
-### Curriculum: 26 Lessons, 5 Chapters
-
-| Chapter | Lessons | Theme | Exercise Focus |
-|---------|---------|-------|----------------|
-| 1: What Is AI? | 1-4 | Foundation concepts, build comfort | Concept MC, output matching, spot-the-problem |
-| 2: Building Blocks | 5-9 | Clarity, Specificity, Context, Intent (one per lesson) | Rewrite bad prompt, fill-in-the-blank, simulated AI chat |
-| 3: Everyday Tasks | 10-14 | Apply principles to real scenarios | Simulated AI chat, prompt comparison |
-| 4: Leveling Up | 15-20 | Iteration, roles, constraints, few-shot, chain-of-thought | Multi-turn chat, prompt builder, concept MC |
-| 5: Real-World Mastery | 21-26 | Advanced scenarios + capstone | Free-text challenges (deferred to post-validation) |
-
-**Lesson format:** 30-sec intro text → 2-3 exercises → completion screen with XP award.
-
-**Exercise mix target:** 40% multiple choice, 30% rewrite/fix exercises, 30% simulated AI interaction. Avoid over-indexing on free-text in early lessons — harder to score, can frustrate beginners before they have the rubric internalized.
-
----
+- **Phase 1 (Foundation):** Vite + React scaffold is extremely well-documented. Shared extraction is mechanical file copying + import verification.
+- **Phase 2 (State + i18n):** Zustand persist and i18next have official docs with exact patterns needed. Existing store shape provides the blueprint.
+- **Phase 3 (Content Pipeline):** `import.meta.glob` is well-documented in Vite docs. Single function implementation.
+- **Phase 8 (PWA):** vite-plugin-pwa has zero-config defaults. Existing manifest.json and service worker patterns already exist in the codebase.
 
 ## Confidence Assessment
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | Official docs cross-checked, multiple 2025 sources, production usage confirmed for all core libraries |
-| Features | HIGH (gamification), MEDIUM (scoring) | Duolingo mechanics well-documented with retention data; simulated prompt scoring approach is novel, needs real-user validation |
-| Architecture | MEDIUM-HIGH | Component patterns are well-established; RTL edge cases and offline sync strategy have known unknowns |
-| Pitfalls | HIGH | Backed by peer-reviewed research (arXiv), Duolingo post-mortems, and documented PWA platform constraints |
-| Curriculum | MEDIUM | Lesson structure is well-reasoned but unvalidated; difficulty curve and scoring rubric need user testing |
+| Stack | HIGH | All technologies verified via official docs. Vite, Zustand, React Router, Tailwind v4 are mature. Several already in use. |
+| Features | HIGH | Feature list is a direct port of existing functionality verified by reading 50+ source files. No speculative features. |
+| Architecture | HIGH | Monorepo structure and portable code tiers verified by checking every import chain in the existing codebase. |
+| Pitfalls | HIGH | All pitfalls derived from actual patterns in the existing codebase or well-documented web platform behaviors. |
 
-**Overall confidence:** MEDIUM-HIGH
+**Overall confidence:** HIGH
 
 ### Gaps to Address
 
-- **Prompt scoring rubric accuracy:** Keyword/pattern matching will miss synonym variation. Plan a rubric tuning session after 10-20 real users attempt free-text exercises. Consider whether passing thresholds are too strict or too lenient.
-- **Hebrew content quality:** No Hebrew-native review process is defined. Must be established before Phase 5 begins — this is a first-class product quality concern, not a translation afterthought.
-- **MMKV + Expo Go dev workflow:** During Phase 1, decide whether to use Expo Go with AsyncStorage as a dev substitute (and switch to MMKV in production builds) or require development builds from day one. Either choice has tradeoffs; pick one and document it.
-- **iOS PWA install UX:** No "Add to Home Screen" automatic prompt on iOS. A custom in-app install nudge must be designed. No validated design pattern exists — needs UX iteration.
-- **Chapter 5 gating:** Decide whether to show Chapter 5 lessons as locked placeholders from day one or hide them until Chapter 4 completion rates are measured. Affects skill tree UI design in Phase 4.
-- **Lottie asset licensing:** LottieFiles free tier licenses need review before shipping. Some animations require attribution or have commercial restrictions.
-
----
+- **Skill tree visualization approach:** The RN skill tree uses specific layout primitives. The web implementation strategy (CSS Grid, SVG path connections, or pure CSS) needs to be decided during Phase 6 planning. Research-phase recommended.
+- **Framer Motion necessity:** CSS animations cover 90% of needs per research. The decision to include Framer Motion (~15KB) should be made during Phase 5 based on whether CSS keyframes are sufficient for level-up and lesson-complete celebrations.
+- **Supabase cloud sync timing:** Explicitly deferred from this milestone, but the Zustand store shape should remain compatible with future cloud sync. No architectural changes needed -- just avoid designs that would conflict.
+- **Testing strategy depth:** Vitest + Testing Library + Playwright are chosen, but the testing pyramid (unit vs integration vs E2E ratio) and specific coverage targets need definition during phase planning.
+- **Desktop layout breakpoints:** The app is mobile-first with a max-width container for desktop. Specific breakpoint values and layout adjustments need design-level decisions during Phase 7.
 
 ## Sources
 
 ### Primary (HIGH confidence)
-- [React Native Official Docs](https://reactnative.dev/architecture/overview) — Architecture, I18nManager, RTL
-- [Expo Official Docs](https://docs.expo.dev/develop/user-interface/animation/) — Animation, EAS Build, Haptics
-- [React Native Reanimated Official Docs](https://docs.swmansion.com/react-native-reanimated/) — Animation performance, worklets
-- [When Gamification Spoils Your Learning — arXiv](https://arxiv.org/pdf/2203.16175) — Peer-reviewed; over-gamification pitfall
+- **Direct codebase analysis** -- All 50+ source files in PromptPlay/src/ read and analyzed for portability
+- [Tailwind CSS v4 docs](https://tailwindcss.com/) -- Logical properties, CSS-first config
+- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) -- Service worker generation, manifest
+- [Zustand persist middleware](https://zustand.docs.pmnd.rs/reference/middlewares/persist) -- localStorage persistence pattern
+- [React Router v7](https://reactrouter.com/) -- Declarative routing, layout routes
+- [CSS logical properties MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) -- RTL support
+- [Vite import.meta.glob](https://vitejs.dev/guide/features.html#glob-import) -- Bulk JSON imports
 
 ### Secondary (MEDIUM confidence)
-- [How Duolingo Reignited User Growth — Lenny's Newsletter](https://www.lennysnewsletter.com/p/how-duolingo-reignited-user-growth) — Onboarding, streak retention data
-- [Duolingo Gamification Case Study — Trophy](https://trophy.so/blog/duolingo-gamification-case-study) — XP, streak, freeze mechanics and retention stats
-- [Supabase vs Firebase — Bytebase](https://www.bytebase.com/blog/supabase-vs-firebase/) — Backend stack decision
-- [Expo Offline-First with MMKV + Zustand — Medium](https://medium.com/@nithinpatelmlm/expo-react-native-easy-offline-first-setup-in-expo-using-mmkv-and-zustand-react-native-mmkv-and-68f662c6bc3f) — State persistence pattern
-- [PWA iOS Limitations 2026 — MagicBell](https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide) — iOS PWA pitfall
-- [Right to Left in React — LeanCode](https://leancode.co/blog/right-to-left-in-react) — RTL implementation patterns
+- [Vite vs Next.js 2025](https://strapi.io/blog/vite-vs-nextjs-2025-developer-framework-comparison) -- Framework comparison rationale
+- [RTL implementation in Tailwind + React](https://madrus4u.vercel.app/blog/rtl-implementation-guide) -- RTL patterns
+- [Tailwind CSS vs CSS Modules 2025](https://medium.com/@salmanmuhammed827/tailwind-css-vs-css-modules-in-2025-which-should-you-choose-7edfe9a75254) -- Styling approach
+- [PWA capabilities 2026](https://www.alphabold.com/top-frameworks-and-tools-to-build-progressive-web-apps/) -- PWA features
+- [React Router v7 with Vite](https://blog.logrocket.com/file-based-routing-react-router-v7/) -- File-based routing
+- [vite-plugin-pwa strategies](https://vite-pwa-org.netlify.app/) -- Service worker caching
 
-### Tertiary (MEDIUM-LOW confidence)
-- [Duolingo's Shallow Learning Trap — DEV Community](https://dev.to/yaptech/duolingos-shallow-learning-trap-gamified-streaks-harmful-habits-4134) — Content depth pitfall (opinion piece, corroborated by arXiv)
-- [Gamified Mobile Experiences with RN 2025 — Medium](https://medium.com/@TheblogStacker/building-gamified-mobile-experiences-with-react-native-in-2025-a1f5371685f4) — General patterns
-- [Learn Prompting — learnprompting.org](https://learnprompting.org/) — Curriculum topic reference
+### Tertiary (LOW confidence)
+- [Zustand + Vite + PWA boilerplate](https://github.com/ascii-16/react-query-zustand-ts-vite-boilerplate) -- Reference only, not validated
 
 ---
-
 *Research completed: 2026-03-28*
 *Ready for roadmap: yes*

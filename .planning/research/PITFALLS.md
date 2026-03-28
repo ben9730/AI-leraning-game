@@ -1,210 +1,171 @@
-# Domain Pitfalls — PromptPlay
+# Domain Pitfalls: Web-First PWA Rebuild
 
-**Domain:** Gamified mobile learning app (AI literacy / prompt skills)
+**Domain:** React Native to web-first PWA migration (gamified educational app)
 **Researched:** 2026-03-28
-**Project:** PromptPlay
 
 ---
 
 ## Critical Pitfalls
 
-Mistakes that cause rewrites, user abandonment, or fundamental product failure.
+Mistakes that cause rewrites, broken features, or significant rework.
 
----
+### Pitfall 1: Importing RN-specific code into shared/
 
-### Pitfall 1: RTL Bolted On After Launch
+**What goes wrong:** A file in `shared/` imports `react-native`, `expo-*`, or `Platform` -- either directly or transitively. The web build fails at compile time or (worse) at runtime.
 
-**What goes wrong:** The app is built LTR-first, and Hebrew is treated as a translation layer rather than a layout requirement. When RTL is added later, absolute-positioned elements render on the wrong side, margins and paddings apply incorrectly (padding-left does not become padding-right in RTL mode), and mixed Hebrew + English text (e.g., "כדי להשתמש ב-ChatGPT") produces broken cursor behaviour, mis-wrapped lines, and garbled punctuation placement.
+**Why it happens:** When extracting portable code, it is easy to miss transitive dependencies. For example, `badges.ts` imports `getLevel` from `store/types.ts` which imports `LEVEL_THRESHOLDS` from `constants.ts` -- that chain is clean. But if someone adds a utility import that pulls in a RN module, the entire chain breaks.
 
-**Why it happens:** RTL is low-visibility during development because the default browser/OS is LTR. Teams defer it as "just a translation," not realising it requires layout-level changes.
-
-**Consequences:** A full CSS audit and component refactor at a late stage. On React Native, platform differences between iOS (language-bundle-driven alignment) and Android (text-content-driven alignment) compound the problem — the same component behaves differently on each platform.
+**Consequences:** Build failures in the web app. If the import is dynamic/conditional, it may pass build but crash at runtime.
 
 **Prevention:**
-- Use CSS logical properties exclusively from day one: `padding-inline-start` not `padding-left`, `margin-inline-end` not `margin-right`, `inset-inline-start` not `left`.
-- Set the `dir` attribute at the document root, driven by the active locale.
-- For mixed-language inline content (English AI terms inside Hebrew sentences), use the `<bdi>` HTML element or React Native's `writingDirection` style to isolate directionality.
-- Test on a Hebrew locale device after every UI component is built, not as a final QA pass.
+- Lint rule: ban `react-native`, `expo-*`, `@react-navigation/*` imports in `shared/`
+- TypeScript config for `shared/` should NOT include `react-native` types
+- CI check: `grep -r "from 'react-native'" shared/` must return empty
+- Every file in `shared/` must compile with `tsc --noEmit` using a web-only tsconfig
 
-**Detection:** If a component uses any hardcoded `left`, `right`, `margin-left`, `padding-right` in CSS — it will break in RTL.
+**Detection:** Build errors mentioning missing modules. Runtime errors referencing `Platform`, `StyleSheet`, `View`.
 
----
+### Pitfall 2: Physical CSS properties breaking RTL
 
-### Pitfall 2: Over-Gamification (Feels Manipulative, Not Motivating)
+**What goes wrong:** Components use `margin-left`, `padding-right`, `text-align: left`, `left: 0`, `border-top-left-radius` instead of logical equivalents. Hebrew layout is broken -- text and elements don't flip.
 
-**What goes wrong:** The gamification system leans too heavily on loss-aversion mechanics: streak anxiety, punishment notifications ("Your streak is about to die!"), XP inflation that means nothing, and badges that appear for trivial actions. Users initially engage but report feeling manipulated. The game layer becomes the product instead of the learning. Research shows users in this state experience guilt, stress, and self-recrimination — and eventually churn with negative brand perception.
+**Why it happens:** Developer muscle memory. CSS tutorials default to physical properties. Copy-pasting from Stack Overflow or UI libraries brings physical properties in.
 
-**Why it happens:** Duolingo is the inspiration, and Duolingo uses aggressive loss-aversion (the animated flame, sad owl notifications, monetised streak freezes). Copying surface mechanics without understanding the psychological cost produces a dark-pattern app.
-
-**Consequences:** Users complete lessons to protect streaks, not to learn. A user who misses one day loses a 30-day streak and may never return. The "learning" outcome — the actual product value — is undermined.
+**Consequences:** Every Hebrew-speaking user sees a broken layout. Fixing after the fact means touching every component's styles.
 
 **Prevention:**
-- Streaks should be "gentle": show progress, do not punish absence. A missed day shows a grey dot, not a broken flame.
-- XP must have visible meaning: tie points to unlocking content, not arbitrary numbers.
-- Badges must be earned for skill milestones, not participation ("You opened the app 3 days in a row" is hollow).
-- Separate intrinsic rewards (skill tree progress, new lesson unlocked) from extrinsic rewards (XP, badges). Intrinsic must be the primary driver.
-- Do not send guilt-based push notifications. Informational reminders ("New lesson available") are acceptable; loss-framing ("You're about to lose your streak!") is not.
+- ESLint plugin: `eslint-plugin-no-physical-properties` or custom rule banning `left`, `right` in CSS/Tailwind
+- Tailwind convention: use `ps-*`, `pe-*`, `ms-*`, `me-*` ONLY (never `pl-*`, `pr-*`, `ml-*`, `mr-*`)
+- Code review checklist item: "Are all directional properties logical?"
+- Test every component in RTL mode during development (set `document.dir = 'rtl'` in dev tools)
 
-**Detection:** Read every notification message aloud. If it creates anxiety rather than curiosity, rewrite it.
+**Detection:** Visual inspection in Hebrew mode. Automated screenshot comparison (LTR vs RTL) in CI.
 
----
+### Pitfall 3: Content loader incompatibility between Metro and Vite
 
-### Pitfall 3: First-Session Value Failure ("Tutorial Island")
+**What goes wrong:** The existing `content/loader.ts` uses static `import lesson01 from './lessons/...'` with `as unknown as Lesson` casts -- a pattern required by Metro bundler's static analysis. Copying this file to the web project and expecting it to work with Vite's `import.meta.glob`.
 
-**What goes wrong:** The onboarding flow explains how the app works without actually demonstrating value. Users complete a 5-screen intro, then start the first real lesson, and by minute 3 they have learned nothing actionable. Industry data: 77% of mobile users abandon an app within 3 days. The critical window is the first 2 minutes of the first session.
+**Why it happens:** Metro and Vite handle JSON imports differently. Metro needs explicit static imports for tree-shaking. Vite supports `import.meta.glob` for bulk imports.
 
-**Why it happens:** Builders know what the app teaches and assume users will invest in the setup cost. Users will not — they need to feel the "aha" moment before committing to any habit formation.
-
-**Consequences:** High day-1 install-to-return rates (a leading vanity metric) but catastrophic day-3 and day-7 retention. The product cannot grow organically because no one tells a friend about something they abandoned.
+**Consequences:** Either the web build fails (if using Metro patterns), or the content doesn't load (if `import.meta.glob` paths are wrong).
 
 **Prevention:**
-- Skip the feature tour. Put the user in an interactive exercise within 60 seconds of opening the app.
-- The first exercise must produce a visible, satisfying outcome: they write a prompt, they see a "before vs after" simulated AI response, they feel capable.
-- Defer account creation until after the first lesson is complete (Duolingo's own best practice — they learned this from A/B testing).
-- The first lesson's subject must be the highest-value, most immediately applicable skill: not "what is a prompt" but "how to get a useful answer right now."
-- Design the first 2 minutes as a product demo, not an orientation.
+- Do NOT copy `loader.ts` to `shared/`. The loader is platform-specific.
+- `shared/` contains the lesson JSON files and schema types only
+- Each consumer implements its own loader: PromptPlay uses static imports (Metro), web uses `import.meta.glob` (Vite)
+- Both loaders conform to the same interface: `loadLesson(id: string): Lesson` + `getAllLessonIds(): string[]`
 
-**Detection:** Time how long it takes a cold user to feel "I just learned something useful." If it exceeds 2 minutes, restructure.
+**Detection:** Empty lesson screens. "Lesson not found" errors. Build warnings about unresolved imports.
 
----
+### Pitfall 4: Zustand store hydration race condition
 
-### Pitfall 4: Shallow Content That Teaches Nothing
+**What goes wrong:** Components render before Zustand's persist middleware has rehydrated state from localStorage. User sees default state (0 XP, no completed lessons) briefly, then state snaps to the real values.
 
-**What goes wrong:** Lessons are so optimised for brevity and dopamine feedback that they contain no durable knowledge. The user taps through a lesson in 45 seconds, earns XP, and cannot apply anything they "learned" in the real world. This is the documented "Duolingo trap" — engagement metrics look strong while actual skill acquisition is near zero.
+**Why it happens:** `createJSONStorage(() => localStorage)` rehydration is synchronous on web (unlike async MMKV on native), but the React render cycle may start before the store is ready if the hydration callback fires late.
 
-**Why it happens:** Bite-sized is misread as "shorter = better." The actual goal is density: maximum learning per minute, not maximum interactions per minute.
-
-**Consequences:** Users who try the real AI tool after completing lessons find they still cannot prompt effectively. Word-of-mouth turns negative. The core value proposition fails.
+**Consequences:** Flash of empty state. Skill tree shows all lessons locked for a frame. XP counter shows 0 then jumps.
 
 **Prevention:**
-- Every lesson must have one transferable insight stated explicitly: "Next time you use ChatGPT, do X."
-- Exercises must require active production (writing a prompt), not passive recognition (selecting the "better prompt" from a multiple-choice list).
-- After each exercise, show a concrete improvement: display the user's prompt alongside the model prompt, annotated with why it works.
-- Resist cutting content to hit a target lesson length. If a concept requires 3 minutes to explain correctly, take 3 minutes.
+- Use the existing `_hasHydrated` / `useHasHydrated` pattern from the current store
+- Gate the entire app render on `hasHydrated`:
+  ```tsx
+  function App() {
+    const hasHydrated = useHasHydrated()
+    if (!hasHydrated) return null // or loading spinner
+    return <Router />
+  }
+  ```
+- The existing codebase already does this correctly (line 46-49 of `_layout.tsx`). Port this pattern.
 
-**Phase relevance:** Content design phase. Every lesson must go through a "Does the user leave knowing one new thing they can apply today?" check.
-
----
-
-### Pitfall 5: Wrong Difficulty Curve
-
-**What goes wrong:** The app is too easy for 10 lessons, then spikes sharply when introducing advanced concepts. Or the reverse: the first lesson assumes too much knowledge and alienates beginners. Either pattern causes early dropout.
-
-**Why it happens:** Content is written by people who already know the subject well (curse of knowledge). What feels "beginner" to the writer is intermediate to the audience.
-
-**Consequences:** Beginners quit in lesson 1. Experienced users quit at lesson 11 when the repetition becomes frustrating. Neither group completes the path.
-
-**Prevention:**
-- Define the user's Day 0 state explicitly: "Knows AI tools exist, has tried them once or twice, got unhelpful responses, does not know why."
-- Each lesson builds exactly one concept on top of the previous one — no gaps, no repetition.
-- The first 3 lessons should feel almost too easy, to build confidence before introducing friction.
-- Test content with actual beginners, not colleagues. Watch for the moment they slow down.
-
----
-
-### Pitfall 6: Scoring Feels Unfair or Opaque
-
-**What goes wrong:** The app scores user-written prompts without live AI, using rubric-based keyword matching or heuristics. Users who write a genuinely good prompt receive a low score because they used synonyms for the expected keywords. Or the scoring feels arbitrary — the system says their prompt "lacks context" without showing what context means. Users disengage with the scoring system entirely.
-
-**Why it happens:** Fair free-text scoring without LLM evaluation is genuinely hard. Rubric design underestimates the vocabulary variability of real users. Transparency is treated as secondary to UX cleanliness.
-
-**Consequences:** Loss of trust in the product. Users stop trying on exercises because the outcome feels random. The core feedback loop — the most important mechanic in a skill-building app — is broken.
-
-**Prevention:**
-- Score on structural dimensions that do not depend on specific words: Does the prompt include a role? A goal? Constraints? Format instruction? These are binary, detectable patterns.
-- Show the scoring breakdown immediately: "You included a goal (good). You didn't specify a format (try adding 'in bullet points'). You didn't give context (try adding who you are)."
-- Display the "model prompt" after every exercise — not as "the right answer" but as "one strong version."
-- Give partial credit generously. A prompt that hits 3 of 4 dimensions should feel like a win, not a near-miss.
-- Never mark a prompt "wrong" without a specific, actionable explanation of why.
-
-**Phase relevance:** Scoring engine design is a first-class technical concern, not a content afterthought. Design the rubric schema before writing lesson content.
+**Detection:** Flash of default state on page load. XP/streak values resetting momentarily.
 
 ---
 
 ## Moderate Pitfalls
 
----
+### Pitfall 5: Tailwind class conflicts with RTL
 
-### Pitfall 7: XP Inflation and Meaningless Rewards
-
-**What goes wrong:** XP values are assigned arbitrarily and inflate over time. Early lessons give 10 XP; later ones give 50 XP. Users feel cheated on early progress. Or all lessons give equal XP and there is no sense of accomplishment on harder tasks.
-
-**Prevention:** XP values must reflect exercise difficulty. Map the XP scale before building any lesson. Cap total XP per session to prevent grinding. Ensure XP has a visible purpose (levels, unlockable content) from day one, or remove it entirely until it does.
-
----
-
-### Pitfall 8: PWA iOS Limitations Discovered Late
-
-**What goes wrong:** The team builds a PWA assuming feature parity with Android. On iOS, the service worker cache is cleared after 7 days of inactivity, the 50MB cache limit breaks offline lesson storage, storage is not shared between Safari and the installed PWA, and there is no automatic "Add to Home Screen" prompt — users must discover this manually.
+**What goes wrong:** Using Tailwind's standard `pl-4` (padding-left) instead of `ps-4` (padding-inline-start). Or using `text-left` instead of `text-start`. Layout looks correct in English but broken in Hebrew.
 
 **Prevention:**
-- Treat iOS PWA as a constrained environment from day one. Design offline storage to stay under 50MB. Show an explicit, well-designed "install" prompt in the UI rather than relying on the browser's native prompt.
-- Use push notifications (available iOS 16.4+) but test registration flow on iOS specifically — it differs from Android.
-- If offline lesson access is a core feature, budget a fallback: graceful degradation to a "you need to be online" screen rather than a broken blank page.
+- Project convention document: "Always use logical Tailwind classes"
+- Mapping reference:
+  - `pl-*` -> `ps-*`, `pr-*` -> `pe-*`
+  - `ml-*` -> `ms-*`, `mr-*` -> `me-*`
+  - `text-left` -> `text-start`, `text-right` -> `text-end`
+  - `left-*` -> `start-*`, `right-*` -> `end-*`
+  - `rounded-tl-*` -> `rounded-ss-*`, `rounded-tr-*` -> `rounded-se-*`
+- Configure Tailwind to warn on physical utility usage if possible
 
----
+### Pitfall 6: Missing accessibility in exercise components
 
-### Pitfall 9: State Management Complexity in Progress Tracking
-
-**What goes wrong:** Progress tracking seems simple ("which lessons are complete") until it isn't. Partial completion states (started but not finished), offline completions that need to sync, streak calculation across timezones, lesson attempts vs. lesson passes — all of these require careful state modelling. Teams that treat progress as a simple boolean array discover mid-build that they need to refactor the entire data model.
-
-**Prevention:**
-- Design the progress data schema before writing any UI code. Define: what does "lesson complete" mean exactly? What data is needed for streak calculation? What is the offline-first sync strategy?
-- Use a single source of truth (one state management layer) — do not split progress between local component state, AsyncStorage, and a remote database without a clear sync protocol.
-- For offline-first apps, use a sync queue pattern: changes are written locally and queued for server sync, never sent directly.
-
----
-
-### Pitfall 10: AI Content Becoming Outdated
-
-**What goes wrong:** The curriculum teaches specific UI patterns or feature names from ChatGPT, Claude, or Gemini circa 2025. These tools update every 3-6 months. Within a year, screenshots are wrong, feature names have changed, and some lessons reference discontinued workflows.
-
-**Why it happens:** The natural instinct is to anchor lessons to familiar, concrete tools. But "click the Custom Instructions button in ChatGPT" becomes wrong when OpenAI redesigns their UI.
-
-**Prevention:** This is the reason PromptPlay's tool-agnostic curriculum decision is correct and must be enforced strictly. Lessons must teach principles ("give the AI a role") not tool mechanics ("click Settings > Customize ChatGPT"). The only acceptable tool references are illustrative examples, not instructional steps. Build a content audit cadence into the post-launch maintenance plan — schedule a quarterly review of any tool-specific references.
-
----
-
-### Pitfall 11: Translation Quality Breaks the Learning Experience
-
-**What goes wrong:** English lessons are machine-translated to Hebrew. Prompt engineering jargon ("few-shot prompting", "system prompt", "context window") either gets translated literally (meaningless) or left in English (inconsistent). Hebrew instructional text reads unnaturally, making exercises confusing.
+**What goes wrong:** Exercise cards are mouse/touch-only. Keyboard users cannot Tab through options, press Enter to submit, or use Space to select. Screen readers cannot announce exercise prompts or feedback.
 
 **Prevention:**
-- Maintain a glossary of AI terms with explicit decisions: translate, transliterate, or leave in English. Example: "system prompt" might become "הנחיית מערכת" (translated) or "סיסטם פרומפט" (transliterated) — pick one and use it everywhere.
-- Hebrew content must be written natively or reviewed by a fluent speaker, not auto-translated.
-- Mixed-language text (Hebrew sentence with embedded English term) is acceptable and expected — but must use `dir="auto"` or explicit `<bdi>` wrapping to prevent layout issues.
+- Every interactive element must be a `<button>` or have `role="button"` + `tabIndex={0}` + `onKeyDown`
+- MCQ options: use `role="radiogroup"` + `role="radio"` (existing code uses `accessibilityRole="radio"` -- port this)
+- Feedback text: use `aria-live="polite"` for score/feedback announcements
+- Focus management: after submission, move focus to feedback area
+
+### Pitfall 7: LocalizedString content not using i18n for language selection
+
+**What goes wrong:** Exercise components hardcode `exercise.prompt.en` or use a local `lang` variable instead of reading the current language from the i18n context. Language changes don't propagate to lesson content.
+
+**Why it happens:** The existing RN code uses `const lang = i18n.language as 'en' | 'he'` locally in each component (see MCQCard line 16). This works but is fragile -- if the language changes mid-lesson, components won't re-render.
+
+**Prevention:**
+- Create a `useLocale` hook that returns the current language from i18next
+- Create a `localize(str: LocalizedString): string` utility that reads the current language
+- Use this consistently across all components that render `LocalizedString` content
+
+### Pitfall 8: Service worker caching stale lesson content
+
+**What goes wrong:** After a content update (new lessons or fixed exercises), the service worker serves cached old content. Users see outdated lessons until the cache expires or they manually clear it.
+
+**Prevention:**
+- Use `vite-plugin-pwa` with `registerType: 'autoUpdate'` -- automatically activates new service workers
+- Lesson JSON is bundled into the JS (via `import.meta.glob`), so it updates with the app bundle -- no separate cache concern
+- Add a visible "Update available" banner when a new service worker is detected (port the existing `useServiceWorker` hook)
+
+### Pitfall 9: Path alias resolution in monorepo
+
+**What goes wrong:** `@shared/` path alias works in VS Code but fails in Vite build, or works in build but fails in Vitest.
+
+**Prevention:**
+- Define aliases in THREE places: `tsconfig.json` (for VS Code), `vite.config.ts` (for build), and `vitest.config.ts` (for tests)
+- Or use `vitest` config that extends `vite.config.ts` (Vitest inherits Vite aliases)
+- Test the alias resolution in CI before writing extensive code
 
 ---
 
 ## Minor Pitfalls
 
----
+### Pitfall 10: Missing web-specific meta tags
 
-### Pitfall 12: Skill Tree Scope Creep
-
-**What goes wrong:** The skill tree is designed to show "the whole learning journey," which leads to pre-building 50+ lesson slots before validating that users engage with the first 10. The team spends months on content that never gets used.
-
-**Prevention:** Ship with exactly the first path fully built (20-30 lessons). Show placeholder locked nodes to indicate future content, but do not build them. Validate that users reach lesson 20 before designing lesson 21.
-
----
-
-### Pitfall 13: Reward Fatigue from Celebration Overload
-
-**What goes wrong:** Every exercise completion triggers a confetti animation, a sound, and an XP popup. By lesson 5, the user taps dismiss before the animation finishes. By lesson 10, the reward feels like an obstacle.
-
-**Prevention:** Reserve celebrations for meaningful milestones: lesson completion, level-up, streak milestone, skill tree node unlock. Individual exercise completion should have a subtle, fast feedback animation (checkmark, brief colour change) not a full celebration sequence.
-
----
-
-### Pitfall 14: Animation Performance on Low-End Android
-
-**What goes wrong:** Confetti animations, card flip transitions, and progress bar fills run at 60fps on the developer's iPhone 16 and at 15fps on a $120 Android device. The gamification layer that was meant to delight users creates frustration on the hardware most beginners are likely to own.
+**What goes wrong:** The PWA doesn't show the correct theme color, status bar style, or app name on iOS Safari's "Add to Home Screen."
 
 **Prevention:**
-- Animate only non-layout properties: `transform`, `opacity`. Never animate `width`, `height`, `top`, `left` — these trigger layout recalculation on every frame.
-- Use Reanimated (React Native) with worklets to run animations on the UI thread, not the JS thread.
-- Cap simultaneous animated elements: do not render more than 10-15 animated elements at once.
-- Test on a low-end Android device (2GB RAM, budget chipset) as part of the standard dev loop, not just before release.
+- Ensure `index.html` includes: `<meta name="theme-color">`, `<meta name="apple-mobile-web-app-capable">`, `<link rel="apple-touch-icon">`, `<meta name="viewport">` with `viewport-fit=cover`
+- Test "Add to Home Screen" on a real iOS device
+
+### Pitfall 11: localStorage quota exceeded
+
+**What goes wrong:** XP history (`xpHistory: XPTransaction[]`) grows unbounded over time. After hundreds of lessons, the serialized store exceeds localStorage's 5MB limit.
+
+**Prevention:**
+- Cap `xpHistory` to the most recent 100 transactions in the store's persist config
+- Or exclude `xpHistory` from persistence entirely (derive from other state if needed)
+- Monitor serialized state size in development
+
+### Pitfall 12: CSS animation performance on low-end devices
+
+**What goes wrong:** Celebration animations (confetti, XP pop, level-up) cause frame drops on budget Android phones.
+
+**Prevention:**
+- Use CSS `transform` and `opacity` for animations (GPU-accelerated)
+- Avoid animating `width`, `height`, `top`, `left` (trigger layout reflow)
+- Use `will-change: transform` sparingly on animated elements
+- Test on a throttled CPU (Chrome DevTools Performance panel)
 
 ---
 
@@ -212,30 +173,21 @@ Mistakes that cause rewrites, user abandonment, or fundamental product failure.
 
 | Phase Topic | Likely Pitfall | Mitigation |
 |-------------|---------------|------------|
-| Architecture setup | RTL bolted on late | Use logical CSS properties from line 1; test Hebrew locale after every component |
-| Content design | Shallow lessons, wrong difficulty curve | Define Day 0 user state; require "one transferable insight" per lesson |
-| Gamification system | Over-gamification, loss-aversion mechanics | No guilt-based notifications; reward milestones not participation |
-| Scoring engine | Opaque or unfair scoring | Design rubric schema before content; show breakdown and model prompt always |
-| First lesson | Tutorial island, no first-session value | User in first exercise within 60 seconds; demo before orientation |
-| PWA/platform | iOS cache eviction, no install prompt | Design for 50MB limit; explicit iOS install UX |
-| Progress tracking | State management complexity | Design data schema before UI; define "lesson complete" precisely |
-| Hebrew localisation | Translation quality, mixed-direction bugs | Native review; maintain AI term glossary; use `<bdi>` for inline English terms |
-| Post-launch | AI tool content drift | No tool-specific instructions; quarterly content audit |
-| Growth phase | Scope creep on skill tree | Build only what users will reach; locked placeholders for future content |
+| Shared extraction (Phase 1) | RN imports leak into shared/ (Pitfall 1) | Lint + separate tsconfig |
+| State + i18n (Phase 2) | Hydration race (Pitfall 4) | Hydration gate pattern |
+| Content pipeline (Phase 3) | Loader incompatibility (Pitfall 3) | Platform-specific loaders |
+| Exercise system (Phase 4) | RTL broken (Pitfall 2, 5) | Logical properties only |
+| Exercise system (Phase 4) | Missing a11y (Pitfall 6) | Keyboard + ARIA from day one |
+| Lesson flow (Phase 5) | LocalizedString not reactive (Pitfall 7) | useLocale hook |
+| PWA polish (Phase 8) | Stale cache (Pitfall 8) | autoUpdate + update banner |
 
 ---
 
 ## Sources
 
-- [Duolingo's Shallow Learning Trap — DEV Community](https://dev.to/yaptech/duolingos-shallow-learning-trap-gamified-streaks-harmful-habits-4134)
-- [When Gamification Spoils Your Learning — arXiv (peer-reviewed)](https://arxiv.org/pdf/2203.16175)
-- [Right to Left in React: The Developer's Guide — LeanCode](https://leancode.co/blog/right-to-left-in-react)
-- [PWA iOS Limitations and Safari Support 2026 — MagicBell](https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide)
-- [PWA on iOS — Current Status & Limitations 2025 — Brainhub](https://brainhub.eu/library/pwa-on-ios)
-- [React Native State Management Pitfalls — The One Technologies](https://theonetechnologies.com/blog/post/optimizing-state-management-in-react-native-pitfalls-and-best-practices)
-- [React Native Offline First App Development — Relevant Software](https://relevant.software/blog/react-native-offline-first/)
-- [Performance — React Native Reanimated Official Docs](https://docs.swmansion.com/react-native-reanimated/docs/guides/performance/)
-- [Mobile App Retention Rate Stats 2024 — NudgeNow](https://www.nudgenow.com/blogs/mobile-app-retention-rate)
-- [Mobile App Onboarding Best Practices — Appcues](https://www.appcues.com/blog/mobile-onboarding-best-practices)
-- [Gamification Trends 2025 — EI Design](https://www.eidesign.net/gamification-trends-in-2025-packed-with-tips-and-ideas-you-can-use/)
-- [Duolingo Gamification Secrets — Orizon](https://www.orizon.co/blog/duolingos-gamification-secrets)
+- Direct codebase analysis of existing PromptPlay patterns
+- [CSS logical properties MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) -- HIGH confidence
+- [Zustand persist middleware docs](https://zustand.docs.pmnd.rs/reference/middlewares/persist) -- HIGH confidence
+- [Vite import.meta.glob docs](https://vitejs.dev/guide/features.html#glob-import) -- HIGH confidence
+- [RTL implementation in Tailwind + React](https://madrus4u.vercel.app/blog/rtl-implementation-guide) -- MEDIUM confidence
+- [vite-plugin-pwa service worker strategies](https://vite-pwa-org.netlify.app/) -- MEDIUM confidence
