@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-28T14:54:01.258Z"
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-28T14:58:47.440Z"
 last_activity: 2026-03-28
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 9
-  completed_plans: 7
+  completed_plans: 8
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 03 (Gamification Engine) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-03-28
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-lesson-engine-core-exercises P01 | 27 | 2 tasks | 14 files |
 | Phase 02-lesson-engine-core-exercises P02 | 35 | 2 tasks | 22 files |
 | Phase 03-gamification-engine P01 | 25 | 2 tasks | 11 files |
+| Phase 03-gamification-engine P02 | 25 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,8 @@ Recent decisions affecting current work:
 - [Phase 02-lesson-engine-core-exercises]: SpotProblemCard uses deterministic order (issues then distractors) for v1 — avoids test flakiness from shuffle
 - [Phase 03-gamification-engine]: Level always derived from xpTotal via getLevel() — never stored in state
 - [Phase 03-gamification-engine]: todayISO uses toLocaleDateString('en-CA') for local timezone correctness
+- [Phase 03-gamification-engine]: offsetDate parses ISO as local midnight (T00:00:00) to avoid UTC shift in streak day calculations
+- [Phase 03-gamification-engine]: Streak freeze only consumed on exactly 1 missed day — 2+ day gaps preserve freezes and reset streak
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T14:53:53.827Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-28T14:58:47.435Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
