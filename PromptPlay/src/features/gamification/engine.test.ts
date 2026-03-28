@@ -1,4 +1,4 @@
-import { calcXP } from './engine'
+import { calcXP, calcStreakUpdate, shouldGrantFreeze } from './engine'
 
 describe('calcXP', () => {
   describe('streak multiplier tiers', () => {
@@ -92,5 +92,74 @@ describe('calcXP', () => {
       // Math.round(20 * 1.1) = 22, perfectionBonus = 10, total = 32
       expect(result.total).toBe(32)
     })
+  })
+})
+
+describe('calcStreakUpdate', () => {
+  const TODAY = '2026-03-28'
+
+  it('same day — already logged today, no change', () => {
+    const result = calcStreakUpdate('2026-03-28', 5, 0, TODAY)
+    expect(result).toEqual({ newStreakCount: 5, newFreezes: 0, freezeConsumed: false })
+  })
+
+  it('consecutive day — increments streak', () => {
+    const result = calcStreakUpdate('2026-03-27', 5, 0, TODAY)
+    expect(result).toEqual({ newStreakCount: 6, newFreezes: 0, freezeConsumed: false })
+  })
+
+  it('1 day missed, freeze available — consumes freeze, increments streak', () => {
+    const result = calcStreakUpdate('2026-03-26', 5, 1, TODAY)
+    expect(result).toEqual({ newStreakCount: 6, newFreezes: 0, freezeConsumed: true })
+  })
+
+  it('1 day missed, no freeze — resets streak to 1', () => {
+    const result = calcStreakUpdate('2026-03-26', 5, 0, TODAY)
+    expect(result).toEqual({ newStreakCount: 1, newFreezes: 0, freezeConsumed: false })
+  })
+
+  it('2+ days missed, freezes preserved — resets streak to 1', () => {
+    const result = calcStreakUpdate('2026-03-25', 5, 2, TODAY)
+    expect(result).toEqual({ newStreakCount: 1, newFreezes: 2, freezeConsumed: false })
+  })
+
+  it('first ever activity (empty lastActivityDate) — starts streak at 1', () => {
+    const result = calcStreakUpdate('', 0, 0, TODAY)
+    expect(result).toEqual({ newStreakCount: 1, newFreezes: 0, freezeConsumed: false })
+  })
+
+  it('1 day missed with multiple freezes — consumes exactly 1 freeze', () => {
+    const result = calcStreakUpdate('2026-03-26', 5, 3, TODAY)
+    expect(result).toEqual({ newStreakCount: 6, newFreezes: 2, freezeConsumed: true })
+  })
+})
+
+describe('shouldGrantFreeze', () => {
+  it('streak 7 — grants freeze', () => {
+    expect(shouldGrantFreeze(7)).toBe(true)
+  })
+
+  it('streak 14 — grants freeze', () => {
+    expect(shouldGrantFreeze(14)).toBe(true)
+  })
+
+  it('streak 21 — grants freeze', () => {
+    expect(shouldGrantFreeze(21)).toBe(true)
+  })
+
+  it('streak 6 — does not grant freeze', () => {
+    expect(shouldGrantFreeze(6)).toBe(false)
+  })
+
+  it('streak 8 — does not grant freeze', () => {
+    expect(shouldGrantFreeze(8)).toBe(false)
+  })
+
+  it('streak 0 — does not grant freeze', () => {
+    expect(shouldGrantFreeze(0)).toBe(false)
+  })
+
+  it('streak 13 — does not grant freeze', () => {
+    expect(shouldGrantFreeze(13)).toBe(false)
   })
 })

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { zustandMMKVStorage } from '../persistence/MMKVAdapter'
 import { UserProgress, XPTransaction, getLevel } from './types'
+import { calcStreakUpdate, shouldGrantFreeze } from '../features/gamification/engine'
 
 // Use local timezone (en-CA produces YYYY-MM-DD format)
 const todayISO = (): string => new Date().toLocaleDateString('en-CA')
@@ -53,9 +54,16 @@ export const useProgressStore = create<ProgressStore>()(
 
       clearPendingLevelUp: () => set({ pendingLevelUp: null }),
 
-      // Stub actions — implemented in plan 03-02; prevent type errors now
-      consumeStreakFreeze: () => {},
-      grantStreakFreeze: () => {},
+      consumeStreakFreeze: () => {
+        const { streakFreezes } = get()
+        if (streakFreezes > 0) {
+          set({ streakFreezes: streakFreezes - 1, streakFreezeUsedEver: true })
+        }
+      },
+
+      grantStreakFreeze: () => {
+        set(state => ({ streakFreezes: state.streakFreezes + 1 }))
+      },
 
       completeLesson: (lessonId: string) => {
         const { completedLessons } = get()
@@ -76,16 +84,27 @@ export const useProgressStore = create<ProgressStore>()(
       setDailyGoal: (goal: UserProgress['dailyGoal']) => set({ dailyGoal: goal }),
 
       updateStreak: () => {
-        const { lastActivityDate, streakCount, peakStreak } = get()
+        const { lastActivityDate, streakCount, streakFreezes, peakStreak } = get()
         const today = todayISO()
-        if (lastActivityDate !== today) {
-          const newStreak = streakCount + 1
-          set({
-            streakCount: newStreak,
-            lastActivityDate: today,
-            peakStreak: Math.max(peakStreak, newStreak),
-          })
+        const result = calcStreakUpdate(lastActivityDate, streakCount, streakFreezes, today)
+
+        const updates: Partial<ProgressStore> = {
+          streakCount: result.newStreakCount,
+          streakFreezes: result.newFreezes,
+          lastActivityDate: today,
+          peakStreak: Math.max(peakStreak, result.newStreakCount),
         }
+
+        if (result.freezeConsumed) {
+          updates.streakFreezeUsedEver = true
+        }
+
+        // Grant freeze at 7-day milestones (only when streak actually advanced)
+        if (shouldGrantFreeze(result.newStreakCount) && result.newStreakCount > streakCount) {
+          updates.streakFreezes = (updates.streakFreezes ?? result.newFreezes) + 1
+        }
+
+        set(updates)
       },
     }),
     {
