@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useProgressStore } from './useProgressStore'
-import type { UserProgress } from '@shared/store/types'
 
 // Helper to get current state without React
 const getState = () => useProgressStore.getState()
@@ -46,9 +45,9 @@ describe('useProgressStore', () => {
     const state = getState()
     expect(state.xpTotal).toBe(50)
     expect(state.xpHistory).toHaveLength(1)
-    expect(state.xpHistory[0].amount).toBe(50)
-    expect(state.xpHistory[0].source).toBe('lesson_complete')
-    expect(state.xpHistory[0].timestamp).toBeGreaterThan(0)
+    expect(state.xpHistory[0]!.amount).toBe(50)
+    expect(state.xpHistory[0]!.source).toBe('lesson_complete')
+    expect(state.xpHistory[0]!.timestamp).toBeGreaterThan(0)
   })
 
   // Test 3: addXP crossing level threshold sets pendingLevelUp
