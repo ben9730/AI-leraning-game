@@ -94,7 +94,11 @@ Plans:
   2. The shared/ package exports all pure TS modules (evaluators, gamification engine, content schema, store types) and they import cleanly in the web project with zero react-native dependencies
   3. An ESLint rule in shared/ fails the build if any file imports from react-native or expo-* packages
   4. TypeScript path aliases (@shared/) resolve correctly in tsconfig, vite.config, and vitest.config
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Monorepo root + shared/ skeleton + Vite 6 + React 19 + Tailwind v4 web project scaffold
+- [ ] 07-02-PLAN.md — Extract portable TS to shared/, copy tests, configure Vitest, ESLint no-RN-import rule
 
 ### Phase 8: State + i18n + RTL
 **Goal**: Users can switch between English and Hebrew with instant RTL layout flip and have their progress persist across browser sessions
@@ -189,7 +193,7 @@ Plans:
 | 4. Skill Tree | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 5. Full Curriculum | v1.0 | 3/3 | Complete | 2026-03-28 |
 | 6. PWA Polish | v1.0 | 3/3 | Complete | 2026-03-28 |
-| 7. Foundation + Shared Extraction | v2.0 | 0/0 | Not started | - |
+| 7. Foundation + Shared Extraction | v2.0 | 0/2 | In progress | - |
 | 8. State + i18n + RTL | v2.0 | 0/0 | Not started | - |
 | 9. Content Pipeline | v2.0 | 0/0 | Not started | - |
 | 10. Exercise System | v2.0 | 0/0 | Not started | - |
