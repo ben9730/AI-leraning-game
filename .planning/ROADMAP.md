@@ -78,7 +78,7 @@ Plans:
 - [x] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties (completed 2026-03-28)
 - [x] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings (completed 2026-03-28)
 - [x] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI (completed 2026-03-29)
-- [ ] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock
+- [x] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock (completed 2026-03-29)
 - [ ] **Phase 12: Gamification** - XP/streak/badge engine from shared/, celebration animations in CSS, streak + level UI
 - [ ] **Phase 13: Skill Tree + Navigation** - Tab navigation, skill tree visualization, onboarding flow, profile tab
 - [ ] **Phase 14: PWA + Web Polish** - Service worker + offline, install banner, responsive layout, SEO meta tags
@@ -155,7 +155,7 @@ Plans:
 
 Plans:
 - [x] 11-01-PLAN.md — React Router 7 setup, DotStepper component, LessonPage with intro/exercise/completion flow
-- [ ] 11-02-PLAN.md — HomePage with chapter/lesson listing, lock state UI, end-to-end verification
+- [x] 11-02-PLAN.md — HomePage with chapter/lesson listing, lock state UI, end-to-end verification
 
 ### Phase 12: Gamification
 **Goal**: Completing lessons feels rewarding with XP, streaks, levels, and badges, and returning daily has a visible hook
@@ -211,7 +211,7 @@ Plans:
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 11. Lesson Flow | v2.0 | 1/2 | In Progress|  |
+| 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
