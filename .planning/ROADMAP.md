@@ -203,7 +203,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 14-01-PLAN.md — PWA infrastructure: vite-plugin-pwa, Workbox SW, manifest, icons, OG image, SEO meta tags, i18n keys
+- [x] 14-01-PLAN.md — PWA infrastructure: vite-plugin-pwa, Workbox SW, manifest, icons, OG image, SEO meta tags, i18n keys
 - [ ] 14-02-PLAN.md — Responsive layout + PWA UI: Sidebar, TabBar conversion, OfflineBanner, UpdateToast, InstallBanner, AppHead per-route titles
 **UI hint**: yes
 
@@ -227,4 +227,4 @@ Plans:
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 13. Skill Tree + Navigation | v2.0 | 3/3 | Complete    | 2026-03-29 |
-| 14. PWA + Web Polish | v2.0 | 0/2 | Planning | - |
+| 14. PWA + Web Polish | v2.0 | 1/2 | In Progress|  |

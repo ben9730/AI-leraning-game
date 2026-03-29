@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
-status: verifying
-stopped_at: Completed 13-03-PLAN.md
-last_updated: "2026-03-29T09:51:10.653Z"
+status: executing
+stopped_at: Completed 14-01-PLAN.md
+last_updated: "2026-03-29T11:47:54.573Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
   completed_phases: 7
-  total_plans: 14
-  completed_plans: 14
+  total_plans: 16
+  completed_plans: 15
   percent: 6
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 13 — skill-tree-navigation
+**Current focus:** Phase 14 — pwa-web-polish
 
 ## Current Position
 
-Phase: 14
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 14 (pwa-web-polish) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-03-29
 
 Progress: [█░░░░░░░░░] 6%
@@ -59,6 +59,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 13 P01 | 12 | 2 tasks | 9 files |
 | Phase 13-skill-tree-navigation P02 | 8 | 2 tasks | 3 files |
 | Phase 13 P03 | 8 | 2 tasks | 4 files |
+| Phase 14 P01 | 12 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,8 @@ Recent decisions affecting current work:
 - [Phase 13]: -end-1 logical RTL-safe used for pulse dot positioning in SkillTreeNode
 - [Phase 13]: Tooltip dismiss via fixed backdrop div (z-0 beneath tooltip z-10) — no external library needed
 - [Phase 13]: Stat card labels use dedicated i18n keys (profile.xp, profile.streak, profile.lessonsCompleted) not inline text
+- [Phase 14]: registerType prompt for vite-plugin-pwa — user-consent update toast requires manual SW control
+- [Phase 14]: navigateFallback index.html enables offline SPA navigation
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:47:39.579Z
-Stopped at: Completed 13-03-PLAN.md
+Last session: 2026-03-29T11:47:54.568Z
+Stopped at: Completed 14-01-PLAN.md
 Resume file: None
