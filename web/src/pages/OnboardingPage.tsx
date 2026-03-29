@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useProgressStore } from '../store/useProgressStore'
 import { GoalCard } from '../components/GoalCard'
+import { AppHead } from '@/components/AppHead'
 
 const goals = [
   { id: 'learn-basics', labelKey: 'onboarding.goal.learnBasics', icon: '🎓' },
@@ -26,6 +27,7 @@ export function OnboardingPage() {
   if (step === 1) {
     return (
       <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <AppHead title="Start Learning" />
         <h1 className="text-4xl font-bold text-indigo-600 text-center mb-3">PromptPlay</h1>
         <p className="text-base font-normal text-gray-500 text-center mb-8">
           {t('onboarding.welcome.subtitle')}
@@ -43,6 +45,7 @@ export function OnboardingPage() {
 
   return (
     <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <AppHead title="Start Learning" />
       <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">
         {t('onboarding.goal.heading')}
       </h2>

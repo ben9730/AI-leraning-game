@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { AppHead } from '@/components/AppHead'
 import { chapters, loadLesson } from '@/content'
 import { deriveNodeStates, getCurrentLessonId } from '@shared/skill-tree/skillTreeUtils'
 import { useProgressStore } from '@/store/useProgressStore'
@@ -48,6 +49,7 @@ export function SkillTreePage() {
 
   return (
     <div className="flex-1 overflow-y-auto py-6 px-4">
+      <AppHead title="Skill Tree" />
       {/* Page header */}
       <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-1">{t('skillTree.title')}</h1>

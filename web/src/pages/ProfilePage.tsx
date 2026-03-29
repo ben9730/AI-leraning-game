@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { AppHead } from '@/components/AppHead'
 import { useProgressStore } from '@/store/useProgressStore'
 import { useLanguage } from '@/hooks/useLanguage'
 import { BadgeGrid } from '@/components/BadgeGrid'
@@ -32,6 +33,7 @@ export function ProfilePage() {
 
   return (
     <div className="flex-1 overflow-y-auto py-6 px-4">
+      <AppHead title="Profile" />
       <div className="max-w-lg mx-auto">
         {/* Page title */}
         <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">

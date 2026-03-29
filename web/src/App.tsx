@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router'
+import { HelmetProvider } from 'react-helmet-async'
 import { LessonPage } from './pages/LessonPage'
 import { HomePage } from './pages/HomePage'
 import { SkillTreePage } from './pages/SkillTreePage'
@@ -7,6 +8,10 @@ import { OnboardingPage } from './pages/OnboardingPage'
 import { GameHeader } from './components/GameHeader'
 import { LevelUpModal } from './components/LevelUpModal'
 import { TabBar } from './components/TabBar'
+import { Sidebar } from './components/Sidebar'
+import { OfflineBanner } from './components/OfflineBanner'
+import { UpdateToast } from './components/UpdateToast'
+import { InstallBanner } from './components/InstallBanner'
 import { useProgressStore, useHasHydrated } from './store/useProgressStore'
 
 function OnboardingLayout() {
@@ -23,12 +28,18 @@ function RootLayout() {
   if (!hasOnboarded) return <Navigate to="/onboarding" replace />
 
   return (
-    <div className="flex flex-col min-h-dvh">
-      <GameHeader />
-      <main className="flex-1 flex flex-col pb-14">
-        <Outlet />
-      </main>
-      <TabBar />
+    <div className="flex min-h-dvh">
+      <Sidebar />
+      <div className="flex flex-col flex-1 lg:ms-64">
+        <GameHeader />
+        <OfflineBanner />
+        <main className="flex-1 flex flex-col pb-14 lg:pb-0 w-full lg:max-w-2xl lg:mx-auto">
+          <Outlet />
+        </main>
+        <TabBar />
+      </div>
+      <UpdateToast />
+      <InstallBanner />
       {pendingLevelUp !== null && (
         <LevelUpModal level={pendingLevelUp} onDismiss={clearPendingLevelUp} />
       )}
@@ -55,5 +66,9 @@ const router = createBrowserRouter([
 ])
 
 export function App() {
-  return <RouterProvider router={router} />
+  return (
+    <HelmetProvider>
+      <RouterProvider router={router} />
+    </HelmetProvider>
+  )
 }

@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router'
+import { AppHead } from '@/components/AppHead'
 import { loadLesson, getAllLessonIds, chapters } from '@/content'
 import { getExerciseComponent } from '@/exercises/registry'
 import { useProgressStore } from '@/store/useProgressStore'
@@ -112,6 +113,7 @@ export function LessonPage() {
   if (phase === 'intro') {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <AppHead title={lesson.content.title[lang] ?? 'Lesson'} />
         <div className="w-full max-w-lg">
           {chapterName && (
             <p className="text-sm text-gray-500 text-start mb-1">

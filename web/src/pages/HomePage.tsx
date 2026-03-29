@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router'
 import { chapters, loadLesson } from '@/content'
 import { useProgressStore } from '@/store/useProgressStore'
 import { useLanguage } from '@/hooks/useLanguage'
+import { AppHead } from '@/components/AppHead'
 
 type LessonUIState = 'locked' | 'unlocked' | 'completed'
 
@@ -23,6 +24,7 @@ export function HomePage() {
 
   return (
     <div className="flex-1 bg-gradient-to-br from-indigo-50 to-purple-50 p-4 pb-8">
+      <AppHead description="Practice AI prompting with gamified lessons. Earn XP, build streaks." />
       <h1 className="text-3xl font-bold text-indigo-600 text-center mb-6">PromptPlay</h1>
       <div className="max-w-lg mx-auto space-y-6">
         {chapters.map(chapter => (

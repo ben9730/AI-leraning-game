@@ -11,7 +11,7 @@ export function TabBar() {
   const { t } = useTranslation()
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 h-14 bg-white border-t border-gray-200 flex items-stretch justify-around z-40">
+    <nav className="fixed bottom-0 inset-x-0 h-14 bg-white border-t border-gray-200 flex items-stretch justify-around z-40 lg:hidden">
       {tabs.map(tab => (
         <NavLink
           key={tab.to}
