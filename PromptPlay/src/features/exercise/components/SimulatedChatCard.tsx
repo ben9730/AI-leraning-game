@@ -44,10 +44,10 @@ export function SimulatedChatCard({ exercise, onComplete }: SimulatedChatCardPro
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.prompt}>{exercise.prompt[lang]}</Text>
 
-      {exercise.systemContext && (
+      {(exercise.systemContext ?? (exercise as any).systemPrompt) && (
         <View style={styles.contextBox}>
           <Text style={styles.contextLabel}>Context</Text>
-          <Text style={styles.contextText}>{exercise.systemContext[lang]}</Text>
+          <Text style={styles.contextText}>{(exercise.systemContext ?? (exercise as any).systemPrompt)[lang]}</Text>
         </View>
       )}
 
@@ -86,7 +86,7 @@ export function SimulatedChatCard({ exercise, onComplete }: SimulatedChatCardPro
           {/* AI response bubble */}
           <View style={styles.aiBubble}>
             <Text style={styles.aiBubbleLabel}>AI</Text>
-            <Text style={styles.aiBubbleText}>{exercise.preScriptedResponse[lang]}</Text>
+            <Text style={styles.aiBubbleText}>{exercise.preScriptedResponse?.[lang] ?? "Thanks for your prompt! Based on what you wrote, I'd be happy to help. Let me work through this step by step..."}</Text>
           </View>
 
           {chatState === 'response-revealed' && (

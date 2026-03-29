@@ -49,9 +49,9 @@ export function SimulatedChatCard({
       </h3>
 
       {/* System context */}
-      {exercise.systemContext && (
+      {(exercise.systemContext ?? (exercise as any).systemPrompt) && (
         <div className="border-s-4 border-blue-400 bg-blue-50 ps-4 pe-4 py-3 rounded-e-lg text-gray-600 text-sm text-start">
-          {exercise.systemContext[lang]}
+          {(exercise.systemContext ?? (exercise as any).systemPrompt)[lang]}
         </div>
       )}
 
@@ -92,7 +92,7 @@ export function SimulatedChatCard({
           {showAiResponse && (
             <div className="flex">
               <div className="me-auto max-w-[80%] rounded-2xl bg-gray-100 ps-4 pe-4 py-3 text-gray-800 text-start">
-                {exercise.preScriptedResponse[lang]}
+                {exercise.preScriptedResponse?.[lang] ?? "Thanks for your prompt! Based on what you wrote, I'd be happy to help. Let me work through this step by step..."}
               </div>
             </div>
           )}
