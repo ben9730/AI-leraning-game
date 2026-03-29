@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { AppHead } from '@/components/AppHead'
 import { loadLesson, getAllLessonIds, chapters } from '@/content'
 import { getExerciseComponent } from '@/exercises/registry'
@@ -19,6 +20,7 @@ type LessonPhase = 'intro' | 'running' | 'complete'
 export function LessonPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { currentLanguage } = useLanguage()
   const lang = currentLanguage as 'en' | 'he'
 
@@ -115,6 +117,13 @@ export function LessonPage() {
       <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
         <AppHead title={lesson.content.title[lang] ?? 'Lesson'} />
         <div className="w-full max-w-lg">
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="mb-4 text-sm text-indigo-600 hover:text-indigo-800 transition-colors"
+          >
+            ← {t('lesson.back')}
+          </button>
           {chapterName && (
             <p className="text-sm text-gray-500 text-start mb-1">
               {chapterName[lang]}
@@ -135,7 +144,7 @@ export function LessonPage() {
             onClick={() => setPhase('running')}
             className="w-full rounded-lg bg-indigo-600 px-4 py-3 text-white font-semibold text-lg hover:bg-indigo-700 transition-colors"
           >
-            Start
+            {t('lesson.start')}
           </button>
         </div>
       </div>
@@ -149,6 +158,13 @@ export function LessonPage() {
 
     return (
       <div className="flex-1 flex flex-col p-4 max-w-lg mx-auto">
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="mb-2 text-sm text-indigo-600 hover:text-indigo-800 transition-colors self-start"
+        >
+          ← {t('lesson.back')}
+        </button>
         <div className="py-4">
           <DotStepper total={exercises.length} current={exerciseIndex} />
         </div>
@@ -164,7 +180,7 @@ export function LessonPage() {
               onClick={handleContinue}
               className="mt-4 w-full rounded-lg bg-indigo-600 px-4 py-3 text-white font-semibold hover:bg-indigo-700 transition-colors"
             >
-              Continue
+              {t('common.continue')}
             </button>
           )}
         </div>

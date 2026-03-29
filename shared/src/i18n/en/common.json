@@ -11,10 +11,16 @@
   "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" },
   "lesson": {
     "complete": "Lesson Complete!",
+    "start": "Start",
     "start_exercises": "Start Exercises",
     "continue": "Continue",
     "xp_earned": "+{{xp}} XP",
-    "exercise_count": "Exercise {{current}} of {{total}}"
+    "exercise_count": "Exercise {{current}} of {{total}}",
+    "exercises_count": "{{count}} exercises",
+    "locked": "Locked",
+    "completed": "Completed",
+    "back": "Back to Home",
+    "next_lesson": "Next Lesson"
   },
   "exercise": {
     "model_answer": "One strong version:",

@@ -11,10 +11,16 @@
   "language": { "switchToHebrew": "עברית", "switchToEnglish": "English" },
   "lesson": {
     "complete": "השיעור הושלם!",
+    "start": "התחל",
     "start_exercises": "התחל תרגילים",
     "continue": "המשך",
     "xp_earned": "+{{xp}} XP",
-    "exercise_count": "תרגיל {{current}} מתוך {{total}}"
+    "exercise_count": "תרגיל {{current}} מתוך {{total}}",
+    "exercises_count": "{{count}} תרגילים",
+    "locked": "נעול",
+    "completed": "הושלם",
+    "back": "חזרה לדף הבית",
+    "next_lesson": "השיעור הבא"
   },
   "exercise": {
     "model_answer": "גרסה חזקה אחת:",

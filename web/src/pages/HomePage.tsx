@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { chapters, loadLesson } from '@/content'
 import { useProgressStore } from '@/store/useProgressStore'
 import { useLanguage } from '@/hooks/useLanguage'
@@ -18,6 +19,7 @@ function getLessonUIState(
 
 export function HomePage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { currentLanguage: lang } = useLanguage()
   const completedLessons = useProgressStore(s => s.completedLessons)
   const unlockedLessons = useProgressStore(s => s.unlockedLessons)
@@ -54,7 +56,7 @@ export function HomePage() {
                         <p className="font-medium text-gray-700 truncate">
                           {lesson.content.title[lang]}
                         </p>
-                        <p className="text-xs text-gray-500">Completed</p>
+                        <p className="text-xs text-gray-500">{t('lesson.completed')}</p>
                       </div>
                     </button>
                   )
@@ -74,7 +76,7 @@ export function HomePage() {
                         <p className="font-medium text-gray-900 truncate">
                           {lesson.content.title[lang]}
                         </p>
-                        <p className="text-xs text-gray-500">{lesson.exercises.length} exercises</p>
+                        <p className="text-xs text-gray-500">{t('lesson.exercises_count', { count: lesson.exercises.length })}</p>
                       </div>
                     </button>
                   )
@@ -93,7 +95,7 @@ export function HomePage() {
                       <p className="font-medium text-gray-500 truncate">
                         {lesson.content.title[lang]}
                       </p>
-                      <p className="text-xs text-gray-400">Locked</p>
+                      <p className="text-xs text-gray-400">{t('lesson.locked')}</p>
                     </div>
                   </div>
                 )
