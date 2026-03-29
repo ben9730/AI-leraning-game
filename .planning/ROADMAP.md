@@ -154,7 +154,7 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 11-01-PLAN.md — React Router 7 setup, DotStepper component, LessonPage with intro/exercise/completion flow
+- [x] 11-01-PLAN.md — React Router 7 setup, DotStepper component, LessonPage with intro/exercise/completion flow
 - [ ] 11-02-PLAN.md — HomePage with chapter/lesson listing, lock state UI, end-to-end verification
 
 ### Phase 12: Gamification
@@ -211,7 +211,7 @@ Plans:
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 11. Lesson Flow | v2.0 | 0/2 | Planned | - |
+| 11. Lesson Flow | v2.0 | 1/2 | In Progress|  |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |

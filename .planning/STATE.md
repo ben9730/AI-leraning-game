@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
 status: executing
-stopped_at: Completed 09-01-PLAN.md -- content pipeline loader done
-last_updated: "2026-03-29T07:14:17.104Z"
+stopped_at: Completed 11-01-PLAN.md -- lesson flow routing and DotStepper done
+last_updated: "2026-03-29T08:12:14.061Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
   completed_phases: 4
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
   percent: 6
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 10 — exercise-system
+**Current focus:** Phase 11 — lesson-flow
 
 ## Current Position
 
-Phase: 11
-Plan: Not started
-Status: Executing Phase 10
+Phase: 11 (lesson-flow) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-03-29
 
 Progress: [█░░░░░░░░░] 6%
@@ -55,6 +55,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 07 P02 | 12min | 2 tasks | 58 files |
 | Phase 08 P02 | 4min | 2 tasks | 10 files |
 | Phase 09 P01 | 2min | 2 tasks | 3 files |
+| Phase 11 P01 | 8 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - [Phase 08]: CSS logical property convention: ps/pe/ms/me only, never physical pl/pr/ml/mr in Tailwind
 - [Phase 09]: import.meta.glob with eager:true for synchronous lesson loading matching v1 Metro behavior
 - [Phase 09]: Content barrel pattern: import { loadLesson, chapters } from '@/content' as single entry point for web/
+- [Phase 11]: Import from 'react-router' not 'react-router-dom' (merged in v7)
+- [Phase 11]: Continue button pattern: exercise cards call onComplete immediately, LessonPage shows Continue to advance (not auto-advance)
+- [Phase 11]: completionHandledRef guards store actions against StrictMode double-fire
 
 ### Pending Todos
 
@@ -85,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-28T20:16:26.678Z
-Stopped at: Completed 09-01-PLAN.md -- content pipeline loader done
+Last session: 2026-03-29T08:12:14.056Z
+Stopped at: Completed 11-01-PLAN.md -- lesson flow routing and DotStepper done
 Resume file: None

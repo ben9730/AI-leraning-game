@@ -24,8 +24,8 @@
 - [ ] **EXER-03**: All evaluators wired with scoring feedback UI (score, passed, per-criterion breakdown)
 
 ## Lesson Flow (LESS)
-- [ ] **LESS-01**: Lesson screen with intro → exercise sequence → completion screen showing XP earned
-- [ ] **LESS-02**: Lesson progress states (not started / in progress / completed) persisted across sessions
+- [x] **LESS-01**: Lesson screen with intro → exercise sequence → completion screen showing XP earned
+- [x] **LESS-02**: Lesson progress states (not started / in progress / completed) persisted across sessions
 - [ ] **LESS-03**: Navigation between lessons with sequential unlock logic
 
 ## Gamification (GAME)
@@ -75,8 +75,8 @@
 | EXER-01 | Phase 10 | Pending |
 | EXER-02 | Phase 10 | Pending |
 | EXER-03 | Phase 10 | Pending |
-| LESS-01 | Phase 11 | Pending |
-| LESS-02 | Phase 11 | Pending |
+| LESS-01 | Phase 11 | Complete |
+| LESS-02 | Phase 11 | Complete |
 | LESS-03 | Phase 11 | Pending |
 | GAME-01 | Phase 12 | Pending |
 | GAME-02 | Phase 12 | Pending |
