@@ -200,7 +200,11 @@ Plans:
   2. Install banner appears on Android (auto-prompt) and iOS (in-app nudge) and the app can be added to the home screen
   3. Layout is mobile-first with a desktop-enhanced view (wider content area, optional sidebar) that works from 320px to 1440px+
   4. Pages have correct SEO meta tags and Open Graph cards so sharing a lesson URL shows a rich preview
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 14-01-PLAN.md — PWA infrastructure: vite-plugin-pwa, Workbox SW, manifest, icons, OG image, SEO meta tags, i18n keys
+- [ ] 14-02-PLAN.md — Responsive layout + PWA UI: Sidebar, TabBar conversion, OfflineBanner, UpdateToast, InstallBanner, AppHead per-route titles
 **UI hint**: yes
 
 ## Progress
@@ -223,4 +227,4 @@ Plans:
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 13. Skill Tree + Navigation | v2.0 | 3/3 | Complete    | 2026-03-29 |
-| 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
+| 14. PWA + Web Polish | v2.0 | 0/2 | Planning | - |
