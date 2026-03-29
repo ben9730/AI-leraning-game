@@ -66,7 +66,7 @@ Plans:
 
 </details>
 
-### 🚧 v2.0 Web-First Rebuild (In Progress)
+### v2.0 Web-First Rebuild (In Progress)
 
 **Milestone Goal:** Rebuild PromptPlay as a web-first Vite + React 19 SPA, porting all curriculum and game logic from the Expo/React Native codebase. Pure TypeScript logic (~600 lines) ports directly via a shared/ monorepo package; UI is rebuilt with Tailwind v4 and CSS logical properties for RTL.
 
@@ -167,8 +167,12 @@ Plans:
   3. Reaching a level-up XP threshold triggers a full-screen celebration modal with CSS/Motion animation
   4. Badges (first lesson, 7-day streak, chapter complete) are earnable and display in the profile view
   5. Streak flame icon, XP counter, and level indicator are visible on the main screen at all times
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 12-01-PLAN.md — RootLayout + GameHeader (streak flame, XP counter, level ring) + CSS keyframes + updateStreak wiring
+- [ ] 12-02-PLAN.md — LevelUpModal + CelebrationOverlay + BadgeGrid + BadgeToast + LessonPage completion integration
 
 ### Phase 13: Skill Tree + Navigation
 **Goal**: Users can navigate the app via tabs, see their full learning journey on a visual skill tree, and new users reach their first exercise within 60 seconds
@@ -212,6 +216,6 @@ Plans:
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 12. Gamification | v2.0 | 0/0 | Not started | - |
+| 12. Gamification | v2.0 | 0/2 | Planning complete | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
