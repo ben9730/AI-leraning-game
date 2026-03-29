@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
-status: executing
-stopped_at: Completed 14-01-PLAN.md
-last_updated: "2026-03-29T11:47:54.573Z"
+status: verifying
+stopped_at: Completed 14-02-PLAN.md
+last_updated: "2026-03-29T11:55:43.478Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 16
-  completed_plans: 15
+  completed_plans: 16
   percent: 6
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 
 Phase: 14 (pwa-web-polish) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-29
 
 Progress: [█░░░░░░░░░] 6%
@@ -60,6 +60,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 13-skill-tree-navigation P02 | 8 | 2 tasks | 3 files |
 | Phase 13 P03 | 8 | 2 tasks | 4 files |
 | Phase 14 P01 | 12 | 2 tasks | 9 files |
+| Phase 14-pwa-web-polish P02 | 18 | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,8 @@ Recent decisions affecting current work:
 - [Phase 13]: Stat card labels use dedicated i18n keys (profile.xp, profile.streak, profile.lessonsCompleted) not inline text
 - [Phase 14]: registerType prompt for vite-plugin-pwa — user-consent update toast requires manual SW control
 - [Phase 14]: navigateFallback index.html enables offline SPA navigation
+- [Phase 14-pwa-web-polish]: Sidebar uses CSS logical properties (start-0, border-e, border-s-2) for RTL safety
+- [Phase 14-pwa-web-polish]: UpdateToast uses updateServiceWorker(true) for reload — never window.location.reload() directly
 
 ### Pending Todos
 
@@ -101,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T11:47:54.568Z
-Stopped at: Completed 14-01-PLAN.md
+Last session: 2026-03-29T11:55:43.472Z
+Stopped at: Completed 14-02-PLAN.md
 Resume file: None

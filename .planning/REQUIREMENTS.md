@@ -41,10 +41,10 @@
 - [ ] **TREE-04**: Profile tab showing badges, stats, language switcher
 
 ## PWA & Web Polish (PWA)
-- [ ] **PWA-01**: Service worker with Workbox for offline lesson access (previously visited lessons)
-- [ ] **PWA-02**: Web manifest + install banner (Android auto-prompt, iOS in-app nudge)
-- [ ] **PWA-03**: Responsive layout — mobile-first with desktop-enhanced sidebar/wider content
-- [ ] **PWA-04**: SEO meta tags + Open Graph cards for lesson/page sharing
+- [x] **PWA-01**: Service worker with Workbox for offline lesson access (previously visited lessons)
+- [x] **PWA-02**: Web manifest + install banner (Android auto-prompt, iOS in-app nudge)
+- [x] **PWA-03**: Responsive layout — mobile-first with desktop-enhanced sidebar/wider content
+- [x] **PWA-04**: SEO meta tags + Open Graph cards for lesson/page sharing
 
 ## Future (v2.1+)
 - Supabase auth + cloud sync (deferred — local-only for v2.0)
@@ -86,7 +86,7 @@
 | TREE-02 | Phase 13 | Complete |
 | TREE-03 | Phase 13 | Complete |
 | TREE-04 | Phase 13 | Pending |
-| PWA-01 | Phase 14 | Pending |
-| PWA-02 | Phase 14 | Pending |
-| PWA-03 | Phase 14 | Pending |
-| PWA-04 | Phase 14 | Pending |
+| PWA-01 | Phase 14 | Complete |
+| PWA-02 | Phase 14 | Complete |
+| PWA-03 | Phase 14 | Complete |
+| PWA-04 | Phase 14 | Complete |
