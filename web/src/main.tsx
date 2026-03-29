@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './i18n' // Initialize i18next BEFORE any component imports
 import i18next from 'i18next'
@@ -21,6 +21,20 @@ function LanguageSync() {
 
 function HydrationGate({ children }: { children: React.ReactNode }) {
   const hasHydrated = useHasHydrated()
+  const [timedOut, setTimedOut] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setTimedOut(true), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // If hydration hasn't fired after 2s, force it — prevents stuck loading screen
+  useEffect(() => {
+    if (timedOut && !hasHydrated) {
+      console.warn('[HydrationGate] Zustand persist hydration timed out — forcing hydrated state')
+      useProgressStore.getState().setHasHydrated(true)
+    }
+  }, [timedOut, hasHydrated])
 
   if (!hasHydrated) {
     return (
