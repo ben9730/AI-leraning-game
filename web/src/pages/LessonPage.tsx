@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from 'react'
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { AppHead } from '@/components/AppHead'
@@ -46,6 +46,18 @@ export function LessonPage() {
   const [newlyEarnedBadge, setNewlyEarnedBadge] = useState<Badge | null>(null)
 
   const completionHandledRef = useRef(false)
+
+  // Reset all state when lesson ID changes (navigating to next lesson)
+  useEffect(() => {
+    setPhase('intro')
+    setExerciseIndex(0)
+    setExerciseCompleted(false)
+    setShowCelebration(false)
+    setCompletionXP(0)
+    setAllBadges([])
+    setNewlyEarnedBadge(null)
+    completionHandledRef.current = false
+  }, [id])
 
   // Redirect on invalid ID (must happen after all hooks)
   if (!lesson) {
