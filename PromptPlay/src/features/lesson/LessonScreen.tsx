@@ -72,9 +72,11 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     }
 
     // Silent sync for already signed-in users (fire-and-forget)
+    let hasSession = false
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
+        hasSession = true
         syncProgressToCloud(session.user.id).catch(() => {
           // Sync failure is non-blocking
         })
@@ -84,8 +86,10 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     }
 
     // Show account prompt after lesson 2 completion (once per session)
+    // Skip if user already signed in
     const completedCount = useProgressStore.getState().completedLessons.length
-    if (completedCount >= 2 && !accountPromptShown) {
+    if (completedCount >= 2 && !accountPromptShown && !hasSession) {
+      setAccountPromptShown(true)
       setShowAccountPrompt(true)
       return
     }
@@ -126,11 +130,15 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
   const handleAuthSuccess = async () => {
     setShowAuth(false)
     // Sync to cloud after successful auth (session just established)
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session) {
-      syncProgressToCloud(session.user.id).catch(() => {
-        // Non-blocking
-      })
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        syncProgressToCloud(session.user.id).catch(() => {
+          // Non-blocking
+        })
+      }
+    } catch {
+      // Supabase/SecureStore may be unavailable on web — non-blocking
     }
     navigateAfterLesson()
   }
