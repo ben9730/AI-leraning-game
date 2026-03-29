@@ -21,6 +21,8 @@ export interface UserProgress {
   peakStreak: number              // highest streak ever — for badge derivation
   pendingLevelUp: number | null   // new level number, cleared after modal shown
   streakFreezeUsedEver: boolean   // for "resilient" badge
+  hasOnboarded: boolean
+  learningGoal: string | null
 
   // Actions
   addXP: (amount: number, source: XPTransaction['source']) => void
@@ -32,6 +34,7 @@ export interface UserProgress {
   clearPendingLevelUp: () => void
   consumeStreakFreeze: () => void
   grantStreakFreeze: () => void
+  setOnboarded: (goal: string) => void
 }
 
 // NEVER store currentLevel — always derive from xpTotal

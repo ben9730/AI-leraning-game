@@ -40,6 +40,8 @@ export const useProgressStore = create<ProgressStore>()(
       peakStreak: 0,
       pendingLevelUp: null,
       streakFreezeUsedEver: false,
+      hasOnboarded: false,
+      learningGoal: null as string | null,
 
       // Actions
       addXP: (amount: number, source: XPTransaction['source']) => {
@@ -85,6 +87,8 @@ export const useProgressStore = create<ProgressStore>()(
 
       setDailyGoal: (goal: UserProgress['dailyGoal']) => set({ dailyGoal: goal }),
 
+      setOnboarded: (goal: string) => set({ hasOnboarded: true, learningGoal: goal }),
+
       updateStreak: () => {
         const { lastActivityDate, streakCount, streakFreezes, peakStreak } = get()
         const today = todayISO()
@@ -126,6 +130,7 @@ export const useProgressStore = create<ProgressStore>()(
           clearPendingLevelUp,
           consumeStreakFreeze,
           grantStreakFreeze,
+          setOnboarded,
           ...persisted
         } = state
         return persisted
