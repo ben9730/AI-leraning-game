@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { FillBlankExercise } from '@shared/content/schema'
 import { evaluateFillBlank } from '@shared/exercise/evaluators'
 import type { EvaluationResult } from '@shared/exercise/types'
@@ -6,21 +6,46 @@ import { useLanguage } from '@/hooks/useLanguage'
 import type { ExerciseComponentProps } from '../types'
 import { FeedbackCard } from './FeedbackCard'
 
+// Split template into text parts and blank placeholders
+// Supports both "___" (triple underscore) and "_[placeholder]_" patterns
+function parseTemplate(template: string): string[] {
+  return template.split(/___|\b_\[.*?\]_/g)
+}
+
+function countBlanks(template: string): number {
+  const tripleUnderscores = (template.match(/___/g) || []).length
+  const bracketBlanks = (template.match(/_\[.*?\]_/g) || []).length
+  return tripleUnderscores + bracketBlanks
+}
+
 export function FillBlankCard({
   exercise,
   onComplete,
 }: ExerciseComponentProps<FillBlankExercise>) {
   const { currentLanguage: lang } = useLanguage()
-  const [answer, setAnswer] = useState('')
   const [result, setResult] = useState<EvaluationResult | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
   const template = exercise.template[lang]
-  const parts = template.split('___')
+  const parts = useMemo(() => parseTemplate(template), [template])
+  const blankCount = useMemo(() => countBlanks(template), [template])
+  const [answers, setAnswers] = useState<string[]>(() => new Array(blankCount).fill(''))
+
+  const allFilled = answers.every(a => a.trim().length > 0)
+
+  function updateAnswer(index: number, value: string) {
+    setAnswers(prev => {
+      const next = [...prev]
+      next[index] = value
+      return next
+    })
+  }
 
   function handleSubmit() {
-    if (answer.trim().length === 0 || submitted) return
-    const evalResult = evaluateFillBlank(exercise, answer, lang)
+    if (!allFilled || submitted) return
+    // Join answers for single-blank evaluator compatibility
+    const combined = answers.join(', ')
+    const evalResult = evaluateFillBlank(exercise, combined, lang)
     setResult(evalResult)
     setSubmitted(true)
     onComplete({
@@ -44,26 +69,32 @@ export function FillBlankCard({
         {exercise.prompt[lang]}
       </h3>
 
-      {/* Template with inline input */}
+      {/* Template with inline inputs */}
       <p className="text-gray-800 text-start text-lg leading-relaxed">
-        <span>{parts[0]}</span>
-        <input
-          type="text"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={submitted}
-          className="border-b-2 border-indigo-400 bg-transparent text-center min-w-[100px] focus:outline-none focus:border-indigo-600 disabled:opacity-60 disabled:cursor-not-allowed mx-1"
-          aria-label="Fill in the blank"
-        />
-        {parts.length > 1 && <span>{parts[1]}</span>}
+        {parts.map((part, i) => (
+          <span key={i}>
+            <span>{part}</span>
+            {i < blankCount && (
+              <input
+                type="text"
+                value={answers[i]}
+                onChange={(e) => updateAnswer(i, e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={submitted}
+                placeholder={exercise.blanks?.[i]?.placeholder?.[lang] ?? ''}
+                className="border-b-2 border-indigo-400 bg-transparent text-center min-w-[100px] focus:outline-none focus:border-indigo-600 disabled:opacity-60 disabled:cursor-not-allowed mx-1"
+                aria-label={`Blank ${i + 1}`}
+              />
+            )}
+          </span>
+        ))}
       </p>
 
       {/* Submit button */}
       <button
         type="button"
         onClick={handleSubmit}
-        disabled={answer.trim().length === 0 || submitted}
+        disabled={!allFilled || submitted}
         className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-white font-medium transition-colors hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
       >
         Submit
