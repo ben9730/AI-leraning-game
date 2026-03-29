@@ -22,7 +22,7 @@ export function HomePage() {
   const unlockedLessons = useProgressStore(s => s.unlockedLessons)
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-indigo-50 to-purple-50 p-4 pb-8">
+    <div className="flex-1 bg-gradient-to-br from-indigo-50 to-purple-50 p-4 pb-8">
       <h1 className="text-3xl font-bold text-indigo-600 text-center mb-6">PromptPlay</h1>
       <div className="max-w-lg mx-auto space-y-6">
         {chapters.map(chapter => (

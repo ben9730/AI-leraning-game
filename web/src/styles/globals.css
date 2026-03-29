@@ -4,3 +4,32 @@
    Tailwind v4 utilities: ps-* pe-* ms-* me-* start-* end-* text-start text-end
    NEVER use: pl-* pr-* ml-* mr-* left-* right-* text-left text-right
    document.documentElement.dir is set to 'rtl' when Hebrew is active */
+
+/* Gamification animations — Phase 12 */
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-40px); }
+}
+
+@keyframes scale-pulse {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.animate-float-up {
+  animation: float-up 1.2s ease-out forwards;
+}
+
+.animate-scale-pulse {
+  animation: scale-pulse 0.6s ease-out forwards;
+}
+
+.animate-confetti {
+  animation: confetti-fall 2s ease-in forwards;
+}

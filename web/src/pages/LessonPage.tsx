@@ -18,6 +18,7 @@ export function LessonPage() {
   const completeLesson = useProgressStore(s => s.completeLesson)
   const unlockLesson = useProgressStore(s => s.unlockLesson)
   const addXP = useProgressStore(s => s.addXP)
+  const updateStreak = useProgressStore(s => s.updateStreak)
 
   const lesson = useMemo(() => {
     try {
@@ -77,6 +78,7 @@ export function LessonPage() {
           unlockLesson(allIds[idx + 1])
         }
         addXP(lesson.xpReward, 'lesson_complete')
+        updateStreak()
       }
       setPhase('complete')
     }
@@ -85,7 +87,7 @@ export function LessonPage() {
   // ── INTRO PHASE ──────────────────────────────────────────────────────────────
   if (phase === 'intro') {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="w-full max-w-lg">
           {chapterName && (
             <p className="text-sm text-gray-500 text-start mb-1">
@@ -120,7 +122,7 @@ export function LessonPage() {
     const { component: ExerciseCard } = getExerciseComponent(currentExercise.type as any)
 
     return (
-      <div className="min-h-dvh flex flex-col p-4 max-w-lg mx-auto">
+      <div className="flex-1 flex flex-col p-4 max-w-lg mx-auto">
         <div className="py-4">
           <DotStepper total={exercises.length} current={exerciseIndex} />
         </div>
@@ -146,7 +148,7 @@ export function LessonPage() {
 
   // ── COMPLETE PHASE ───────────────────────────────────────────────────────────
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-indigo-50">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-indigo-50">
       <div className="w-full max-w-lg text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Lesson Complete!</h1>
         <p className="text-5xl font-extrabold text-indigo-600 mb-2">
