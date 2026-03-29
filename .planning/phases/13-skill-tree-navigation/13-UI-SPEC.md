@@ -56,17 +56,19 @@ Source: `GameHeader.tsx` uses `h-14` (56px); `HomePage.tsx` uses `p-4`/`p-6` as 
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 14px (`text-sm`) | 400 regular | 1.5 |
-| Label | 12px (`text-xs`) | 500 medium | 1.4 |
-| Heading | 20px (`text-xl`) | 600 semibold | 1.2 |
+| Label | 12px (`text-xs`) | 400 regular | 1.4 |
+| Heading | 20px (`text-xl`) | 700 bold | 1.2 |
 | Display | 30px (`text-3xl`) | 700 bold | 1.1 |
 
 Notes:
 - Body (14px/400) is used for lesson descriptions, badge descriptions, profile stats body
-- Label (12px/500) is used for tab labels, lesson state badges ("Completed", "Locked"), chapter progress counts
-- Heading (20px/600) is used for chapter headers in skill tree, section headers in profile
+- Label (12px/400) is used for tab labels, lesson state badges ("Completed", "Locked"), chapter progress counts
+- Heading (20px/700) is used for chapter headers in skill tree, section headers in profile
 - Display (30px/700) is used for page titles (PromptPlay wordmark, onboarding title, profile page title)
 
-Source: `HomePage.tsx` — `text-sm text-gray-500`, `text-xl font-semibold`, `text-3xl font-bold`; `LevelUpModal.tsx` — `text-2xl font-bold`.
+Weights used: 400 regular (`font-normal`) and 700 bold (`font-bold`) — exactly 2 weights.
+
+Source: `HomePage.tsx` — `text-sm text-gray-500`, `text-xl font-semibold`, `text-3xl font-bold`; `LevelUpModal.tsx` — `text-2xl font-bold`. Previous `font-semibold` (600) and `font-medium` (500) usages consolidated to `font-bold` (700) and `font-normal` (400) respectively.
 
 ---
 
@@ -107,7 +109,7 @@ Source: `GameHeader.tsx` — `text-indigo-600`, `text-orange-600`; `HomePage.tsx
 | `ChapterSection` | `web/src/components/ChapterSection.tsx` | Labeled chapter header + node column for skill tree |
 | `ProfilePage` | `web/src/pages/ProfilePage.tsx` | Stats cards + BadgeGrid + language switcher |
 | `OnboardingPage` | `web/src/pages/OnboardingPage.tsx` | Welcome screen + goal selection (2-tap flow) |
-| `GoalCard` | `web/src/components/GoalCard.tsx` | Selectable goal option card (Casual/Regular/Serious) |
+| `GoalCard` | `web/src/components/GoalCard.tsx` | Selectable goal option card (3 options) |
 
 ### Reused Components (no changes)
 
@@ -123,11 +125,11 @@ Source: `GameHeader.tsx` — `text-indigo-600`, `text-orange-600`; `HomePage.tsx
 
 ## Skill Tree Node States
 
-| State | Visual Treatment |
-|-------|-----------------|
-| Locked | 48px circle, `bg-gray-300`, lock emoji icon, `opacity-60`, no hover effect, `cursor-not-allowed` |
-| Unlocked | 48px circle, `border-2 border-indigo-600`, `bg-white`, lesson order number, pulsing dot indicator (CSS `animate-pulse`), `hover:border-indigo-700 hover:shadow-md`, `cursor-pointer` |
-| Completed | 48px circle, `bg-green-500`, white checkmark (✓), no pulse, `hover:bg-green-600 cursor-pointer` |
+| State | Visual Treatment | Accessibility |
+|-------|-----------------|---------------|
+| Locked | 48px circle, `bg-gray-300`, lock emoji icon, `opacity-60`, no hover effect, `cursor-not-allowed` | `aria-label="{lesson title} — locked"`, `aria-disabled="true"` |
+| Unlocked | 48px circle, `border-2 border-indigo-600`, `bg-white`, lesson order number, pulsing dot indicator (CSS `animate-pulse`), `hover:border-indigo-700 hover:shadow-md`, `cursor-pointer` | `aria-label="{lesson title} — start lesson"` |
+| Completed | 48px circle, `bg-green-500`, white checkmark (✓), no pulse, `hover:bg-green-600 cursor-pointer` | `aria-label="{lesson title} — completed"` |
 
 Node connector: 24px vertical line segment (`border-s-2 border-gray-200`) between adjacent nodes in a chapter. Uses `border-s` (logical, RTL-safe). Green (`border-green-300`) when the node below is completed.
 
@@ -144,7 +146,7 @@ Node connector: 24px vertical line segment (`border-s-2 border-gray-200`) betwee
 | Active indicator | 2px top border `border-t-2 border-indigo-600` on active tab |
 | Inactive icon opacity | `opacity-50` on inactive tabs |
 | Icon size | 24px (`text-2xl`) emoji |
-| Label size | 10px (`text-[10px]`) font-medium |
+| Label size | 10px (`text-[10px]`) font-normal |
 | Bottom safe area | `pb-safe` or `pb-4` for iOS PWA home indicator clearance |
 
 Tab icons (emoji, RTL-neutral):
@@ -162,15 +164,15 @@ Tab icons (emoji, RTL-neutral):
 |---------|-------|
 | Background | `bg-gradient-to-br from-indigo-50 to-purple-50` (matches LessonPage intro) |
 | App name display | "PromptPlay" — `text-4xl font-bold text-indigo-600 text-center` |
-| Subtitle | "Learn AI prompting through play" — `text-base text-gray-500 text-center` |
+| Subtitle | "Learn AI prompting through play" — `text-base font-normal text-gray-500 text-center` |
 | CTA button | "Start Learning" — full-width `bg-indigo-600` rounded-lg, same style as lesson Start button |
 
 ### Screen 2 — Goal Selection
 
 | Element | Value |
 |---------|-------|
-| Heading | "How often do you want to learn?" — `text-xl font-semibold text-gray-800` |
-| Goal cards | 3 cards: Casual (5 XP/day), Regular (10 XP/day), Serious (20 XP/day) |
+| Heading | "How often do you want to learn?" — `text-xl font-bold text-gray-800` |
+| Goal cards | 3 cards: "Learn AI basics", "Improve my prompts", "Explore for fun" |
 | Card selected state | `border-2 border-indigo-600 bg-indigo-50` |
 | Card default state | `border-2 border-gray-200 bg-white` |
 | Card size | Full-width, `p-4 rounded-xl`, `space-y-3` between cards |
@@ -186,8 +188,8 @@ Route guard: If `hasOnboarded === false`, redirect to `/onboarding` before any o
 |---------|--------|
 | Language switcher | Top of page, full-width toggle button — `t('language.switchToHebrew')` / `t('language.switchToEnglish')` |
 | Stats row | 4 cards in 2x2 grid: XP Total, Current Streak, Level (with ProgressRing), Lessons Completed |
-| Stats card | `bg-white rounded-xl border border-gray-200 p-4`, number in `text-2xl font-bold text-indigo-600`, label in `text-xs text-gray-500` |
-| Badges heading | `text-lg font-semibold text-gray-800 mb-3` |
+| Stats card | `bg-white rounded-xl border border-gray-200 p-4`, number in `text-2xl font-bold text-indigo-600`, label in `text-xs font-normal text-gray-500` |
+| Badges heading | `text-lg font-bold text-gray-800 mb-3` |
 | BadgeGrid | Existing component, 3-column grid — reused without modification |
 | Badge tap | Tooltip/popover on tap showing badge name + description — use `title` attribute as fallback, or simple toggle state |
 
@@ -205,13 +207,13 @@ Route guard: If `hasOnboarded === false`, redirect to `/onboarding` before any o
 | Onboarding welcome title | "PromptPlay" |
 | Onboarding welcome subtitle | "Learn AI prompting through play" (`onboarding.welcome.subtitle`) |
 | Goal selection heading | "How often do you want to learn?" (`onboarding.goal.heading`) |
-| Goal: Casual | "Casual — 5 XP per day" |
-| Goal: Regular | "Regular — 10 XP per day" |
-| Goal: Serious | "Serious — 20 XP per day" |
+| Goal: option 1 | "Learn AI basics" (`onboarding.goal.learnBasics`) |
+| Goal: option 2 | "Improve my prompts" (`onboarding.goal.improvePrompts`) |
+| Goal: option 3 | "Explore for fun" (`onboarding.goal.exploreForFun`) |
 | Skill tree page title | "Skill Tree" (`skillTree.title`) |
 | Skill tree progress | "{{completed}} of {{total}} lessons" (`skillTree.progress`) |
-| Node state: Locked | No text label — lock emoji communicates state visually |
-| Node state: Completed | No text label — checkmark communicates state visually |
+| Node state: Locked | No visible text label — lock emoji communicates state; `aria-label` provides accessible text |
+| Node state: Completed | No visible text label — checkmark communicates state; `aria-label="{lesson title} — completed"` provides accessible text |
 | Profile page title | "Profile" (`profile.title`) |
 | Empty badge state | "Keep going to earn this badge" (`badge.locked` — already in i18n) |
 | Error: lesson not found | "Lesson not found. Returning home..." — auto-redirect, no destructive action needed |
@@ -219,7 +221,7 @@ Route guard: If `hasOnboarded === false`, redirect to `/onboarding` before any o
 
 No destructive actions in this phase. No confirmation dialogs required.
 
-Source: `shared/src/i18n/en/common.json` — all copy keys above are pre-existing in the translation file.
+Source: CONTEXT.md locked decisions — goal card labels. `shared/src/i18n/en/common.json` — all other copy keys pre-existing in the translation file.
 
 ---
 
@@ -240,6 +242,7 @@ Source: `shared/src/i18n/en/common.json` — all copy keys above are pre-existin
 |---------|------------------|
 | Tab bar items | `role="tab"`, navigable with arrow keys, Enter/Space activates |
 | Skill tree unlocked node | `role="button"`, Enter/Space navigates to lesson |
+| Skill tree completed node | `role="button"`, `aria-label="{lesson title} — completed"`, Enter/Space re-navigates to lesson |
 | Skill tree locked node | `role="presentation"`, not focusable (`tabIndex={-1}`) |
 | Goal cards | `role="radio"` within `role="radiogroup"`, arrow keys move selection |
 | Onboarding CTA | Standard `<button>`, `disabled` attribute when no goal selected |
