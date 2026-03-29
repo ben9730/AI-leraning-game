@@ -44,7 +44,8 @@
     "level_3": { "title": "כוכב עולה", "description": "הגיעו לרמה 3" },
     "resilient": { "title": "עמיד", "description": "השתמשו בהקפאת רצף והמשיכו" },
     "earned": "הושג!",
-    "locked": "המשיכו כדי להשיג את התג הזה"
+    "locked": "המשיכו כדי להשיג את התג הזה",
+    "new_badge": "תג חדש!"
   },
   "onboarding": {
     "welcome": {

@@ -44,7 +44,8 @@
     "level_3": { "title": "Rising Star", "description": "Reach Level 3" },
     "resilient": { "title": "Resilient", "description": "Use a streak freeze and keep going" },
     "earned": "Earned!",
-    "locked": "Keep going to earn this badge"
+    "locked": "Keep going to earn this badge",
+    "new_badge": "New Badge!"
   },
   "onboarding": {
     "welcome": {
