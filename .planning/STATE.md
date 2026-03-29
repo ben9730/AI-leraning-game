@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
 status: executing
-stopped_at: Completed 13-01-PLAN.md
-last_updated: "2026-03-29T09:44:27.834Z"
+stopped_at: Completed 13-02-PLAN.md
+last_updated: "2026-03-29T09:47:07.672Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 14
-  completed_plans: 12
+  completed_plans: 14
   percent: 6
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Phase: 13 (skill-tree-navigation) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-03-29
 
@@ -57,6 +57,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 09 P01 | 2min | 2 tasks | 3 files |
 | Phase 11 P01 | 8 | 2 tasks | 6 files |
 | Phase 13 P01 | 12 | 2 tasks | 9 files |
+| Phase 13-skill-tree-navigation P02 | 8 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,8 @@ Recent decisions affecting current work:
 - [Phase 11]: completionHandledRef guards store actions against StrictMode double-fire
 - [Phase 13]: Dual-layout router: OnboardingLayout (no TabBar) + RootLayout (with TabBar + guard)
 - [Phase 13]: NavLink end prop on Home tab prevents false active match on /tree and /profile
+- [Phase 13]: data-lesson-id attribute on node wrapper div enables scroll-to-current without prop drilling a ref
+- [Phase 13]: -end-1 logical RTL-safe used for pulse dot positioning in SkillTreeNode
 
 ### Pending Todos
 
@@ -92,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:44:27.829Z
-Stopped at: Completed 13-01-PLAN.md
+Last session: 2026-03-29T09:47:07.666Z
+Stopped at: Completed 13-02-PLAN.md
 Resume file: None

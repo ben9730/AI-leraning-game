@@ -80,7 +80,7 @@ Plans:
 - [x] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI (completed 2026-03-29)
 - [x] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock (completed 2026-03-29)
 - [x] **Phase 12: Gamification** - XP/streak/badge engine from shared/, celebration animations in CSS, streak + level UI (completed 2026-03-29)
-- [ ] **Phase 13: Skill Tree + Navigation** - Tab navigation, skill tree visualization, onboarding flow, profile tab
+- [x] **Phase 13: Skill Tree + Navigation** - Tab navigation, skill tree visualization, onboarding flow, profile tab (completed 2026-03-29)
 - [ ] **Phase 14: PWA + Web Polish** - Service worker + offline, install banner, responsive layout, SEO meta tags
 
 ## Phase Details
@@ -187,8 +187,8 @@ Plans:
 
 Plans:
 - [x] 13-01-PLAN.md — TabBar + routes + store extension + onboarding flow (TREE-01, TREE-03)
-- [ ] 13-02-PLAN.md — Skill tree visualization with chapter sections and lesson nodes (TREE-02)
-- [ ] 13-03-PLAN.md — Profile page with stats, badges, and language switcher (TREE-04)
+- [x] 13-02-PLAN.md — Skill tree visualization with chapter sections and lesson nodes (TREE-02)
+- [x] 13-03-PLAN.md — Profile page with stats, badges, and language switcher (TREE-04)
 **UI hint**: yes
 
 ### Phase 14: PWA + Web Polish
@@ -222,5 +222,5 @@ Plans:
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 13. Skill Tree + Navigation | v2.0 | 1/3 | In Progress|  |
+| 13. Skill Tree + Navigation | v2.0 | 3/3 | Complete   | 2026-03-29 |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |

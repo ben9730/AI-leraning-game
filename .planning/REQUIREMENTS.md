@@ -36,7 +36,7 @@
 
 ## Skill Tree & Navigation (TREE)
 - [x] **TREE-01**: Tab-based navigation (Home, Skill Tree, Profile)
-- [ ] **TREE-02**: Skill tree visualization with locked/unlocked/complete visual states per lesson
+- [x] **TREE-02**: Skill tree visualization with locked/unlocked/complete visual states per lesson
 - [x] **TREE-03**: Onboarding flow: goal selection, reach first exercise within 60 seconds
 - [ ] **TREE-04**: Profile tab showing badges, stats, language switcher
 
@@ -83,7 +83,7 @@
 | GAME-03 | Phase 12 | Pending |
 | GAME-04 | Phase 12 | Pending |
 | TREE-01 | Phase 13 | Complete |
-| TREE-02 | Phase 13 | Pending |
+| TREE-02 | Phase 13 | Complete |
 | TREE-03 | Phase 13 | Complete |
 | TREE-04 | Phase 13 | Pending |
 | PWA-01 | Phase 14 | Pending |
