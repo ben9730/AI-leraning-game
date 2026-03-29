@@ -54,10 +54,13 @@ export function SpotProblemCard({
   const [submitted, setSubmitted] = useState(false)
 
   // Combine issues and distractors, shuffle deterministically
+  // Supports both old format (separate issues + distractors arrays)
+  // and new format (issues array with isActualIssue flag, no distractors)
   const { shuffled, indexMap } = useMemo(() => {
-    const combined = [...exercise.issues, ...exercise.distractors]
+    const distractors = (exercise as any).distractors ?? []
+    const combined = [...exercise.issues, ...distractors]
     return seededShuffle(combined, exercise.id)
-  }, [exercise.id, exercise.issues, exercise.distractors])
+  }, [exercise.id, exercise.issues])
 
   function toggleIndex(shuffledIdx: number) {
     if (submitted) return
@@ -99,7 +102,7 @@ export function SpotProblemCard({
 
       {/* Problematic prompt blockquote */}
       <div className="border-s-4 border-amber-400 bg-amber-50 ps-4 pe-4 py-3 rounded-e-lg text-gray-700 text-start">
-        {exercise.problematicPrompt[lang]}
+        {(exercise.problematicPrompt ?? (exercise as any).badExample)?.[lang]}
       </div>
 
       {/* Checkbox list */}
@@ -122,7 +125,7 @@ export function SpotProblemCard({
                 disabled={submitted}
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
               />
-              <span className="text-gray-800 text-start">{item[lang]}</span>
+              <span className="text-gray-800 text-start">{(item as any).label?.[lang] ?? item[lang]}</span>
             </label>
           )
         })}
