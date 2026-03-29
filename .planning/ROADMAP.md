@@ -183,7 +183,12 @@ Plans:
   2. Skill tree renders all 20 lesson nodes across 4 chapters with correct locked/unlocked/complete visual states derived from real progress
   3. A brand-new user completes the onboarding goal selection and reaches the first interactive exercise within 60 seconds
   4. Profile tab displays earned badges, XP stats, streak info, and a working language switcher
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 13-01-PLAN.md — TabBar + routes + store extension + onboarding flow (TREE-01, TREE-03)
+- [ ] 13-02-PLAN.md — Skill tree visualization with chapter sections and lesson nodes (TREE-02)
+- [ ] 13-03-PLAN.md — Profile page with stats, badges, and language switcher (TREE-04)
 **UI hint**: yes
 
 ### Phase 14: PWA + Web Polish
