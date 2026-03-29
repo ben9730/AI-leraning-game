@@ -17,7 +17,7 @@ Build the lesson screen that takes users through a complete lesson: intro screen
 - Full-screen card layout with progress bar/dots at top — mobile-first, Duolingo-style
 - Minimal intro screen: lesson title, chapter name, tip text, "Start" button — fast path to first exercise
 - One-at-a-time exercise presentation with progress dots (filled/empty circles)
-- Auto-advance to next exercise after feedback dismissal
+- Continue button advances to next exercise after feedback is shown (exercise cards call onComplete immediately and render feedback internally — explicit Continue button is needed as the advance trigger)
 
 ### Completion & Unlock Logic
 - Completion screen shows XP earned summary + "Next Lesson" button
