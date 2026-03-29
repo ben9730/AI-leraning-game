@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
-status: executing
-stopped_at: Completed 13-02-PLAN.md
-last_updated: "2026-03-29T09:47:07.672Z"
+status: verifying
+stopped_at: Completed 13-03-PLAN.md
+last_updated: "2026-03-29T09:51:10.653Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 
 ## Current Position
 
-Phase: 13 (skill-tree-navigation) — EXECUTING
-Plan: 3 of 3
-Status: Ready to execute
+Phase: 14
+Plan: Not started
+Status: Phase complete — ready for verification
 Last activity: 2026-03-29
 
 Progress: [█░░░░░░░░░] 6%
@@ -58,6 +58,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 11 P01 | 8 | 2 tasks | 6 files |
 | Phase 13 P01 | 12 | 2 tasks | 9 files |
 | Phase 13-skill-tree-navigation P02 | 8 | 2 tasks | 3 files |
+| Phase 13 P03 | 8 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,8 @@ Recent decisions affecting current work:
 - [Phase 13]: NavLink end prop on Home tab prevents false active match on /tree and /profile
 - [Phase 13]: data-lesson-id attribute on node wrapper div enables scroll-to-current without prop drilling a ref
 - [Phase 13]: -end-1 logical RTL-safe used for pulse dot positioning in SkillTreeNode
+- [Phase 13]: Tooltip dismiss via fixed backdrop div (z-0 beneath tooltip z-10) — no external library needed
+- [Phase 13]: Stat card labels use dedicated i18n keys (profile.xp, profile.streak, profile.lessonsCompleted) not inline text
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T09:47:07.666Z
-Stopped at: Completed 13-02-PLAN.md
+Last session: 2026-03-29T09:47:39.579Z
+Stopped at: Completed 13-03-PLAN.md
 Resume file: None

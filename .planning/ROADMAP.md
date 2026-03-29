@@ -222,5 +222,5 @@ Plans:
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 13. Skill Tree + Navigation | v2.0 | 3/3 | Complete   | 2026-03-29 |
+| 13. Skill Tree + Navigation | v2.0 | 3/3 | Complete    | 2026-03-29 |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
