@@ -77,7 +77,7 @@ Plans:
 - [ ] **Phase 7: Foundation + Shared Extraction** - Vite 6 + React 19 scaffold, monorepo with shared/ package, portable TS extraction, lint guardrails
 - [x] **Phase 8: State + i18n + RTL** - Zustand with localStorage persistence, i18next EN+HE, RTL via CSS logical properties (completed 2026-03-28)
 - [x] **Phase 9: Content Pipeline** - Vite content loader for 20 lesson JSONs, curriculum index with chapter groupings (completed 2026-03-28)
-- [ ] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI
+- [x] **Phase 10: Exercise System** - Exercise type registry, 6 web exercise components, evaluator wiring with scoring UI (completed 2026-03-29)
 - [ ] **Phase 11: Lesson Flow** - Lesson screen with intro/exercise/completion sequence, progress persistence, sequential unlock
 - [ ] **Phase 12: Gamification** - XP/streak/badge engine from shared/, celebration animations in CSS, streak + level UI
 - [ ] **Phase 13: Skill Tree + Navigation** - Tab navigation, skill tree visualization, onboarding flow, profile tab
@@ -139,8 +139,8 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 10-01-PLAN.md — Exercise registry + FeedbackCard + MCQCard + PickBetterCard + FreeTextCard components
-- [ ] 10-02-PLAN.md — FillBlankCard + SpotProblemCard + SimulatedChatCard + full integration tests
+- [x] 10-01-PLAN.md — Exercise registry + FeedbackCard + MCQCard + PickBetterCard + FreeTextCard components
+- [x] 10-02-PLAN.md — FillBlankCard + SpotProblemCard + SimulatedChatCard + full integration tests
 
 ### Phase 11: Lesson Flow
 **Goal**: Users can play through a complete lesson from intro to exercises to completion screen, with progress saved and sequential lesson unlocking
@@ -206,7 +206,7 @@ Plans:
 | 7. Foundation + Shared Extraction | v2.0 | 2/2 | Complete | 2026-03-28 |
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
-| 10. Exercise System | v2.0 | 0/2 | Not started | - |
+| 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
