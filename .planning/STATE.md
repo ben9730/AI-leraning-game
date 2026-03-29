@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Web-First Rebuild
 status: executing
-stopped_at: Completed 11-01-PLAN.md -- lesson flow routing and DotStepper done
-last_updated: "2026-03-29T08:51:43.125Z"
+stopped_at: Completed 13-01-PLAN.md
+last_updated: "2026-03-29T09:44:27.834Z"
 last_activity: 2026-03-29
 progress:
   total_phases: 8
   completed_phases: 6
-  total_plans: 11
-  completed_plans: 11
+  total_plans: 14
+  completed_plans: 12
   percent: 6
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 12 — gamification
+**Current focus:** Phase 13 — skill-tree-navigation
 
 ## Current Position
 
-Phase: 13
-Plan: Not started
-Status: Executing Phase 12
+Phase: 13 (skill-tree-navigation) — EXECUTING
+Plan: 2 of 3
+Status: Ready to execute
 Last activity: 2026-03-29
 
 Progress: [█░░░░░░░░░] 6%
@@ -56,6 +56,7 @@ Progress: [█░░░░░░░░░] 6%
 | Phase 08 P02 | 4min | 2 tasks | 10 files |
 | Phase 09 P01 | 2min | 2 tasks | 3 files |
 | Phase 11 P01 | 8 | 2 tasks | 6 files |
+| Phase 13 P01 | 12 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,8 @@ Recent decisions affecting current work:
 - [Phase 11]: Import from 'react-router' not 'react-router-dom' (merged in v7)
 - [Phase 11]: Continue button pattern: exercise cards call onComplete immediately, LessonPage shows Continue to advance (not auto-advance)
 - [Phase 11]: completionHandledRef guards store actions against StrictMode double-fire
+- [Phase 13]: Dual-layout router: OnboardingLayout (no TabBar) + RootLayout (with TabBar + guard)
+- [Phase 13]: NavLink end prop on Home tab prevents false active match on /tree and /profile
 
 ### Pending Todos
 
@@ -89,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29
-Stopped at: Phases 10-12 complete. Next: Phase 13 Skill Tree + Navigation
+Last session: 2026-03-29T09:44:27.829Z
+Stopped at: Completed 13-01-PLAN.md
 Resume file: None

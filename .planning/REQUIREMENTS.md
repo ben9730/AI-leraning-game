@@ -35,9 +35,9 @@
 - [ ] **GAME-04**: Streak display with flame icon, XP counter, level indicator visible in UI
 
 ## Skill Tree & Navigation (TREE)
-- [ ] **TREE-01**: Tab-based navigation (Home, Skill Tree, Profile)
+- [x] **TREE-01**: Tab-based navigation (Home, Skill Tree, Profile)
 - [ ] **TREE-02**: Skill tree visualization with locked/unlocked/complete visual states per lesson
-- [ ] **TREE-03**: Onboarding flow: goal selection, reach first exercise within 60 seconds
+- [x] **TREE-03**: Onboarding flow: goal selection, reach first exercise within 60 seconds
 - [ ] **TREE-04**: Profile tab showing badges, stats, language switcher
 
 ## PWA & Web Polish (PWA)
@@ -82,9 +82,9 @@
 | GAME-02 | Phase 12 | Pending |
 | GAME-03 | Phase 12 | Pending |
 | GAME-04 | Phase 12 | Pending |
-| TREE-01 | Phase 13 | Pending |
+| TREE-01 | Phase 13 | Complete |
 | TREE-02 | Phase 13 | Pending |
-| TREE-03 | Phase 13 | Pending |
+| TREE-03 | Phase 13 | Complete |
 | TREE-04 | Phase 13 | Pending |
 | PWA-01 | Phase 14 | Pending |
 | PWA-02 | Phase 14 | Pending |

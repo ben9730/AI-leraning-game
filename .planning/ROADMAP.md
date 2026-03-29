@@ -186,7 +186,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 13-01-PLAN.md — TabBar + routes + store extension + onboarding flow (TREE-01, TREE-03)
+- [x] 13-01-PLAN.md — TabBar + routes + store extension + onboarding flow (TREE-01, TREE-03)
 - [ ] 13-02-PLAN.md — Skill tree visualization with chapter sections and lesson nodes (TREE-02)
 - [ ] 13-03-PLAN.md — Profile page with stats, badges, and language switcher (TREE-04)
 **UI hint**: yes
@@ -222,5 +222,5 @@ Plans:
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 11. Lesson Flow | v2.0 | 2/2 | Complete    | 2026-03-29 |
 | 12. Gamification | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
+| 13. Skill Tree + Navigation | v2.0 | 1/3 | In Progress|  |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
