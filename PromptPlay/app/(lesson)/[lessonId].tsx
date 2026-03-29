@@ -18,7 +18,7 @@ export default function LessonRoute() {
     )
   }
 
-  return <LessonScreen lessonId={lessonId} />
+  return <LessonScreen key={lessonId} lessonId={lessonId} />
 }
 
 const styles = StyleSheet.create({
