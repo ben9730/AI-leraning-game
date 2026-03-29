@@ -9,44 +9,41 @@ import {
   evaluateSpotProblem,
   evaluateSimulatedChat,
 } from '@shared/exercise/evaluators'
+import { MCQCard } from './components/MCQCard'
+import { PickBetterCard } from './components/PickBetterCard'
+import { FreeTextCard } from './components/FreeTextCard'
+import { FillBlankCard } from './components/FillBlankCard'
+import { SpotProblemCard } from './components/SpotProblemCard'
+import { SimulatedChatCard } from './components/SimulatedChatCard'
 
 export interface ExerciseRegistryEntry {
   component: ComponentType<ExerciseComponentProps<any>>
   evaluator: Function
 }
 
-// Placeholder component for exercise types not yet implemented
-function PlaceholderExercise({ exercise }: ExerciseComponentProps) {
-  return (
-    <div className="rounded-xl border-2 border-dashed border-gray-300 p-6 text-center text-gray-500">
-      Coming soon: {exercise.type}
-    </div>
-  )
-}
-
 export const exerciseRegistry: Record<ExerciseType, ExerciseRegistryEntry> = {
   'mcq': {
-    component: PlaceholderExercise,
+    component: MCQCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluateMCQ,
   },
   'pick-better': {
-    component: PlaceholderExercise,
+    component: PickBetterCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluatePickBetter,
   },
   'free-text': {
-    component: PlaceholderExercise,
+    component: FreeTextCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluateFreeText,
   },
   'fill-blank': {
-    component: PlaceholderExercise,
+    component: FillBlankCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluateFillBlank,
   },
   'spot-problem': {
-    component: PlaceholderExercise,
+    component: SpotProblemCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluateSpotProblem,
   },
   'simulated-chat': {
-    component: PlaceholderExercise,
+    component: SimulatedChatCard as ComponentType<ExerciseComponentProps<any>>,
     evaluator: evaluateSimulatedChat,
   },
 }
