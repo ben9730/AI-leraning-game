@@ -12,19 +12,19 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Gamification system — XP points, daily streaks, levels, progress tracking — v2.0
+- ✓ One complete learning path (20 lessons across 4 chapters) — v2.0
+- ✓ Mini-lesson format — intro → exercises → completion with XP/badges — v2.0
+- ✓ Pre-built/simulated AI practice — 6 exercise types with scoring evaluators — v2.0
+- ✓ Mobile-first responsive design with desktop sidebar at lg+ — v2.0
+- ✓ English + Hebrew language support with instant RTL flip — v2.0
+- ✓ Skill tree / progression map with chapter-grouped nodes — v2.0
+- ✓ Lesson types: MCQ, pick-better, free-text, fill-blank, spot-problem, simulated-chat — v2.0
+- ✓ Tool-agnostic curriculum — universal prompting principles — v2.0
 
 ### Active
 
-- [ ] Gamification system — XP points, daily streaks, levels, progress tracking
-- [ ] One complete learning path (~20-30 lessons) from AI basics to intermediate prompting
-- [ ] Mini-lesson format — short explanations (30 sec read) followed by 2-3 practice exercises
-- [ ] Pre-built/simulated AI practice — users write prompts, see pre-scripted AI responses, get scored on technique
-- [ ] Mobile-first responsive design
-- [ ] English + Hebrew language support (RTL layout support)
-- [ ] Skill tree / progression map showing learning journey
-- [ ] Lesson types: read + practice, prompt challenges, quizzes to keep engagement varied
-- [ ] Tool-agnostic curriculum — teaches universal prompting principles, not specific tool UIs
+(None — next milestone requirements TBD via /gsd:new-milestone)
 
 ### Out of Scope
 
@@ -47,7 +47,7 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 ## Constraints
 
 - **Cost**: No per-user API costs — all AI interactions are simulated/pre-built
-- **Platform**: Mobile-first, but tech stack TBD via research (React Native, Flutter, PWA, etc.)
+- **Platform**: Web-first PWA (Vite + React), installable on mobile home screens
 - **Content scope**: V1 covers one learning path only — depth over breadth
 - **Bilingual**: Must support RTL (Hebrew) from the architecture level, not bolted on later
 
@@ -55,27 +55,29 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Simulated AI (no live API) | Zero marginal cost, full control over learning experience, consistent for all users | — Pending |
-| Tool-agnostic curriculum | Universal skills are more valuable than tool-specific tutorials; tools change, principles don't | — Pending |
-| Duolingo-style gamification | Proven engagement model, familiar to users, drives daily habit formation | — Pending |
-| English + Hebrew from day one | Bilingual from start avoids costly RTL retrofit later | — Pending |
-| One learning path for v1 | Validate engagement with one great path before expanding | — Pending |
-| Tech stack via research | Let domain research inform the best choice rather than assuming | — Pending |
-| Web-first rebuild (v2.0) | Expo/React Native web support is too broken — blank screens, import.meta errors, native modules fail on web. Pure TS game logic is portable. | v2.0 pivot |
+| Simulated AI (no live API) | Zero marginal cost, full control over learning experience, consistent for all users | ✓ Good |
+| Tool-agnostic curriculum | Universal skills are more valuable than tool-specific tutorials; tools change, principles don't | ✓ Good |
+| Duolingo-style gamification | Proven engagement model, familiar to users, drives daily habit formation | ✓ Good |
+| English + Hebrew from day one | Bilingual from start avoids costly RTL retrofit later | ✓ Good |
+| One learning path for v1 | Validate engagement with one great path before expanding | ✓ Good |
+| Vite 6 + React 19 + Tailwind v4 | Research-driven: fastest DX, modern stack, no SSR overhead for SPA | ✓ Good |
+| Web-first rebuild (v2.0) | Expo/React Native web support is too broken — pure TS game logic is portable | ✓ Good |
+| Shared monorepo (npm workspaces) | Portable TS logic in shared/, web app in web/ — future native wrapper possible | ✓ Good |
+| Workbox via vite-plugin-pwa | PWA offline support with precaching, prompt-based update strategy | ✓ Good |
 
-## Current Milestone: v2.0 Web-First Rebuild
+## Current State: v2.0 Shipped
 
-**Goal:** Rebuild PromptPlay as a web-first app with a modern web stack, porting all existing curriculum and game logic from the Expo/React Native codebase.
+**Shipped:** 2026-03-29
+**Stack:** Vite 6 + React 19 + Tailwind v4 + Zustand + Workbox
+**Codebase:** 81 TS/TSX files, 6,517 LOC across shared/ and web/
 
-**Target features:**
-- Web-first stack (to be determined by research — Next.js, Vite+React, etc.)
-- Port all 20 lessons, 6 exercise types, evaluators
-- Port XP/streaks/badges/level-up gamification engine
-- English + Hebrew with RTL support
-- PWA installability (service worker, offline lessons)
-- Optional mobile wrapper (Capacitor/TWA) for app stores
-
-**Why pivot:** Expo/React Native web support is fundamentally broken — Expo Router blank screens, import.meta syntax errors from zustand ESM, MMKV native-only, font loading failures. All game logic is pure TypeScript and portable without rewrite.
+PromptPlay v2.0 is a fully functional web app with:
+- 20 lessons across 4 chapters with 6 exercise types
+- XP, streaks, levels, badges, celebrations
+- Visual skill tree with chapter completion tracking
+- EN/HE with instant RTL layout flip
+- PWA with offline support, install prompts, responsive desktop/mobile layout
+- SEO meta tags and Open Graph cards for social sharing
 
 ## Evolution
 
@@ -95,4 +97,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 — v2.0 Web-First Rebuild milestone started*
+*Last updated: 2026-03-29 after v2.0 Web-First Rebuild milestone*
