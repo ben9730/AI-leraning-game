@@ -6,7 +6,7 @@
     "progress": "{{completed}} מתוך {{total}} שיעורים",
     "chapterProgress": "{{completed}}/{{total}}"
   },
-  "profile": { "title": "פרופיל" },
+  "profile": { "title": "פרופיל", "badges": "תגים", "xp": "XP סה\"כ", "streak": "ימי רצף", "lessonsCompleted": "שיעורים שהושלמו" },
   "common": { "continue": "המשך", "back": "חזור", "loading": "טוען..." },
   "language": { "switchToHebrew": "עברית", "switchToEnglish": "English" },
   "lesson": {

@@ -6,7 +6,7 @@
     "progress": "{{completed}} of {{total}} lessons",
     "chapterProgress": "{{completed}}/{{total}}"
   },
-  "profile": { "title": "Profile" },
+  "profile": { "title": "Profile", "badges": "Badges", "xp": "Total XP", "streak": "Day Streak", "lessonsCompleted": "Lessons Done" },
   "common": { "continue": "Continue", "back": "Back", "loading": "Loading..." },
   "language": { "switchToHebrew": "Switch to Hebrew", "switchToEnglish": "Switch to English" },
   "lesson": {
