@@ -107,7 +107,7 @@ export function LessonPage() {
       }
       setPhase('complete')
     }
-  }, [lesson, exerciseIndex, exercises.length, completeLesson, unlockLesson, addXP])
+  }, [lesson, exerciseIndex, exercises.length, completeLesson, unlockLesson, addXP, updateStreak])
 
   // ── INTRO PHASE ──────────────────────────────────────────────────────────────
   if (phase === 'intro') {

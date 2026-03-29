@@ -26,7 +26,7 @@
 ## Lesson Flow (LESS)
 - [x] **LESS-01**: Lesson screen with intro → exercise sequence → completion screen showing XP earned
 - [x] **LESS-02**: Lesson progress states (not started / in progress / completed) persisted across sessions
-- [ ] **LESS-03**: Navigation between lessons with sequential unlock logic
+- [x] **LESS-03**: Navigation between lessons with sequential unlock logic
 
 ## Gamification (GAME)
 - [ ] **GAME-01**: XP engine, streak tracking, streak freeze, level-up detection (ported from shared/ pure TS)
@@ -77,7 +77,7 @@
 | EXER-03 | Phase 10 | Pending |
 | LESS-01 | Phase 11 | Complete |
 | LESS-02 | Phase 11 | Complete |
-| LESS-03 | Phase 11 | Pending |
+| LESS-03 | Phase 11 | Complete (11-02) |
 | GAME-01 | Phase 12 | Pending |
 | GAME-02 | Phase 12 | Pending |
 | GAME-03 | Phase 12 | Pending |

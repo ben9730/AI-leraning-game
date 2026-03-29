@@ -2,6 +2,7 @@ import { NavLink } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { chapters } from '@/content'
 import { useProgressStore } from '@/store/useProgressStore'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const navItems = [
   { to: '/', labelKey: 'tabs.home', icon: '🏠', end: true },
@@ -11,6 +12,7 @@ const navItems = [
 
 export function Sidebar() {
   const { t } = useTranslation()
+  const { currentLanguage } = useLanguage()
   const completedLessons = useProgressStore(s => s.completedLessons)
 
   return (
@@ -60,7 +62,7 @@ export function Sidebar() {
                     allCompleted ? 'bg-green-500' : 'bg-gray-300'
                   }`}
                 />
-                <span className="truncate">{chapter.title.en}</span>
+                <span className="truncate">{chapter.title[currentLanguage]}</span>
               </li>
             )
           })}
