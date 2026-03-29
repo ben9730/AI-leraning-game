@@ -150,8 +150,12 @@ Plans:
   1. User can open a lesson, view the intro content, complete 2-3 exercises in sequence, and reach a completion screen showing XP earned
   2. Lesson progress states (not started / in progress / completed) persist across browser sessions via the Zustand store
   3. Lessons unlock sequentially -- a user cannot access lesson N+1 until lesson N is completed, and completed lessons show a review option
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 11-01-PLAN.md — React Router 7 setup, DotStepper component, LessonPage with intro/exercise/completion flow
+- [ ] 11-02-PLAN.md — HomePage with chapter/lesson listing, lock state UI, end-to-end verification
 
 ### Phase 12: Gamification
 **Goal**: Completing lessons feels rewarding with XP, streaks, levels, and badges, and returning daily has a visible hook
@@ -207,7 +211,7 @@ Plans:
 | 8. State + i18n + RTL | v2.0 | 2/2 | Complete   | 2026-03-28 |
 | 9. Content Pipeline | v2.0 | 1/1 | Complete   | 2026-03-28 |
 | 10. Exercise System | v2.0 | 2/2 | Complete    | 2026-03-29 |
-| 11. Lesson Flow | v2.0 | 0/0 | Not started | - |
+| 11. Lesson Flow | v2.0 | 0/2 | Planned | - |
 | 12. Gamification | v2.0 | 0/0 | Not started | - |
 | 13. Skill Tree + Navigation | v2.0 | 0/0 | Not started | - |
 | 14. PWA + Web Polish | v2.0 | 0/0 | Not started | - |
