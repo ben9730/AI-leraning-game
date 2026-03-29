@@ -87,8 +87,12 @@
     "syncComplete": "ההתקדמות נשמרה!"
   },
   "pwa": {
-    "installButton": "התקינו את PromptPlay",
-    "iosInstallHint": "התקינו את PromptPlay: לחצו על שתף, ואז 'הוסף למסך הבית'",
+    "offlineBanner": "אתה במצב לא מקוון — שיעורים שמורים עדיין זמינים",
+    "updateAvailable": "גרסה חדשה זמינה",
+    "updateRefresh": "רענן",
+    "updateLater": "אחר כך",
+    "installButton": "התקן PromptPlay",
+    "iosInstallHint": "התקן PromptPlay: לחץ על שיתוף, ואז 'הוסף למסך הבית'",
     "dismiss": "סגור"
   },
   "gamification": {

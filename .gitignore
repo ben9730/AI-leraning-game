@@ -1,3 +1,5 @@
 node_modules/
 *.png
+!web/public/icons/*.png
+!web/public/og-image.png
 .playwright-mcp/

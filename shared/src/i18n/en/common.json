@@ -87,6 +87,10 @@
     "syncComplete": "Progress saved!"
   },
   "pwa": {
+    "offlineBanner": "You're offline — cached lessons still available",
+    "updateAvailable": "New version available",
+    "updateRefresh": "Refresh",
+    "updateLater": "Later",
     "installButton": "Install PromptPlay",
     "iosInstallHint": "Install PromptPlay: tap Share, then 'Add to Home Screen'",
     "dismiss": "Dismiss"
