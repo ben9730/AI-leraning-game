@@ -40,6 +40,17 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     if (pendingLevelUp !== null) {
       setPendingLevel(pendingLevelUp)
       setShowLevelUp(true)
+      return
+    }
+
+    // Navigate to next lesson if available, otherwise go home
+    const currentIndex = curriculum.indexOf(lesson.id)
+    const nextLessonId = currentIndex !== -1 && currentIndex + 1 < curriculum.length
+      ? curriculum[currentIndex + 1]
+      : null
+
+    if (nextLessonId) {
+      router.replace(`/(lesson)/${nextLessonId}`)
     } else {
       router.replace('/(tabs)')
     }
@@ -61,11 +72,15 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     }
 
     // Silent sync for already signed-in users (fire-and-forget)
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session) {
-      syncProgressToCloud(session.user.id).catch(() => {
-        // Sync failure is non-blocking — user continues regardless
-      })
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        syncProgressToCloud(session.user.id).catch(() => {
+          // Sync failure is non-blocking
+        })
+      }
+    } catch {
+      // Supabase/SecureStore may be unavailable on web — non-blocking
     }
 
     // Show account prompt after lesson 2 completion (once per session)
@@ -82,7 +97,18 @@ export function LessonScreen({ lessonId }: LessonScreenProps) {
     clearPendingLevelUp()
     setShowLevelUp(false)
     setPendingLevel(null)
-    router.replace('/(tabs)')
+
+    // Navigate to next lesson if available, otherwise go home
+    const currentIndex = curriculum.indexOf(lesson.id)
+    const nextLessonId = currentIndex !== -1 && currentIndex + 1 < curriculum.length
+      ? curriculum[currentIndex + 1]
+      : null
+
+    if (nextLessonId) {
+      router.replace(`/(lesson)/${nextLessonId}`)
+    } else {
+      router.replace('/(tabs)')
+    }
   }
 
   const handleAccountPromptSkip = () => {

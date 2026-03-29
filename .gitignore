@@ -3,3 +3,5 @@ node_modules/
 !web/public/icons/*.png
 !web/public/og-image.png
 .playwright-mcp/
+
+.vercel
