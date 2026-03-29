@@ -5,7 +5,13 @@ import { getExerciseComponent } from '@/exercises/registry'
 import { useProgressStore } from '@/store/useProgressStore'
 import { useLanguage } from '@/hooks/useLanguage'
 import { DotStepper } from '@/components/DotStepper'
+import { CelebrationOverlay } from '@/components/CelebrationOverlay'
+import { XPFloatUp } from '@/components/XPFloatUp'
+import { BadgeGrid } from '@/components/BadgeGrid'
+import { BadgeToast } from '@/components/BadgeToast'
+import { deriveBadges } from '@shared/gamification/badges'
 import type { ExerciseResult } from '@/exercises/types'
+import type { Badge } from '@shared/gamification/badges'
 
 type LessonPhase = 'intro' | 'running' | 'complete'
 
@@ -31,6 +37,10 @@ export function LessonPage() {
   const [phase, setPhase] = useState<LessonPhase>('intro')
   const [exerciseIndex, setExerciseIndex] = useState(0)
   const [exerciseCompleted, setExerciseCompleted] = useState(false)
+  const [showCelebration, setShowCelebration] = useState(false)
+  const [completionXP, setCompletionXP] = useState(0)
+  const [allBadges, setAllBadges] = useState<Badge[]>([])
+  const [newlyEarnedBadge, setNewlyEarnedBadge] = useState<Badge | null>(null)
 
   const completionHandledRef = useRef(false)
 
@@ -70,8 +80,12 @@ export function LessonPage() {
       // All exercises done — fire store actions ONCE
       if (!completionHandledRef.current) {
         completionHandledRef.current = true
+        // Snapshot badges BEFORE mutations
+        const pre = useProgressStore.getState()
+        const badgesBefore = deriveBadges(pre.completedLessons, pre.peakStreak, pre.xpTotal, pre.streakFreezeUsedEver)
+        const earnedBefore = new Set(badgesBefore.filter(b => b.earned).map(b => b.id))
+
         completeLesson(lesson.id)
-        // Unlock next lesson
         const allIds = getAllLessonIds()
         const idx = allIds.indexOf(lesson.id)
         if (idx !== -1 && idx + 1 < allIds.length) {
@@ -79,6 +93,16 @@ export function LessonPage() {
         }
         addXP(lesson.xpReward, 'lesson_complete')
         updateStreak()
+
+        // Snapshot badges AFTER mutations
+        const post = useProgressStore.getState()
+        const badgesAfter = deriveBadges(post.completedLessons, post.peakStreak, post.xpTotal, post.streakFreezeUsedEver)
+        const newBadge = badgesAfter.find(b => b.earned && !earnedBefore.has(b.id))
+
+        setAllBadges(badgesAfter)
+        setCompletionXP(lesson.xpReward)
+        setShowCelebration(true)
+        if (newBadge) setNewlyEarnedBadge(newBadge)
       }
       setPhase('complete')
     }
@@ -149,12 +173,24 @@ export function LessonPage() {
   // ── COMPLETE PHASE ───────────────────────────────────────────────────────────
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-indigo-50">
+      {showCelebration && <CelebrationOverlay />}
+      {newlyEarnedBadge && (
+        <BadgeToast badge={newlyEarnedBadge} onDismiss={() => setNewlyEarnedBadge(null)} />
+      )}
       <div className="w-full max-w-lg text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Lesson Complete!</h1>
-        <p className="text-5xl font-extrabold text-indigo-600 mb-2">
-          +{lesson.xpReward} XP
-        </p>
-        <p className="text-gray-500 mb-8">Great work!</p>
+        <div className="relative inline-block mb-2">
+          <p className="text-5xl font-extrabold text-indigo-600">
+            +{completionXP || lesson.xpReward} XP
+          </p>
+          {showCelebration && <XPFloatUp amount={completionXP || lesson.xpReward} />}
+        </div>
+        <p className="text-gray-500 mb-6">Great work!</p>
+        {allBadges.length > 0 && (
+          <div className="mb-6">
+            <BadgeGrid badges={allBadges} />
+          </div>
+        )}
         <div className="space-y-3">
           {nextLessonId ? (
             <button
@@ -170,7 +206,7 @@ export function LessonPage() {
             onClick={() => navigate('/')}
             className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
           >
-            {nextLessonId ? 'Back to Home' : 'Back to Home'}
+            Back to Home
           </button>
         </div>
       </div>

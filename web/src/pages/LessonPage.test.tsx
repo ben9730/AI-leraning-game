@@ -141,7 +141,7 @@ describe('LessonPage', () => {
 
     // Should show completion screen
     expect(screen.getByText(/lesson complete/i)).toBeInTheDocument()
-    expect(screen.getByText(/50 XP/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/50 XP/i).length).toBeGreaterThanOrEqual(1)
   })
 
   it('calls completeLesson and addXP on lesson completion', () => {
