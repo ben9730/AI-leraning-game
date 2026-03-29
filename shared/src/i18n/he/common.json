@@ -57,7 +57,10 @@
       "casual": "קליל",
       "regular": "רגיל",
       "serious": "אינטנסיבי",
-      "xpPerDay": "{{xp}} XP ליום"
+      "xpPerDay": "{{xp}} XP ליום",
+      "learnBasics": "ללמוד יסודות AI",
+      "improvePrompts": "לשפר את הפרומפטים שלי",
+      "exploreForFun": "לחקור בשביל הכיף"
     }
   },
   "accountPrompt": {

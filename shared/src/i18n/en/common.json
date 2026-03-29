@@ -57,7 +57,10 @@
       "casual": "Casual",
       "regular": "Regular",
       "serious": "Serious",
-      "xpPerDay": "{{xp}} XP per day"
+      "xpPerDay": "{{xp}} XP per day",
+      "learnBasics": "Learn AI basics",
+      "improvePrompts": "Improve my prompts",
+      "exploreForFun": "Explore for fun"
     }
   },
   "accountPrompt": {
