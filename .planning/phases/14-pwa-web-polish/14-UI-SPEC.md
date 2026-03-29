@@ -35,6 +35,7 @@ Declared values (must be multiples of 4):
 |-------|-------|-------|
 | xs | 4px | Icon gaps, inline padding between tight elements |
 | sm | 8px | Compact element spacing, gap between badge items |
+| — | 12px (gap-3) | Legacy value present in existing components — not newly introduced in phase 14; do not add new usage |
 | md | 16px | Default card padding, horizontal page padding (p-4) |
 | lg | 24px | Section vertical spacing (space-y-6 = 24px) |
 | xl | 32px | Page bottom padding (pb-8), major section breaks |
@@ -57,15 +58,17 @@ Exceptions:
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 14px (text-sm) | 400 (font-normal) | 1.5 |
-| Label | 14px (text-sm) | 600 (font-semibold) | 1.4 |
+| Label | 14px (text-sm) | 400 (font-normal) | 1.4 |
 | Heading | 20px (text-xl) | 700 (font-bold) | 1.2 |
 | Display | 30px (text-3xl) | 700 (font-bold) | 1.1 |
 
-> Source: codebase scan — GameHeader uses text-sm/font-semibold; HomePage uses text-3xl/font-bold for title, text-xl/font-semibold for chapter headings; ChapterSection uses text-xl/font-bold; body copy is consistently text-sm at default weight.
+Permitted weights: **400 (font-normal)** and **700 (font-bold)** only. font-semibold (600) is not permitted in phase 14 — use font-bold (700) wherever emphasis is required.
+
+> Source: codebase scan — GameHeader uses text-sm; HomePage uses text-3xl/font-bold for title, text-xl/font-bold for chapter headings; ChapterSection uses text-xl/font-bold; body copy is consistently text-sm at default weight.
 
 New typography in this phase:
 - Banner body (offline/install/update): text-sm (14px), weight 400, line-height 1.5 — matches body role
-- Sidebar nav labels: text-sm (14px), weight 600 when active, weight 400 when inactive — matches label role
+- Sidebar nav labels: text-sm (14px), weight 700 when active, weight 400 when inactive — matches heading weight pattern for active state
 
 ---
 
@@ -118,6 +121,8 @@ New color applications in this phase:
   - Skill tree mini-map (bottom of sidebar)
 ```
 
+GameHeader is the primary visual anchor on all viewports; the sidebar is secondary chrome providing navigation context only.
+
 ### TabBar Responsive Conversion
 
 - Mobile/tablet: `fixed bottom-0 inset-x-0 h-14` (current behavior — unchanged)
@@ -150,7 +155,7 @@ New color applications in this phase:
 - Position: fixed `top-16 start-1/2 -translate-x-1/2 z-50` — matches BadgeToast positioning pattern
 - Colors: `bg-white border border-indigo-200 rounded-lg shadow-lg`
 - Copy: i18n key `pwa.updateAvailable` — "New version available" + CTA "Refresh" (EN)
-- CTA: `px-3 py-1 bg-indigo-600 text-white text-sm font-semibold rounded-md` button
+- CTA: `px-3 py-1 bg-indigo-600 text-white text-sm font-bold rounded-md` button
 - Dismiss: secondary "Later" link-style button `text-sm text-gray-500`
 - Animation: `animate-scale-pulse` (reuse existing keyframe from globals.css)
 
