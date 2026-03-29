@@ -11,7 +11,7 @@ export function TabBar() {
   const { t } = useTranslation()
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 h-14 bg-white border-t border-gray-200 flex items-stretch justify-around z-40 lg:hidden">
+    <nav className="fixed bottom-0 inset-x-0 h-14 bg-white flex items-stretch justify-around z-40 lg:hidden" style={{ boxShadow: '0 -4px 8px rgba(79, 70, 229, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.8)', borderTop: '2px solid rgba(0, 0, 0, 0.05)' }}>
       {tabs.map(tab => (
         <NavLink
           key={tab.to}
@@ -22,7 +22,7 @@ export function TabBar() {
               'flex flex-col items-center pt-2 pb-1 flex-1',
               'border-t-2',
               isActive
-                ? 'border-indigo-600'
+                ? 'border-[var(--clay-primary)]'
                 : 'border-transparent opacity-50',
             ].join(' ')
           }

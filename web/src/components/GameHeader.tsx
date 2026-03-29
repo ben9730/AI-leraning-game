@@ -18,7 +18,7 @@ export function GameHeader() {
     : 1
 
   return (
-    <header className="flex items-center justify-between h-14 px-4 py-2 bg-white border-b border-gray-200">
+    <header className="clay-surface flex items-center justify-between h-14 px-4 py-2">
       {/* Left: streak flame + count */}
       <div className="flex items-center gap-1.5">
         <span role="img" aria-label="streak" className="text-xl leading-none">🔥</span>
@@ -31,7 +31,7 @@ export function GameHeader() {
 
       {/* Center: XP counter */}
       <div className="flex items-center">
-        <span className="text-sm font-semibold text-indigo-600">
+        <span className="text-sm font-semibold text-[var(--clay-primary)]">
           {xpTotal} XP
         </span>
       </div>

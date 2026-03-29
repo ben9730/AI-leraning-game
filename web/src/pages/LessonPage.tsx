@@ -114,13 +114,13 @@ export function LessonPage() {
   // ── INTRO PHASE ──────────────────────────────────────────────────────────────
   if (phase === 'intro') {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-[var(--clay-bg)]">
         <AppHead title={lesson.content.title[lang] ?? 'Lesson'} />
         <div className="w-full max-w-lg">
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="mb-4 text-sm text-indigo-600 hover:text-indigo-800 transition-colors"
+            className="mb-4 text-sm text-[var(--clay-primary)] hover:text-[var(--clay-text)] transition-colors"
           >
             ← {t('lesson.back')}
           </button>
@@ -129,12 +129,12 @@ export function LessonPage() {
               {chapterName[lang]}
             </p>
           )}
-          <h1 className="text-3xl font-bold text-gray-900 text-start mb-4">
+          <h1 className="text-3xl font-bold text-[var(--clay-text)] text-start mb-4">
             {lesson.content.title[lang]}
           </h1>
           {lesson.content.tip && (
-            <div className="rounded-lg bg-indigo-50 border border-indigo-200 ps-4 pe-4 py-3 mb-6">
-              <p className="text-sm text-indigo-800 text-start">
+            <div className="clay-card rounded-2xl bg-[var(--clay-secondary)]/10 border-3 border-[var(--clay-secondary)]/20 ps-4 pe-4 py-3 mb-6">
+              <p className="text-sm text-[var(--clay-text)] text-start">
                 {lesson.content.tip[lang]}
               </p>
             </div>
@@ -142,7 +142,7 @@ export function LessonPage() {
           <button
             type="button"
             onClick={() => setPhase('running')}
-            className="w-full rounded-lg bg-indigo-600 px-4 py-3 text-white font-semibold text-lg hover:bg-indigo-700 transition-colors"
+            className="clay-button w-full rounded-2xl bg-[var(--clay-primary)] px-4 py-3 text-white font-semibold text-lg hover:bg-[var(--clay-text)] transition-colors"
           >
             {t('lesson.start')}
           </button>
@@ -161,7 +161,7 @@ export function LessonPage() {
         <button
           type="button"
           onClick={() => navigate('/')}
-          className="mb-2 text-sm text-indigo-600 hover:text-indigo-800 transition-colors self-start"
+          className="mb-2 text-sm text-[var(--clay-primary)] hover:text-[var(--clay-text)] transition-colors self-start"
         >
           ← {t('lesson.back')}
         </button>
@@ -178,7 +178,7 @@ export function LessonPage() {
             <button
               type="button"
               onClick={handleContinue}
-              className="mt-4 w-full rounded-lg bg-indigo-600 px-4 py-3 text-white font-semibold hover:bg-indigo-700 transition-colors"
+              className="clay-button mt-4 w-full rounded-2xl bg-[var(--clay-primary)] px-4 py-3 text-white font-semibold hover:bg-[var(--clay-text)] transition-colors"
             >
               {t('common.continue')}
             </button>
@@ -190,15 +190,15 @@ export function LessonPage() {
 
   // ── COMPLETE PHASE ───────────────────────────────────────────────────────────
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-indigo-50">
+    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-[var(--clay-bg)]">
       {showCelebration && <CelebrationOverlay />}
       {newlyEarnedBadge && (
         <BadgeToast badge={newlyEarnedBadge} onDismiss={() => setNewlyEarnedBadge(null)} />
       )}
       <div className="w-full max-w-lg text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Lesson Complete!</h1>
+        <h1 className="text-3xl font-bold text-[var(--clay-text)] mb-4">Lesson Complete!</h1>
         <div className="relative inline-block mb-2">
-          <p className="text-5xl font-extrabold text-indigo-600">
+          <p className="text-5xl font-extrabold text-[var(--clay-primary)]">
             +{completionXP || lesson.xpReward} XP
           </p>
           {showCelebration && <XPFloatUp amount={completionXP || lesson.xpReward} />}
@@ -214,7 +214,7 @@ export function LessonPage() {
             <button
               type="button"
               onClick={() => navigate(`/lesson/${nextLessonId}`)}
-              className="w-full rounded-lg bg-indigo-600 px-4 py-3 text-white font-semibold hover:bg-indigo-700 transition-colors"
+              className="clay-button w-full rounded-2xl bg-[var(--clay-cta)] px-4 py-3 text-white font-semibold hover:bg-green-600 transition-colors"
             >
               Next Lesson
             </button>
@@ -222,7 +222,7 @@ export function LessonPage() {
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+            className="clay-button w-full rounded-2xl border-3 border-gray-200 bg-white px-4 py-3 text-[var(--clay-text)] font-semibold hover:bg-gray-50 transition-colors"
           >
             Back to Home
           </button>

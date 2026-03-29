@@ -28,24 +28,24 @@ export function OnboardingPage() {
 
   if (step === 1) {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-[var(--clay-bg)]">
         <AppHead title="Start Learning" />
         <button
           type="button"
           onClick={toggleLanguage}
-          className="absolute top-4 end-4 text-sm text-indigo-600 hover:text-indigo-800 font-medium px-3 py-1 rounded-md border border-indigo-200 hover:border-indigo-400 transition-colors"
+          className="clay-button absolute top-4 end-4 text-sm text-[var(--clay-primary)] hover:text-[var(--clay-text)] font-medium px-3 py-1 bg-white transition-colors"
         >
           {currentLanguage === 'en' ? 'עברית' : 'English'}
         </button>
         <div className="w-full max-w-sm">
-          <h1 className="text-4xl font-bold text-indigo-600 text-center mb-3">PromptPlay</h1>
+          <h1 className="text-4xl font-bold text-[var(--clay-primary)] text-center mb-3">PromptPlay</h1>
           <p className="text-base font-normal text-gray-500 text-center mb-8">
             {t('onboarding.welcome.subtitle')}
           </p>
           <button
             type="button"
             onClick={() => setStep(2)}
-            className="w-full bg-indigo-600 text-white rounded-lg px-4 py-3 font-semibold text-lg hover:bg-indigo-700 transition-colors"
+            className="clay-button w-full bg-[var(--clay-primary)] text-white rounded-2xl px-4 py-3 font-semibold text-lg hover:bg-[var(--clay-text)] transition-colors"
           >
             {t('home.start_lesson')}
           </button>
@@ -55,10 +55,10 @@ export function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+    <div className="min-h-dvh flex flex-col items-center justify-center p-6 bg-[var(--clay-bg)]">
       <AppHead title="Start Learning" />
       <div className="w-full max-w-sm">
-        <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">
+        <h2 className="text-xl font-bold text-[var(--clay-text)] mb-6 text-center">
           {t('onboarding.goal.heading')}
         </h2>
         <div role="radiogroup" className="w-full space-y-3 mb-8">
@@ -77,10 +77,10 @@ export function OnboardingPage() {
           onClick={handleConfirm}
           disabled={selectedGoal === null}
           className={[
-            'w-full bg-indigo-600 text-white rounded-lg px-4 py-3 font-semibold text-lg transition-colors',
+            'clay-button w-full bg-[var(--clay-primary)] text-white rounded-2xl px-4 py-3 font-semibold text-lg transition-colors',
             selectedGoal === null
               ? 'opacity-50 cursor-not-allowed'
-              : 'hover:bg-indigo-700',
+              : 'hover:bg-[var(--clay-text)]',
           ].join(' ')}
         >
           {t('home.start_lesson')}

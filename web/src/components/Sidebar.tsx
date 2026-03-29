@@ -16,10 +16,10 @@ export function Sidebar() {
   const completedLessons = useProgressStore(s => s.completedLessons)
 
   return (
-    <aside className="hidden lg:flex fixed inset-y-0 start-0 w-64 flex-col bg-gray-50 border-e border-gray-200 z-40">
+    <aside className="hidden lg:flex fixed inset-y-0 start-0 w-64 flex-col bg-[var(--clay-bg)] border-e-2 border-gray-200/50 z-40">
       {/* Brand */}
-      <div className="p-4 border-b border-gray-200">
-        <span className="text-xl font-bold text-indigo-600">PromptPlay</span>
+      <div className="p-4 border-b-2 border-gray-200/50">
+        <span className="text-xl font-bold text-[var(--clay-primary)]">PromptPlay</span>
       </div>
 
       {/* Main navigation */}
@@ -34,7 +34,7 @@ export function Sidebar() {
                 'flex items-center gap-3 px-4 py-3 text-sm',
                 'border-s-2',
                 isActive
-                  ? 'border-indigo-600 text-indigo-600 font-bold bg-indigo-50'
+                  ? 'border-[var(--clay-primary)] text-[var(--clay-primary)] font-bold bg-white/60'
                   : 'border-transparent opacity-60 hover:opacity-80',
               ].join(' ')
             }
@@ -46,7 +46,7 @@ export function Sidebar() {
       </nav>
 
       {/* Skill tree mini-map */}
-      <div className="border-t border-gray-200 p-4">
+      <div className="border-t-2 border-gray-200/50 p-4">
         <p className="text-xs font-semibold text-gray-400 uppercase mb-2">
           {t('tabs.skillTree')}
         </p>
