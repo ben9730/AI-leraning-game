@@ -57,24 +57,24 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | Pending | Pending |
-| INFRA-02 | Pending | Pending |
-| CONT-01 | Pending | Pending |
-| CONT-02 | Pending | Pending |
-| CONT-03 | Pending | Pending |
-| CONT-04 | Pending | Pending |
-| CONT-05 | Pending | Pending |
-| CONT-06 | Pending | Pending |
-| SAND-01 | Pending | Pending |
-| SAND-02 | Pending | Pending |
-| SAND-03 | Pending | Pending |
-| SAND-04 | Pending | Pending |
+| INFRA-01 | Phase 15 | Pending |
+| INFRA-02 | Phase 15 | Pending |
+| CONT-01 | Phase 16 | Pending |
+| CONT-02 | Phase 16 | Pending |
+| CONT-03 | Phase 16 | Pending |
+| CONT-04 | Phase 16 | Pending |
+| CONT-05 | Phase 16 | Pending |
+| CONT-06 | Phase 17 | Pending |
+| SAND-01 | Phase 18 | Pending |
+| SAND-02 | Phase 18 | Pending |
+| SAND-03 | Phase 18 | Pending |
+| SAND-04 | Phase 18 | Pending |
 
 **Coverage:**
 - v2.1 requirements: 12 total
-- Mapped to phases: 0
-- Unmapped: 12 (pending roadmap)
+- Mapped to phases: 12
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after initial definition*
+*Last updated: 2026-03-30 after roadmap creation*
