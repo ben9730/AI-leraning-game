@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import type { SpotProblemExercise } from '@shared/content/schema'
+import type { SpotProblemExercise, SpotProblemItem } from '@shared/content/schema'
 import { evaluateSpotProblem } from '@shared/exercise/evaluators'
 import type { EvaluationResult } from '@shared/exercise/types'
 import { useLanguage } from '@/hooks/useLanguage'
@@ -14,32 +14,31 @@ function seededShuffle<T>(
   items: T[],
   seed: string,
 ): { shuffled: T[]; indexMap: number[] } {
-  // Simple hash from string: sum of charCodes
   let hash = 0
   for (let i = 0; i < seed.length; i++) {
     hash = (hash + seed.charCodeAt(i)) * 31
   }
 
-  // Seeded pseudo-random (LCG)
   let state = Math.abs(hash) || 1
   function nextRandom(): number {
     state = (state * 1664525 + 1013904223) & 0x7fffffff
     return state / 0x7fffffff
   }
 
-  // Create index map and shuffle with Fisher-Yates
   const indexMap = items.map((_, i) => i)
   const shuffled = [...items]
 
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(nextRandom() * (i + 1))
-    // Swap items
     ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-    // Swap index map
     ;[indexMap[i], indexMap[j]] = [indexMap[j], indexMap[i]]
   }
 
   return { shuffled, indexMap }
+}
+
+function getItemLabel(item: SpotProblemItem, lang: 'en' | 'he'): string {
+  return item.label?.[lang] ?? item[lang] ?? ''
 }
 
 export function SpotProblemCard({
@@ -53,14 +52,12 @@ export function SpotProblemCard({
   const [result, setResult] = useState<EvaluationResult | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
-  // Combine issues and distractors, shuffle deterministically
-  // Supports both old format (separate issues + distractors arrays)
-  // and new format (issues array with isActualIssue flag, no distractors)
   const { shuffled, indexMap } = useMemo(() => {
-    const distractors = (exercise as any).distractors ?? []
-    const combined = [...exercise.issues, ...distractors]
+    const combined = [...exercise.issues, ...(exercise.distractors ?? [])]
     return seededShuffle(combined, exercise.id)
-  }, [exercise.id, exercise.issues])
+  }, [exercise.id, exercise.issues, exercise.distractors])
+
+  const promptText = (exercise.problematicPrompt ?? exercise.badExample)?.[lang] ?? ''
 
   function toggleIndex(shuffledIdx: number) {
     if (submitted) return
@@ -78,7 +75,6 @@ export function SpotProblemCard({
   function handleSubmit() {
     if (selectedIndices.size === 0 || submitted) return
 
-    // Map shuffled indices back to original indices
     const originalIndices = Array.from(selectedIndices).map(
       (si) => indexMap[si],
     )
@@ -102,7 +98,7 @@ export function SpotProblemCard({
 
       {/* Problematic prompt blockquote */}
       <div className="border-s-4 border-amber-400 bg-amber-50 ps-4 pe-4 py-3 rounded-e-lg text-gray-700 text-start">
-        {(exercise.problematicPrompt ?? (exercise as any).badExample)?.[lang]}
+        {promptText}
       </div>
 
       {/* Checkbox list */}
@@ -125,7 +121,7 @@ export function SpotProblemCard({
                 disabled={submitted}
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
               />
-              <span className="text-gray-800 text-start">{(item as any).label?.[lang] ?? item[lang]}</span>
+              <span className="text-gray-800 text-start">{getItemLabel(item, lang)}</span>
             </label>
           )
         })}

@@ -1,9 +1,6 @@
 import type { FreeTextExercise } from '../../content/schema'
 import type { EvaluationResult } from '../types'
-
-function normalize(text: string, lang: 'en' | 'he'): string {
-  return lang === 'he' ? text.trim() : text.trim().toLowerCase()
-}
+import { normalize } from './normalize'
 
 export function evaluateFreeText(
   exercise: FreeTextExercise,

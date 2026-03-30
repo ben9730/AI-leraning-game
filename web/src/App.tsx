@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage'
 import { SkillTreePage } from './pages/SkillTreePage'
 import { ProfilePage } from './pages/ProfilePage'
 import { OnboardingPage } from './pages/OnboardingPage'
+import { useParams } from 'react-router'
 import { GameHeader } from './components/GameHeader'
 import { LevelUpModal } from './components/LevelUpModal'
 import { TabBar } from './components/TabBar'
@@ -13,6 +14,11 @@ import { OfflineBanner } from './components/OfflineBanner'
 import { UpdateToast } from './components/UpdateToast'
 import { InstallBanner } from './components/InstallBanner'
 import { useProgressStore, useHasHydrated } from './store/useProgressStore'
+
+function LessonPageWrapper() {
+  const { id } = useParams<{ id: string }>()
+  return <LessonPage key={id} />
+}
 
 function OnboardingLayout() {
   return <Outlet />
@@ -60,7 +66,7 @@ const router = createBrowserRouter([
       { path: '/', element: <HomePage /> },
       { path: '/tree', element: <SkillTreePage /> },
       { path: '/profile', element: <ProfilePage /> },
-      { path: '/lesson/:id', element: <LessonPage /> },
+      { path: '/lesson/:id', element: <LessonPageWrapper /> },
     ],
   },
 ])

@@ -1,56 +1,43 @@
 import type { FillBlankExercise } from '../../content/schema'
 import type { EvaluationResult } from '../types'
-
-function normalize(text: string, lang: 'en' | 'he'): string {
-  return lang === 'he' ? text.trim() : text.trim().toLowerCase()
-}
+import { normalize } from './normalize'
 
 export function evaluateFillBlank(
   exercise: FillBlankExercise,
-  answer: string,
+  answers: string | string[],
   lang: 'en' | 'he',
 ): EvaluationResult {
-  const normalizedAnswer = normalize(answer, lang)
+  const answerList = Array.isArray(answers) ? answers : [answers]
 
-  // Support both old format (exercise.acceptableAnswers) and new format (exercise.blanks[].acceptableAnswers)
-  let matched = false
-
-  if (exercise.acceptableAnswers) {
-    // Old format: single blank with flat acceptableAnswers array
-    matched = exercise.acceptableAnswers.some(acceptable => {
-      const normalizedAcceptable = normalize(acceptable[lang], lang)
-      return (
-        normalizedAnswer.includes(normalizedAcceptable) ||
-        normalizedAcceptable.includes(normalizedAnswer)
-      )
-    })
-  } else if ((exercise as any).blanks) {
-    // New format: multiple blanks with per-blank acceptableAnswers
-    const blanks = (exercise as any).blanks as Array<{
-      acceptableAnswers: Record<string, string[]>
-    }>
-    // Check if any answer token matches any blank's acceptable answers
-    // For multi-blank, answers are joined with ", " so split them back
-    const answerParts = normalizedAnswer.split(/,\s*/)
+  if (exercise.blanks) {
+    // New format: per-blank acceptable answers
     let matchCount = 0
-    for (const blank of blanks) {
-      const acceptable = blank.acceptableAnswers?.[lang] ?? []
-      const blankMatched = answerParts.some(part =>
-        acceptable.some(acc => {
-          const normAcc = normalize(acc, lang)
-          return part.includes(normAcc) || normAcc.includes(part)
-        })
-      )
+    for (let i = 0; i < exercise.blanks.length; i++) {
+      const normalizedAnswer = normalize(answerList[i] ?? '', lang)
+      const acceptable = exercise.blanks[i].acceptableAnswers?.[lang] ?? []
+      const blankMatched = acceptable.some(acc => {
+        const normAcc = normalize(acc, lang)
+        return normalizedAnswer.includes(normAcc) || normAcc.includes(normalizedAnswer)
+      })
       if (blankMatched) matchCount++
     }
-    // Score proportionally to how many blanks matched
-    const score = Math.round((matchCount / blanks.length) * 100)
+    const score = Math.round((matchCount / exercise.blanks.length) * 100)
     return {
       score,
       passed: score >= 60,
       feedback: exercise.explanation,
     }
   }
+
+  // Old format: single blank with flat acceptableAnswers array
+  const normalizedAnswer = normalize(answerList[0] ?? '', lang)
+  const matched = (exercise.acceptableAnswers ?? []).some(acceptable => {
+    const normalizedAcceptable = normalize(acceptable[lang], lang)
+    return (
+      normalizedAnswer.includes(normalizedAcceptable) ||
+      normalizedAcceptable.includes(normalizedAnswer)
+    )
+  })
 
   return {
     score: matched ? 100 : 0,

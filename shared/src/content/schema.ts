@@ -93,10 +93,16 @@ export interface PickBetterExercise extends ExerciseBase {
 // Exercise type: Fill in the Blank
 // ---------------------------------------------------------------------------
 
+export interface FillBlankBlank {
+  placeholder?: LocalizedString
+  acceptableAnswers: Record<string, string[]>  // lang -> acceptable strings
+}
+
 export interface FillBlankExercise extends ExerciseBase {
   type: 'fill-blank'
-  template: LocalizedString             // Contains "___" as blank marker
-  acceptableAnswers: LocalizedString[]  // Multiple valid fills
+  template: LocalizedString             // Contains "___" or "_[placeholder]_" as blank markers
+  acceptableAnswers?: LocalizedString[] // Old format: single blank with LocalizedString answers
+  blanks?: FillBlankBlank[]             // New format: per-blank acceptable answers
   explanation: LocalizedString
 }
 
@@ -104,11 +110,19 @@ export interface FillBlankExercise extends ExerciseBase {
 // Exercise type: Spot the Problem
 // ---------------------------------------------------------------------------
 
+export interface SpotProblemItem {
+  label?: LocalizedString               // New format: item label
+  en?: string                           // Old format: bare LocalizedString
+  he?: string
+  isActualIssue?: boolean               // New format: flag for real issues vs distractors
+}
+
 export interface SpotProblemExercise extends ExerciseBase {
   type: 'spot-problem'
-  problematicPrompt: LocalizedString
-  issues: LocalizedString[]             // What's wrong (correct answers)
-  distractors: LocalizedString[]        // Wrong answers for MCQ-style selection
+  problematicPrompt?: LocalizedString   // Old format field name
+  badExample?: LocalizedString          // New format field name
+  issues: SpotProblemItem[]             // Issues (and possibly distractors in new format)
+  distractors?: SpotProblemItem[]       // Old format: separate distractors array
   hints: LocalizedString[]
   explanation: LocalizedString
 }
@@ -120,7 +134,8 @@ export interface SpotProblemExercise extends ExerciseBase {
 export interface SimulatedChatExercise extends ExerciseBase {
   type: 'simulated-chat'
   systemContext?: LocalizedString       // Background context shown to user
-  preScriptedResponse: LocalizedString  // "AI" response to user's prompt
+  systemPrompt?: LocalizedString        // Alias for systemContext (content variant)
+  preScriptedResponse?: LocalizedString // "AI" response to user's prompt
   rubric: PromptRubric
   modelAnswer: LocalizedString
   positiveFeedback: LocalizedString

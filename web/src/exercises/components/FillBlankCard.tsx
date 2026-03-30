@@ -6,16 +6,12 @@ import { useLanguage } from '@/hooks/useLanguage'
 import type { ExerciseComponentProps } from '../types'
 import { FeedbackCard } from './FeedbackCard'
 
-// Split template into text parts and blank placeholders
-// Supports both "___" (triple underscore) and "_[placeholder]_" patterns
-function parseTemplate(template: string): string[] {
-  return template.split(/___|\b_\[.*?\]_/g)
-}
+const BLANK_PATTERN = /___|\b_\[.*?\]_/g
 
-function countBlanks(template: string): number {
-  const tripleUnderscores = (template.match(/___/g) || []).length
-  const bracketBlanks = (template.match(/_\[.*?\]_/g) || []).length
-  return tripleUnderscores + bracketBlanks
+function parseTemplate(template: string): { parts: string[]; blankCount: number } {
+  const parts = template.split(BLANK_PATTERN)
+  const blankCount = parts.length - 1
+  return { parts, blankCount }
 }
 
 export function FillBlankCard({
@@ -27,8 +23,7 @@ export function FillBlankCard({
   const [submitted, setSubmitted] = useState(false)
 
   const template = exercise.template[lang]
-  const parts = useMemo(() => parseTemplate(template), [template])
-  const blankCount = useMemo(() => countBlanks(template), [template])
+  const { parts, blankCount } = useMemo(() => parseTemplate(template), [template])
   const [answers, setAnswers] = useState<string[]>(() => new Array(blankCount).fill(''))
 
   const allFilled = answers.every(a => a.trim().length > 0)
@@ -43,9 +38,7 @@ export function FillBlankCard({
 
   function handleSubmit() {
     if (!allFilled || submitted) return
-    // Join answers for single-blank evaluator compatibility
-    const combined = answers.join(', ')
-    const evalResult = evaluateFillBlank(exercise, combined, lang)
+    const evalResult = evaluateFillBlank(exercise, answers, lang)
     setResult(evalResult)
     setSubmitted(true)
     onComplete({

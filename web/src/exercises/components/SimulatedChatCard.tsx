@@ -6,6 +6,10 @@ import { useLanguage } from '@/hooks/useLanguage'
 import type { ExerciseComponentProps } from '../types'
 import { FeedbackCard } from './FeedbackCard'
 
+function getSystemContext(exercise: SimulatedChatExercise, lang: 'en' | 'he'): string | undefined {
+  return (exercise.systemContext ?? exercise.systemPrompt)?.[lang]
+}
+
 export function SimulatedChatCard({
   exercise,
   onComplete,
@@ -16,14 +20,12 @@ export function SimulatedChatCard({
   const [showAiResponse, setShowAiResponse] = useState(false)
   const [result, setResult] = useState<EvaluationResult | null>(null)
 
-  // Phase 2: After prompt submitted, show AI response with a typing delay
   useEffect(() => {
     if (!promptSubmitted || showAiResponse) return
 
     const timer = setTimeout(() => {
       setShowAiResponse(true)
 
-      // Auto-evaluate after showing AI response
       const evalResult = evaluateSimulatedChat(exercise, userPrompt, lang)
       setResult(evalResult)
       onComplete({
@@ -41,6 +43,8 @@ export function SimulatedChatCard({
     setPromptSubmitted(true)
   }
 
+  const systemContext = getSystemContext(exercise, lang)
+
   return (
     <div className="space-y-4">
       {/* Prompt instruction */}
@@ -49,9 +53,9 @@ export function SimulatedChatCard({
       </h3>
 
       {/* System context */}
-      {(exercise.systemContext ?? (exercise as any).systemPrompt) && (
+      {systemContext && (
         <div className="border-s-4 border-blue-400 bg-blue-50 ps-4 pe-4 py-3 rounded-e-lg text-gray-600 text-sm text-start">
-          {(exercise.systemContext ?? (exercise as any).systemPrompt)[lang]}
+          {systemContext}
         </div>
       )}
 
@@ -81,18 +85,18 @@ export function SimulatedChatCard({
       {/* Phase 2+3: Chat bubbles */}
       {promptSubmitted && (
         <div className="space-y-3">
-          {/* User message bubble (pushed to end) */}
+          {/* User message bubble */}
           <div className="flex">
             <div className="ms-auto max-w-[80%] rounded-2xl bg-indigo-100 ps-4 pe-4 py-3 text-gray-800 text-start">
               {userPrompt}
             </div>
           </div>
 
-          {/* AI response bubble (pushed to start) */}
-          {showAiResponse && (
+          {/* AI response bubble */}
+          {showAiResponse && exercise.preScriptedResponse && (
             <div className="flex">
               <div className="me-auto max-w-[80%] rounded-2xl bg-gray-100 ps-4 pe-4 py-3 text-gray-800 text-start">
-                {exercise.preScriptedResponse?.[lang] ?? "Thanks for your prompt! Based on what you wrote, I'd be happy to help. Let me work through this step by step..."}
+                {exercise.preScriptedResponse[lang]}
               </div>
             </div>
           )}
