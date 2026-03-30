@@ -1,34 +1,34 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0
-milestone_name: Web-First Rebuild
-status: verifying
-stopped_at: Completed 14-02-PLAN.md
-last_updated: "2026-03-29T12:17:21.538Z"
-last_activity: 2026-03-29
+milestone: v2.1
+milestone_name: Practical AI & Sandbox
+status: planning
+stopped_at: null
+last_updated: "2026-03-30T00:00:00.000Z"
+last_activity: 2026-03-30
 progress:
-  total_phases: 8
-  completed_phases: 8
-  total_plans: 16
-  completed_plans: 16
-  percent: 6
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-28)
+See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** Make AI skills accessible and fun for anyone — turn "I don't know what to ask AI" into confident, effective AI usage through gamified practice.
-**Current focus:** Phase 14 — pwa-web-polish
+**Current focus:** Defining requirements for v2.1
 
 ## Current Position
 
-Phase: 14
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-03-29
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-30 — Milestone v2.1 started
 
 Progress: [█░░░░░░░░░] 6%
 

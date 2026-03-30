@@ -24,7 +24,9 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 
 ### Active
 
-(None — next milestone requirements TBD via /gsd:new-milestone)
+- [ ] Chapter 5: AI for Code & Automation — 5 practical lessons
+- [ ] Practice Sandbox — Simulated freeform prompting area with scenario templates
+- [ ] Content pipeline extension — New lessons in skill tree, progression, chapter system
 
 ### Out of Scope
 
@@ -65,7 +67,16 @@ Make AI skills accessible and fun for anyone — turn "I don't know what to ask 
 | Shared monorepo (npm workspaces) | Portable TS logic in shared/, web app in web/ — future native wrapper possible | ✓ Good |
 | Workbox via vite-plugin-pwa | PWA offline support with precaching, prompt-based update strategy | ✓ Good |
 
-## Current State: v2.0 Shipped
+## Current Milestone: v2.1 Practical AI & Sandbox
+
+**Goal:** Add a code & automation chapter with 5 practical lessons plus a freeform practice sandbox for post-completion retention.
+
+**Target features:**
+- Chapter 5: AI for Code & Automation — 5 new lessons (writing scripts, debugging, automation)
+- Practice Sandbox — Simulated freeform area with scenario templates, unlocked post-completion
+- Content pipeline extension — New lessons integrate into chapter/lesson/skill-tree system
+
+## Previous State: v2.0 Shipped
 
 **Shipped:** 2026-03-29
 **Stack:** Vite 6 + React 19 + Tailwind v4 + Zustand + Workbox
@@ -97,4 +108,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-29 after v2.0 Web-First Rebuild milestone*
+*Last updated: 2026-03-30 after v2.1 milestone kickoff*
